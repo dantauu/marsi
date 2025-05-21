@@ -1,4 +1,10 @@
 @import "tailwindcss";
+
+@theme {
+  --color-main-green: #31c29f;
+  --color-bg-input: rgba(0, 0, 0, 0.9);
+}
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
