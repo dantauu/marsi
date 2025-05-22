@@ -1,0 +1,8 @@
+export { default as DollarIcon } from "./Dollar"
+export { default as FilterIconIcon } from "./FilterIcon"
+export { default as Layout1Icon } from "./Layout1"
+export { default as Layout2Icon } from "./Layout2"
+export { default as NewSetIcon } from "./NewSet"
+export { default as ProfileIcon } from "./Profile"
+export { default as SearchIcon } from "./Search"
+export { default as SlidesIcon } from "./Slides"
