@@ -1182,6 +1182,125 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@telegram-apps/bridge@npm:^1.9.2":
+  version: 1.9.2
+  resolution: "@telegram-apps/bridge@npm:1.9.2"
+  dependencies:
+    "@telegram-apps/signals": ^1.1.1
+    "@telegram-apps/toolkit": ^1.1.1
+    "@telegram-apps/transformers": ^1.2.2
+    "@telegram-apps/types": ^1.2.1
+  checksum: 4ce6d20e0d0e40ff47debcc5ea160bc39d4b43235a7527d5ffb1bc667b791c4307f35468ea6f3ea58ff17ae08b612bb18068504902457f2c7538b80c273137ee
+  languageName: node
+  linkType: hard
+
+"@telegram-apps/bridge@npm:^2.8.2":
+  version: 2.8.2
+  resolution: "@telegram-apps/bridge@npm:2.8.2"
+  dependencies:
+    "@telegram-apps/signals": ^1.1.1
+    "@telegram-apps/toolkit": ^2.1.2
+    "@telegram-apps/transformers": ^2.2.3
+    "@telegram-apps/types": ^2.0.0
+    better-promises: ^0.4.1
+    error-kid: ^0.0.7
+    mitt: ^3.0.1
+    valibot: 1.0.0
+  checksum: 892b5a4372e391d611aae011a40c2d02fb5b4332aa67d06a77b50f32c568f80d963f2af3919884ad62b0e7cf8841865b90f918441b30aae8afad4871bd36af89
+  languageName: node
+  linkType: hard
+
+"@telegram-apps/navigation@npm:^1.0.13":
+  version: 1.0.13
+  resolution: "@telegram-apps/navigation@npm:1.0.13"
+  dependencies:
+    "@telegram-apps/bridge": ^1.9.2
+    "@telegram-apps/signals": ^1.1.1
+    "@telegram-apps/toolkit": ^1.1.1
+  checksum: 843f0249a44177014ec77936c6446486c5a46bb7acaa9720d278bb2fea933ab45585c6550480df7bbbe52ffba96b1fbc00d62415a20029cd25c9e4e3e422bde3
+  languageName: node
+  linkType: hard
+
+"@telegram-apps/sdk@npm:^3.10.0":
+  version: 3.10.0
+  resolution: "@telegram-apps/sdk@npm:3.10.0"
+  dependencies:
+    "@telegram-apps/bridge": ^2.8.2
+    "@telegram-apps/navigation": ^1.0.13
+    "@telegram-apps/signals": ^1.1.1
+    "@telegram-apps/toolkit": ^2.1.2
+    "@telegram-apps/transformers": ^2.2.3
+    "@telegram-apps/types": ^2.0.0
+    better-promises: ^0.4.1
+    error-kid: ^0.0.7
+    valibot: 1.0.0
+  checksum: fa6022a1680a78ded689462dfb4b8fed899f4a3424124c93b2c9da60df5446c564c55f05f882856fd63351892c76df6f101c0ae45b3d69e224c6ae6c9dbdc162
+  languageName: node
+  linkType: hard
+
+"@telegram-apps/signals@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@telegram-apps/signals@npm:1.1.1"
+  checksum: 4da18f1688a09aa4a1db8f3923484674eefcca39cf85df5e1e86592e852a9bb0e2df9e73e7ff48621614c9331f1ce59ede1f5d1391bb358368f7bf3a92e4a530
+  languageName: node
+  linkType: hard
+
+"@telegram-apps/toolkit@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@telegram-apps/toolkit@npm:1.1.1"
+  checksum: 02eb4d4058817a0480ffd3ff7b45d11fa0a77a84a54ea2c32149707bf2079609b3a3afb77290cb4d41cea04b2ba36c0b0c720084c0b81d7cb54bc0484598e296
+  languageName: node
+  linkType: hard
+
+"@telegram-apps/toolkit@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "@telegram-apps/toolkit@npm:2.1.2"
+  checksum: cd2487c204ff83d708dd0cb3049aa41117694dd02081c51be9c72b262abd5d41216a76fffcd9585c6db0c6f61fedac816ad949f2d519770693299cee97be8039
+  languageName: node
+  linkType: hard
+
+"@telegram-apps/transformers@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "@telegram-apps/transformers@npm:1.2.2"
+  dependencies:
+    "@telegram-apps/toolkit": ^1.1.1
+    "@telegram-apps/types": ^1.2.1
+  checksum: 37d116e895da6b0fd9254a126a975a9411f4969df3891fa4cf3b774a4e6b868d194b3a803c55b46afe85078383fbbbd142ee024721f92db2f8fd262f2f58cce2
+  languageName: node
+  linkType: hard
+
+"@telegram-apps/transformers@npm:^2.2.3":
+  version: 2.2.3
+  resolution: "@telegram-apps/transformers@npm:2.2.3"
+  dependencies:
+    "@telegram-apps/toolkit": ^2.1.2
+    "@telegram-apps/types": ^2.0.0
+    valibot: 1.0.0-beta.14
+  checksum: 6dd4e3bfe3b9590a473583b3ea7b63c9a6024d07ae83522bbb2a6996ecab92c5d486a5ea94c8fe827fc88fb1a483f4bf892f8d4bd7f6d6423498048c5455af7c
+  languageName: node
+  linkType: hard
+
+"@telegram-apps/types@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "@telegram-apps/types@npm:1.2.1"
+  checksum: dbddb807adef7a176770f201e3ebafbbef2c486a29b16b04c84ca20349d2fc0a1b5b67762e8b282a7215f502be0e388292e070a69e37095d74483dcc024c1d3d
+  languageName: node
+  linkType: hard
+
+"@telegram-apps/types@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@telegram-apps/types@npm:2.0.0"
+  checksum: 819dfadabf7c1c720dec51b11a5ddfb5194a078c155b9c77d29f6170397e8789b1d637a7d147f67f7c9e9586eaf5fc62531f361ba75f1f19c1f55b719f2418dc
+  languageName: node
+  linkType: hard
+
+"@twa-dev/types@npm:^8.0.2":
+  version: 8.0.2
+  resolution: "@twa-dev/types@npm:8.0.2"
+  checksum: e35dfbba14a8f77999f1700b5c571f8a50ea20eb8fcc80e3b74de5ddcd9bfa5efa03e056f6f6aa46ae91c42d4e320b0d2096b61b03bc1d6c536048828303fec5
+  languageName: node
+  linkType: hard
+
 "@tybys/wasm-util@npm:^0.9.0":
   version: 0.9.0
   resolution: "@tybys/wasm-util@npm:0.9.0"
@@ -1515,6 +1634,15 @@ __metadata:
   version: 1.0.2
   resolution: "balanced-match@npm:1.0.2"
   checksum: 9706c088a283058a8a99e0bf91b0a2f75497f185980d9ffa8b304de1d9e58ebda7c72c07ebf01dadedaac5b2907b2c6f566f660d62bd336c3468e960403b9d65
+  languageName: node
+  linkType: hard
+
+"better-promises@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "better-promises@npm:0.4.1"
+  dependencies:
+    error-kid: ^0.0.7
+  checksum: a67aace37b9955b86eeb13bc69f0d302cb58610b4b5c62601eca24e82438d01fcc8ec5ab0e09e4ed6f621b62637fca8385a02e0ad549aa0dcd6706d41d0e2ac9
   languageName: node
   linkType: hard
 
@@ -1899,6 +2027,13 @@ __metadata:
   version: 2.0.3
   resolution: "err-code@npm:2.0.3"
   checksum: 8b7b1be20d2de12d2255c0bc2ca638b7af5171142693299416e6a9339bd7d88fc8d7707d913d78e0993176005405a236b066b45666b27b797252c771156ace54
+  languageName: node
+  linkType: hard
+
+"error-kid@npm:^0.0.7":
+  version: 0.0.7
+  resolution: "error-kid@npm:0.0.7"
+  checksum: 908b67e7e991a1dc6b7a8d5eebf8f98d20cf79bc5a4199342e30c94c9ce31fc16cc7c69d1ac1061494ad6c19f9a0e88a931dc1621a7d95d8a04a3b42e2f18fc7
   languageName: node
   linkType: hard
 
@@ -3009,6 +3144,8 @@ __metadata:
     "@tanstack/react-router": ^1.120.5
     "@tanstack/react-router-devtools": ^1.120.6
     "@tanstack/router-plugin": ^1.120.5
+    "@telegram-apps/sdk": ^3.10.0
+    "@twa-dev/types": ^8.0.2
     "@types/react": ^19.1.2
     "@types/react-dom": ^19.1.2
     "@vitejs/plugin-react": ^4.4.1
@@ -3020,6 +3157,7 @@ __metadata:
     react: ^19.1.0
     react-dom: ^19.1.0
     tailwindcss: ^4.1.6
+    telegram-webapps: ^8.0.5
     typescript: ~5.8.3
     typescript-eslint: ^8.30.1
     vite: ^6.3.5
@@ -3172,6 +3310,13 @@ __metadata:
   dependencies:
     minipass: ^7.1.2
   checksum: 493bed14dcb6118da7f8af356a8947cf1473289c09658e5aabd69a737800a8c3b1736fb7d7931b722268a9c9bc038a6d53c049b6a6af24b34a121823bb709996
+  languageName: node
+  linkType: hard
+
+"mitt@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "mitt@npm:3.0.1"
+  checksum: b55a489ac9c2949ab166b7f060601d3b6d893a852515ae9eca4e11df01c013876df777ea109317622b5c1c60e8aae252558e33c8c94e14124db38f64a39614b1
   languageName: node
   linkType: hard
 
@@ -3991,6 +4136,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"telegram-webapps@npm:^8.0.5":
+  version: 8.0.5
+  resolution: "telegram-webapps@npm:8.0.5"
+  checksum: d4564463c4d0de8f1ccdaab422d589ba20b55adb67ff1426e7deb7f231cfcd14903eadc5699d6e2c1b0900cba6981d6de8b3999a288ea94015ae09a50edbfed5
+  languageName: node
+  linkType: hard
+
 "tiny-invariant@npm:^1.3.3":
   version: 1.3.3
   resolution: "tiny-invariant@npm:1.3.3"
@@ -4182,6 +4334,30 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
   checksum: 5e639c9273200adb6985b512c96a3a02c458bc8ca1a72e91da9cdc6426144fc6538dca434b0f99b28fb1baabc82e1c383ba7900b25ccdcb43758fb058dc66c34
+  languageName: node
+  linkType: hard
+
+"valibot@npm:1.0.0":
+  version: 1.0.0
+  resolution: "valibot@npm:1.0.0"
+  peerDependencies:
+    typescript: ">=5"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 61e6b4ce1cb161d5373a4f693539534c21be0cc3a84cbe800d39b51541bd3baf62939c931645f89ecfe1b8367afa531a1d813197fe4871d0d5b5f5f78fb206a4
+  languageName: node
+  linkType: hard
+
+"valibot@npm:1.0.0-beta.14":
+  version: 1.0.0-beta.14
+  resolution: "valibot@npm:1.0.0-beta.14"
+  peerDependencies:
+    typescript: ">=5"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 2acbf06b549d724e983af7391132c00ae52a6c82e74edaffcd8b00a7de0af37eddd3519f445e8d4c031aa76e6f990d54ed022a86d97e3cb780dc3df680288c9a
   languageName: node
   linkType: hard
 
