@@ -1,3 +1,4 @@
+import NavBar from "../../widgets/nav-bar/ui"
 import type { PropsWithChildren } from "react"
 
 const Layout = ({ children }: PropsWithChildren) => {
@@ -5,7 +6,7 @@ const Layout = ({ children }: PropsWithChildren) => {
     <div>
       <h1>Layout Header</h1>
       {children}
-      <h1>Layout Footer</h1>
+      <NavBar className="" />
     </div>
   )
 }
