@@ -3616,6 +3616,7 @@ __metadata:
     "@types/react": ^19.1.2
     "@types/react-dom": ^19.1.2
     "@vitejs/plugin-react": ^4.4.1
+    clsx: ^2.1.1
     eslint: ^9.25.0
     eslint-plugin-react-hooks: ^5.2.0
     eslint-plugin-react-refresh: ^0.4.19
@@ -3625,6 +3626,7 @@ __metadata:
     react-dom: ^19.1.0
     rimraf: ^6.0.1
     svgo: 3.0.5
+    tailwind-merge: ^3.3.0
     tailwindcss: ^4.1.6
     telegram-webapps: ^8.0.5
     typescript: ~5.8.3
@@ -4720,6 +4722,13 @@ __metadata:
   bin:
     svgo: ./bin/svgo
   checksum: a3f8aad597dec13ab24e679c4c218147048dc1414fe04e99447c5f42a6e077b33d712d306df84674b5253b98c9b84dfbfb41fdd08552443b04946e43d03e054e
+  languageName: node
+  linkType: hard
+
+"tailwind-merge@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "tailwind-merge@npm:3.3.0"
+  checksum: 9c8957753c09c5e79d490fc9d142a4d9ba1192410633d864867f5640cf5d45d06d31ea14ffcf83763a584b3202a131a2d1f1d62c47f205f598b71d8ec5071767
   languageName: node
   linkType: hard
 

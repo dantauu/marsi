@@ -1,5 +1,5 @@
-import type { PropsWithChildren } from "react"
 import NavBar from "../../widgets/nav-bar/ui"
+import type { PropsWithChildren } from "react"
 
 const Layout = ({ children }: PropsWithChildren) => {
   return (
