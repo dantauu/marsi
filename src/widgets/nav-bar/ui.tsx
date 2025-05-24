@@ -1,21 +1,22 @@
-import { useState } from "react"
 import SvgDollar from "../../assets/icons/Dollar"
 import SvgNewSet from "../../assets/icons/NewSet"
 import SvgProfile from "../../assets/icons/Profile"
 import SvgSearch from "../../assets/icons/Search"
 import SvgSlides from "../../assets/icons/Slides"
 import { cn } from "../../lib/utils"
+import { Link, useRouterState } from "@tanstack/react-router"
 
 const navItems = [
-  { id: "More", Icon: SvgNewSet, text: "More" },
-  { id: "Subscribe", Icon: SvgDollar, text: "Subscribe" },
-  { id: "Search", Icon: SvgSearch, text: "Search" },
-  { id: "Slides", Icon: SvgSlides, text: "Slides" },
-  { id: "Profile", Icon: SvgProfile, text: "Profile" },
+  { id: "More", Icon: SvgNewSet, text: "More", link: "/more" },
+  { id: "Subscribe", Icon: SvgDollar, text: "Subscribe", link: "/subscribe" },
+  { id: "Search", Icon: SvgSearch, text: "Search", link: "/search" },
+  { id: "Slides", Icon: SvgSlides, text: "Slides", link: "/slides" },
+  { id: "Profile", Icon: SvgProfile, text: "Profile", link: "/profile" },
 ]
 
 const NavBar = ({ className }: { className: string }) => {
-  const [activeId, setActiveId] = useState<string>("")
+  const routerState = useRouterState()
+  const currentPath = routerState.location.pathname
 
   return (
     <nav
@@ -24,18 +25,31 @@ const NavBar = ({ className }: { className: string }) => {
         className
       )}
     >
-      {navItems.map(({ id, Icon, text }) => (
-        <div
-          key={id}
-          onClick={() => setActiveId(id)}
-          className="flex flex-col items-center justify-between cursor-pointer h-[68px]"
-        >
-          <Icon className={activeId === id ? "text-blue-500" : "text-white"} />
-          <p className={activeId === id ? "text-blue-500" : "text-white"}>
-            {text}
-          </p>
-        </div>
-      ))}
+      {navItems.map(({ id, Icon, text, link }) => {
+        const isActive = currentPath === link
+        return (
+          <Link
+            key={id}
+            to={link}
+            className="flex flex-col items-center justify-between h-[68px] cursor-pointer"
+          >
+            <Icon
+              className={cn(
+                isActive ? "text-main-pink" : "text-white",
+                "transition-all"
+              )}
+            />
+            <p
+              className={cn(
+                isActive ? "text-main-pink" : "text-white",
+                "font-ManropeM"
+              )}
+            >
+              {text}
+            </p>
+          </Link>
+        )
+      })}
     </nav>
   )
 }

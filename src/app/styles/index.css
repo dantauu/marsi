@@ -1,11 +1,21 @@
 @import "tailwindcss";
 
+/* FONTS */
+@font-face {
+  font-family: "ManropeM";
+  src: url("../fonts/Manrope-Medium.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
 @theme {
   --color-main-green: #31c29f;
   --color-main-red: #f84963;
   --color-main-pink: #ff559f;
   --color-bg-input: rgba(0, 0, 0, 0.9);
   --color-blur-bg: rgba(0, 0, 0, 0.97);
+
+  --font-ManropeM: "ManropeM";
 }
 
 @layer base {
