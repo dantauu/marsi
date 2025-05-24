@@ -6,7 +6,7 @@ const Layout = ({ children }: PropsWithChildren) => {
     <div>
       <h1>Layout Header</h1>
       {children}
-      <NavBar />
+      <NavBar className="" />
     </div>
   )
 }

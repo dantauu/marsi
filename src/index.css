@@ -1,8 +1,0 @@
-@import "tailwindcss";
-
-@theme {
-  --color-main-green: #31c29f;
-  --color-main-red: #f84963;
-  --color-main-pink: #ff559f;
-  --color-bg-input: rgba(0, 0, 0, 0.9);
-}
