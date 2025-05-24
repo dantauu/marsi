@@ -14,43 +14,40 @@ const navItems = [
   { id: "Profile", Icon: SvgProfile, text: "Profile", link: "/profile" },
 ]
 
-const NavBar = ({ className }: { className: string }) => {
+const NavBar = () => {
   const routerState = useRouterState()
   const currentPath = routerState.location.pathname
 
   return (
-    <nav
-      className={cn(
-        "fixed w-full bottom-0 flex justify-between items-center h-[80px] rounded-tr-[28px] rounded-tl-[28px] px-7 bg-blur-bg",
-        className
-      )}
-    >
-      {navItems.map(({ id, Icon, text, link }) => {
-        const isActive = currentPath === link
-        return (
-          <Link
-            key={id}
-            to={link}
-            className="flex flex-col items-center justify-between h-[68px] cursor-pointer"
-          >
-            <Icon
-              className={cn(
-                isActive ? "text-main-pink" : "text-white",
-                "transition-all"
-              )}
-            />
-            <p
-              className={cn(
-                isActive ? "text-main-pink" : "text-white",
-                "font-ManropeM"
-              )}
+    <div className="fixed bottom-0 w-full rounded-tr-[28px] h-[84px] rounded-tl-[28px] bg-blur-bg">
+      <nav className="flex justify-between items-center px-7 pt-3">
+        {navItems.map(({ id, Icon, text, link }) => {
+          const isActive = currentPath === link
+          return (
+            <Link
+              key={id}
+              to={link}
+              className="flex flex-col items-center justify-between h-[58px] cursor-pointer"
             >
-              {text}
-            </p>
-          </Link>
-        )
-      })}
-    </nav>
+              <Icon
+                className={cn(
+                  isActive ? "text-main-pink" : "text-white",
+                  "transition-all w-full"
+                )}
+              />
+              <p
+                className={cn(
+                  isActive ? "text-main-pink" : "text-white",
+                  "font-ManropeM text-[12.5px]"
+                )}
+              >
+                {text}
+              </p>
+            </Link>
+          )
+        })}
+      </nav>
+    </div>
   )
 }
 

@@ -2,8 +2,8 @@ import type { SVGProps } from "react"
 const SvgSlides = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={46}
-    height={47}
+    width={38}
+    height={39}
     fill="none"
     viewBox="0 0 46 47"
     {...props}
