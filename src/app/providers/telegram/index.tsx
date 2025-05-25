@@ -36,7 +36,7 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
       app.disableVerticalSwipes()
 
       // Настройка внешнего вида для полного скрытия хедера
-      // app.setHeaderColor("bg_transparent") // Делаем хедер прозрачным
+      app.setHeaderColor("bg_color") // Делаем хедер прозрачным
 
       // // Скрываем все стандартные кнопки
       app.BackButton.hide()
