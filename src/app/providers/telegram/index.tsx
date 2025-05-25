@@ -5,6 +5,7 @@ import type { WebApp, WebAppUser } from "@twa-dev/types"
 export interface ITelegramContext {
   webApp?: WebApp
   user?: WebAppUser
+  closeApp?: () => void
 }
 
 const TelegramContext = createContext<ITelegramContext>({})
@@ -22,37 +23,49 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
     const app = (window as any).Telegram?.WebApp
 
     if (app) {
+      // Инициализация приложения
       app.ready()
+
+      // Установка полноэкранного режима
       app.expand()
+
+      // Включаем подтверждение закрытия (это отключит свайп)
+      app.enableClosingConfirmation()
+
+      // Отключаем вертикальные свайпы
       app.disableVerticalSwipes()
+
+      // Настройка внешнего вида для полного скрытия хедера
+      app.setHeaderColor("bg_transparent") // Делаем хедер прозрачным
+      app.setBackgroundColor("#FFFFFF") // Цвет фона приложения
+
+      // Скрываем все стандартные кнопки
+      app.BackButton.hide()
+      app.MainButton.hide()
+      app.SettingsButton?.hide?.()
+
+      // Устанавливаем режим без хедера
+      if (app.platform === "android" || app.platform === "android_x") {
+        // На Android можно использовать полностью прозрачный цвет
+        app.setHeaderColor("rgba(0, 0, 0, 0)")
+      } else {
+        // На iOS используем специальный параметр для прозрачного хедера
+        app.setHeaderColor("bg_transparent")
+      }
+
+      // Запрещаем закрытие свайпом
+      app.enableClosingConfirmation()
+
       setWebApp(app)
     }
   }, [])
 
-  useEffect(() => {
-    if (!webApp) return
-
-    const backButton = webApp.BackButton
-
-    // Показываем кнопку назад только на определенных маршрутах
-    const path = window.location.pathname
-    const hidePaths = ["/", "/search"]
-
-    if (hidePaths.includes(path)) {
-      backButton.hide()
-    } else {
-      backButton.show()
+  // Функция для закрытия приложения
+  const closeApp = () => {
+    if (webApp) {
+      webApp.close()
     }
-
-    backButton.onClick(() => {
-      window.history.back()
-    })
-
-    return () => {
-      backButton.hide()
-      backButton.onClick(() => {})
-    }
-  }, [webApp])
+  }
 
   const value = useMemo(() => {
     return webApp
@@ -61,6 +74,7 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
           unsafeData: webApp.initDataUnsafe,
           initData: webApp.initData,
           user: webApp.initDataUnsafe.user,
+          closeApp,
         }
       : {}
   }, [webApp])
