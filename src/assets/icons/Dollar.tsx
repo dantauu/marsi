@@ -1,3 +1,4 @@
+import * as React from "react"
 import type { SVGProps } from "react"
 const SvgDollar = (props: SVGProps<SVGSVGElement>) => (
   <svg
@@ -9,7 +10,7 @@ const SvgDollar = (props: SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      stroke="currentColor"
+      stroke="#fff"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={3}

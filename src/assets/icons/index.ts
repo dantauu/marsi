@@ -1,4 +1,5 @@
 export { default as DollarIcon } from "./Dollar"
+export { default as EgitIcon } from "./Egit"
 export { default as FilterIconIcon } from "./FilterIcon"
 export { default as Layout1Icon } from "./Layout1"
 export { default as Layout2Icon } from "./Layout2"

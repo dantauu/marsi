@@ -1,11 +1,7 @@
-import { Link } from "@tanstack/react-router"
-
 const Search = () => {
   return (
     <div>
-      <Link to="/profile">
-        <button>Go to profile</button>
-      </Link>
+      <h1>This search</h1>
     </div>
   )
 }

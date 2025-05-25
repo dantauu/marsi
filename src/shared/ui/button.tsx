@@ -3,10 +3,10 @@ import { cn } from "../../lib/utils"
 
 const variants = {
   green:
-    "bg-[#31C29F] flex items-center gap-[10px] text-white rounded-[10px] cursor-pointer",
-  red: "bg-[#F84963] text-white cursor-pointer",
-  pink: "bg-[#FF559F] cursor-pointer",
-  default: "bg-none cursor-pointer",
+    "bg-[#31C29F] flex items-center justify-center gap-[5px] text-white rounded-[10px] cursor-pointer",
+  red: "bg-[#F84963] text-white justify-center cursor-pointer",
+  pink: "bg-[#FF559F] justify-center cursor-pointer",
+  default: "bg-none justify-center cursor-pointer",
 } as const
 
 type Variant = keyof typeof variants

@@ -24,8 +24,8 @@ const NavBar = () => {
   const activePath = isValidPath ? currentPath : "/profile"
 
   return (
-    <div className="fixed bottom-0 w-full rounded-tr-[28px] h-[84px] rounded-tl-[28px] bg-blur-bg">
-      <nav className="flex justify-between items-center px-7 pt-2.5">
+    <div className="fixed bottom-0 w-full rounded-tr-[28px] h-[89px] rounded-tl-[28px] bg-blur-bg">
+      <nav className="flex justify-between items-center px-7 pt-[10px]">
         {navItems.map(({ id, Icon, text, link }) => {
           const isActive = activePath === link
           return (
@@ -37,7 +37,7 @@ const NavBar = () => {
               <Icon
                 className={cn(
                   isActive ? "text-main-pink" : "text-white",
-                  "transition-all w-full"
+                  "transition-all w-full stroke-current"
                 )}
               />
               <p
