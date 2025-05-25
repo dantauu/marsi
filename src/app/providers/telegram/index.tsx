@@ -39,7 +39,7 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
       // Скрываем стандартную кнопку закрытия и делаем хедер прозрачным
       app.MainButton.hide()
       app.BackButton.hide()
-      app.isExpanded = true
+      // app.isExpanded = true
 
       // Устанавливаем прозрачный цвет хедера
       app.setHeaderColor("rgba(255, 255, 255, 0.0)")
