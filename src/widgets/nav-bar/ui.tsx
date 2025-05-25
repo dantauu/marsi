@@ -20,7 +20,7 @@ const NavBar = () => {
 
   return (
     <div className="fixed bottom-0 w-full rounded-tr-[28px] h-[84px] rounded-tl-[28px] bg-blur-bg">
-      <nav className="flex justify-between items-center px-7 pt-3">
+      <nav className="flex justify-between items-center px-7 pt-2.5">
         {navItems.map(({ id, Icon, text, link }) => {
           const isActive = currentPath === link
           return (

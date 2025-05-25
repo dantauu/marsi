@@ -23,31 +23,41 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
     const app = (window as any).Telegram?.WebApp
 
     if (app) {
-      // Инициализация приложения
+      // Базовая инициализация
       app.ready()
 
-      // Установка полноэкранного режима
-      app.expand()
-
-      // Включаем подтверждение закрытия (это отключит свайп)
+      // Отключаем свайпы и жесты
+      app.disableVerticalSwipes()
       app.enableClosingConfirmation()
 
-      // Отключаем вертикальные свайпы
-      app.disableVerticalSwipes()
+      // Устанавливаем прозрачный фон хедера и максимальную высоту
+      app.setHeaderColor("bg_transparent")
+      app.setBackgroundColor("#FFFFFF")
 
-      // Настройка внешнего вида для полного скрытия хедера
-      app.setHeaderColor("bg_color") // Делаем хедер прозрачным
+      // Включаем полноэкранный режим
+      app.expand()
 
-      // // Скрываем все стандартные кнопки
+      // Устанавливаем безопасную зону для контента
+      const safeArea = app.viewportStableHeight
+      document.documentElement.style.setProperty(
+        "--tg-viewport-height",
+        `${safeArea}px`
+      )
+
+      // Скрываем все стандартные элементы Telegram
       app.BackButton.hide()
       app.MainButton.hide()
-      app.SettingsButton?.hide?.()
+      if (app.SettingsButton) app.SettingsButton.hide()
+
+      // Отключаем стандартный хедер (если возможно)
+      if (app.headerColor) {
+        app.headerColor = "bg_transparent"
+      }
 
       setWebApp(app)
     }
   }, [])
 
-  // Функция для закрытия приложения
   const closeApp = () => {
     if (webApp) {
       webApp.close()
