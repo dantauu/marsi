@@ -1,0 +1,26 @@
+import Button from "../../../../shared/ui/button"
+
+const Progress = () => {
+  return (
+    <div className="flex items-center px-2 mt-[20px] h-[42px] shadow-shadow-block rounded-[10px]">
+      <div className="flex justify-between w-full">
+        <div className="flex items-center gap-2">
+          <div className="">
+            <p className="font-HelveticaB text-[18px]">Прогресс заполнения:</p>
+          </div>
+          <div className="">
+            <p className="text-red-500 font-HelveticaB">20%</p>
+          </div>
+        </div>
+        <Button
+          className="font-HelveticaB text-blue-600 text-[18px]"
+          variant="default"
+        >
+          Продолжить
+        </Button>
+      </div>
+    </div>
+  )
+}
+
+export default Progress

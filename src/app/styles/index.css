@@ -33,6 +33,12 @@
   --font-HelveticaB: "HelveticaB";
 }
 
+@layer utilities {
+  .shadow-shadow-block {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
 @layer base {
   * {
     margin: 0;
