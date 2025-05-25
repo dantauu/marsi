@@ -32,7 +32,7 @@ const Profile = () => {
       </Button>
       <div className="flex items-center gap-2">
         <div className="">
-          <p className="font-ManropeEB text-[18px]">
+          <p className="font-ManropeEB text-[20px]">
             {profile.name || "Не указано"}, {profile.age || "16"}
           </p>
         </div>
