@@ -14,7 +14,7 @@ const Profile = () => {
   const { user } = useTelegram()
   const [profile, _setProfile] = useState<ProfileForm>({
     name: user?.first_name || "",
-    age: user?.language_code,
+    age: "",
     avatar: user?.photo_url || "",
   })
   // const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,15 +25,15 @@ const Profile = () => {
   // }
 
   return (
-    <div className="flex items-center gap-3 px-[15px] pt-[20px] mx-auto">
-      <Button className="w-[120px] h-[40px] font-ManropeM" variant="green">
+    <div className="flex items-center justify-between px-[15px] pt-[20px] mx-auto">
+      <Button className="w-[130px] h-[42px] font-HelveticaB" variant="green">
         Изменить
         <SvgEgit />
       </Button>
       <div className="flex items-center gap-2">
         <div className="">
-          <p className="">
-            Имя: {profile.name || "Не указано"}, {profile.age || "16"}
+          <p className="font-ManropeEB text-[18px]">
+            {profile.name || "Не указано"}, {profile.age || "16"}
           </p>
         </div>
         <div className="">
