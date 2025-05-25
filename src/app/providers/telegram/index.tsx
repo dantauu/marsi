@@ -5,6 +5,7 @@ import type { WebApp, WebAppUser } from "@twa-dev/types"
 export interface ITelegramContext {
   webApp?: WebApp
   user?: WebAppUser
+  closeApp?: () => void
 }
 
 const TelegramContext = createContext<ITelegramContext>({})
@@ -22,8 +23,19 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
     const app = (window as any).Telegram?.WebApp
 
     if (app) {
+      // Инициализация приложения
       app.ready()
+
+      // Установка полноэкранного режима
       app.expand()
+
+      // Отключение жеста смахивания для закрытия
+      app.enableClosingConfirmation()
+
+      // Настройка внешнего вида
+      app.setHeaderColor("#FFFFFF") // Цвет хедера
+      app.setBackgroundColor("#FFFFFF") // Цвет фона
+
       setWebApp(app)
     }
   }, [])
@@ -53,6 +65,15 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
     }
   }, [webApp])
 
+  // Функция для закрытия приложения с подтверждением
+  const closeApp = () => {
+    if (webApp) {
+      if (confirm("Вы уверены, что хотите закрыть приложение?")) {
+        webApp.close()
+      }
+    }
+  }
+
   const value = useMemo(() => {
     return webApp
       ? {
@@ -60,6 +81,7 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
           unsafeData: webApp.initDataUnsafe,
           initData: webApp.initData,
           user: webApp.initDataUnsafe.user,
+          closeApp,
         }
       : {}
   }, [webApp])
