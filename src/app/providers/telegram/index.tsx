@@ -29,12 +29,24 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
       // Установка полноэкранного режима
       app.expand()
 
-      // Отключение жеста смахивания для закрытия
+      // Включаем подтверждение закрытия (это отключит свайп)
       app.enableClosingConfirmation()
 
       // Настройка внешнего вида
       app.setHeaderColor("#FFFFFF") // Цвет хедера
       app.setBackgroundColor("#FFFFFF") // Цвет фона
+
+      // Скрываем стандартную кнопку закрытия и делаем хедер прозрачным
+      app.MainButton.hide()
+      app.BackButton.hide()
+      app.isExpanded = true
+
+      // Устанавливаем прозрачный цвет хедера
+      app.setHeaderColor("rgba(255, 255, 255, 0.0)")
+
+      // Отключаем стандартный хедер
+      app.headerColor = "bg_transparent"
+      app.backgroundColor = "#FFFFFF"
 
       setWebApp(app)
     }
@@ -65,12 +77,10 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
     }
   }, [webApp])
 
-  // Функция для закрытия приложения с подтверждением
+  // Функция для закрытия приложения
   const closeApp = () => {
     if (webApp) {
-      if (confirm("Вы уверены, что хотите закрыть приложение?")) {
-        webApp.close()
-      }
+      webApp.close()
     }
   }
 
