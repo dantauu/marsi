@@ -43,15 +43,6 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
       app.MainButton.hide()
       app.SettingsButton?.hide?.()
 
-      // Устанавливаем режим без хедера
-      if (app.platform === "android" || app.platform === "android_x") {
-        // На Android можно использовать полностью прозрачный цвет
-        app.setHeaderColor("rgba(0, 0, 0, 0)")
-      } else {
-        // На iOS используем специальный параметр для прозрачного хедера
-        app.setHeaderColor("bg_transparent")
-      }
-
       setWebApp(app)
     }
   }, [])
