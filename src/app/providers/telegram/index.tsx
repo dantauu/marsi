@@ -23,30 +23,11 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
     const app = (window as any).Telegram?.WebApp
 
     if (app) {
-      // Базовая инициализация
       app.ready()
-
-      // Отключаем свайпы и жесты
       app.disableVerticalSwipes()
       app.enableClosingConfirmation()
-
-      // Устанавливаем прозрачный фон хедера и максимальную высоту
       app.setHeaderColor("#FFFFFF")
-
-      // Включаем полноэкранный режим
       app.expand()
-
-      // Устанавливаем безопасную зону для контента
-      const safeArea = app.viewportStableHeight
-      document.documentElement.style.setProperty(
-        "--tg-viewport-height",
-        `${safeArea}px`
-      )
-
-      // Скрываем все стандартные элементы Telegram
-      app.BackButton.hide()
-      app.MainButton.hide()
-      if (app.SettingsButton) app.SettingsButton.hide()
 
       setWebApp(app)
     }
