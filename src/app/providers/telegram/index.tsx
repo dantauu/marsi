@@ -38,10 +38,10 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
       // Настройка внешнего вида для полного скрытия хедера
       app.setHeaderColor("bg_transparent") // Делаем хедер прозрачным
 
-      // Скрываем все стандартные кнопки
-      app.BackButton.hide()
-      app.MainButton.hide()
-      app.SettingsButton?.hide?.()
+      // // Скрываем все стандартные кнопки
+      // app.BackButton.hide()
+      // app.MainButton.hide()
+      // app.SettingsButton?.hide?.()
 
       setWebApp(app)
     }
