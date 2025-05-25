@@ -24,6 +24,7 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
     if (app) {
       app.ready()
       app.expand()
+      app.disableVerticalSwipes()
       setWebApp(app)
     }
   }, [])
