@@ -31,8 +31,7 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
       app.enableClosingConfirmation()
 
       // Устанавливаем прозрачный фон хедера и максимальную высоту
-      app.setHeaderColor("bg_transparent")
-      app.setBackgroundColor("#FFFFFF")
+      app.setHeaderColor("#FFFFFF")
 
       // Включаем полноэкранный режим
       app.expand()
