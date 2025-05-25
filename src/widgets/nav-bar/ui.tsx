@@ -6,6 +6,7 @@ import SvgSlides from "../../assets/icons/Slides"
 import { cn } from "../../lib/utils"
 import { Link, useRouterState } from "@tanstack/react-router"
 
+// Оставляем только существующие роуты
 const navItems = [
   { id: "More", Icon: SvgNewSet, text: "More", link: "/more" },
   { id: "Subscribe", Icon: SvgDollar, text: "Subscribe", link: "/subscribe" },
@@ -18,11 +19,15 @@ const NavBar = () => {
   const routerState = useRouterState()
   const currentPath = routerState.location.pathname
 
+  // Если текущий путь не соответствует ни одному из navItems, считаем активным Profile
+  const isValidPath = navItems.some((item) => item.link === currentPath)
+  const activePath = isValidPath ? currentPath : "/profile"
+
   return (
     <div className="fixed bottom-0 w-full rounded-tr-[28px] h-[84px] rounded-tl-[28px] bg-blur-bg">
       <nav className="flex justify-between items-center px-7 pt-2.5">
         {navItems.map(({ id, Icon, text, link }) => {
-          const isActive = currentPath === link
+          const isActive = activePath === link
           return (
             <Link
               key={id}
