@@ -30,13 +30,13 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
       app.expand()
 
       // Включаем подтверждение закрытия (это отключит свайп)
-      app.enableClosingConfirmation()
+      // app.enableClosingConfirmation()
 
       // Отключаем вертикальные свайпы
       app.disableVerticalSwipes()
 
       // Настройка внешнего вида для полного скрытия хедера
-      app.setHeaderColor("bg_transparent") // Делаем хедер прозрачным
+      // app.setHeaderColor("bg_transparent") // Делаем хедер прозрачным
 
       // // Скрываем все стандартные кнопки
       // app.BackButton.hide()
