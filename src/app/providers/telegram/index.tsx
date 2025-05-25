@@ -23,6 +23,7 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
 
     if (app) {
       app.ready()
+      app.expand()
       setWebApp(app)
     }
   }, [])
