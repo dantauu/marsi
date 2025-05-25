@@ -48,11 +48,6 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
       app.MainButton.hide()
       if (app.SettingsButton) app.SettingsButton.hide()
 
-      // Отключаем стандартный хедер (если возможно)
-      if (app.headerColor) {
-        app.headerColor = "bg_transparent"
-      }
-
       setWebApp(app)
     }
   }, [])
