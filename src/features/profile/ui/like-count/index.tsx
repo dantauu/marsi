@@ -12,7 +12,7 @@ const LikeCount = () => {
           <p className="font-HelveticaB text-[16px]">10 раз</p>
         </div>
       </div>
-      <Button className="w-[125px] h-[35px] font-ManropeM" variant="green">
+      <Button className="w-[125px] h-[35px] font-HelveticaB" variant="green">
         Смотреть <SvgArrow />
       </Button>
     </div>
