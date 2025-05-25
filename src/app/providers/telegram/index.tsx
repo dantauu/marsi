@@ -37,7 +37,6 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
 
       // Настройка внешнего вида для полного скрытия хедера
       app.setHeaderColor("bg_transparent") // Делаем хедер прозрачным
-      app.setBackgroundColor("#FFFFFF") // Цвет фона приложения
 
       // Скрываем все стандартные кнопки
       app.BackButton.hide()
@@ -52,9 +51,6 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
         // На iOS используем специальный параметр для прозрачного хедера
         app.setHeaderColor("bg_transparent")
       }
-
-      // Запрещаем закрытие свайпом
-      app.enableClosingConfirmation()
 
       setWebApp(app)
     }
