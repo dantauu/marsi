@@ -7,6 +7,7 @@ import Progress from "../../features/profile/ui/progress/inde"
 import LikeCount from "../../features/profile/ui/like-count"
 import Copy from "../../features/profile/ui/copy"
 import Subscribe from "../../features/profile/ui/subscribe"
+import MainInfo from "../../features/profile/ui/main-info"
 
 interface ProfileForm {
   name: string
@@ -29,15 +30,18 @@ const Profile = () => {
   // }
 
   return (
-    <div className="px-[8px] pt-[20px]">
+    <div className="px-[8px] pt-[20px] pb-[300px]">
       <div className="flex items-center justify-between mx-auto">
-        <Button className="w-[130px] h-[42px] font-ManropeM" variant="green">
+        <Button
+          className="w-[116px] h-[39px] mini-mobile:w-[130px] mini-mobile:h-[42px] font-ManropeM"
+          variant="green"
+        >
           Изменить
           <SvgEgit />
         </Button>
         <div className="flex items-center gap-2">
           <div className="">
-            <p className="font-ManropeEB text-[20px]">
+            <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px]">
               {profile.name || "Не указано"}, {profile.age || "16"}
             </p>
           </div>
@@ -62,11 +66,12 @@ const Profile = () => {
       /> */}
       </div>
       <Progress />
-      <div className="flex justify-between pt-[20px]">
+      <div className="flex flex-col mini-mobile:flex-row mini-mobile:gap-[5px] gap-3 justify-between pt-[20px]">
         <LikeCount />
         <Copy />
       </div>
       <Subscribe />
+      <MainInfo />
     </div>
   )
 }

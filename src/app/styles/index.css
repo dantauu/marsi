@@ -31,6 +31,8 @@
   --font-ManropeM: "ManropeM";
   --font-ManropeEB: "ManropeEB";
   --font-HelveticaB: "HelveticaB";
+
+  --breakpoint-mini-mobile: 378px;
 }
 
 @layer utilities {

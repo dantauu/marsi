@@ -6,14 +6,18 @@ const Progress = () => {
       <div className="flex justify-between w-full">
         <div className="flex items-center gap-2">
           <div className="">
-            <p className="font-HelveticaB text-[18px]">Прогресс заполнения:</p>
+            <p className="font-HelveticaB text-[16px] mini-mobile:text-[18px]">
+              Прогресс заполнения:
+            </p>
           </div>
           <div className="">
-            <p className="text-red-500 font-HelveticaB">20%</p>
+            <p className="text-red-500 font-HelveticaB text-[16px] mini-mobile:text-[16.5px]">
+              20%
+            </p>
           </div>
         </div>
         <Button
-          className="font-HelveticaB text-blue-600 text-[18px]"
+          className="font-HelveticaB text-blue-600 text-[16px]"
           variant="default"
         >
           Продолжить
