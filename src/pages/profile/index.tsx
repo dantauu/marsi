@@ -6,6 +6,7 @@ import Button from "../../shared/ui/button"
 import Progress from "../../features/profile/ui/progress/inde"
 import LikeCount from "../../features/profile/ui/like-count"
 import Copy from "../../features/profile/ui/copy"
+import Subscribe from "../../features/profile/ui/subscribe"
 
 interface ProfileForm {
   name: string
@@ -65,6 +66,7 @@ const Profile = () => {
         <LikeCount />
         <Copy />
       </div>
+      <Subscribe />
     </div>
   )
 }
