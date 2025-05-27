@@ -29,14 +29,12 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
       app.setHeaderColor("#FFFFFF")
       app.setBackgroundColor("#FFFFFF")
 
-      if (!isDesktop) {
-        app.expand()
-        if (app.isVersionAtLeast?.("6.2")) {
-          app.requestFullscreen()
-        }
+      if (!isDesktop && app.isVersionAtLeast?.("6.2")) {
+        app.requestFullscreen()
       } else {
         app.expand()
       }
+
       setWebApp(app)
     }
   }, [])
