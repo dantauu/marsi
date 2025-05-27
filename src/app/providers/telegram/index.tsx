@@ -25,7 +25,6 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
     if (app) {
       app.ready()
       app.disableVerticalSwipes()
-      app.enableVerticalSwipes()
       app.enableClosingConfirmation()
       app.setHeaderColor("#FFFFFF")
       app.setBackgroundColor("#FFFFFF")

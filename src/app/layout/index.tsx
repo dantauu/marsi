@@ -3,7 +3,7 @@ import type { PropsWithChildren } from "react"
 
 const Layout = ({ children }: PropsWithChildren) => {
   return (
-    <div className="pt-[75px]">
+    <div className="pt-[80px]">
       {children}
       <NavBar />
     </div>
