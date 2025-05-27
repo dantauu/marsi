@@ -3,9 +3,13 @@ import { useAppDispatch, useAppSelector } from "../../../../redux/hooks"
 import { motion, useMotionValue, useTransform } from "framer-motion"
 import type { PanInfo } from "framer-motion"
 import { closeModal } from "../../../../redux/slices/modal-slice"
+import { SliderRange } from "../../../../features/search/ui/slider-range"
+import { useState } from "react"
 
 const FilterModal = () => {
   const { isOpen } = useAppSelector((state) => state.modal)
+  const [values, setValues] = useState<number[]>([16, 100])
+
   const dispatch = useAppDispatch()
 
   const y = useMotionValue(0)
@@ -41,7 +45,7 @@ const FilterModal = () => {
             className="fixed inset-0 z-10 bg-[#00000087]"
           >
             <motion.div
-              className="absolute bottom-0 bg-black rounded-t-[60px] w-full h-[600px] overflow-hidden"
+              className="absolute bottom-0 bg-[#fff] rounded-t-[60px] w-full h-[600px] overflow-hidden"
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
@@ -60,10 +64,28 @@ const FilterModal = () => {
               <div className="w-[50px] h-[4px] bg-gray-600 rounded-full mx-auto mt-[12px] mb-[20px]" />
 
               <div className="px-6">
-                <h2 className="text-white text-xl font-ManropeEB mb-4">
+                <h2 className="text-black text-xl font-ManropeEB mb-4">
                   Фильтры
                 </h2>
-                {/* Здесь ваш контент фильтров */}
+                <div className="flex flex-col gap-6">
+                  <div className="flex justify-between">
+                    <span className="font-ManropeM text-black text-[18px]">
+                      От {values[0]}
+                    </span>
+                    <span className="font-ManropeM text-black text-[18px]">
+                      До {values[1]}
+                    </span>
+                  </div>
+                  <SliderRange
+                    defaultValue={values}
+                    value={values}
+                    onValueChange={setValues}
+                    step={1}
+                    min={16}
+                    max={100}
+                    className="w-full"
+                  />
+                </div>
               </div>
             </motion.div>
           </motion.div>

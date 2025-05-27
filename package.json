@@ -13,12 +13,14 @@
     "icons:build": "rimraf ./src/assets/icons && npx @svgr/cli --typescript --out-dir src/assets/icons --index-template config/svgr-index-template.js -- src/assets/icons-source && npx prettier ./src/assets/icons --write"
   },
   "dependencies": {
+    "@radix-ui/react-slider": "^1.3.5",
     "@reduxjs/toolkit": "^2.8.2",
     "@tailwindcss/vite": "^4.1.7",
     "@tanstack/react-router": "^1.120.5",
     "@tanstack/react-router-devtools": "^1.120.6",
     "@telegram-apps/sdk": "^3.10.0",
     "@twa-dev/types": "^8.0.2",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.14.0",
     "prettier": "^3.5.3",

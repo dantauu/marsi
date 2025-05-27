@@ -7,7 +7,7 @@ import { motion } from "framer-motion"
 const LayoutSwitch = () => {
   const [active, setActive] = useState<"layout1" | "layout2">("layout1")
   const activeVariants = {
-    layout1: { x: 0 },
+    layout1: { x: -0.5 },
     layout2: { x: 57.4 },
   }
   return (
@@ -16,7 +16,7 @@ const LayoutSwitch = () => {
         animate={active}
         variants={activeVariants}
         transition={{ duration: 0.15, ease: "linear" }}
-        className="absolute top-0 left-0 w-[47px] h-[50px] bg-main-green rounded-[10px] z-0"
+        className="absolute top-0 left-0 w-[46.9px] h-[50px] bg-main-green rounded-[10px] z-0"
       />
       <Button
         onClick={() => setActive("layout1")}
