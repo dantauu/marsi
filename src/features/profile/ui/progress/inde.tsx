@@ -17,7 +17,7 @@ const Progress = () => {
           </div>
         </div>
         <Button
-          className="font-HelveticaB text-blue-600 text-[16px]"
+          className="font-HelveticaB text-blue-600 text-[14px] mini-mobile:text-16px"
           variant="default"
         >
           Продолжить

@@ -9,7 +9,7 @@ const MainInfo = () => {
         text={
           <>
             Ключевая информация:
-            <span className="text-main-green"> {count}%</span>
+            <span className="text-main-green font-HelveticaB"> {count}%</span>
           </>
         }
       />
