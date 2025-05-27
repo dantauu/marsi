@@ -1,6 +1,8 @@
 import { createRouter, RouterProvider } from "@tanstack/react-router"
 import { routeTree } from "../routeTree.gen"
 import { TelegramProvider } from "./providers/telegram"
+import { Provider } from "react-redux"
+import { store } from "../redux/store"
 
 const router = createRouter({ routeTree })
 declare module "@tanstack/react-router" {
@@ -12,7 +14,9 @@ declare module "@tanstack/react-router" {
 const App = () => {
   return (
     <TelegramProvider>
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </TelegramProvider>
   )
 }

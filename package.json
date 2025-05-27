@@ -13,6 +13,7 @@
     "icons:build": "rimraf ./src/assets/icons && npx @svgr/cli --typescript --out-dir src/assets/icons --index-template config/svgr-index-template.js -- src/assets/icons-source && npx prettier ./src/assets/icons --write"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
     "@tailwindcss/vite": "^4.1.7",
     "@tanstack/react-router": "^1.120.5",
     "@tanstack/react-router-devtools": "^1.120.6",
@@ -23,6 +24,7 @@
     "prettier": "^3.5.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-redux": "^9.2.0",
     "tailwind-merge": "^3.3.0",
     "tailwindcss": "^4.1.6",
     "telegram-webapps": "^8.0.5",
