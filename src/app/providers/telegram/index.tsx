@@ -21,7 +21,6 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
 
   useEffect(() => {
     const app = (window as any).Telegram?.WebApp
-
     if (app) {
       app.ready()
       app.disableVerticalSwipes()
@@ -30,10 +29,9 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
       app.setBackgroundColor("#FFFFFF")
       app.expand()
 
-      if (app.ready()) {
+      if (app.isVersionAtLeast?.("6.2")) {
         app.requestFullscreen()
       }
-
       setWebApp(app)
     }
   }, [])
