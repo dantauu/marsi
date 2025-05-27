@@ -3,8 +3,8 @@ import Button from "../../../../shared/ui/button"
 
 const Card = ({ avatar, name, age }: CardProps) => {
   return (
-    <div className="flex flex-col gap-2 w-[175px] h-[285px]">
-      <div className="w-[175px] h-[253.4px] bg-[#c2c1c1] rounded-[28px]">
+    <div className="flex flex-col gap-2 w-[182px] h-[285px]">
+      <div className="w-[182px] h-[253.4px] object-cover bg-[#c2c1c1] rounded-[28px]">
         <img className="w-full h-full" src={avatar} alt="" />
       </div>
       <div className="flex items-center justify-between gap-2">

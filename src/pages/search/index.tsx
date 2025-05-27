@@ -5,9 +5,9 @@ import CardHuman from "../../widgets/card/ui"
 
 const Search = () => {
   return (
-    <div className="px-[8px] pb-[200px]">
+    <div className="pb-[200px]">
       <LikeCountNotify />
-      <div className="flex items-center justify-between pb-[20px]">
+      <div className="flex px-[12px] items-center justify-between pb-[20px]">
         <FilterButton />
         <LayoutSwitch />
       </div>
