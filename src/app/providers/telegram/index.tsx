@@ -21,20 +21,17 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
 
   useEffect(() => {
     const app = (window as any).Telegram?.WebApp
-    const isDesktop = app.platform === "desktop" || app.isTelegramDesktop
     if (app) {
       app.ready()
       app.disableVerticalSwipes()
       app.enableClosingConfirmation()
       app.setHeaderColor("#FFFFFF")
       app.setBackgroundColor("#FFFFFF")
-      // app.isVersionAtLeast("6.2")
-      if (isDesktop || !app.isVersionAtLeast("6.2")) {
-        app.expand()
-      } else {
+      app.expand()
+
+      if (app.isVersionAtLeast("6.2")) {
         app.requestFullscreen()
       }
-
       setWebApp(app)
     }
   }, [])
