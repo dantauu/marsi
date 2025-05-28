@@ -49,8 +49,8 @@ const SliderRange = ({ className, ...props }: SliderRangeProps) => {
       <SliderPrimitive.Track className="relative h-[5px] w-full grow overflow-hidden rounded-full bg-gray-600">
         <SliderPrimitive.Range className="absolute h-full bg-main-green" />
       </SliderPrimitive.Track>
-      <SliderPrimitive.Thumb className="block h-10 w-10 rounded-full border-2 border-main-green bg-main-green ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" />
-      <SliderPrimitive.Thumb className="block h-10 w-10 rounded-full border-2 border-main-green bg-main-green ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" />
+      <SliderPrimitive.Thumb className="block h-8 w-8 rounded-full border-2 border-main-green bg-main-green ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" />
+      <SliderPrimitive.Thumb className="block h-8 w-8 rounded-full border-2 border-main-green bg-main-green ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" />
     </SliderPrimitive.Root>
   )
 }
