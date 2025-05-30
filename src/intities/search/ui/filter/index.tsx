@@ -1,16 +1,17 @@
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence, useDragControls } from "framer-motion"
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks"
 import { motion, useMotionValue, useTransform } from "framer-motion"
 import type { PanInfo } from "framer-motion"
 import { closeModal } from "../../../../redux/slices/modal-slice"
-import { SliderRange } from "../../../../features/search/ui/slider-range"
-import { useState } from "react"
+import React, { useEffect, useState } from "react"
+import { FilterSlide, Location } from "../../../../shared/ui/filter-settings"
 
 const FilterModal = () => {
   const { isOpen } = useAppSelector((state) => state.modal)
-  const [values, setValues] = useState<number[]>([16, 100])
-
+  const [valuesAge, setValuesAge] = useState<number[]>([16, 100])
+  const [valuesHight, setValuesHight] = useState<number[]>([140, 230])
   const dispatch = useAppDispatch()
+  const dragControls = useDragControls()
 
   const y = useMotionValue(0)
   const bgOpacity = useTransform(y, [-50, 0, 700], [1, 1, 0])
@@ -24,6 +25,14 @@ const FilterModal = () => {
     }
   }
 
+  const dragStart = (event: React.PointerEvent | React.TouchEvent) => {
+    if ("touchEvent" in event) {
+      dragControls.start(event as unknown as PointerEvent)
+    } else {
+      dragControls.start(event.nativeEvent as PointerEvent)
+    }
+  }
+
   const handleDrag = (
     _: MouseEvent | TouchEvent | PointerEvent,
     info: PanInfo
@@ -32,6 +41,17 @@ const FilterModal = () => {
       y.set(0)
     }
   }
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("overflow-hidden")
+    } else {
+      document.body.classList.remove("overflow-hidden")
+    }
+    return () => {
+      document.body.classList.remove("overflow-hidden")
+    }
+  }, [isOpen])
 
   return (
     <>
@@ -45,7 +65,7 @@ const FilterModal = () => {
             className="fixed inset-0 z-10 bg-[#00000087]"
           >
             <motion.div
-              className="absolute bottom-0 bg-[#fff] rounded-t-[60px] w-full h-[600px] overflow-hidden"
+              className="absolute bottom-0 bg-[#fff] rounded-t-[60px] w-full h-[65%] overflow-hidden"
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
@@ -57,35 +77,44 @@ const FilterModal = () => {
               dragDirectionLock
               dragElastic={0.7}
               dragConstraints={{ top: 0, bottom: 0 }}
-              onDrag={handleDrag}
               onDragEnd={handleDragEnd}
+              onDrag={handleDrag}
+              dragControls={dragControls}
+              dragListener={false}
               style={{ y }}
             >
-              <div className="w-[50px] h-[4px] bg-gray-600 rounded-full mx-auto mt-[12px] mb-[20px]" />
+              <motion.div
+                className="flex items-center justify-center w-full h-[45px] border-b-2 border-[#e9e7e7]"
+                onPointerDown={dragStart}
+                onTouchStart={dragStart}
+                style={{ touchAction: "none" }}
+              >
+                <div
+                  className={`w-[60px] h-[7px] bg-[#0000002c] rounded-full mx-auto `}
+                ></div>
+              </motion.div>
 
-              <div className="px-6">
-                <h2 className="text-black text-xl font-ManropeEB mb-4">
-                  Фильтры
-                </h2>
-                <div className="flex flex-col gap-6">
-                  <div className="flex justify-between">
-                    <span className="font-ManropeM text-black text-[18px]">
-                      От {values[0]}
-                    </span>
-                    <span className="font-ManropeM text-black text-[18px]">
-                      До {values[1]}
-                    </span>
-                  </div>
-                  <SliderRange
-                    defaultValue={values}
-                    value={values}
-                    onValueChange={setValues}
-                    step={1}
-                    min={16}
-                    max={100}
-                    className="w-full"
-                  />
-                </div>
+              <div className="flex flex-col gap-10 pt-[40px] pb-[100px] px-4 overflow-auto h-full">
+                <FilterSlide
+                  title="Возраст"
+                  values={valuesAge}
+                  setValues={setValuesAge}
+                  min={16}
+                  max={100}
+                />
+                <FilterSlide
+                  title="Рост"
+                  values={valuesHight}
+                  setValues={setValuesHight}
+                  min={140}
+                  max={230}
+                />
+                <Location />
+                <Location />
+                <Location />
+                <Location />
+                <Location />
+                <Location />
               </div>
             </motion.div>
           </motion.div>
