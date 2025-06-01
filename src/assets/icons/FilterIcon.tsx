@@ -9,7 +9,7 @@ const SvgFilterIcon = (props: SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      stroke="#383838"
+      stroke="currentColor"
       strokeLinecap="round"
       strokeWidth={2}
       d="M14.667 10.667h12M5.333 21.333h13.334"
@@ -18,7 +18,7 @@ const SvgFilterIcon = (props: SVGProps<SVGSVGElement>) => (
       cx={9.333}
       cy={10.667}
       r={4}
-      stroke="#383838"
+      stroke="currentColor"
       strokeLinecap="round"
       strokeWidth={2}
       transform="rotate(90 9.333 10.667)"
@@ -27,7 +27,7 @@ const SvgFilterIcon = (props: SVGProps<SVGSVGElement>) => (
       cx={22.667}
       cy={21.333}
       r={4}
-      stroke="#383838"
+      stroke="currentColor"
       strokeLinecap="round"
       strokeWidth={2}
       transform="rotate(90 22.667 21.333)"

@@ -1,11 +1,19 @@
-import { Link } from "@tanstack/react-router"
+import LayoutSwitch from "../../features/search/ui/layout-switch"
+import LikeCountNotify from "../../features/search/ui/like-count-notify"
+import FilterModal from "../../intities/search/ui/filter"
+import FilterButton from "../../intities/search/ui/filter/filter-button"
+import CardHuman from "../../widgets/card/ui"
 
 const Search = () => {
   return (
-    <div>
-      <Link to="/profile">
-        <button>Go to profile</button>
-      </Link>
+    <div className="pb-[200px]">
+      <LikeCountNotify />
+      <div className="flex px-[12px] items-center justify-between pb-[20px]">
+        <FilterButton />
+        <LayoutSwitch />
+      </div>
+      <CardHuman />
+      <FilterModal />
     </div>
   )
 }

@@ -21,56 +21,24 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
 
   useEffect(() => {
     const app = (window as any).Telegram?.WebApp
-
     if (app) {
-      // Инициализация приложения
       app.ready()
-
-      // Установка полноэкранного режима
+      app.disableVerticalSwipes()
+      app.enableClosingConfirmation()
+      app.setHeaderColor("#FFFFFF")
+      app.setBackgroundColor("#FFFFFF")
       app.expand()
 
-      // Отключение жеста смахивания для закрытия
-      app.enableClosingConfirmation()
-
-      // Настройка внешнего вида
-      app.setHeaderColor("#FFFFFF") // Цвет хедера
-      app.setBackgroundColor("#FFFFFF") // Цвет фона
-
+      if (app.isVersionAtLeast("6.2")) {
+        app.requestFullscreen()
+      }
       setWebApp(app)
     }
   }, [])
 
-  useEffect(() => {
-    if (!webApp) return
-
-    const backButton = webApp.BackButton
-
-    // Показываем кнопку назад только на определенных маршрутах
-    const path = window.location.pathname
-    const hidePaths = ["/", "/search"]
-
-    if (hidePaths.includes(path)) {
-      backButton.hide()
-    } else {
-      backButton.show()
-    }
-
-    backButton.onClick(() => {
-      window.history.back()
-    })
-
-    return () => {
-      backButton.hide()
-      backButton.onClick(() => {})
-    }
-  }, [webApp])
-
-  // Функция для закрытия приложения с подтверждением
   const closeApp = () => {
     if (webApp) {
-      if (confirm("Вы уверены, что хотите закрыть приложение?")) {
-        webApp.close()
-      }
+      webApp.close()
     }
   }
 

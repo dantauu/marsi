@@ -9,7 +9,7 @@ const SvgDollar = (props: SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      stroke="currentColor"
+      stroke="#fff"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={3}

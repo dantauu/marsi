@@ -4,11 +4,24 @@
 @font-face {
   font-family: "ManropeM";
   src: url("../fonts/Manrope-Medium.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "HelveticaB";
+  src: url("../fonts/Helvetica-Bold.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ManropeEB";
+  src: url("../fonts/Manrope-ExtraBold.woff") format("woff");
   font-weight: 900;
   font-style: normal;
 }
 
 @theme {
+  /* --container-mobile: 370px; */
   --color-main-green: #31c29f;
   --color-main-red: #f84963;
   --color-main-pink: #ff559f;
@@ -16,6 +29,16 @@
   --color-blur-bg: rgba(0, 0, 0, 0.97);
 
   --font-ManropeM: "ManropeM";
+  --font-ManropeEB: "ManropeEB";
+  --font-HelveticaB: "HelveticaB";
+
+  --breakpoint-mini-mobile: 378px;
+}
+
+@layer utilities {
+  .shadow-shadow-block {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
 }
 
 @layer base {
@@ -26,7 +49,6 @@
     height: 100vh;
     margin: 0 auto;
     font-size: 16px;
-    background: #e7e4dd;
     font-weight: 400;
     font-family: "DM Mono", "Roberto Pro";
     overflow-x: hidden;

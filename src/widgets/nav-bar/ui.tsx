@@ -14,15 +14,18 @@ const navItems = [
   { id: "Profile", Icon: SvgProfile, text: "Profile", link: "/profile" },
 ]
 
-const NavBar = () => {
+export const NavBar = () => {
   const routerState = useRouterState()
   const currentPath = routerState.location.pathname
 
+  const isValidPath = navItems.some((item) => item.link === currentPath)
+  const activePath = isValidPath ? currentPath : "/profile"
+
   return (
-    <div className="fixed bottom-0 w-full rounded-tr-[28px] h-[84px] rounded-tl-[28px] bg-blur-bg">
-      <nav className="flex justify-between items-center px-7 pt-3">
+    <div className="fixed bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg">
+      <nav className="flex justify-between items-center px-7 pt-[12px]">
         {navItems.map(({ id, Icon, text, link }) => {
-          const isActive = currentPath === link
+          const isActive = activePath === link
           return (
             <Link
               key={id}
@@ -32,7 +35,7 @@ const NavBar = () => {
               <Icon
                 className={cn(
                   isActive ? "text-main-pink" : "text-white",
-                  "transition-all w-full"
+                  "transition-all w-full stroke-current"
                 )}
               />
               <p
@@ -50,5 +53,3 @@ const NavBar = () => {
     </div>
   )
 }
-
-export default NavBar
