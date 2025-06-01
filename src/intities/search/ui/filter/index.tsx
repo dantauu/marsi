@@ -4,7 +4,12 @@ import { motion, useMotionValue, useTransform } from "framer-motion"
 import type { PanInfo } from "framer-motion"
 import { closeModal } from "../../../../redux/slices/modal-slice"
 import React, { useEffect, useState } from "react"
-import { FilterSlide, Location } from "../../../../shared/ui/filter-settings"
+import {
+  FilterSlide,
+  Gender,
+  Location,
+} from "../../../../shared/ui/filter-settings"
+import SaveSettingsNav from "../../../../shared/ui/save-settings"
 
 const FilterModal = () => {
   const { isOpen } = useAppSelector((state) => state.modal)
@@ -65,7 +70,7 @@ const FilterModal = () => {
             className="fixed inset-0 z-10 bg-[#00000087]"
           >
             <motion.div
-              className="absolute bottom-0 bg-[#fff] rounded-t-[60px] w-full h-[67%] overflow-hidden"
+              className="absolute bottom-0 bg-[#fff] rounded-t-[60px] w-full h-[80%] overflow-hidden"
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
@@ -110,6 +115,8 @@ const FilterModal = () => {
                   max={230}
                 />
                 <Location />
+                <Gender />
+                <SaveSettingsNav />
               </div>
             </motion.div>
           </motion.div>
