@@ -1,7 +1,7 @@
 import { useState } from "react"
-import SvgLayout1 from "../../../../assets/icons/Layout1"
-import SvgLayout2 from "../../../../assets/icons/Layout2"
-import Button from "../../../../shared/ui/button"
+import SvgLayout1 from "@/assets/icons/Layout1"
+import SvgLayout2 from "@/assets/icons/Layout2"
+import Button from "@/shared/ui/button"
 import { motion } from "framer-motion"
 
 const LayoutSwitch = () => {

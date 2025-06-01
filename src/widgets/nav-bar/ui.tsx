@@ -1,9 +1,9 @@
-import SvgDollar from "../../assets/icons/Dollar"
-import SvgNewSet from "../../assets/icons/NewSet"
-import SvgProfile from "../../assets/icons/Profile"
-import SvgSearch from "../../assets/icons/Search"
-import SvgSlides from "../../assets/icons/Slides"
-import { cn } from "../../lib/utils"
+import SvgDollar from "@/assets/icons/Dollar"
+import SvgNewSet from "@/assets/icons/NewSet"
+import SvgProfile from "@/assets/icons/Profile"
+import SvgSearch from "@/assets/icons/Search"
+import SvgSlides from "@/assets/icons/Slides"
+import { cn } from "@/lib/utils"
 import { Link, useRouterState } from "@tanstack/react-router"
 
 const navItems = [

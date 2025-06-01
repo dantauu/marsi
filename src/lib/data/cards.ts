@@ -1,7 +1,7 @@
-import girlOne from "../../assets/images/girl-one.png"
-import girlTwo from "../../assets/images/girl-two.png"
-import menOne from "../../assets/images/men-one.png"
-import menTwo from "../../assets/images/men-two.png"
+import girlOne from "@/assets/images/girl-one.png"
+import girlTwo from "@/assets/images/girl-two.png"
+import menOne from "@/assets/images/men-one.png"
+import menTwo from "@/assets/images/men-two.png"
 
 const MockCardData = [
   { id: 1, name: "Таня", age: 19, avatar: girlOne },

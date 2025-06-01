@@ -1,15 +1,12 @@
 import { AnimatePresence, useDragControls } from "framer-motion"
-import { useAppDispatch, useAppSelector } from "../../../../redux/hooks"
+import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { motion, useMotionValue, useTransform } from "framer-motion"
 import type { PanInfo } from "framer-motion"
-import { closeModal } from "../../../../redux/slices/modal-slice"
+import { closeModal } from "@/redux/slices/modal-slice"
 import React, { useEffect, useState } from "react"
-import {
-  FilterSlide,
-  Gender,
-  Location,
-} from "../../../../shared/ui/filter-settings"
-import SaveSettingsNav from "../../../../shared/ui/save-settings"
+import { FilterSlide } from "@/shared/ui/filter-slide"
+import { Gender, Location } from "@/features/search/ui/filter-search-modal"
+import SaveSettingsNav from "@/shared/ui/save-settings-nav"
 
 const FilterModal = () => {
   const { isOpen } = useAppSelector((state) => state.modal)
