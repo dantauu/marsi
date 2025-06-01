@@ -65,7 +65,7 @@ const FilterModal = () => {
             className="fixed inset-0 z-10 bg-[#00000087]"
           >
             <motion.div
-              className="absolute bottom-0 bg-[#fff] rounded-t-[60px] w-full h-[65%] overflow-hidden"
+              className="absolute bottom-0 bg-[#fff] rounded-t-[60px] w-full h-[67%] overflow-hidden"
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
@@ -109,11 +109,6 @@ const FilterModal = () => {
                   min={140}
                   max={230}
                 />
-                <Location />
-                <Location />
-                <Location />
-                <Location />
-                <Location />
                 <Location />
               </div>
             </motion.div>
