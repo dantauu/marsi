@@ -1,13 +1,13 @@
-import { useTelegram } from "../../app/providers/telegram"
+import { useTelegram } from "@/app/providers/telegram"
 import { useState } from "react"
 
-import SvgEgit from "../../assets/icons/Egit"
-import Button from "../../shared/ui/button"
-import Progress from "../../features/profile/ui/progress/inde"
-import LikeCount from "../../features/profile/ui/like-count"
-import Copy from "../../features/profile/ui/copy"
-import Subscribe from "../../features/profile/ui/subscribe"
-import MainInfo from "../../features/profile/ui/main-info"
+import SvgEgit from "@/assets/icons/Egit"
+import Button from "@/shared/ui/button"
+import Progress from "@/features/profile/ui/progress/inde"
+import LikeCount from "@/features/profile/ui/like-count"
+import Copy from "@/features/profile/ui/copy"
+import Subscribe from "@/features/profile/ui/subscribe"
+import MainInfo from "@/features/profile/ui/main-info"
 
 interface ProfileForm {
   name: string

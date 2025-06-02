@@ -1,4 +1,4 @@
-import SvgCopy from "../../../../assets/icons/Copy"
+import SvgCopy from "@/assets/icons/Copy"
 
 const Copy = () => {
   return (

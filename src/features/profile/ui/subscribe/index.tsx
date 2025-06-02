@@ -1,6 +1,6 @@
-import SvgArrow from "../../../../assets/icons/Arrow"
-import SvgBrokeHeart from "../../../../assets/icons/BrokeHeart"
-import Button from "../../../../shared/ui/button"
+import SvgArrow from "@/assets/icons/Arrow"
+import SvgBrokeHeart from "@/assets/icons/BrokeHeart"
+import Button from "@/shared/ui/button"
 
 const Subscribe = () => {
   return (

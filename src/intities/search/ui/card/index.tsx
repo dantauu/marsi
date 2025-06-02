@@ -1,5 +1,5 @@
-import type { CardProps } from "../../../../app/types/global"
-import Button from "../../../../shared/ui/button"
+import type { CardProps } from "@/app/types/global"
+import Button from "@/shared/ui/button"
 
 const Card = ({ avatar, name, age }: CardProps) => {
   return (

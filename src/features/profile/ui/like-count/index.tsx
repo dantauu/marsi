@@ -1,5 +1,5 @@
-import SvgArrow from "../../../../assets/icons/Arrow"
-import Button from "../../../../shared/ui/button"
+import SvgArrow from "@/assets/icons/Arrow"
+import Button from "@/shared/ui/button"
 
 const LikeCount = () => {
   return (
