@@ -1,6 +1,9 @@
+import { useState } from "react"
 import SvgArrow from "../../assets/icons/Arrow"
 import SvgLocation from "../../assets/icons/Location"
 import { SliderRange } from "../../features/search/ui/slider-range"
+import Button from "./button"
+import { cn } from "../../lib/utils"
 
 type FilterSlideProps = {
   title: string
@@ -65,4 +68,35 @@ const Location = () => {
   )
 }
 
-export { FilterSlide, Location }
+const Gender = () => {
+  const genders = [
+    { id: 1, gender: "Женский" },
+    { id: 2, gender: "Мужской" },
+  ]
+  const [gender, setGender] = useState("")
+  const handleClickItem = ({ gender }: { gender: string }) => {
+    setGender(gender)
+  }
+
+  return (
+    <div className="flex flex-col gap-2">
+      <p className="font-HelveticaB text-[20px]">Пол</p>
+      <div className="flex justify-between">
+        {genders.map((item) => (
+          <Button
+            key={item.id}
+            onClick={() => handleClickItem(item)}
+            className={cn(
+              `w-[140px] h-[50px] text-[20px] font-ManropeM duration-300 ${gender === item.gender && "bg-main-red"}`
+            )}
+            variant="green"
+          >
+            {item.gender}
+          </Button>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export { FilterSlide, Location, Gender }

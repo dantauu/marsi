@@ -4,7 +4,7 @@ import { cn } from "../../lib/utils"
 const variants = {
   green:
     "bg-[#31C29F] flex items-center justify-center gap-[5px] text-white rounded-[8px] cursor-pointer",
-  red: "bg-[#F84963] text-white justify-center cursor-pointer",
+  red: "bg-[#F84963] text-white justify-center cursor-pointer rounded-[8px]",
   pink: "bg-[#FF559F] justify-center cursor-pointer",
   default: "flex items-center gap-[5px] bg-none justify-center cursor-pointer",
 } as const
