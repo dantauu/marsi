@@ -1,12 +1,12 @@
 import { MockCardData } from "@/lib/data/cards"
 import { useState } from "react"
 
-type CardData = {
-  id: number
-  name: string
-  age: number
-  avatar: string
-}
+// type CardData = {
+//   id: number
+//   name: string
+//   age: number
+//   avatar: string
+// }
 
 const Slides = () => {
   const [lastDirection, setLastDirection] = useState<string>("")
