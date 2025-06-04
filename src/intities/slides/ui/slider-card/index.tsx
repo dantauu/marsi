@@ -12,7 +12,7 @@ const SWIPE_THRESHOLD = 50
 
 const SliderCard = () => {
   const dispatch = useAppDispatch()
-  const { currentIndex, position, isDragging } = useAppSelector(
+  const { currentIndex, position, isDragging, exitDirection } = useAppSelector(
     (state) => state.slider
   )
 
@@ -62,6 +62,23 @@ const SliderCard = () => {
     return absX / (SWIPE_THRESHOLD / 2)
   }
 
+  const getCardTransform = (index: number) => {
+    if (index === currentIndex) {
+      // Текущая карточка
+      return `translateX(${position.x}px)`
+    } else if (index === currentIndex - 1 && exitDirection === "left") {
+      // Предыдущая карточка при свайпе влево
+      return "translateX(-100%)"
+    } else if (index === currentIndex - 1 && exitDirection === "right") {
+      // Предыдущая карточка при свайпе вправо
+      return "translateX(100%)"
+    } else if (index === currentIndex + 1) {
+      // Следующая карточка
+      return "translateX(100%)"
+    }
+    return `translateX(${(index - currentIndex) * 100}%)`
+  }
+
   return (
     <div
       className="swipe-container relative w-full h-fit px-1 flex items-center justify-center overflow-hidden touch-none select-none"
@@ -78,9 +95,9 @@ const SliderCard = () => {
         {MockCardData.map((item, index) => (
           <div
             key={item.id}
-            className="absolute top-0 left-0 w-full h-full transition-all duration-300 ease-out"
+            className="absolute top-0 left-0 w-full h-full transition-all duration-500 ease-out"
             style={{
-              transform: `translateX(${index === currentIndex ? position.x : (index - currentIndex) * 100}%)`,
+              transform: getCardTransform(index),
               opacity:
                 index === currentIndex
                   ? 1
