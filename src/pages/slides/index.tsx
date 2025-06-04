@@ -38,6 +38,7 @@ const Slides = () => {
   }
 
   const onSwipeStart = (e: React.TouchEvent | React.MouseEvent) => {
+    e.preventDefault()
     setIsDragging(true)
     const { x } = getClientX(e)
     setStartPosition({ x })
@@ -45,9 +46,7 @@ const Slides = () => {
 
   const onSwipeMove = (e: React.TouchEvent | React.MouseEvent) => {
     if (!isDragging) return
-    if ("touches" in e) {
-      e.preventDefault()
-    }
+    e.preventDefault()
     const { x } = getClientX(e)
     const dx = x - startPosition.x
     setPosition({ x: dx })
@@ -62,7 +61,9 @@ const Slides = () => {
     setLastDirection(direction)
 
     if (Math.abs(position.x) > 150) {
-      setCurrentIndex((prev) => prev + 1)
+      if (currentIndex < MockCardData.length - 1) {
+        setCurrentIndex((prev) => prev + 1)
+      }
     }
 
     setPosition({ x: 0 })
@@ -76,7 +77,7 @@ const Slides = () => {
 
   return (
     <div
-      className="swipe-container relative w-full h-fit px-1 flex items-center justify-center overflow-hidden duration-300"
+      className="swipe-container relative w-full h-fit px-1 items-center justify-center overflow-hidden touch-none select-none"
       onMouseDown={onSwipeStart}
       onTouchStart={onSwipeStart}
       onMouseMove={onSwipeMove}
@@ -84,47 +85,68 @@ const Slides = () => {
       onMouseUp={onSwipeEnd}
       onTouchEnd={onSwipeEnd}
       onMouseLeave={onSwipeEnd}
+      style={{ touchAction: "none" }}
     >
-      {MockCardData.slice(currentIndex, currentIndex + 1).map((item) => (
-        <div
-          key={item.id}
-          className="relative w-full h-[550px] flex justify-center overflow-hidden transition-transform duration-100"
-          style={{
-            transform: `translateX(${position.x}px)`,
-          }}
-        >
-          {/* Иконка ❌ */}
+      <div className="relative w-full h-[550px]">
+        {MockCardData.map((item, index) => (
           <div
-            className="absolute top-55 left-33 text-red-500 text-8xl transition-opacity duration-100 z-10"
-            style={{ opacity: position.x < 0 ? getOpacity(position.x) : 0 }}
+            key={item.id}
+            className="absolute top-0 left-0 w-full h-full transition-all duration-300 ease-out"
+            style={{
+              transform: `translateX(${index === currentIndex ? position.x : (index - currentIndex) * 100}%)`,
+              opacity:
+                index === currentIndex
+                  ? 1
+                  : index === currentIndex + 1
+                    ? Math.abs(position.x) / 150
+                    : 0,
+              zIndex: index === currentIndex ? 2 : 1,
+              pointerEvents: index === currentIndex ? "auto" : "none",
+            }}
           >
-            ❌
-          </div>
+            {/* Иконка ❌ */}
+            <div
+              className="absolute top-55 left-33 text-red-500 text-8xl transition-opacity duration-100 z-10"
+              style={{
+                opacity:
+                  index === currentIndex && position.x < 0
+                    ? getOpacity(position.x)
+                    : 0,
+              }}
+            >
+              ❌
+            </div>
 
-          {/* Иконка ✅ */}
-          <div
-            className="absolute top-55 right-33 text-green-500 text-8xl transition-opacity duration-100 z-10"
-            style={{ opacity: position.x > 0 ? getOpacity(position.x) : 0 }}
-          >
-            ✅
-          </div>
+            {/* Иконка ✅ */}
+            <div
+              className="absolute top-55 right-33 text-green-500 text-8xl transition-opacity duration-100 z-10"
+              style={{
+                opacity:
+                  index === currentIndex && position.x > 0
+                    ? getOpacity(position.x)
+                    : 0,
+              }}
+            >
+              ✅
+            </div>
 
-          <div className="relative w-full h-[550px]">
-            <div className="w-full h-full inset-0">
-              <img
-                className="w-full h-full object-cover object-center rounded-[28px]"
-                src={item.avatar}
-                alt=""
-              />
-              <div className="absolute bottom-4 left-4">
-                <p className="text-white text-[40px] font-ManropeM">
-                  {item.name}, {item.age}
-                </p>
+            <div className="relative w-full h-full">
+              <div className="w-full h-full inset-0">
+                <img
+                  className="w-full h-full object-cover object-center rounded-[28px]"
+                  src={item.avatar}
+                  alt=""
+                />
+                <div className="absolute bottom-4 left-4">
+                  <p className="text-white text-[40px] font-ManropeM">
+                    {item.name}, {item.age}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }
