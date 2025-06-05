@@ -1,4 +1,4 @@
-import Card from "@/intities/search/ui/card"
+import Card from "@/entities/search/ui/card"
 import { MockCardData } from "@/lib/data/cards"
 
 const CardHuman = () => {
