@@ -7,6 +7,7 @@ interface SliderState {
   isDragging: boolean
   startPosition: { x: number }
   lastDirection: string
+  exitDirection: "left" | "right" | null
 }
 
 const initialState: SliderState = {
@@ -15,6 +16,7 @@ const initialState: SliderState = {
   isDragging: false,
   startPosition: { x: 0 },
   lastDirection: "",
+  exitDirection: null,
 }
 
 const SWIPE_THRESHOLD = 50
@@ -26,11 +28,12 @@ export const sliderSlice = createSlice({
     startDragging: (state, action: PayloadAction<{ x: number }>) => {
       state.isDragging = true
       state.startPosition = action.payload
+      state.exitDirection = null
     },
     updatePosition: (state, action: PayloadAction<number>) => {
       if (!state.isDragging) return
       const dx = action.payload - state.startPosition.x
-      const resistance = 0.35
+      const resistance = 0.5
       state.position = { x: dx * resistance }
     },
     endDragging: (state, action: PayloadAction<number>) => {
@@ -42,6 +45,7 @@ export const sliderSlice = createSlice({
 
       if (Math.abs(state.position.x) > SWIPE_THRESHOLD) {
         if (state.currentIndex < MockCardData.length - 1) {
+          state.exitDirection = direction
           state.currentIndex += 1
         }
       }
@@ -52,6 +56,7 @@ export const sliderSlice = createSlice({
     handleLike: (state) => {
       if (state.currentIndex < MockCardData.length - 1) {
         state.lastDirection = "right"
+        state.exitDirection = "right"
         state.currentIndex += 1
         state.position = { x: 0 }
       }
@@ -59,6 +64,7 @@ export const sliderSlice = createSlice({
     handleDislike: (state) => {
       if (state.currentIndex < MockCardData.length - 1) {
         state.lastDirection = "left"
+        state.exitDirection = "left"
         state.currentIndex += 1
         state.position = { x: 0 }
       }
