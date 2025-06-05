@@ -19,7 +19,7 @@ const initialState: SliderState = {
   exitDirection: null,
 }
 
-const SWIPE_THRESHOLD = 50
+const SWIPE_THRESHOLD = 190
 
 export const sliderSlice = createSlice({
   name: "slider",
@@ -33,7 +33,7 @@ export const sliderSlice = createSlice({
     updatePosition: (state, action: PayloadAction<number>) => {
       if (!state.isDragging) return
       const dx = action.payload - state.startPosition.x
-      const resistance = 0.5
+      const resistance = 1.2
       state.position = { x: dx * resistance }
     },
     endDragging: (state, action: PayloadAction<number>) => {
