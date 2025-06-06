@@ -5,8 +5,8 @@ import type { PanInfo } from "framer-motion"
 import { closeModal } from "@/redux/slices/modal-slice"
 import React, { useEffect, useState } from "react"
 import { FilterSlide } from "@/shared/ui/filter-slide"
-import { Gender, Location } from "@/features/search/ui/filter-search-modal"
 import SaveSettingsNav from "@/shared/ui/save-settings-nav"
+import { Gender, Location } from "@/features/search"
 
 const FilterModal = () => {
   const { isOpen } = useAppSelector((state) => state.modal)

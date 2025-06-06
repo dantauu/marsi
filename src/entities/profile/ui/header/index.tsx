@@ -1,6 +1,7 @@
 import { useTelegram } from "@/app/providers/telegram"
 import SvgEgit from "@/assets/icons/Egit"
 import Button from "@/shared/ui/button"
+import { useNavigate } from "@tanstack/react-router"
 import { useState } from "react"
 
 interface ProfileForm {
@@ -9,13 +10,18 @@ interface ProfileForm {
   avatar?: string
 }
 
-const ProfileHeader = () => {
+export const ProfileHeader = () => {
+  const navigate = useNavigate()
   const { user } = useTelegram()
   const [profile, _setProfile] = useState<ProfileForm>({
     name: user?.first_name || "",
     age: "",
     avatar: user?.photo_url || "",
   })
+
+  const linkEditProfile = () => {
+    navigate({ to: "/profile-edit" })
+  }
   // const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   setProfile((prevProfile) => ({
   //     ...prevProfile,
@@ -25,6 +31,7 @@ const ProfileHeader = () => {
   return (
     <div className="flex items-center justify-between mx-auto">
       <Button
+        onClick={linkEditProfile}
         className="w-[116px] h-[39px] mini-mobile:w-[130px] mini-mobile:h-[42px] font-ManropeM"
         variant="green"
       >
@@ -59,5 +66,3 @@ const ProfileHeader = () => {
     </div>
   )
 }
-
-export default ProfileHeader
