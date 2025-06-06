@@ -1,6 +1,6 @@
 import Block from "@/shared/ui/block"
 
-const MainInfo = () => {
+export const MainInfo = () => {
   const count = 100
   return (
     <div className="mt-[20px] shadow-shadow-block px-[8px] py-[8px] rounded-[10px]">
@@ -23,5 +23,3 @@ const MainInfo = () => {
     </div>
   )
 }
-
-export default MainInfo

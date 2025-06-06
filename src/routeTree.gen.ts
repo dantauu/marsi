@@ -17,6 +17,7 @@ import { Route as AppLayoutSubscribeIndexImport } from './routes/_app/_layout/su
 import { Route as AppLayoutSlidesIndexImport } from './routes/_app/_layout/slides/index'
 import { Route as AppLayoutSearchIndexImport } from './routes/_app/_layout/search/index'
 import { Route as AppLayoutProfileIndexImport } from './routes/_app/_layout/profile/index'
+import { Route as AppLayoutProfileEditIndexImport } from './routes/_app/_layout/profile-edit/index'
 import { Route as AppLayoutMoreIndexImport } from './routes/_app/_layout/more/index'
 
 // Create/Update Routes
@@ -56,6 +57,12 @@ const AppLayoutProfileIndexRoute = AppLayoutProfileIndexImport.update({
   getParentRoute: () => AppLayoutRoute,
 } as any)
 
+const AppLayoutProfileEditIndexRoute = AppLayoutProfileEditIndexImport.update({
+  id: '/profile-edit/',
+  path: '/profile-edit/',
+  getParentRoute: () => AppLayoutRoute,
+} as any)
+
 const AppLayoutMoreIndexRoute = AppLayoutMoreIndexImport.update({
   id: '/more/',
   path: '/more/',
@@ -85,6 +92,13 @@ declare module '@tanstack/react-router' {
       path: '/more'
       fullPath: '/more'
       preLoaderRoute: typeof AppLayoutMoreIndexImport
+      parentRoute: typeof AppLayoutImport
+    }
+    '/_app/_layout/profile-edit/': {
+      id: '/_app/_layout/profile-edit/'
+      path: '/profile-edit'
+      fullPath: '/profile-edit'
+      preLoaderRoute: typeof AppLayoutProfileEditIndexImport
       parentRoute: typeof AppLayoutImport
     }
     '/_app/_layout/profile/': {
@@ -123,6 +137,7 @@ declare module '@tanstack/react-router' {
 interface AppLayoutRouteChildren {
   AppLayoutIndexRoute: typeof AppLayoutIndexRoute
   AppLayoutMoreIndexRoute: typeof AppLayoutMoreIndexRoute
+  AppLayoutProfileEditIndexRoute: typeof AppLayoutProfileEditIndexRoute
   AppLayoutProfileIndexRoute: typeof AppLayoutProfileIndexRoute
   AppLayoutSearchIndexRoute: typeof AppLayoutSearchIndexRoute
   AppLayoutSlidesIndexRoute: typeof AppLayoutSlidesIndexRoute
@@ -132,6 +147,7 @@ interface AppLayoutRouteChildren {
 const AppLayoutRouteChildren: AppLayoutRouteChildren = {
   AppLayoutIndexRoute: AppLayoutIndexRoute,
   AppLayoutMoreIndexRoute: AppLayoutMoreIndexRoute,
+  AppLayoutProfileEditIndexRoute: AppLayoutProfileEditIndexRoute,
   AppLayoutProfileIndexRoute: AppLayoutProfileIndexRoute,
   AppLayoutSearchIndexRoute: AppLayoutSearchIndexRoute,
   AppLayoutSlidesIndexRoute: AppLayoutSlidesIndexRoute,
@@ -146,6 +162,7 @@ export interface FileRoutesByFullPath {
   '': typeof AppLayoutRouteWithChildren
   '/': typeof AppLayoutIndexRoute
   '/more': typeof AppLayoutMoreIndexRoute
+  '/profile-edit': typeof AppLayoutProfileEditIndexRoute
   '/profile': typeof AppLayoutProfileIndexRoute
   '/search': typeof AppLayoutSearchIndexRoute
   '/slides': typeof AppLayoutSlidesIndexRoute
@@ -155,6 +172,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof AppLayoutIndexRoute
   '/more': typeof AppLayoutMoreIndexRoute
+  '/profile-edit': typeof AppLayoutProfileEditIndexRoute
   '/profile': typeof AppLayoutProfileIndexRoute
   '/search': typeof AppLayoutSearchIndexRoute
   '/slides': typeof AppLayoutSlidesIndexRoute
@@ -166,6 +184,7 @@ export interface FileRoutesById {
   '/_app/_layout': typeof AppLayoutRouteWithChildren
   '/_app/_layout/': typeof AppLayoutIndexRoute
   '/_app/_layout/more/': typeof AppLayoutMoreIndexRoute
+  '/_app/_layout/profile-edit/': typeof AppLayoutProfileEditIndexRoute
   '/_app/_layout/profile/': typeof AppLayoutProfileIndexRoute
   '/_app/_layout/search/': typeof AppLayoutSearchIndexRoute
   '/_app/_layout/slides/': typeof AppLayoutSlidesIndexRoute
@@ -178,17 +197,26 @@ export interface FileRouteTypes {
     | ''
     | '/'
     | '/more'
+    | '/profile-edit'
     | '/profile'
     | '/search'
     | '/slides'
     | '/subscribe'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/more' | '/profile' | '/search' | '/slides' | '/subscribe'
+  to:
+    | '/'
+    | '/more'
+    | '/profile-edit'
+    | '/profile'
+    | '/search'
+    | '/slides'
+    | '/subscribe'
   id:
     | '__root__'
     | '/_app/_layout'
     | '/_app/_layout/'
     | '/_app/_layout/more/'
+    | '/_app/_layout/profile-edit/'
     | '/_app/_layout/profile/'
     | '/_app/_layout/search/'
     | '/_app/_layout/slides/'
@@ -222,6 +250,7 @@ export const routeTree = rootRoute
       "children": [
         "/_app/_layout/",
         "/_app/_layout/more/",
+        "/_app/_layout/profile-edit/",
         "/_app/_layout/profile/",
         "/_app/_layout/search/",
         "/_app/_layout/slides/",
@@ -234,6 +263,10 @@ export const routeTree = rootRoute
     },
     "/_app/_layout/more/": {
       "filePath": "_app/_layout/more/index.tsx",
+      "parent": "/_app/_layout"
+    },
+    "/_app/_layout/profile-edit/": {
+      "filePath": "_app/_layout/profile-edit/index.tsx",
       "parent": "/_app/_layout"
     },
     "/_app/_layout/profile/": {
