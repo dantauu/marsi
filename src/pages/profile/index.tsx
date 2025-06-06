@@ -1,9 +1,9 @@
-import Progress from "@/features/profile/ui/progress/inde"
+import Progress from "@/features/profile/ui/progress"
 import LikeCount from "@/features/profile/ui/like-count"
 import Copy from "@/features/profile/ui/copy"
 import Subscribe from "@/features/profile/ui/subscribe"
-import MainInfo from "@/entities/profile/main-info"
-import ProfileHeader from "@/entities/profile/header"
+import MainInfo from "@/entities/profile/ui/main-info"
+import ProfileHeader from "@/entities/profile/ui/header"
 
 const Profile = () => {
   return (
