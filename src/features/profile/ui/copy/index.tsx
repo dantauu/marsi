@@ -1,6 +1,6 @@
 import SvgCopy from "@/assets/icons/Copy"
 
-const Copy = () => {
+export const Copy = () => {
   return (
     <div className="flex flex-col items-center justify-between py-1.5 mini-mobile:h-[105px] h-[85px] bg-main-green w-full mini-mobile:w-[180px] rounded-[10px]">
       <div className="">
@@ -12,5 +12,3 @@ const Copy = () => {
     </div>
   )
 }
-
-export default Copy

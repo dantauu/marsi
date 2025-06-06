@@ -1,7 +1,7 @@
 import SvgArrow from "@/assets/icons/Arrow"
 import Button from "@/shared/ui/button"
 
-const LikeCount = () => {
+export const LikeCount = () => {
   return (
     <div className="flex flex-col items-center justify-between py-2 w-full mini-mobile:w-[210px] h-[85px] mini-mobile:h-[105px] shadow-shadow-block rounded-[10px]">
       <div className="flex items-center gap-1">
@@ -18,5 +18,3 @@ const LikeCount = () => {
     </div>
   )
 }
-
-export default LikeCount

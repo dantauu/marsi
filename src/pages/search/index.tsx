@@ -1,7 +1,5 @@
-import LayoutSwitch from "@/features/search/ui/layout-switch"
-import LikeCountNotify from "@/features/search/ui/like-count-notify"
-import FilterModal from "@/entities/search/ui/filter"
-import FilterButton from "@/entities/search/ui/filter/filter-button"
+import { LikeCountNotify, LayoutSwitch } from "@/features/search"
+import { FilterModal, FilterButton } from "@/entities/search"
 import CardHuman from "@/widgets/card/ui"
 
 const Search = () => {

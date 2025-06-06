@@ -1,2 +1,2 @@
-export { ProfileHeader } from "./ui/header/index"
-export { MainInfo } from "./ui/main-info"
+export * from "./ui/header/index"
+export * from "./ui/main-info"
