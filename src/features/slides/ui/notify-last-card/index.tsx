@@ -1,7 +1,7 @@
 import { MockCardData } from "@/lib/data/cards"
 import { useAppSelector } from "@/redux/hooks"
 
-const NotifyLastCard = () => {
+export const NotifyLastCard = () => {
   const { currentIndex } = useAppSelector((state) => state.slider)
   const isEndCard = currentIndex >= MockCardData.length - 1
   return (
@@ -18,5 +18,3 @@ const NotifyLastCard = () => {
     </>
   )
 }
-
-export default NotifyLastCard

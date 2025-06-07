@@ -1,6 +1,5 @@
-import NotifyLastCard from "@/features/slides/ui/notify-last-card"
-import SliderButtons from "@/features/slides/ui/slider-buttons"
-import SliderCard from "@/entities/slides/ui/slider-card"
+import { SliderButtons, NotifyLastCard } from "@/features/slides"
+import { SliderCard } from "@/entities/slides"
 
 const Slides = () => {
   return (

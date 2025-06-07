@@ -3,7 +3,7 @@ import SvgFilterIcon from "@/assets/icons/FilterIcon"
 import Button from "@/shared/ui/button"
 import { openModal } from "@/redux/slices/modal-slice"
 
-const FilterButton = () => {
+export const FilterButton = () => {
   const dispatch = useDispatch()
   const handleClick = () => {
     dispatch(openModal())
@@ -15,5 +15,3 @@ const FilterButton = () => {
     </Button>
   )
 }
-
-export default FilterButton

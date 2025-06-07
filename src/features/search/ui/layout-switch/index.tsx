@@ -4,7 +4,7 @@ import SvgLayout2 from "@/assets/icons/Layout2"
 import Button from "@/shared/ui/button"
 import { motion } from "framer-motion"
 
-const LayoutSwitch = () => {
+export const LayoutSwitch = () => {
   const [active, setActive] = useState<"layout1" | "layout2">("layout1")
   const activeVariants = {
     layout1: { x: -1 },
@@ -35,5 +35,3 @@ const LayoutSwitch = () => {
     </div>
   )
 }
-
-export default LayoutSwitch

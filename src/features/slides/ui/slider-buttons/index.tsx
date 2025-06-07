@@ -4,7 +4,7 @@ import { useAppDispatch } from "@/redux/hooks"
 import { handleDislike, handleLike } from "@/redux/slices/sliderSlice"
 import Button from "@/shared/ui/button"
 
-const SliderButtons = ({}) => {
+export const SliderButtons = ({}) => {
   const dispatch = useAppDispatch()
   return (
     <div className="flex items-center justify-between gap-5">
@@ -17,5 +17,3 @@ const SliderButtons = ({}) => {
     </div>
   )
 }
-
-export default SliderButtons

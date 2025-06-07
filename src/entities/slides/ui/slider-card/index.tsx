@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 
 const SWIPE_THRESHOLD = 50
 
-const SliderCard = () => {
+export const SliderCard = () => {
   const dispatch = useAppDispatch()
   const { currentIndex, position, isDragging, exitDirection } = useAppSelector(
     (state) => state.slider
@@ -148,5 +148,3 @@ const SliderCard = () => {
     </div>
   )
 }
-
-export default SliderCard

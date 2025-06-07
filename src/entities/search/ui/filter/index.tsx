@@ -8,7 +8,7 @@ import { FilterSlide } from "@/shared/ui/filter-slide"
 import SaveSettingsNav from "@/shared/ui/save-settings-nav"
 import { Gender, Location } from "@/features/search"
 
-const FilterModal = () => {
+export const FilterModal = () => {
   const { isOpen } = useAppSelector((state) => state.modal)
   const [valuesAge, setValuesAge] = useState<number[]>([16, 100])
   const [valuesHight, setValuesHight] = useState<number[]>([140, 230])
@@ -122,5 +122,3 @@ const FilterModal = () => {
     </>
   )
 }
-
-export default FilterModal
