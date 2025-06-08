@@ -1,5 +1,5 @@
 import { useTelegram } from "@/app/providers/telegram"
-import SvgEgit from "@/assets/icons/Egit"
+import SvgEdit from "@/assets/icons/Edit.tsx"
 import Button from "@/shared/ui/button"
 import { useNavigate } from "@tanstack/react-router"
 import { useState } from "react"
@@ -36,7 +36,7 @@ export const ProfileHeader = () => {
         variant="green"
       >
         Изменить
-        <SvgEgit />
+        <SvgEdit />
       </Button>
       <div className="flex items-center gap-2">
         <div className="">

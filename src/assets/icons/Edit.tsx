@@ -1,5 +1,5 @@
 import type { SVGProps } from "react"
-const SvgEgit = (props: SVGProps<SVGSVGElement>) => (
+const SvgEdit = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={30}
@@ -14,4 +14,4 @@ const SvgEgit = (props: SVGProps<SVGSVGElement>) => (
     />
   </svg>
 )
-export default SvgEgit
+export default SvgEdit
