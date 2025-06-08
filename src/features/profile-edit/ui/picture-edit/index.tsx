@@ -24,10 +24,16 @@ export const PictureEdit = () => {
       setPreview(updated)
     }
   }
+  let userHavePhoto = false
   return (
     <div className="flex justify-between">
       {pictureItems.map((item, index) => {
-        const imageSrc = preview[index] || item.mock || user?.photo_url
+        let imageSrc = preview[index] || item.mock || undefined
+
+        if (!imageSrc && user?.photo_url && !userHavePhoto) {
+          imageSrc = user?.photo_url
+          userHavePhoto = true
+        }
 
         return (
           <div
