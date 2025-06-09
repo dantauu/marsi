@@ -28,7 +28,7 @@ export const PictureEdit = () => {
   return (
     <div className="flex justify-between pb-[20px]">
       {pictureItems.map((item, index) => {
-        let imageSrc = preview[index] || item.mock || undefined
+        let imageSrc = preview[index] || item.mock
 
         if (!imageSrc && user?.photo_url && !userHavePhoto) {
           imageSrc = user?.photo_url

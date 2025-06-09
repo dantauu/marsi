@@ -1,11 +1,10 @@
-import { PictureEdit } from "@/features/profile-edit"
-import Input from "@/shared/ui/input.tsx"
+import { EditMainInfo, PictureEdit } from "@/features/profile-edit"
 
 const EditProfile = () => {
   return (
     <div className="px-[5px]">
       <PictureEdit />
-      <Input />
+      <EditMainInfo />
     </div>
   )
 }
