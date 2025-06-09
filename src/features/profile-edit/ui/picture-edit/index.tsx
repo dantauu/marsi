@@ -5,8 +5,8 @@ import React, { useState } from "react"
 
 const pictureItems = [
   { id: 1, plusIcon: plusIcon },
-  { id: 2, plusIcon: plusIcon, mock: mockHuman },
-  { id: 3, plusIcon: plusIcon },
+  { id: 2, plusIcon: plusIcon },
+  { id: 3, plusIcon: plusIcon, mock: mockHuman },
 ]
 
 export const PictureEdit = () => {
@@ -26,7 +26,7 @@ export const PictureEdit = () => {
   }
   let userHavePhoto = false
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between pb-[20px]">
       {pictureItems.map((item, index) => {
         let imageSrc = preview[index] || item.mock || undefined
 
