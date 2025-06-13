@@ -1,6 +1,6 @@
 import SvgEdit from "@/assets/icons/Edit.tsx"
 
-const InputWithIcon = ({title}: {title: string}) => {
+const InputWithIcon = ({ title }: { title: string }) => {
   return (
     <div className="flex justify-between items-center h-[64px] px-2 rounded-[10px] bg-bg-input">
       <div className="flex items-center gap-2">
@@ -19,4 +19,4 @@ const InputWithIcon = ({title}: {title: string}) => {
   )
 }
 
-export default  InputWithIcon
+export default InputWithIcon

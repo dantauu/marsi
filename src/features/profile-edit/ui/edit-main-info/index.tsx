@@ -1,6 +1,6 @@
 import InputWithIcon from "@/shared/ui/inputs.tsx"
 
-export  const EditMainInfo = () => {
+export const EditMainInfo = () => {
   return (
     <div className="flex flex-col gap-2">
       <InputWithIcon title="Имя" />
