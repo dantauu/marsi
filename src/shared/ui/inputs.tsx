@@ -20,4 +20,4 @@ const InputWithIcon = ({title, placeholder}: {title?: string, placeholder?: stri
   )
 }
 
-export default  InputWithIcon
+export default InputWithIcon
