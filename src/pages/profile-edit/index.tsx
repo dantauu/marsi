@@ -1,10 +1,11 @@
-import { EditMainInfo, PictureEdit } from "@/features/profile-edit"
+import { EditMainInfo, PictureEdit, EditAbout } from "@/features/profile-edit"
 
 const EditProfile = () => {
   return (
-    <div className="px-[5px]">
+    <div className="pb-[150px]">
       <PictureEdit />
-      <EditMainInfo />
+      <EditMainInfo className="mb-[20px]" />
+      <EditAbout />
     </div>
   )
 }

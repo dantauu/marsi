@@ -26,7 +26,7 @@ export const PictureEdit = () => {
   }
   let userHavePhoto = false
   return (
-    <div className="flex justify-between pb-[20px]">
+    <div className="flex justify-between mb-[20px] px-2">
       {pictureItems.map((item, index) => {
         let imageSrc = preview[index] || item.mock
 
