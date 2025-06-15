@@ -2,6 +2,7 @@ import { useTelegram } from "@/app/providers/telegram"
 import plusIcon from "@/assets/icons-source/plus.svg"
 import mockHuman from "@/assets/images/men-two.png"
 import React, { useState } from "react"
+import SvgPlus from "@/assets/icons/Plus.tsx"
 
 const pictureItems = [
   { id: 1, plusIcon: plusIcon },
@@ -43,7 +44,7 @@ export const PictureEdit = () => {
             <img className="w-full h-full object-cover" src={imageSrc} />
             {!imageSrc && (
               <label className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer">
-                <img src={plusIcon} alt="add" />
+                <SvgPlus className="text-main-pink" />
                 <input
                   type="file"
                   accept="image/*"
