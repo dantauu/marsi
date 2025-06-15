@@ -1,6 +1,6 @@
 import { useTelegram } from "@/app/providers/telegram"
 import SvgEdit from "@/assets/icons/Edit.tsx"
-import Button from "@/shared/ui/button"
+import Button from "@/shared/ui/buttons/button.tsx"
 import { useNavigate } from "@tanstack/react-router"
 import { useState } from "react"
 

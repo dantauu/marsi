@@ -1,4 +1,4 @@
-import InputWithIcon from "@/shared/ui/inputs.tsx"
+import InputWithIcon from "@/shared/ui/inputs/inputs.tsx"
 import { cn } from "@/lib/utils.tsx"
 
 export const EditMainInfo = ({ className }: { className?: string }) => {
