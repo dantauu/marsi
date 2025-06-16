@@ -1,4 +1,4 @@
-import InputWithIcon from "@/shared/ui/inputs.tsx"
+import InputWithIcon from "@/shared/ui/inputs/inputs.tsx"
 
 export const EditAbout = () => {
   return (

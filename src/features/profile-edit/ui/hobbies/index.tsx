@@ -1,4 +1,4 @@
-import Button from "@/shared/ui/button.tsx"
+import Button from "@/shared/ui/buttons/button.tsx"
 import SvgPlus from "@/assets/icons/Plus.tsx"
 import { cn } from "@/lib/utils.tsx"
 

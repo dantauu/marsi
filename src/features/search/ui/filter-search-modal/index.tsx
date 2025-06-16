@@ -1,7 +1,7 @@
 import SvgArrow from "@/assets/icons/Arrow"
 import SvgLocation from "@/assets/icons/Location"
 import { cn } from "@/lib/utils"
-import Button from "@/shared/ui/button"
+import Button from "@/shared/ui/buttons/button.tsx"
 import { useState } from "react"
 
 const Location = () => {

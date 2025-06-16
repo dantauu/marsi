@@ -1,5 +1,5 @@
 import SvgArrow from "@/assets/icons/Arrow"
-import Button from "@/shared/ui/button"
+import Button from "@/shared/ui/buttons/button.tsx"
 
 export const LikeCount = () => {
   return (

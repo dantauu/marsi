@@ -2,7 +2,7 @@ import SvgCheck from "@/assets/icons/Check"
 import SvgCross from "@/assets/icons/Cross"
 import { useAppDispatch } from "@/redux/hooks"
 import { handleDislike, handleLike } from "@/redux/slices/sliderSlice"
-import Button from "@/shared/ui/button"
+import Button from "@/shared/ui/buttons/button.tsx"
 
 export const SliderButtons = ({}) => {
   const dispatch = useAppDispatch()

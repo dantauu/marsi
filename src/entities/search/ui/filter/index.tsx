@@ -4,8 +4,8 @@ import { motion, useMotionValue, useTransform } from "framer-motion"
 import type { PanInfo } from "framer-motion"
 import { closeModal } from "@/redux/slices/modal-slice"
 import React, { useEffect, useState } from "react"
-import { FilterSlide } from "@/shared/ui/filter-slide"
-import SaveSettingsNav from "@/shared/ui/save-settings-nav"
+import { FilterSlide } from "@/shared/ui/filter/filter-slide.tsx"
+import SaveSettingsNav from "@/shared/ui/nav-bar/save-settings-nav.tsx"
 import { Gender, Location } from "@/features/search"
 
 export const FilterModal = () => {

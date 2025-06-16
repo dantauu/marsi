@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux"
 import SvgFilterIcon from "@/assets/icons/FilterIcon"
-import Button from "@/shared/ui/button"
+import Button from "@/shared/ui/buttons/button.tsx"
 import { openModal } from "@/redux/slices/modal-slice"
 
 export const FilterButton = () => {
