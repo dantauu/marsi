@@ -9,12 +9,12 @@ type StoryProps = PropsWithChildren<{
 }>
 
 const Story = ({
-                 children,
-                 layout = "col",
-                 src,
-                 className,
-                 rootClassName,
-               }: StoryProps) => (
+  children,
+  layout = "col",
+  src,
+  className,
+  rootClassName,
+}: StoryProps) => (
   <div className="flex flex-col gap-4">
     <div className={cn("@container", rootClassName)}>
       {src ? (
@@ -79,11 +79,11 @@ const StoryTablet = ({ children, className, ...props }: StoryVariantProps) => {
 }
 
 const StoryMobile = ({
-                       children,
-                       className,
-                       layout = "row",
-                       ...props
-                     }: StoryVariantProps) => {
+  children,
+  className,
+  layout = "row",
+  ...props
+}: StoryVariantProps) => {
   return (
     <Story
       {...props}

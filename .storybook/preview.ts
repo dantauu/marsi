@@ -11,4 +11,8 @@ const preview: Preview = {
   },
 }
 
+export const parameters = {
+  controls: { disabled: true },
+}
+
 export default preview

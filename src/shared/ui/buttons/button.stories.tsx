@@ -1,84 +1,64 @@
 // eslint-disable-next-line storybook/no-renderer-packages
 import type { Meta, StoryObj } from "@storybook/react"
 import Button from "./button.tsx"
-import SvgDollar from "@/assets/icons/Dollar.tsx"
+import SvgEdit from "@/assets/icons/Edit.tsx"
 
 const meta = {
   title: "ui/Button",
-  component: Button, // 🔑 Ключевое изменение - регистрируем компонент
+  component: Button,
   parameters: {},
   argTypes: {
-    variant: {
-      control: { type: "select" }, // Тип контрола для variant
-      options: ["green", "red", "pink", "default"], // Доступные варианты
-    },
     children: {
-      control: { type: "text" }, // Контрол для текста кнопки
+      control: false,
     },
-    className: {
-      control: { type: "text" }, // Контрол для дополнительных классов
-    }
   },
-} satisfies Meta<typeof Button> // Указываем тип компонента
+} satisfies Meta
 
 export default meta
 
-// Базовый шаблон для кнопки
-const Template: StoryObj<typeof Button> = {
-  render: (args) => <Button {...args} />,
-}
-
-// История для primary кнопок
-export const Primary: StoryObj<typeof Button> = {
-  ...Template,
-  args: {
-    variant: "green",
-    children: "Написать",
-    className: "w-[80px] h-[28px] font-HelveticaB"
-  },
-  decorators: [
-    (Story) => (
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-row gap-4">
-          <Story />
-          <Story />
-          <Story />
-          <Story />
-        </div>
+export const primary: StoryObj = {
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-row gap-4">
+        <Button className="px-2 py-1" variant="green">
+          Написать
+        </Button>
       </div>
-    )
-  ]
-}
-
-// История для кнопок с иконкой
-export const WithIcon: StoryObj<typeof Button> = {
-  ...Template,
-  args: {
-    variant: "red",
-    children: (
-      <>
-        <SvgDollar />
-        Распродажи
-      </>
-    ),
-  },
-  decorators: [
-    (Story) => (
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-row gap-4 bg-grey-1 p-2">
-          <Story />
-          <Story />
-        </div>
+      <div className="flex flex-row gap-4">
+        <Button className="px-2 py-1" variant="red">
+          Написать
+        </Button>
       </div>
-    )
-  ]
+      <div className="flex flex-row gap-4">
+        <Button className="px-2 py-1 text-white rounded-[7px]" variant="pink">
+          Написать
+        </Button>
+      </div>
+    </div>
+  ),
 }
 
-// 🔥 Новая история для одиночной кнопки с Controls
-export const Playground: StoryObj<typeof Button> = {
-  render: (args) => <Button {...args} />,
-  args: {
-    variant: "green",
-    children: "Нажми меня",
-  },
+export const withIcon: StoryObj = {
+  render: () => (
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-row gap-4">
+        <Button className="px-2 py-1" variant="green">
+          Написать
+          <SvgEdit />
+        </Button>
+      </div>
+      <div className="flex flex-row gap-4">
+        <Button className="px-2 py-1" variant="red">
+          Написать
+          <SvgEdit />
+        </Button>
+      </div>
+      <div className="flex flex-row gap-4">
+        <Button className="px-2 py-1 text-white rounded-[7px]" variant="pink">
+          Написать
+          <SvgEdit />
+        </Button>
+      </div>
+    </div>
+  ),
 }
