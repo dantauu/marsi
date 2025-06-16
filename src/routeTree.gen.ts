@@ -10,15 +10,15 @@
 
 // Import Routes
 
-import { Route as rootRoute } from "./routes/__root"
-import { Route as AppLayoutImport } from "./routes/_app/_layout"
-import { Route as AppLayoutIndexImport } from "./routes/_app/_layout/index"
-import { Route as AppLayoutSubscribeIndexImport } from "./routes/_app/_layout/subscribe/index"
-import { Route as AppLayoutSlidesIndexImport } from "./routes/_app/_layout/slides/index"
-import { Route as AppLayoutSearchIndexImport } from "./routes/_app/_layout/search/index"
-import { Route as AppLayoutProfileIndexImport } from "./routes/_app/_layout/profile/index"
-import { Route as AppLayoutProfileEditIndexImport } from "./routes/_app/_layout/profile-edit/index"
-import { Route as AppLayoutMoreIndexImport } from "./routes/_app/_layout/more/index"
+import { Route as rootRoute } from "@/app/routes/__root"
+import { Route as AppLayoutImport } from "@/app/routes/_app/_layout"
+import { Route as AppLayoutIndexImport } from "@/app/routes/_app/_layout/index"
+import { Route as AppLayoutSubscribeIndexImport } from "@/app/routes/_app/_layout/subscribe/index"
+import { Route as AppLayoutSlidesIndexImport } from "@/app/routes/_app/_layout/slides/index"
+import { Route as AppLayoutSearchIndexImport } from "@/app/routes/_app/_layout/search/index"
+import { Route as AppLayoutProfileIndexImport } from "@/app/routes/_app/_layout/profile/index"
+import { Route as AppLayoutProfileEditIndexImport } from "@/app/routes/_app/_layout/profile-edit/index"
+import { Route as AppLayoutMoreIndexImport } from "@/app/routes/_app/_layout/more/index"
 
 // Create/Update Routes
 
