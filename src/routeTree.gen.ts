@@ -10,122 +10,122 @@
 
 // Import Routes
 
-import { Route as rootRoute } from "@/app/routes/__root"
-import { Route as AppLayoutImport } from "@/app/routes/_app/_layout"
-import { Route as AppLayoutIndexImport } from "@/app/routes/_app/_layout/index"
-import { Route as AppLayoutSubscribeIndexImport } from "@/app/routes/_app/_layout/subscribe/index"
-import { Route as AppLayoutSlidesIndexImport } from "@/app/routes/_app/_layout/slides/index"
-import { Route as AppLayoutSearchIndexImport } from "@/app/routes/_app/_layout/search/index"
-import { Route as AppLayoutProfileIndexImport } from "@/app/routes/_app/_layout/profile/index"
-import { Route as AppLayoutProfileEditIndexImport } from "@/app/routes/_app/_layout/profile-edit/index"
-import { Route as AppLayoutMoreIndexImport } from "@/app/routes/_app/_layout/more/index"
+import { Route as rootRoute } from './app/routes/__root'
+import { Route as AppLayoutImport } from './app/routes/_app/_layout'
+import { Route as AppLayoutIndexImport } from './app/routes/_app/_layout/index'
+import { Route as AppLayoutSubscribeIndexImport } from './app/routes/_app/_layout/subscribe/index'
+import { Route as AppLayoutSlidesIndexImport } from './app/routes/_app/_layout/slides/index'
+import { Route as AppLayoutSearchIndexImport } from './app/routes/_app/_layout/search/index'
+import { Route as AppLayoutProfileIndexImport } from './app/routes/_app/_layout/profile/index'
+import { Route as AppLayoutProfileEditIndexImport } from './app/routes/_app/_layout/profile-edit/index'
+import { Route as AppLayoutMoreIndexImport } from './app/routes/_app/_layout/more/index'
 
 // Create/Update Routes
 
 const AppLayoutRoute = AppLayoutImport.update({
-  id: "/_app/_layout",
+  id: '/_app/_layout',
   getParentRoute: () => rootRoute,
 } as any)
 
 const AppLayoutIndexRoute = AppLayoutIndexImport.update({
-  id: "/",
-  path: "/",
+  id: '/',
+  path: '/',
   getParentRoute: () => AppLayoutRoute,
 } as any)
 
 const AppLayoutSubscribeIndexRoute = AppLayoutSubscribeIndexImport.update({
-  id: "/subscribe/",
-  path: "/subscribe/",
+  id: '/subscribe/',
+  path: '/subscribe/',
   getParentRoute: () => AppLayoutRoute,
 } as any)
 
 const AppLayoutSlidesIndexRoute = AppLayoutSlidesIndexImport.update({
-  id: "/slides/",
-  path: "/slides/",
+  id: '/slides/',
+  path: '/slides/',
   getParentRoute: () => AppLayoutRoute,
 } as any)
 
 const AppLayoutSearchIndexRoute = AppLayoutSearchIndexImport.update({
-  id: "/search/",
-  path: "/search/",
+  id: '/search/',
+  path: '/search/',
   getParentRoute: () => AppLayoutRoute,
 } as any)
 
 const AppLayoutProfileIndexRoute = AppLayoutProfileIndexImport.update({
-  id: "/profile/",
-  path: "/profile/",
+  id: '/profile/',
+  path: '/profile/',
   getParentRoute: () => AppLayoutRoute,
 } as any)
 
 const AppLayoutProfileEditIndexRoute = AppLayoutProfileEditIndexImport.update({
-  id: "/profile-edit/",
-  path: "/profile-edit/",
+  id: '/profile-edit/',
+  path: '/profile-edit/',
   getParentRoute: () => AppLayoutRoute,
 } as any)
 
 const AppLayoutMoreIndexRoute = AppLayoutMoreIndexImport.update({
-  id: "/more/",
-  path: "/more/",
+  id: '/more/',
+  path: '/more/',
   getParentRoute: () => AppLayoutRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/_app/_layout": {
-      id: "/_app/_layout"
-      path: ""
-      fullPath: ""
+    '/_app/_layout': {
+      id: '/_app/_layout'
+      path: ''
+      fullPath: ''
       preLoaderRoute: typeof AppLayoutImport
       parentRoute: typeof rootRoute
     }
-    "/_app/_layout/": {
-      id: "/_app/_layout/"
-      path: "/"
-      fullPath: "/"
+    '/_app/_layout/': {
+      id: '/_app/_layout/'
+      path: '/'
+      fullPath: '/'
       preLoaderRoute: typeof AppLayoutIndexImport
       parentRoute: typeof AppLayoutImport
     }
-    "/_app/_layout/more/": {
-      id: "/_app/_layout/more/"
-      path: "/more"
-      fullPath: "/more"
+    '/_app/_layout/more/': {
+      id: '/_app/_layout/more/'
+      path: '/more'
+      fullPath: '/more'
       preLoaderRoute: typeof AppLayoutMoreIndexImport
       parentRoute: typeof AppLayoutImport
     }
-    "/_app/_layout/profile-edit/": {
-      id: "/_app/_layout/profile-edit/"
-      path: "/profile-edit"
-      fullPath: "/profile-edit"
+    '/_app/_layout/profile-edit/': {
+      id: '/_app/_layout/profile-edit/'
+      path: '/profile-edit'
+      fullPath: '/profile-edit'
       preLoaderRoute: typeof AppLayoutProfileEditIndexImport
       parentRoute: typeof AppLayoutImport
     }
-    "/_app/_layout/profile/": {
-      id: "/_app/_layout/profile/"
-      path: "/profile"
-      fullPath: "/profile"
+    '/_app/_layout/profile/': {
+      id: '/_app/_layout/profile/'
+      path: '/profile'
+      fullPath: '/profile'
       preLoaderRoute: typeof AppLayoutProfileIndexImport
       parentRoute: typeof AppLayoutImport
     }
-    "/_app/_layout/search/": {
-      id: "/_app/_layout/search/"
-      path: "/search"
-      fullPath: "/search"
+    '/_app/_layout/search/': {
+      id: '/_app/_layout/search/'
+      path: '/search'
+      fullPath: '/search'
       preLoaderRoute: typeof AppLayoutSearchIndexImport
       parentRoute: typeof AppLayoutImport
     }
-    "/_app/_layout/slides/": {
-      id: "/_app/_layout/slides/"
-      path: "/slides"
-      fullPath: "/slides"
+    '/_app/_layout/slides/': {
+      id: '/_app/_layout/slides/'
+      path: '/slides'
+      fullPath: '/slides'
       preLoaderRoute: typeof AppLayoutSlidesIndexImport
       parentRoute: typeof AppLayoutImport
     }
-    "/_app/_layout/subscribe/": {
-      id: "/_app/_layout/subscribe/"
-      path: "/subscribe"
-      fullPath: "/subscribe"
+    '/_app/_layout/subscribe/': {
+      id: '/_app/_layout/subscribe/'
+      path: '/subscribe'
+      fullPath: '/subscribe'
       preLoaderRoute: typeof AppLayoutSubscribeIndexImport
       parentRoute: typeof AppLayoutImport
     }
@@ -155,72 +155,72 @@ const AppLayoutRouteChildren: AppLayoutRouteChildren = {
 }
 
 const AppLayoutRouteWithChildren = AppLayoutRoute._addFileChildren(
-  AppLayoutRouteChildren
+  AppLayoutRouteChildren,
 )
 
 export interface FileRoutesByFullPath {
-  "": typeof AppLayoutRouteWithChildren
-  "/": typeof AppLayoutIndexRoute
-  "/more": typeof AppLayoutMoreIndexRoute
-  "/profile-edit": typeof AppLayoutProfileEditIndexRoute
-  "/profile": typeof AppLayoutProfileIndexRoute
-  "/search": typeof AppLayoutSearchIndexRoute
-  "/slides": typeof AppLayoutSlidesIndexRoute
-  "/subscribe": typeof AppLayoutSubscribeIndexRoute
+  '': typeof AppLayoutRouteWithChildren
+  '/': typeof AppLayoutIndexRoute
+  '/more': typeof AppLayoutMoreIndexRoute
+  '/profile-edit': typeof AppLayoutProfileEditIndexRoute
+  '/profile': typeof AppLayoutProfileIndexRoute
+  '/search': typeof AppLayoutSearchIndexRoute
+  '/slides': typeof AppLayoutSlidesIndexRoute
+  '/subscribe': typeof AppLayoutSubscribeIndexRoute
 }
 
 export interface FileRoutesByTo {
-  "/": typeof AppLayoutIndexRoute
-  "/more": typeof AppLayoutMoreIndexRoute
-  "/profile-edit": typeof AppLayoutProfileEditIndexRoute
-  "/profile": typeof AppLayoutProfileIndexRoute
-  "/search": typeof AppLayoutSearchIndexRoute
-  "/slides": typeof AppLayoutSlidesIndexRoute
-  "/subscribe": typeof AppLayoutSubscribeIndexRoute
+  '/': typeof AppLayoutIndexRoute
+  '/more': typeof AppLayoutMoreIndexRoute
+  '/profile-edit': typeof AppLayoutProfileEditIndexRoute
+  '/profile': typeof AppLayoutProfileIndexRoute
+  '/search': typeof AppLayoutSearchIndexRoute
+  '/slides': typeof AppLayoutSlidesIndexRoute
+  '/subscribe': typeof AppLayoutSubscribeIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  "/_app/_layout": typeof AppLayoutRouteWithChildren
-  "/_app/_layout/": typeof AppLayoutIndexRoute
-  "/_app/_layout/more/": typeof AppLayoutMoreIndexRoute
-  "/_app/_layout/profile-edit/": typeof AppLayoutProfileEditIndexRoute
-  "/_app/_layout/profile/": typeof AppLayoutProfileIndexRoute
-  "/_app/_layout/search/": typeof AppLayoutSearchIndexRoute
-  "/_app/_layout/slides/": typeof AppLayoutSlidesIndexRoute
-  "/_app/_layout/subscribe/": typeof AppLayoutSubscribeIndexRoute
+  '/_app/_layout': typeof AppLayoutRouteWithChildren
+  '/_app/_layout/': typeof AppLayoutIndexRoute
+  '/_app/_layout/more/': typeof AppLayoutMoreIndexRoute
+  '/_app/_layout/profile-edit/': typeof AppLayoutProfileEditIndexRoute
+  '/_app/_layout/profile/': typeof AppLayoutProfileIndexRoute
+  '/_app/_layout/search/': typeof AppLayoutSearchIndexRoute
+  '/_app/_layout/slides/': typeof AppLayoutSlidesIndexRoute
+  '/_app/_layout/subscribe/': typeof AppLayoutSubscribeIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | ""
-    | "/"
-    | "/more"
-    | "/profile-edit"
-    | "/profile"
-    | "/search"
-    | "/slides"
-    | "/subscribe"
+    | ''
+    | '/'
+    | '/more'
+    | '/profile-edit'
+    | '/profile'
+    | '/search'
+    | '/slides'
+    | '/subscribe'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | "/"
-    | "/more"
-    | "/profile-edit"
-    | "/profile"
-    | "/search"
-    | "/slides"
-    | "/subscribe"
+    | '/'
+    | '/more'
+    | '/profile-edit'
+    | '/profile'
+    | '/search'
+    | '/slides'
+    | '/subscribe'
   id:
-    | "__root__"
-    | "/_app/_layout"
-    | "/_app/_layout/"
-    | "/_app/_layout/more/"
-    | "/_app/_layout/profile-edit/"
-    | "/_app/_layout/profile/"
-    | "/_app/_layout/search/"
-    | "/_app/_layout/slides/"
-    | "/_app/_layout/subscribe/"
+    | '__root__'
+    | '/_app/_layout'
+    | '/_app/_layout/'
+    | '/_app/_layout/more/'
+    | '/_app/_layout/profile-edit/'
+    | '/_app/_layout/profile/'
+    | '/_app/_layout/search/'
+    | '/_app/_layout/slides/'
+    | '/_app/_layout/subscribe/'
   fileRoutesById: FileRoutesById
 }
 
