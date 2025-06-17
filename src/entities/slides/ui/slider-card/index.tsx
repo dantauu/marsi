@@ -5,7 +5,7 @@ import {
   startDragging,
   updatePosition,
   endDragging,
-} from "@/redux/slices/sliderSlice"
+} from "@/redux/slices/slider-slice.ts"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 
 const SWIPE_THRESHOLD = 50

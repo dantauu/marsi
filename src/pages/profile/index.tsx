@@ -1,5 +1,11 @@
-import { Subscribe, Copy, LikeCount, Progress } from "@/features/profile"
-import { ProfileHeader, MainInfo } from "@/entities/profile"
+import {
+  SubscriptionStatus,
+  CopyProfile,
+  LikeCount,
+  Progress,
+} from "@/features/profile"
+import { ProfileHeader } from "@/entities/profile"
+import { BasicInformation } from "@/ui/index.ts"
 
 const Profile = () => {
   return (
@@ -8,10 +14,10 @@ const Profile = () => {
       <Progress />
       <div className="flex flex-col mini-mobile:flex-row mini-mobile:gap-[5px] gap-3 justify-between pt-[20px]">
         <LikeCount />
-        <Copy />
+        <CopyProfile />
       </div>
-      <Subscribe />
-      <MainInfo />
+      <SubscriptionStatus />
+      <BasicInformation />
     </div>
   )
 }
