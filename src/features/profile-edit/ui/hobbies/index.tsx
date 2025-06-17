@@ -4,8 +4,13 @@ import { cn } from "@/lib/utils.tsx"
 
 export const Hobbies = ({ className }: { className?: string }) => {
   return (
-    <div className={cn("flex flex-col justify-center gap-4 py-[6px] px-[4px] w-full shadow-shadow-block" +
-      " rounded-[18px]", className)}>
+    <div
+      className={cn(
+        "flex flex-col justify-center gap-4 py-[6px] px-[4px] w-full shadow-shadow-block" +
+          " rounded-[18px]",
+        className
+      )}
+    >
       <div>
         <p className="text-xl font-HelveticaB">Увлечения</p>
         <Button

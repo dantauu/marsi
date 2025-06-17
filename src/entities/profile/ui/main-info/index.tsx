@@ -1,6 +1,5 @@
 import Block from "@/shared/ui/blocks/block.tsx"
 
-
 export const MainInfo = () => {
   const count = 100
   return (
