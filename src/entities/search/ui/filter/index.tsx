@@ -96,7 +96,7 @@ export const FilterModal = () => {
                 ></div>
               </motion.div>
 
-              <div className="flex flex-col gap-10 pt-[40px] pb-[100px] px-4 overflow-auto h-full">
+              <div className="flex flex-col gap-10 pt-[40px] pb-[200px] px-4 overflow-auto h-full">
                 <FilterSlide
                   title="Возраст"
                   values={valuesAge}
