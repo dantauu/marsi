@@ -1,6 +1,6 @@
 import Block from "@/shared/ui/blocks/block.tsx"
 
-export const MainInfo = () => {
+export const BasicInformation = () => {
   const count = 100
   return (
     <div className="mt-[20px] shadow-shadow-block px-[8px] py-[8px] rounded-[10px]">

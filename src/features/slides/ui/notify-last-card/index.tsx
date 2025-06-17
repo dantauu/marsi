@@ -3,7 +3,7 @@ import { useAppSelector } from "@/redux/hooks"
 
 export const NotifyLastCard = () => {
   const { currentIndex } = useAppSelector((state) => state.slider)
-  const isEndCard = currentIndex >= MockCardData.length - 1
+  const isEndCard = currentIndex >= MockCardData.length
   return (
     <>
       {isEndCard && (

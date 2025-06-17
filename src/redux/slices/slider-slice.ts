@@ -44,7 +44,7 @@ export const sliderSlice = createSlice({
       state.lastDirection = direction
 
       if (Math.abs(state.position.x) > SWIPE_THRESHOLD) {
-        if (state.currentIndex < MockCardData.length - 1) {
+        if (state.currentIndex < MockCardData.length) {
           state.exitDirection = direction
           state.currentIndex += 1
         }
@@ -54,7 +54,7 @@ export const sliderSlice = createSlice({
       state.isDragging = false
     },
     handleLike: (state) => {
-      if (state.currentIndex < MockCardData.length - 1) {
+      if (state.currentIndex < MockCardData.length) {
         state.lastDirection = "right"
         state.exitDirection = "right"
         state.currentIndex += 1
@@ -62,7 +62,7 @@ export const sliderSlice = createSlice({
       }
     },
     handleDislike: (state) => {
-      if (state.currentIndex < MockCardData.length - 1) {
+      if (state.currentIndex < MockCardData.length) {
         state.lastDirection = "left"
         state.exitDirection = "left"
         state.currentIndex += 1
