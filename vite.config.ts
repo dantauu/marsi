@@ -6,7 +6,7 @@ import path from "path"
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), TanStackRouterVite({ routesDirectory: "src/app/routes" }), tailwindcss()],
+  plugins: [react(), TanStackRouterVite({ routesDirectory: "./src/app/routes" }), tailwindcss()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
