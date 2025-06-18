@@ -6,7 +6,7 @@ import { FilterButton } from "@/ui/index.ts"
 
 const Search = () => {
   return (
-    <div className="pb-[200px]">
+    <div data-testid="search" className="pb-[200px]">
       <LikeCountNotify />
       <div className="flex px-[12px] items-center justify-between pb-[20px]">
         <FilterButton />
