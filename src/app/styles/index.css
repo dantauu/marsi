@@ -56,8 +56,4 @@
   input {
     outline: none;
   }
-  main {
-    flex: 1;
-    display: flex;
-  }
 }

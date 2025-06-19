@@ -4,14 +4,14 @@ import { motion, useMotionValue, useTransform } from "framer-motion"
 import type { PanInfo } from "framer-motion"
 import { closeModal } from "@/redux/slices/modal-slice"
 import React, { useEffect, useState } from "react"
-import { FilterSlide } from "@/shared/ui/filter/filter-slide.tsx"
 import SaveSettingsNav from "@/shared/ui/nav-bar/save-settings-nav.tsx"
 import { Gender, Location } from "@/features/search"
+import { FilterSlide } from "@/ui"
 
 export const FilterModal = () => {
   const { isOpen } = useAppSelector((state) => state.modal)
-  const [valuesAge, setValuesAge] = useState<number[]>([16, 100])
-  const [valuesHight, setValuesHight] = useState<number[]>([140, 230])
+  const [valuesAge, setValuesAge] = useState<[number, number]>([16, 100])
+  const [valuesHeight, setValuesHeight] = useState<[number, number]>([140, 230])
   const dispatch = useAppDispatch()
   const dragControls = useDragControls()
 
@@ -106,8 +106,8 @@ export const FilterModal = () => {
                 />
                 <FilterSlide
                   title="Рост"
-                  values={valuesHight}
-                  setValues={setValuesHight}
+                  values={valuesHeight}
+                  setValues={setValuesHeight}
                   min={140}
                   max={230}
                 />
