@@ -7,7 +7,7 @@ import {
 
 const EditProfile = () => {
   return (
-    <div className="pb-[150px]">
+    <div data-testid="profile-edit" className="pb-[150px]">
       <PictureEdit />
       <EditMainInfo className="mb-[30px]" />
       <EditAbout />

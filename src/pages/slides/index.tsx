@@ -3,7 +3,7 @@ import { SliderCard } from "@/entities/slides"
 
 const Slides = () => {
   return (
-    <div className="flex flex-col gap-5 px-2 pb-[150px]">
+    <div data-testid="slides" className="flex flex-col gap-5 px-2 pb-[150px]">
       <NotifyLastCard />
       <SliderCard />
       <SliderButtons />
