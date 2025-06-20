@@ -1,4 +1,8 @@
-import { createMemoryHistory, createRouter, RouterProvider } from "@tanstack/react-router"
+import {
+  createMemoryHistory,
+  createRouter,
+  RouterProvider,
+} from "@tanstack/react-router"
 import { describe, it, expect } from "vitest"
 import { render, screen } from "@testing-library/react"
 import { TechnicalWork } from "@/widgets/technical-work"
@@ -18,7 +22,7 @@ const createTestRouter = (initial: string = "/") => {
     history: createMemoryHistory({
       initialEntries: [initial],
     }),
-    defaultNotFoundComponent: TechnicalWork
+    defaultNotFoundComponent: TechnicalWork,
   })
 }
 
@@ -27,7 +31,7 @@ const renderWithProvider = (ui: React.ReactNode) => {
 }
 
 const testRenderWithRoute = ({ testRoute, findId }: renderWithRouteProps) => {
-  it('renders the routes', async () => {
+  it("renders the routes", async () => {
     const router = createTestRouter(testRoute)
     renderWithProvider(<RouterProvider router={router} />)
 
@@ -36,10 +40,10 @@ const testRenderWithRoute = ({ testRoute, findId }: renderWithRouteProps) => {
   })
 }
 
-describe('TanStack Router', () => {
-  testRenderWithRoute({ testRoute: '/profile', findId: 'profile'})
-  testRenderWithRoute({ testRoute: '/profile-edit', findId: 'profile-edit'})
-  testRenderWithRoute({ testRoute: '/search', findId: 'search'})
-  testRenderWithRoute({ testRoute: '/slides', findId: 'slides'})
-  testRenderWithRoute({ testRoute: '/more', findId: 'more'})
+describe("TanStack Router", () => {
+  testRenderWithRoute({ testRoute: "/profile", findId: "profile" })
+  testRenderWithRoute({ testRoute: "/profile-edit", findId: "profile-edit" })
+  testRenderWithRoute({ testRoute: "/search", findId: "search" })
+  testRenderWithRoute({ testRoute: "/slides", findId: "slides" })
+  testRenderWithRoute({ testRoute: "/more", findId: "more" })
 })
