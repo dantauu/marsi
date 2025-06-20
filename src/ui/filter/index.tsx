@@ -1,6 +1,5 @@
-import { RangeSlider } from "@mantine/core"
 import React from "react"
-
+import SliderRange from "@/ui/filter/slider-range.tsx"
 
 type FilterSlideProps = {
   title: string
@@ -18,8 +17,8 @@ export const FilterSlide = ({
   setValues,
 }: FilterSlideProps) => {
   return (
-    <div className="flex flex-col gap-7">
-      <div className="flex items-center justify-between">
+    <div className="flex flex-col items-center gap-7">
+      <div className="w-full flex items-center justify-between">
         <p className="font-HelveticaB text-[20px]">{title}</p>
         <div className="flex justify-center gap-2 w-[110px] h-[30px] bg-black rounded-[7px]">
           <span className="font-HelveticaB text-white text-[20px]">
@@ -31,26 +30,7 @@ export const FilterSlide = ({
           </span>
         </div>
       </div>
-      <RangeSlider
-        value={values}
-        onChange={setValues}
-        label={null}
-        pushOnOverlap={false}
-        thumbSize={35}
-        minRange={2}
-        min={min}
-        max={max}
-        step={1}
-        styles={{
-          thumb: {
-            backgroundColor: "#31c29f",
-            border: "2px solid white",
-          },
-          bar: {
-            backgroundColor: "#31c29f",
-          },
-        }}
-      />
+      <SliderRange values={values} min={min} max={max} setValues={setValues} />
     </div>
   )
 }

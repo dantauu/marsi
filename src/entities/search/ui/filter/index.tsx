@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { motion, useMotionValue, useTransform } from "framer-motion"
 import type { PanInfo } from "framer-motion"
 import { closeModal } from "@/redux/slices/modal-slice"
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import SaveSettingsNav from "@/shared/ui/nav-bar/save-settings-nav.tsx"
 import { Gender, Location } from "@/features/search"
 import { FilterSlide } from "@/ui"
@@ -44,16 +44,16 @@ export const FilterModal = () => {
     }
   }
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add("overflow-hidden")
-    } else {
-      document.body.classList.remove("overflow-hidden")
-    }
-    return () => {
-      document.body.classList.remove("overflow-hidden")
-    }
-  }, [isOpen])
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     document.body.classList.add("overflow-hidden")
+  //   } else {
+  //     document.body.classList.remove("overflow-hidden")
+  //   }
+  //   return () => {
+  //     document.body.classList.remove("overflow-hidden")
+  //   }
+  // }, [isOpen])
 
   return (
     <>
