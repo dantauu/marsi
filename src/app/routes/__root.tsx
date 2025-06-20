@@ -1,4 +1,4 @@
-import { createRootRoute, Outlet } from "@tanstack/react-router"
+import { createRootRoute, Outlet, redirect } from "@tanstack/react-router"
 
 export const Route = createRootRoute({
   component: () => (
@@ -6,4 +6,10 @@ export const Route = createRootRoute({
       <Outlet />
     </>
   ),
+  loader: ({ location }) => {
+    if (location.pathname === "/") {
+      throw redirect({ to: "/profile" })
+    }
+    return null
+  },
 })

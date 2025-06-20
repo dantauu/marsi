@@ -4,7 +4,7 @@ import SvgProfile from "@/assets/icons/Profile"
 import SvgSearch from "@/assets/icons/Search"
 import SvgSlides from "@/assets/icons/Slides"
 import { cn } from "@/lib/utils"
-import { Link, useRouterState } from "@tanstack/react-router"
+import { Link } from "@tanstack/react-router"
 
 const navItems = [
   { id: "More", Icon: SvgNewSet, text: "More", link: "/more" },
@@ -14,12 +14,12 @@ const navItems = [
   { id: "Profile", Icon: SvgProfile, text: "Profile", link: "/profile" },
 ]
 
-export const NavBar = () => {
-  const routerState = useRouterState()
-  const currentPath = routerState.location.pathname
+export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
+  // const routerState = useRouterState()
+  // const currentPath = routerState.location.pathname
 
-  const isValidPath = navItems.some((item) => item.link === currentPath)
-  const activePath = isValidPath ? currentPath : "/profile"
+  // const isValidPath = navItems.some((item) => item.link === currentPath)
+  // const activePath = isValidPath ? currentPath : "/profile"
 
   return (
     <div className="fixed bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg">
