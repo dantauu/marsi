@@ -15,12 +15,6 @@ const navItems = [
 ]
 
 export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
-  // const routerState = useRouterState()
-  // const currentPath = routerState.location.pathname
-
-  // const isValidPath = navItems.some((item) => item.link === currentPath)
-  // const activePath = isValidPath ? currentPath : "/profile"
-
   return (
     <div className="fixed bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg">
       <nav className="flex justify-between items-center px-7 pt-[12px]">
