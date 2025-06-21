@@ -880,15 +880,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mantine/hooks@npm:^8.1.1":
-  version: 8.1.1
-  resolution: "@mantine/hooks@npm:8.1.1"
-  peerDependencies:
-    react: ^18.x || ^19.x
-  checksum: 45b4ba3ab789cdc88f975201e24e5416df93289b55cef182a5f1743434596720fe11eaac7750626c16080b0fcd4ba79a616082d58accb26b6ab6f4278ece784a
-  languageName: node
-  linkType: hard
-
 "@mdx-js/react@npm:^3.0.0":
   version: 3.1.0
   resolution: "@mdx-js/react@npm:3.1.0"
@@ -4585,7 +4576,6 @@ __metadata:
   dependencies:
     "@chromatic-com/storybook": ^4
     "@eslint/js": ^9.25.0
-    "@mantine/hooks": ^8.1.1
     "@reduxjs/toolkit": ^2.8.2
     "@storybook/addon-a11y": ^9.0.10
     "@storybook/addon-docs": ^9.0.10
