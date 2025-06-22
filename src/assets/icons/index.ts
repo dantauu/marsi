@@ -1,5 +1,6 @@
 export { default as ArrowIcon } from "./Arrow"
 export { default as BrokeHeartIcon } from "./BrokeHeart"
+export { default as CheckSvgIcon } from "./CheckSvg"
 export { default as CheckIcon } from "./Check"
 export { default as CopyIcon } from "./Copy"
 export { default as CrossIcon } from "./Cross"

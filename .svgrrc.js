@@ -1,4 +1,5 @@
 module.exports = {
+  jsxRuntime: 'automatic',
   svgoConfig: {
     plugins: [
       {
