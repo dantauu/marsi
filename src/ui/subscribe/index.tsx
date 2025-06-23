@@ -1,4 +1,4 @@
-import doubler from '@/assets/images/double.svg'
+import doubler from "@/assets/images/double.svg"
 import Button from "@/shared/ui/buttons/button.tsx"
 import { cn } from "@/lib/utils.tsx"
 import SvgCheckSvg from "@/assets/icons/CheckSvg.tsx"
@@ -9,7 +9,12 @@ export const Purchase = () => {
       <div>
         <img src={doubler} />
       </div>
-      <Button variant="green" className="w-[210px] h-[60px] text-xl absolute bottom-[45px] -translate-x-1/2 bg-blur-green">Приобрести</Button>
+      <Button
+        variant="green"
+        className="w-[210px] h-[60px] text-xl absolute bottom-[45px] -translate-x-1/2 bg-blur-green"
+      >
+        Приобрести
+      </Button>
     </div>
   )
 }

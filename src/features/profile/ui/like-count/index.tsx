@@ -11,10 +11,16 @@ export const LikeCount = () => {
           <p className="font-ManropeM text-[16px]">Получено лайков:</p>
         </div>
         <div className="">
-          <p className="font-HelveticaB text-[16px]">{Math.round(Math.random() * 100)}</p>
+          <p className="font-HelveticaB text-[16px]">
+            {Math.round(Math.random() * 100)}
+          </p>
         </div>
       </div>
-      <Button onClick={() => navigate({to: "/likes"})} className="w-[125px] h-[35px] font-HelveticaB" variant="green">
+      <Button
+        onClick={() => navigate({ to: "/likes" })}
+        className="w-[125px] h-[35px] font-HelveticaB"
+        variant="green"
+      >
         Смотреть <SvgArrow />
       </Button>
     </div>

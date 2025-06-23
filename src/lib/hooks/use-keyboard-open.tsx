@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 
-
 export const useKeyboardOpen = () => {
   const [visibleKeyboard, setVisibleKeyboard] = useState(false)
   const [initialHeight, setInitialHeight] = useState<number | null>(null)

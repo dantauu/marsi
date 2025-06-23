@@ -50,6 +50,6 @@ export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
           </nav>
         </div>
       )}
-      </>
+    </>
   )
 }

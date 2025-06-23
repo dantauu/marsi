@@ -5,9 +5,8 @@ export type CardProps = {
 }
 
 enum LikesTab {
-  MUTUAL = 'mutual',
-  INCOMING = 'incoming',
+  MUTUAL = "mutual",
+  INCOMING = "incoming",
 }
-
 
 export { LikesTab }
