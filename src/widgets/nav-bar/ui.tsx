@@ -17,47 +17,55 @@ const navItems = [
 
 export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
   const [isKeyboard, setIsKeyboard] = useState(false)
+  const [initialHeight, setInitialHeight] = useState<number | null>(null)
   useEffect(() => {
     const onResize = () => {
-      const treshhold = 150
-      const isOpen = window.innerHeight < window.outerHeight - treshhold
-      setIsKeyboard(isOpen)
+      const currentHeight = window.visualViewport?.height || window.innerHeight
+      if (!initialHeight) {
+        setInitialHeight(currentHeight)
+        return
+      }
+      const keyBoardOpen = initialHeight - currentHeight > 150
+      setIsKeyboard(keyBoardOpen)
     }
 
-    window.addEventListener("resize", onResize)
-    return () => window.removeEventListener("resize", onResize)
-  }, [])
-  if (isKeyboard) return null
+    window.visualViewport?.addEventListener("resize", onResize)
+    return () => window.visualViewport?.removeEventListener("resize", onResize)
+  }, [initialHeight])
 
   return (
-    <div className="fixed bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg">
-      <nav className="flex justify-between items-center px-7 pt-[12px]">
-        {navItems.map(({ id, Icon, text, link }) => {
-          const isActive = activePath === link
-          return (
-            <Link
-              key={id}
-              to={link}
-              className="flex flex-col items-center justify-between h-[58px] cursor-pointer"
-            >
-              <Icon
-                className={cn(
-                  isActive ? "text-main-pink" : "text-white",
-                  "transition-all w-full stroke-current"
-                )}
-              />
-              <p
-                className={cn(
-                  isActive ? "text-main-pink" : "text-white",
-                  "font-ManropeM text-[12.5px]"
-                )}
-              >
-                {text}
-              </p>
-            </Link>
-          )
-        })}
-      </nav>
-    </div>
+    <>
+      {!isKeyboard && (
+        <div className="fixed bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg">
+          <nav className="flex justify-between items-center px-7 pt-[12px]">
+            {navItems.map(({ id, Icon, text, link }) => {
+              const isActive = activePath === link
+              return (
+                <Link
+                  key={id}
+                  to={link}
+                  className="flex flex-col items-center justify-between h-[58px] cursor-pointer"
+                >
+                  <Icon
+                    className={cn(
+                      isActive ? "text-main-pink" : "text-white",
+                      "transition-all w-full stroke-current"
+                    )}
+                  />
+                  <p
+                    className={cn(
+                      isActive ? "text-main-pink" : "text-white",
+                      "font-ManropeM text-[12.5px]"
+                    )}
+                  >
+                    {text}
+                  </p>
+                </Link>
+              )
+            })}
+          </nav>
+        </div>
+      )}
+      </>
   )
 }
