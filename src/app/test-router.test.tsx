@@ -14,6 +14,7 @@ import "@testing-library/jest-dom"
 type renderWithRouteProps = {
   testRoute: string
   findId: string
+  nameRoute: string
 }
 
 const createTestRouter = (initial: string = "/") => {
@@ -30,8 +31,12 @@ const renderWithProvider = (ui: React.ReactNode) => {
   render(<Provider store={store}>{ui}</Provider>)
 }
 
-const testRenderWithRoute = ({ testRoute, findId }: renderWithRouteProps) => {
-  it("renders the routes", async () => {
+const testRenderWithRoute = ({
+  testRoute,
+  findId,
+  nameRoute,
+}: renderWithRouteProps) => {
+  it(nameRoute, async () => {
     const router = createTestRouter(testRoute)
     renderWithProvider(<RouterProvider router={router} />)
 
@@ -41,9 +46,34 @@ const testRenderWithRoute = ({ testRoute, findId }: renderWithRouteProps) => {
 }
 
 describe("TanStack Router", () => {
-  testRenderWithRoute({ testRoute: "/profile", findId: "profile" })
-  testRenderWithRoute({ testRoute: "/profile-edit", findId: "profile-edit" })
-  testRenderWithRoute({ testRoute: "/search", findId: "search" })
-  testRenderWithRoute({ testRoute: "/slides", findId: "slides" })
-  testRenderWithRoute({ testRoute: "/more", findId: "more" })
+  testRenderWithRoute({
+    testRoute: "/profile",
+    findId: "profile",
+    nameRoute: "Render profile",
+  })
+  testRenderWithRoute({
+    testRoute: "/profile-edit",
+    findId: "profile-edit",
+    nameRoute: "Render profile edit",
+  })
+  testRenderWithRoute({
+    testRoute: "/search",
+    findId: "search",
+    nameRoute: "Render search",
+  })
+  testRenderWithRoute({
+    testRoute: "/slides",
+    findId: "slides",
+    nameRoute: "Render slides",
+  })
+  testRenderWithRoute({
+    testRoute: "/more",
+    findId: "more",
+    nameRoute: "Render more",
+  })
+  testRenderWithRoute({
+    testRoute: "/subscribe",
+    findId: "subscribe",
+    nameRoute: "Render subscribe",
+  })
 })

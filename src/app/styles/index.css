@@ -27,17 +27,43 @@
   --color-main-pink: #ff559f;
   --color-bg-input: rgba(0, 0, 0, 0.9);
   --color-blur-bg: rgba(0, 0, 0, 0.97);
+  --color-gradient-text: linear-gradient(
+    to right,
+    #ff559f 0%,
+    #d355cb 50%,
+    #3b82f6 100%
+  );
+  --color-gradient-bg: linear-gradient(
+    to right,
+    #ff559f 0%,
+    #ff9068 50%,
+    #ff559f 100%
+  );
 
   --font-ManropeM: "ManropeM";
   --font-ManropeEB: "ManropeEB";
   --font-HelveticaB: "HelveticaB";
-
   --breakpoint-mini-mobile: 378px;
 }
 
 @layer utilities {
   .shadow-shadow-block {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  .text-gradient-text {
+    background: var(--color-gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-gradient-bg {
+    background: linear-gradient(
+      to right,
+      rgba(255, 85, 159, 0.75) 0%,
+      rgba(255, 144, 104, 0.79) 50%,
+      rgba(255, 85, 159, 0.39) 100%
+    );
   }
 }
 

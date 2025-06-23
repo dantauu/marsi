@@ -1,7 +1,6 @@
 import { CopyProfile } from "@/features/profile"
 import type { Meta, StoryObj } from "@storybook/react-vite"
 
-
 const meta = {
   title: "ui/CopyProfile",
   component: CopyProfile,
@@ -11,8 +10,6 @@ export default meta
 
 export const Copy: StoryObj = {
   render: () => {
-    return (
-      <CopyProfile />
-    )
-  }
+    return <CopyProfile />
+  },
 }
