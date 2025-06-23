@@ -17,6 +17,7 @@ import { Route as AppLayoutSearchIndexRouteImport } from './app/routes/_app/_lay
 import { Route as AppLayoutProfileIndexRouteImport } from './app/routes/_app/_layout/profile/index'
 import { Route as AppLayoutProfileEditIndexRouteImport } from './app/routes/_app/_layout/profile-edit/index'
 import { Route as AppLayoutMoreIndexRouteImport } from './app/routes/_app/_layout/more/index'
+import { Route as AppLayoutLikesIndexRouteImport } from './app/routes/_app/_layout/likes/index'
 
 const AppLayoutRoute = AppLayoutRouteImport.update({
   id: '/_app/_layout',
@@ -58,9 +59,15 @@ const AppLayoutMoreIndexRoute = AppLayoutMoreIndexRouteImport.update({
   path: '/more/',
   getParentRoute: () => AppLayoutRoute,
 } as any)
+const AppLayoutLikesIndexRoute = AppLayoutLikesIndexRouteImport.update({
+  id: '/likes/',
+  path: '/likes/',
+  getParentRoute: () => AppLayoutRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AppLayoutIndexRoute
+  '/likes': typeof AppLayoutLikesIndexRoute
   '/more': typeof AppLayoutMoreIndexRoute
   '/profile-edit': typeof AppLayoutProfileEditIndexRoute
   '/profile': typeof AppLayoutProfileIndexRoute
@@ -70,6 +77,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof AppLayoutIndexRoute
+  '/likes': typeof AppLayoutLikesIndexRoute
   '/more': typeof AppLayoutMoreIndexRoute
   '/profile-edit': typeof AppLayoutProfileEditIndexRoute
   '/profile': typeof AppLayoutProfileIndexRoute
@@ -81,6 +89,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app/_layout': typeof AppLayoutRouteWithChildren
   '/_app/_layout/': typeof AppLayoutIndexRoute
+  '/_app/_layout/likes/': typeof AppLayoutLikesIndexRoute
   '/_app/_layout/more/': typeof AppLayoutMoreIndexRoute
   '/_app/_layout/profile-edit/': typeof AppLayoutProfileEditIndexRoute
   '/_app/_layout/profile/': typeof AppLayoutProfileIndexRoute
@@ -92,6 +101,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/likes'
     | '/more'
     | '/profile-edit'
     | '/profile'
@@ -101,6 +111,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/likes'
     | '/more'
     | '/profile-edit'
     | '/profile'
@@ -111,6 +122,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_app/_layout'
     | '/_app/_layout/'
+    | '/_app/_layout/likes/'
     | '/_app/_layout/more/'
     | '/_app/_layout/profile-edit/'
     | '/_app/_layout/profile/'
@@ -181,11 +193,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppLayoutMoreIndexRouteImport
       parentRoute: typeof AppLayoutRoute
     }
+    '/_app/_layout/likes/': {
+      id: '/_app/_layout/likes/'
+      path: '/likes'
+      fullPath: '/likes'
+      preLoaderRoute: typeof AppLayoutLikesIndexRouteImport
+      parentRoute: typeof AppLayoutRoute
+    }
   }
 }
 
 interface AppLayoutRouteChildren {
   AppLayoutIndexRoute: typeof AppLayoutIndexRoute
+  AppLayoutLikesIndexRoute: typeof AppLayoutLikesIndexRoute
   AppLayoutMoreIndexRoute: typeof AppLayoutMoreIndexRoute
   AppLayoutProfileEditIndexRoute: typeof AppLayoutProfileEditIndexRoute
   AppLayoutProfileIndexRoute: typeof AppLayoutProfileIndexRoute
@@ -196,6 +216,7 @@ interface AppLayoutRouteChildren {
 
 const AppLayoutRouteChildren: AppLayoutRouteChildren = {
   AppLayoutIndexRoute: AppLayoutIndexRoute,
+  AppLayoutLikesIndexRoute: AppLayoutLikesIndexRoute,
   AppLayoutMoreIndexRoute: AppLayoutMoreIndexRoute,
   AppLayoutProfileEditIndexRoute: AppLayoutProfileEditIndexRoute,
   AppLayoutProfileIndexRoute: AppLayoutProfileIndexRoute,

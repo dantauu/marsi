@@ -1,4 +1,4 @@
-import type { CardProps } from "@/app/types/global"
+import type { CardProps } from "@/app/types/global.ts"
 import Button from "@/shared/ui/buttons/button.tsx"
 
 const Card = ({ avatar, name, age }: CardProps) => {

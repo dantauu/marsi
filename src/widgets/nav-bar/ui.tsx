@@ -5,7 +5,7 @@ import SvgSearch from "@/assets/icons/Search"
 import SvgSlides from "@/assets/icons/Slides"
 import { cn } from "@/lib/utils"
 import { Link } from "@tanstack/react-router"
-import { useEffect, useState } from "react"
+import { useKeyboardOpen } from "@/lib/hooks/use-keyboard-open.tsx"
 
 const navItems = [
   { id: "More", Icon: SvgNewSet, text: "More", link: "/more" },
@@ -16,23 +16,7 @@ const navItems = [
 ]
 
 export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
-  const [isKeyboard, setIsKeyboard] = useState(false)
-  const [initialHeight, setInitialHeight] = useState<number | null>(null)
-  useEffect(() => {
-    const onResize = () => {
-      const currentHeight = window.visualViewport?.height || window.innerHeight
-      if (!initialHeight) {
-        setInitialHeight(currentHeight)
-        return
-      }
-      const keyBoardOpen = initialHeight - currentHeight > 150
-      setIsKeyboard(keyBoardOpen)
-    }
-
-    window.visualViewport?.addEventListener("resize", onResize)
-    return () => window.visualViewport?.removeEventListener("resize", onResize)
-  }, [initialHeight])
-
+  const isKeyboard = useKeyboardOpen()
   return (
     <>
       {!isKeyboard && (
