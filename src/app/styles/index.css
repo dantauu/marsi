@@ -23,6 +23,7 @@
 @theme {
   /* --container-mobile: 370px; */
   --color-main-green: #31c29f;
+  --color-blur-green: rgba(49, 194, 159, 0.79);
   --color-main-red: #f84963;
   --color-main-pink: #ff559f;
   --color-bg-input: rgba(0, 0, 0, 0.9);
@@ -60,9 +61,9 @@
   .bg-gradient-bg {
     background: linear-gradient(
       to right,
-      rgba(255, 85, 159, 0.60) 0%,
-      rgba(255, 144, 104, 0.60) 50%,
-      rgba(255, 85, 159, 0.60) 100%
+      rgba(255, 85, 159, 0.50) 0%,
+      rgba(255, 144, 104, 0.50) 50%,
+      rgba(255, 85, 159, 0.50) 100%
     );
   }
 }

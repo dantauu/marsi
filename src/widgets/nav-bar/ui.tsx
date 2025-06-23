@@ -16,7 +16,7 @@ const navItems = [
 
 export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
   return (
-    <div className="fixed bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg">
+    <div className="sticky bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg">
       <nav className="flex justify-between items-center px-7 pt-[12px]">
         {navItems.map(({ id, Icon, text, link }) => {
           const isActive = activePath === link
