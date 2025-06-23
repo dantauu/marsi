@@ -5,6 +5,7 @@ import SvgSearch from "@/assets/icons/Search"
 import SvgSlides from "@/assets/icons/Slides"
 import { cn } from "@/lib/utils"
 import { Link } from "@tanstack/react-router"
+import { useEffect, useState } from "react"
 
 const navItems = [
   { id: "More", Icon: SvgNewSet, text: "More", link: "/more" },
@@ -15,8 +16,21 @@ const navItems = [
 ]
 
 export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
+  const [isKeyboard, setIsKeyboard] = useState(false)
+  useEffect(() => {
+    const onResize = () => {
+      const treshhold = 150
+      const isOpen = window.innerHeight < window.outerHeight - treshhold
+      setIsKeyboard(isOpen)
+    }
+
+    window.addEventListener("resize", onResize)
+    return () => window.removeEventListener("resize", onResize)
+  }, [])
+  if (isKeyboard) return null
+
   return (
-    <div className="sticky bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg">
+    <div className="fixed bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg">
       <nav className="flex justify-between items-center px-7 pt-[12px]">
         {navItems.map(({ id, Icon, text, link }) => {
           const isActive = activePath === link
