@@ -8,7 +8,7 @@ export const LikeCard = ({ isLocked = false }: { isLocked?: boolean }) => {
       {MockCardData.map((item) => (
         <div className="relative flex justify-between items-center rounded-[10px] shadow-shadow-block px-0.5 py-1.5">
           {isLocked && (
-            <div className="absolute flex items-center justify-center backdrop-blur-2xl inset-0 rounded-[10px]">
+            <div className="absolute flex items-center justify-center backdrop-blur-2xl inset-0 rounded-[10px] z-30">
               <Button variant="green" className="px-3 py-2">
                 Приобрести подписку <SvgArrow />{" "}
               </Button>
