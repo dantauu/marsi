@@ -47,6 +47,13 @@
   --breakpoint-mini-mobile: 378px;
 }
 
+@supports ((-webkit-backdrop-filter: blur(4px)) or (backdrop-filter: blur(4px))) {
+  .blur-supported {
+    backdrop-filter: blur(4px);
+    background-color: rgba(255,255,255,0.3);
+  }
+}
+
 @layer utilities {
   .shadow-shadow-block {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
