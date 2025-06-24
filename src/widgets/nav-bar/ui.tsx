@@ -27,37 +27,40 @@ export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
     window.visualViewport?.addEventListener("resize", onResize)
     return () => window.visualViewport?.removeEventListener("resize", onResize)
   }, [])
-  if (isKeyboard) return null
 
   return (
-    <div className="fixed bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg">
-      <nav className="flex justify-between items-center px-7 pt-[12px]">
-        {navItems.map(({ id, Icon, text, link }) => {
-          const isActive = activePath === link
-          return (
-            <Link
-              key={id}
-              to={link}
-              className="flex flex-col items-center justify-between h-[58px] cursor-pointer"
-            >
-              <Icon
-                className={cn(
-                  isActive ? "text-main-pink" : "text-white",
-                  "transition-all w-full stroke-current"
-                )}
-              />
-              <p
-                className={cn(
-                  isActive ? "text-main-pink" : "text-white",
-                  "font-ManropeM text-[12.5px]"
-                )}
-              >
-                {text}
-              </p>
-            </Link>
-          )
-        })}
-      </nav>
-    </div>
+    <>
+      {!isKeyboard && (
+        <div className="fixed bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg">
+          <nav className="flex justify-between items-center px-7 pt-[12px]">
+            {navItems.map(({ id, Icon, text, link }) => {
+              const isActive = activePath === link
+              return (
+                <Link
+                  key={id}
+                  to={link}
+                  className="flex flex-col items-center justify-between h-[58px] cursor-pointer"
+                >
+                  <Icon
+                    className={cn(
+                      isActive ? "text-main-pink" : "text-white",
+                      "transition-all w-full stroke-current"
+                    )}
+                  />
+                  <p
+                    className={cn(
+                      isActive ? "text-main-pink" : "text-white",
+                      "font-ManropeM text-[12.5px]"
+                    )}
+                  >
+                    {text}
+                  </p>
+                </Link>
+              )
+            })}
+          </nav>
+        </div>
+      )}
+      </>
   )
 }
