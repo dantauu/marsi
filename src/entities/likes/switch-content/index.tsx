@@ -1,6 +1,3 @@
-
 export const SwitchContent = () => {
-  return (
-    <div></div>
-  )
+  return <div></div>
 }

@@ -1,4 +1,3 @@
-
 import { LikeSosal } from "@/entities/likes/like-sosal"
 import { useState } from "react"
 import { cn } from "@/lib/utils.tsx"
@@ -8,12 +7,12 @@ import { LikesTab } from "@/app/types/global.ts"
 const tabs = {
   [LikesTab.MUTUAL]: {
     label: "Взаимные лайки",
-    Component: LikeCard
+    Component: LikeCard,
   },
   [LikesTab.INCOMING]: {
     label: "Входящие лайки",
-    Component: LikeSosal
-  }
+    Component: LikeSosal,
+  },
 } as const
 
 export const RenderTabs = () => {
@@ -27,10 +26,8 @@ export const RenderTabs = () => {
             key={key}
             onClick={() => setActiveTab(key as LikesTab)}
             className={cn(
-              "px-4 h-full rounded-[10px] transition-all",
-              activeTab === key
-                ? "bg-main-pink text-white"
-                : "text-black"
+              "px-4 h-full rounded-[10px] font-ManropeM transition-all",
+              activeTab === key ? "bg-main-pink text-white" : "text-black"
             )}
           >
             {label}

@@ -61,9 +61,9 @@
   .bg-gradient-bg {
     background: linear-gradient(
       to right,
-      rgba(255, 85, 159, 0.50) 0%,
-      rgba(255, 144, 104, 0.50) 50%,
-      rgba(255, 85, 159, 0.50) 100%
+      rgba(255, 85, 159, 0.5) 0%,
+      rgba(255, 144, 104, 0.5) 50%,
+      rgba(255, 85, 159, 0.5) 100%
     );
   }
 }
