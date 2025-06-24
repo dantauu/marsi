@@ -19,13 +19,13 @@ export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
   const [isKeyboard, setIsKeyboard] = useState(false)
   useEffect(() => {
     const onResize = () => {
-      const treshhold = 150
-      const isOpen = window.innerHeight < window.outerHeight - treshhold
+      const height = window.visualViewport?.height || window.innerHeight
+      const isOpen = height < window.innerHeight - 120
       setIsKeyboard(isOpen)
     }
 
-    window.addEventListener("resize", onResize)
-    return () => window.removeEventListener("resize", onResize)
+    window.visualViewport?.addEventListener("resize", onResize)
+    return () => window.visualViewport?.removeEventListener("resize", onResize)
   }, [])
   if (isKeyboard) return null
 
