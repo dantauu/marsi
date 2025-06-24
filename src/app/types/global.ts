@@ -4,4 +4,6 @@ type CardProps = {
   avatar: string
 }
 
+
+
 export { CardProps }
