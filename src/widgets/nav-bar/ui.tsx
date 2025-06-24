@@ -17,21 +17,26 @@ const navItems = [
 
 export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
   const [isKeyboard, setIsKeyboard] = useState(false)
+  const [initialHeight, setInitialHeight] = useState<number | null>(null)
   useEffect(() => {
     const onResize = () => {
-      const height = window.visualViewport?.height || window.innerHeight
-      const isOpen = height < window.innerHeight - 120
-      setIsKeyboard(isOpen)
+      const currentHeight = window.visualViewport?.height || window.innerHeight
+      if (!initialHeight) {
+        setInitialHeight(currentHeight)
+        return
+      }
+      const keyBoardOpen = initialHeight - currentHeight > 150
+      setIsKeyboard(keyBoardOpen)
     }
 
     window.visualViewport?.addEventListener("resize", onResize)
     return () => window.visualViewport?.removeEventListener("resize", onResize)
-  }, [])
+  }, [initialHeight])
 
   return (
     <>
       {!isKeyboard && (
-        <div className={cn(`fixed bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg ${isKeyboard ? "hidden" : "fixed"}`)}>
+        <div className="fixed bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg">
           <nav className="flex justify-between items-center px-7 pt-[12px]">
             {navItems.map(({ id, Icon, text, link }) => {
               const isActive = activePath === link
