@@ -1,5 +1,5 @@
-import Card from "@/entities/search/ui/card"
 import { MockCardData } from "@/lib/data/cards"
+import { Card } from "@/entities/search/index.ts"
 
 const CardHuman = () => {
   return (

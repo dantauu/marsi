@@ -1,17 +1,17 @@
-import { LikeSosal } from "@/entities/likes/like-sosal"
+import { CardUnsubscribe } from "@/entities/likes/card-unsubscribe"
 import { useState } from "react"
 import { cn } from "@/lib/utils.tsx"
-import { LikeCard } from "@/entities/likes/like-card"
+import { CardSubscribe } from "@/entities/likes/card-subscribe"
 import { LikesTab } from "@/app/types/global.ts"
 
 const tabs = {
   [LikesTab.MUTUAL]: {
     label: "Взаимные лайки",
-    Component: LikeCard,
+    Component: CardSubscribe,
   },
   [LikesTab.INCOMING]: {
     label: "Входящие лайки",
-    Component: LikeSosal,
+    Component: CardUnsubscribe,
   },
 } as const
 

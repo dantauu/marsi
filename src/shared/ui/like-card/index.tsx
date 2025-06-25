@@ -14,7 +14,9 @@ export const LikeCard = ({ isLocked = false }: { isLocked?: boolean }) => {
               </Button>
             </div>
           )}
-          <div className={`flex items-center gap-1 ${isLocked && "filter blur-[5px] inset-0"}`}>
+          <div
+            className={`flex items-center gap-1 ${isLocked && "filter blur-[5px] inset-0"}`}
+          >
             <img
               className="min-w-[80px] h-[80px] object-cover rounded-full"
               src={item.avatar}
