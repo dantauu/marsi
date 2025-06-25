@@ -14,7 +14,7 @@ export const LikeCard = ({ isLocked = false }: { isLocked?: boolean }) => {
               </Button>
             </div>
           )}
-          <div className="flex items-center gap-1 filter blur-[5px]">
+          <div className={`flex items-center gap-1 ${isLocked && "filter blur-[5px] inset-0"}`}>
             <img
               className="min-w-[80px] h-[80px] object-cover rounded-full"
               src={item.avatar}
@@ -23,7 +23,7 @@ export const LikeCard = ({ isLocked = false }: { isLocked?: boolean }) => {
               {item.name}, {item.age}
             </p>
           </div>
-          <div className="flex gap-2 filter blur-[4px]">
+          <div className={`flex gap-2 ${isLocked && "blur-[4px] filter"}`}>
             <Button variant="red" className="w-[100px] h-[35px]">
               Удалить
             </Button>
