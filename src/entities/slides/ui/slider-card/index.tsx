@@ -137,7 +137,7 @@ export const SliderCard = () => {
                 />
                 <div className="absolute bottom-4 left-4">
                   <p className="text-white text-[40px] font-ManropeM">
-                    {item.name}, {item.age}
+                    {item.username}, {item.age}
                   </p>
                 </div>
               </div>
