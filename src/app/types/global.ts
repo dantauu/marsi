@@ -2,6 +2,9 @@ export type CardProps = {
   name: string
   age: number
   avatar: string
+  gender?: string,
+  goal?: string,
+  city?: string,
 }
 
 enum LikesTab {
