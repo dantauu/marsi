@@ -6,10 +6,9 @@ import { FilterButton } from "@/ui/index.ts"
 import { useGetUsersQuery } from "@/redux/api/user.ts"
 
 const Search = () => {
-  const { data, error, isLoading } = useGetUsersQuery()
+  const { data, isLoading } = useGetUsersQuery()
   if (isLoading) return <p>Загрузка...</p>
-  if (error) return <p>Ошибка: {JSON.stringify(error)}</p>
-  if (!data) return <p>Нет данных</p>
+  if (!data) throw new Error("Error Data")
   console.log("DATA", data)
   return (
     <div data-testid="search" className="pb-[200px]">

@@ -22,7 +22,7 @@ export const LikeCard = ({ isLocked = false }: { isLocked?: boolean }) => {
               src={item.avatar}
             />
             <p className="text-lg text-ellipsis overflow-hidden whitespace-nowrap max-w-[83px]">
-              {item.name}, {item.age}
+              {item.username}, {item.age}
             </p>
           </div>
           <div className={`flex gap-2 ${isLocked && "blur-[4px] filter"}`}>
