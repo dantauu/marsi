@@ -3,8 +3,14 @@ import { FilterModal } from "@/entities/search"
 import CardHuman from "@/widgets/card/ui"
 import { LayoutSwitch } from "@/ui/index.ts"
 import { FilterButton } from "@/ui/index.ts"
+import { useGetUsersQuery } from "@/redux/api/user.ts"
 
 const Search = () => {
+  const { data, error, isLoading } = useGetUsersQuery()
+  if (isLoading) return <p>Загрузка...</p>
+  if (error) return <p>Ошибка: {JSON.stringify(error)}</p>
+  if (!data) return <p>Нет данных</p>
+  console.log("DATA", data)
   return (
     <div data-testid="search" className="pb-[200px]">
       <LikeCountNotify />
@@ -12,7 +18,7 @@ const Search = () => {
         <FilterButton />
         <LayoutSwitch />
       </div>
-      <CardHuman />
+      <CardHuman data={data} />
       <FilterModal />
     </div>
   )

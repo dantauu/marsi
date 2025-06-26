@@ -1,5 +1,6 @@
 export type CardProps = {
-  name: string
+  id?: number
+  username: string
   age: number
   avatar: string
 }
