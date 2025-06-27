@@ -1,11 +1,10 @@
 import { Range } from "react-range"
-import React from "react"
 
 type SlideRangeProps = {
   values: [number, number]
   min: number
   max: number
-  setValues: React.Dispatch<React.SetStateAction<[number, number]>>
+  setValues: (values: [number, number]) => void
 }
 
 const MIN_DISTANCE = 2
@@ -45,12 +44,16 @@ const SliderRange = ({ values, min, max, setValues }: SlideRangeProps) => {
           {children}
         </div>
       )}
-      renderThumb={({ props }) => (
-        <div
-          {...props}
-          className="absolute w-[35px] h-[35px] top-0 bg-[#31C29F] rounded-full border-2 border-white"
-        />
-      )}
+      renderThumb={({ props }) => {
+        const { key, ...restProps } = props
+          return (
+            <div
+              key={key}
+              {...restProps}
+              className="absolute w-[35px] h-[35px] top-0 bg-[#31C29F] rounded-full border-2 border-white"
+            />
+          )
+      }}
     />
   )
 }

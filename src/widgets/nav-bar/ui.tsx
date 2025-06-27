@@ -20,7 +20,7 @@ export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
   return (
     <>
       {!isKeyboard && (
-        <div className="fixed z-50 bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg">
+        <div className="fixed z-5 bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg">
           <nav className="flex justify-between items-center px-7 pt-[12px]">
             {navItems.map(({ id, Icon, text, link }) => {
               const isActive = activePath === link

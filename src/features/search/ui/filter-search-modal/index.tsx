@@ -39,6 +39,7 @@ const Gender = () => {
       <div className="flex justify-between">
         {genders.map((item) => (
           <Button
+            type={"button"}
             key={item.id}
             onClick={() => handleClickItem(item)}
             className={cn(
