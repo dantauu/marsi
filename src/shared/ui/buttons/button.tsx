@@ -19,11 +19,21 @@ type ButtonProps = {
   type?: "submit" | "reset" | "button"
 }
 
-const Button = ({ variant, children, onClick, type, className }: ButtonProps) => {
+const Button = ({
+  variant,
+  children,
+  onClick,
+  type,
+  className,
+}: ButtonProps) => {
   const variantName = variants[variant]
   return (
     <div className="">
-      <button type={type} onClick={onClick} className={cn(variantName, className)}>
+      <button
+        type={type}
+        onClick={onClick}
+        className={cn(variantName, className)}
+      >
         {children}
       </button>
     </div>

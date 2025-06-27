@@ -46,13 +46,13 @@ const SliderRange = ({ values, min, max, setValues }: SlideRangeProps) => {
       )}
       renderThumb={({ props }) => {
         const { key, ...restProps } = props
-          return (
-            <div
-              key={key}
-              {...restProps}
-              className="absolute w-[35px] h-[35px] top-0 bg-[#31C29F] rounded-full border-2 border-white"
-            />
-          )
+        return (
+          <div
+            key={key}
+            {...restProps}
+            className="absolute w-[35px] h-[35px] top-0 bg-[#31C29F] rounded-full border-2 border-white"
+          />
+        )
       }}
     />
   )

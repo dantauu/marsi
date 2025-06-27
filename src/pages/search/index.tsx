@@ -4,12 +4,19 @@ import CardHuman from "@/widgets/card/ui"
 import { LayoutSwitch } from "@/ui/index.ts"
 import { FilterButton } from "@/ui/index.ts"
 import { useGetUsersQuery } from "@/redux/api/user.ts"
+import { Route } from "@/app/routes/_app/_layout/search"
+import { useSearch } from "@tanstack/react-router"
 
 const Search = () => {
-  const { data, isLoading } = useGetUsersQuery()
+  const searchParams = useSearch({ from: Route.id })
+  const { data, isLoading } = useGetUsersQuery(searchParams)
+
+  console.log("searchParams", searchParams)
+
   if (isLoading) return <p>Загрузка...</p>
   if (!data) throw new Error("Error Data")
   console.log("DATA", data)
+
   return (
     <div data-testid="search" className="pb-[200px]">
       <LikeCountNotify />

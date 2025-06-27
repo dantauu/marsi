@@ -29,7 +29,12 @@ type FilterFormProps = PropsWithChildren<{
   onClose?: () => void
 }>
 
-export function FilterForm({ defaultValues, onSubmit, onClose, children }: FilterFormProps) {
+export function FilterForm({
+  defaultValues,
+  onSubmit,
+  onClose,
+  children,
+}: FilterFormProps) {
   const form = useForm<FilterFormSchema>({
     mode: "onChange",
     defaultValues,
@@ -49,8 +54,8 @@ export function FilterForm({ defaultValues, onSubmit, onClose, children }: Filte
   )
 
   return (
-      <FilterFormContext.Provider value={form}>
-        <form onSubmit={form.handleSubmit(handleSubmit)}>{children}</form>
-      </FilterFormContext.Provider>
+    <FilterFormContext.Provider value={form}>
+      <form onSubmit={form.handleSubmit(handleSubmit)}>{children}</form>
+    </FilterFormContext.Provider>
   )
 }

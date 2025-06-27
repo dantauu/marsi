@@ -2,7 +2,7 @@ import { MockCardData } from "@/lib/data/cards"
 import { Card } from "@/entities/search/index.ts"
 import type { CardProps } from "@/app/types/global.ts"
 
-const CardHuman = ({ data }: { data: CardProps[]}) => {
+const CardHuman = ({ data }: { data: CardProps[] }) => {
   const imgAvatar = MockCardData.map((item) => item.avatar)
   return (
     <div className="grid grid-cols-2 justify-items-center gap-y-3">

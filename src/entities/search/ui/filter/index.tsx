@@ -1,6 +1,10 @@
 import { useNavigate, useSearch } from "@tanstack/react-router"
 import { Route } from "@/app/routes/_app/_layout/search"
-import { FilterForm, type FilterFormSchema, formEmptyValues } from "@/app/providers/filter-form"
+import {
+  FilterForm,
+  type FilterFormSchema,
+  formEmptyValues,
+} from "@/app/providers/filter-form"
 import { FilterModalForm } from "@/entities/search/ui/filter/filter-form.tsx"
 
 export const FilterModal = () => {
@@ -20,15 +24,20 @@ export const FilterModal = () => {
     const params = {
       minAge: data.minAge !== formEmptyValues.minAge ? data.minAge : undefined,
       maxAge: data.maxAge !== formEmptyValues.maxAge ? data.maxAge : undefined,
-      minHeight: data.minHeight !== formEmptyValues.minHeight ? data.minHeight : undefined,
-      maxHeight: data.maxHeight !== formEmptyValues.maxHeight ? data.maxHeight : undefined,
+      minHeight:
+        data.minHeight !== formEmptyValues.minHeight
+          ? data.minHeight
+          : undefined,
+      maxHeight:
+        data.maxHeight !== formEmptyValues.maxHeight
+          ? data.maxHeight
+          : undefined,
       location: data.location || undefined,
       gender: data.gender || undefined,
     }
 
     navigate({ search: { ...search, ...params }, replace: true })
   }
-
 
   return (
     <>
