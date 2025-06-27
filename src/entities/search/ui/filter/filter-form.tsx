@@ -9,9 +9,9 @@ import { Gender, Location } from "@/features/search"
 import { FilterSlide } from "@/ui"
 import { useNavigate } from "@tanstack/react-router"
 import { Route } from "@/app/routes/_app/_layout/search"
-import { useFilterForm } from "@/app/providers/filter-form-context.tsx"
 import { formEmptyValues } from "@/app/providers/filter-form"
 import { useWatch } from "react-hook-form"
+import { useFilterForm } from "@/app/providers/filter-form/filter-form-context.tsx"
 
 export const FilterModalForm = () => {
   const form = useFilterForm()

@@ -1,6 +1,6 @@
 import Button from "../buttons/button.tsx"
 
-const SaveSettingsNav = ({ reset }) => {
+const SaveSettingsNav = ({ reset }: { reset: () => void }) => {
   return (
     <div className="flex justify-between items-center h-[93px] pb-[12px] fixed bottom-0 left-0 w-full px-[20px] rounded-tr-[28px] rounded-tl-[28px] bg-[#cecece87] z-50">
       <Button

@@ -1,7 +1,7 @@
 import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { type PropsWithChildren, useCallback } from "react"
-import { FilterFormContext } from "../filter-form-context"
+import { FilterFormContext } from "./filter-form-context.tsx"
 
 export const filterSchema = z.object({
   minAge: z.number(),
