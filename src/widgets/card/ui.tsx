@@ -3,13 +3,15 @@ import { Card } from "@/entities/search/index.ts"
 import type { CardProps } from "@/app/types/global.ts"
 
 const CardHuman = ({ data }: { data: CardProps[] }) => {
-  const imgAvatar = MockCardData.map((item) => item.avatar)
+  const avatar = new Map<number, string>(
+    MockCardData.map((item) => [item.id, item.avatar])
+  )
   return (
     <div className="grid grid-cols-2 justify-items-center gap-y-3">
-      {data.map((item, index) => (
+      {data.map((item) => (
         <Card
           key={item.id}
-          avatar={imgAvatar[index % imgAvatar.length]}
+          avatar={avatar.get(Number(item.id))}
           age={item.age}
           username={item.username}
         />

@@ -8,8 +8,8 @@ export const filterSchema = z.object({
   maxAge: z.number(),
   minHeight: z.number(),
   maxHeight: z.number(),
-  location: z.string(),
   gender: z.string(),
+  location: z.string(),
 })
 
 export type FilterFormSchema = z.infer<typeof filterSchema>
@@ -19,8 +19,8 @@ export const formEmptyValues: FilterFormSchema = {
   maxAge: 100,
   minHeight: 140,
   maxHeight: 230,
-  location: "",
   gender: "",
+  location: "",
 }
 
 type FilterFormProps = PropsWithChildren<{

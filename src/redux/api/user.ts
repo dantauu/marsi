@@ -7,7 +7,22 @@ export const userApi = createApi({
     baseUrl: "http://localhost:9000/",
   }),
   endpoints: (builder) => ({
-    getUsers: builder.query<CardProps[], void>({ query: () => "users/all" }),
+    getUsers: builder.query<
+      CardProps[],
+      Partial<{
+        minAge: number
+        maxAge: number
+        minHeight: number
+        maxHeight: number
+        gender: string
+      }>
+    >({
+      query: (params) => ({
+        url: "users",
+        method: "GET",
+        params,
+      })
+    }),
   }),
 })
 

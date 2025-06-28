@@ -2,7 +2,9 @@ import SvgArrow from "@/assets/icons/Arrow"
 import SvgLocation from "@/assets/icons/Location"
 import { cn } from "@/lib/utils"
 import Button from "@/shared/ui/buttons/button.tsx"
-import { useState } from "react"
+import { useCallback } from "react"
+import { useFilterForm } from "@/app/providers/filter-form/filter-form-context.tsx"
+import { useWatch } from "react-hook-form"
 
 const Location = () => {
   return (
@@ -25,13 +27,23 @@ const Location = () => {
 
 const Gender = () => {
   const genders = [
-    { id: 1, gender: "Женский" },
-    { id: 2, gender: "Мужской" },
+    { id: "female", gender: "Женский" },
+    { id: "male", gender: "Мужской" },
   ]
-  const [gender, setGender] = useState("")
-  const handleClickItem = ({ gender }: { gender: string }) => {
-    setGender(gender)
-  }
+  const { setValue, control } = useFilterForm()
+  const [ gender ] = useWatch({ control, name: ["gender"] })
+
+  const handleButtonClick = useCallback(
+    (button: string) => {
+      const buttonIsActive = button === gender
+      setValue("gender", buttonIsActive ? "" : button, { shouldDirty: true })
+    },
+    [gender, setValue]
+  )
+
+  const isButtonActive = (button: string) => button === gender
+
+  console.log("ACTIVE", isButtonActive)
 
   return (
     <div className="flex flex-col gap-2">
@@ -41,9 +53,9 @@ const Gender = () => {
           <Button
             type={"button"}
             key={item.id}
-            onClick={() => handleClickItem(item)}
+            onClick={() => handleButtonClick(item.id)}
             className={cn(
-              `w-[140px] h-[50px] text-[20px] font-ManropeM duration-300 ${gender === item.gender && "bg-main-red"}`
+              `w-[140px] h-[50px] text-[20px] font-ManropeM duration-300 ${isButtonActive(item.id)  && "bg-main-red"}`
             )}
             variant="green"
           >
