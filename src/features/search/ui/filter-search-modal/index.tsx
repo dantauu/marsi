@@ -31,12 +31,14 @@ const Gender = () => {
     { id: "male", gender: "Мужской" },
   ]
   const { setValue, control } = useFilterForm()
-  const [ gender ] = useWatch({ control, name: ["gender"] })
+  const [gender] = useWatch({ control, name: ["gender"] })
 
   const handleButtonClick = useCallback(
     (button: string) => {
       const buttonIsActive = button === gender
-      setValue("gender", buttonIsActive ? "" : button, { shouldDirty: true })
+      setValue("gender", buttonIsActive ? button : button, {
+        shouldDirty: true,
+      })
     },
     [gender, setValue]
   )
@@ -55,7 +57,7 @@ const Gender = () => {
             key={item.id}
             onClick={() => handleButtonClick(item.id)}
             className={cn(
-              `w-[140px] h-[50px] text-[20px] font-ManropeM duration-300 ${isButtonActive(item.id)  && "bg-main-red"}`
+              `w-[140px] h-[50px] text-[20px] font-ManropeM duration-300 ${isButtonActive(item.id) && "bg-main-red"}`
             )}
             variant="green"
           >

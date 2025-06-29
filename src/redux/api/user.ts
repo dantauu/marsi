@@ -21,7 +21,7 @@ export const userApi = createApi({
         url: "users",
         method: "GET",
         params,
-      })
+      }),
     }),
   }),
 })
