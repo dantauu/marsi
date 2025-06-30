@@ -5,6 +5,12 @@ export type CardProps = {
   avatar?: string
 }
 
+export type Locations = {
+  id: number
+  name: string
+  region: string
+}
+
 enum LikesTab {
   MUTUAL = "mutual",
   INCOMING = "incoming",

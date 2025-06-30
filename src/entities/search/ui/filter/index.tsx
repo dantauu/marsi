@@ -6,6 +6,7 @@ import {
   formEmptyValues,
 } from "@/app/providers/filter-form"
 import { FilterModalForm } from "@/entities/search/ui/filter/filter-form.tsx"
+import { slugify } from "transliteration"
 
 export const FilterModal = () => {
   const navigate = useNavigate({ from: Route.id })
@@ -16,7 +17,8 @@ export const FilterModal = () => {
     maxAge: search.maxAge ?? formEmptyValues.maxAge,
     minHeight: search.minHeight ?? formEmptyValues.minHeight,
     maxHeight: search.maxHeight ?? formEmptyValues.maxHeight,
-    location: search.location ?? "",
+    city: search.location ?? formEmptyValues.city,
+    region: search.region ?? formEmptyValues.region,
     gender: search.gender ?? "",
   }
 
@@ -32,7 +34,7 @@ export const FilterModal = () => {
         data.maxHeight !== formEmptyValues.maxHeight
           ? data.maxHeight
           : undefined,
-      location: data.location || undefined,
+      city: data.city ? slugify(data.city) : undefined,
       gender: data.gender || undefined,
     }
 

@@ -9,13 +9,12 @@ import { useSearch } from "@tanstack/react-router"
 
 const Search = () => {
   const searchParams = useSearch({ from: Route.id })
-  const { data, isLoading } = useGetUsersQuery(searchParams)
+  const { data: users, isLoading } = useGetUsersQuery(searchParams)
 
   console.log("searchParams", searchParams)
-
   if (isLoading) return <p>Загрузка...</p>
-  if (!data) throw new Error("Error Data")
-  console.log("DATA", data)
+  if (!users) throw new Error("Error Data")
+  console.log("DATA", users)
 
   return (
     <div data-testid="search" className="pb-[200px]">
@@ -24,7 +23,7 @@ const Search = () => {
         <FilterButton />
         <LayoutSwitch />
       </div>
-      <CardHuman data={data} />
+      <CardHuman data={users} />
       <FilterModal />
     </div>
   )

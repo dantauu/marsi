@@ -14,6 +14,7 @@ export const userApi = createApi({
         maxAge: number
         minHeight: number
         maxHeight: number
+        city: string
         gender: string
       }>
     >({
