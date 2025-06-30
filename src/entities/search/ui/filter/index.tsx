@@ -7,8 +7,14 @@ import {
 } from "@/app/providers/filter-form"
 import { FilterModalForm } from "@/entities/search/ui/filter/filter-form.tsx"
 import { slugify } from "transliteration"
+import { useAppDispatch } from "@/redux/hooks.ts"
+import { closeModal } from "@/redux/slices/modal-slice.ts"
 
 export const FilterModal = () => {
+  const dispatch = useAppDispatch()
+  const handleClose = () => {
+    dispatch(closeModal())
+  }
   const navigate = useNavigate({ from: Route.id })
   const search = useSearch({ from: Route.id })
 
@@ -43,7 +49,7 @@ export const FilterModal = () => {
 
   return (
     <>
-      <FilterForm defaultValues={defaultValues} onSubmit={handleSubmit}>
+      <FilterForm onClose={handleClose} defaultValues={defaultValues} onSubmit={handleSubmit}>
         <FilterModalForm />
       </FilterForm>
     </>
