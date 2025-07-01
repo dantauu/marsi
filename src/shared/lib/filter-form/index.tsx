@@ -1,22 +1,23 @@
-import { useNavigate, useSearch } from "@tanstack/react-router"
+import { useNavigate } from "@tanstack/react-router"
 import { Route } from "@/app/routes/_app/_layout/search"
 import {
-  FilterForm,
+  FilterFormProvider,
   type FilterFormSchema,
   formEmptyValues,
 } from "@/app/providers/filter-form"
-import { FilterModalForm } from "@/entities/search/ui/filter/filter-form.tsx"
 import { slugify } from "transliteration"
 import { useAppDispatch } from "@/redux/hooks.ts"
 import { closeModal } from "@/redux/slices/modal-slice.ts"
+import { useFilterParams } from "@/lib/hooks/use-filter-params.ts"
+import { FilterModal } from "@/widgets/filter-modal"
 
-export const FilterModal = () => {
+export const FilterForm = () => {
   const dispatch = useAppDispatch()
   const handleClose = () => {
     dispatch(closeModal())
   }
   const navigate = useNavigate({ from: Route.id })
-  const search = useSearch({ from: Route.id })
+  const search = useFilterParams()
 
   const defaultValues: FilterFormSchema = {
     minAge: search.minAge ?? formEmptyValues.minAge,
@@ -49,9 +50,13 @@ export const FilterModal = () => {
 
   return (
     <>
-      <FilterForm onClose={handleClose} defaultValues={defaultValues} onSubmit={handleSubmit}>
-        <FilterModalForm />
-      </FilterForm>
+      <FilterFormProvider
+        onClose={handleClose}
+        defaultValues={defaultValues}
+        onSubmit={handleSubmit}
+      >
+        <FilterModal />
+      </FilterFormProvider>
     </>
   )
 }

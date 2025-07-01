@@ -10,9 +10,9 @@ import { Route } from "@/app/routes/_app/_layout/search"
 import { formEmptyValues } from "@/app/providers/filter-form"
 import { useWatch } from "react-hook-form"
 import { useFilterForm } from "@/app/providers/filter-form/filter-form-context.tsx"
-import { useModalDrag } from "@/entities/search/lib/drag"
+import { useModalDrag } from "@/lib/utils/modal-drag"
 
-export const FilterModalForm = () => {
+export const FilterModal = () => {
   const form = useFilterForm()
   const { reset, setValue, control } = form
   const navigate = useNavigate({ from: Route.id })

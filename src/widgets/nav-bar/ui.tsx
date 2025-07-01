@@ -5,7 +5,7 @@ import SvgSearch from "@/assets/icons/Search"
 import SvgSlides from "@/assets/icons/Slides"
 import { cn } from "@/lib/utils"
 import { Link } from "@tanstack/react-router"
-import { useKeyboardOpen } from "@/lib/hooks/use-keyboard-open.tsx"
+import { useKeyboardOpen } from "@/lib/hooks/use-keyboard-open.ts"
 
 const navItems = [
   { id: "More", Icon: SvgNewSet, text: "More", link: "/more" },

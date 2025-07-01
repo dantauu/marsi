@@ -1,16 +1,20 @@
 import SvgCheck from "@/assets/icons/Check"
 import SvgCross from "@/assets/icons/Cross"
-import { MockCardData } from "@/lib/data/cards"
 import {
   startDragging,
   updatePosition,
   endDragging,
 } from "@/redux/slices/slider-slice.ts"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
+import type { CardProps } from "@/app/types/global.ts"
+import { MockCardData } from "@/lib/data/cards.ts"
 
 const SWIPE_THRESHOLD = 50
 
-export const SliderCard = () => {
+export const SliderCard = ({ data }: { data: CardProps[] }) => {
+  const avatar = new Map<number, string>(
+    MockCardData.map((item) => [item.id, item.avatar])
+  )
   const dispatch = useAppDispatch()
   const { currentIndex, position, isDragging, exitDirection } = useAppSelector(
     (state) => state.slider
@@ -39,14 +43,12 @@ export const SliderCard = () => {
   }
 
   const onSwipeStart = (e: React.TouchEvent | React.MouseEvent) => {
-    e.preventDefault()
     const { x } = getClientX(e)
     dispatch(startDragging({ x }))
   }
 
   const onSwipeMove = (e: React.TouchEvent | React.MouseEvent) => {
     if (!isDragging) return
-    e.preventDefault()
     const { x } = getClientX(e)
     dispatch(updatePosition(x))
   }
@@ -92,7 +94,7 @@ export const SliderCard = () => {
       style={{ touchAction: "none" }}
     >
       <div className="relative w-full h-[550px]">
-        {MockCardData.map((item, index) => (
+        {data.map((item, index) => (
           <div
             key={item.id}
             className="absolute top-0 left-0 w-full h-full transition-all duration-500 ease-out"
@@ -132,7 +134,7 @@ export const SliderCard = () => {
               <div className="w-full h-full inset-0">
                 <img
                   className="w-full h-full object-cover object-center rounded-[28px]"
-                  src={item.avatar}
+                  src={avatar.get(Number(item.id))}
                   alt=""
                 />
                 <div className="absolute bottom-4 left-4">

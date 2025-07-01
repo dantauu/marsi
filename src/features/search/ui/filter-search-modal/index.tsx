@@ -21,11 +21,11 @@ const Location = () => {
         <div className="">
           <p className="font-HelveticaB text-[20px]">Местоположение</p>
         </div>
-        <div className="h-[60px] flex justify-between items-center px-2 rounded-[10px] bg-black">
+        <div className="h-[60px] flex justify-start items-center px-2 rounded-[10px] gap-2 bg-black">
           <SvgLocation />
-          <div className="flex items-center gap-2">
+          <div className="w-full flex justify-between items-center gap-2">
             <p className="text-white font-ManropeM text-[18px]">
-              {`${city}, ${region}`}
+              {city ? `${city}, ${region}` : "Выберите мастоположение"}
             </p>
             <SvgArrow className="text-white w-[20px] h-[20px]" />
           </div>
@@ -68,7 +68,10 @@ const LocationsModal = ({
     >
       <div className="relative py-5 flex justify-center items-center">
         <h1 className="font-HelveticaB text-[21px]">Местположение</h1>
-        <SvgCross className="absolute right-5 h-10 w-10 text-main-red" onClick={() => setOpen(false)} />
+        <SvgCross
+          className="absolute right-5 h-10 w-10 text-main-red"
+          onClick={() => setOpen(false)}
+        />
       </div>
       <div>
         <input
@@ -78,7 +81,8 @@ const LocationsModal = ({
           onChange={(e) => {
             const value = e.target.value
             const capitalized = value.charAt(0).toUpperCase() + value.slice(1)
-            setInputValue(capitalized)}}
+            setInputValue(capitalized)
+          }}
           className="border p-2 rounded-xl w-full"
         />
 
@@ -97,10 +101,9 @@ const LocationsModal = ({
                 </p>
               ))}
             </>
-          )
-          : (
+          ) : (
             <p className="text-2xl">Ничего не найдено</p>
-            )}
+          )}
         </div>
       </div>
     </motion.div>

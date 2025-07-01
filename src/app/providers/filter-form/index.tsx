@@ -20,8 +20,8 @@ export const formEmptyValues: FilterFormSchema = {
   maxAge: 100,
   minHeight: 140,
   maxHeight: 230,
-  city: "Москва",
-  region: "Московская область",
+  city: "",
+  region: "",
   gender: "",
 }
 
@@ -31,7 +31,7 @@ type FilterFormProps = PropsWithChildren<{
   onClose?: () => void
 }>
 
-export function FilterForm({
+export function FilterFormProvider({
   defaultValues,
   onSubmit,
   onClose,

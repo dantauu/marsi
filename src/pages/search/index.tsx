@@ -1,5 +1,4 @@
 import { LikeCountNotify } from "@/features/search"
-import { FilterModal } from "@/entities/search"
 import CardHuman from "@/widgets/card/ui"
 import { LayoutSwitch } from "@/ui/index.ts"
 import { FilterButton } from "@/ui/index.ts"
@@ -24,7 +23,6 @@ const Search = () => {
         <LayoutSwitch />
       </div>
       <CardHuman data={users} />
-      <FilterModal />
     </div>
   )
 }
