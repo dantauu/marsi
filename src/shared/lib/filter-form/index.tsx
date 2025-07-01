@@ -7,14 +7,14 @@ import {
 } from "@/app/providers/filter-form"
 import { slugify } from "transliteration"
 import { useAppDispatch } from "@/redux/hooks.ts"
-import { closeModal } from "@/redux/slices/modal-slice.ts"
+import { closeFilterModal } from "@/redux/slices/modal-slice.ts"
 import { useFilterParams } from "@/lib/hooks/use-filter-params.ts"
-import { FilterModal } from "@/widgets/filter-modal"
+import { FilterModal } from "@/widgets/modals/filter-modal"
 
 export const FilterForm = () => {
   const dispatch = useAppDispatch()
   const handleClose = () => {
-    dispatch(closeModal())
+    dispatch(closeFilterModal())
   }
   const navigate = useNavigate({ from: Route.id })
   const search = useFilterParams()

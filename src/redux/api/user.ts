@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import type { CardProps } from "@/app/types/global.ts"
+import type { UserCard } from "@/app/types/global.ts"
 
 export const userApi = createApi({
   reducerPath: "userApi",
@@ -8,7 +8,7 @@ export const userApi = createApi({
   }),
   endpoints: (builder) => ({
     getUsers: builder.query<
-      CardProps[],
+      UserCard[],
       Partial<{
         minAge: number
         maxAge: number

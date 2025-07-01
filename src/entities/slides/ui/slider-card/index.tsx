@@ -1,85 +1,23 @@
 import SvgCheck from "@/assets/icons/Check"
 import SvgCross from "@/assets/icons/Cross"
-import {
-  startDragging,
-  updatePosition,
-  endDragging,
-} from "@/redux/slices/slider-slice.ts"
-import { useAppDispatch, useAppSelector } from "@/redux/hooks"
-import type { CardProps } from "@/app/types/global.ts"
+import type { UserCard } from "@/app/types/global.ts"
 import { MockCardData } from "@/lib/data/cards.ts"
+import { SwiperCard } from "@/entities/slides/lib/swiper-card"
 
-const SWIPE_THRESHOLD = 50
-
-export const SliderCard = ({ data }: { data: CardProps[] }) => {
+export const SliderCard = ({ data }: { data: UserCard[] }) => {
   const avatar = new Map<number, string>(
     MockCardData.map((item) => [item.id, item.avatar])
   )
-  const dispatch = useAppDispatch()
-  const { currentIndex, position, isDragging, exitDirection } = useAppSelector(
-    (state) => state.slider
-  )
-
-  const getClientX = (
-    e: React.TouchEvent | React.MouseEvent
-  ): { x: number } => {
-    if ("touches" in e) {
-      return {
-        x: e.touches[0].clientX,
-      }
-    } else {
-      return {
-        x: e.clientX,
-      }
-    }
-  }
-
-  const getEndClientX = (e: React.TouchEvent | React.MouseEvent): number => {
-    if ("changedTouches" in e) {
-      return e.changedTouches[0].clientX
-    } else {
-      return e.clientX
-    }
-  }
-
-  const onSwipeStart = (e: React.TouchEvent | React.MouseEvent) => {
-    const { x } = getClientX(e)
-    dispatch(startDragging({ x }))
-  }
-
-  const onSwipeMove = (e: React.TouchEvent | React.MouseEvent) => {
-    if (!isDragging) return
-    const { x } = getClientX(e)
-    dispatch(updatePosition(x))
-  }
-
-  const onSwipeEnd = (e: React.TouchEvent | React.MouseEvent) => {
-    if (!isDragging) return
-    const clientX = getEndClientX(e)
-    dispatch(endDragging(clientX))
-  }
-
-  const getOpacity = (x: number) => {
-    const absX = Math.min(Math.abs(x), SWIPE_THRESHOLD)
-    return absX / (SWIPE_THRESHOLD / 2)
-  }
-
-  const getCardTransform = (index: number) => {
-    if (index === currentIndex) {
-      // Текущая карточка
-      return `translateX(${position.x}px)`
-    } else if (index === currentIndex - 1 && exitDirection === "left") {
-      // Предыдущая карточка при свайпе влево
-      return "translateX(-100%)"
-    } else if (index === currentIndex - 1 && exitDirection === "right") {
-      // Предыдущая карточка при свайпе вправо
-      return "translateX(100%)"
-    } else if (index === currentIndex + 1) {
-      // Следующая карточка
-      return "translateX(100%)"
-    }
-    return `translateX(${(index - currentIndex) * 100}%)`
-  }
+  const {
+    onSwipeStart,
+    onSwipeMove,
+    onSwipeEnd,
+    getCardTransform,
+    getOpacity,
+    currentIndex,
+    position,
+    SWIPE_THRESHOLD,
+  } = SwiperCard()
 
   return (
     <div

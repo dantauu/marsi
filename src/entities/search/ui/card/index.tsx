@@ -1,7 +1,7 @@
-import type { CardProps } from "@/app/types/global.ts"
+import type { UserCardSearch } from "@/app/types/global.ts"
 import Button from "@/shared/ui/buttons/button.tsx"
 
-export const Card = ({ avatar, username, age }: CardProps) => {
+export const Card = ({ avatar, username, age }: UserCardSearch) => {
   return (
     <div className="flex flex-col gap-2 w-[182px] h-[285px]">
       <div className="w-[182px] h-[253.4px] object-cover bg-[#c2c1c1] rounded-[28px]">

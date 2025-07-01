@@ -1,8 +1,11 @@
-export type CardProps = {
+export type UserCard = {
   id?: number
   username: string
   age: number
-  avatar?: string
+  avatar: string | undefined
+  gender: "male" | "female"
+  city: string
+  goal: string
 }
 
 export type Locations = {
@@ -10,6 +13,8 @@ export type Locations = {
   name: string
   region: string
 }
+
+export type UserCardSearch = Omit<UserCard, "gender" | "goal" | "city">
 
 enum LikesTab {
   MUTUAL = "mutual",

@@ -16,7 +16,7 @@ export const FilterModal = () => {
   const form = useFilterForm()
   const { reset, setValue, control } = form
   const navigate = useNavigate({ from: Route.id })
-  const { isOpen } = useAppSelector((state) => state.modal)
+  const { isFilterOpen } = useAppSelector((state) => state.modal)
   const { y, dragStart, handleDrag, handleDragEnd, bgOpacity, dragControls } =
     useModalDrag()
 
@@ -52,7 +52,7 @@ export const FilterModal = () => {
 
   return (
     <AnimatePresence>
-      {isOpen && (
+      {isFilterOpen && (
         <motion.div
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}

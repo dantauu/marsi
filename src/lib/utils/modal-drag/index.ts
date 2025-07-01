@@ -5,7 +5,7 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion"
-import { closeModal } from "@/redux/slices/modal-slice.ts"
+import { closeFilterModal } from "@/redux/slices/modal-slice.ts"
 import React from "react"
 
 export const useModalDrag = () => {
@@ -20,7 +20,7 @@ export const useModalDrag = () => {
     info: PanInfo
   ) => {
     if (info.offset.y > 100 || info.velocity.y > 500) {
-      dispatch(closeModal())
+      dispatch(closeFilterModal())
     }
   }
 

@@ -1,21 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-  isOpen: false,
+  isFilterOpen: false,
+  isLocationsOpen: false,
 }
 
 export const modalSlice = createSlice({
   name: "modal",
   initialState,
   reducers: {
-    openModal(state) {
-      state.isOpen = true
+    openFilterModal(state) {
+      state.isFilterOpen = true
     },
-    closeModal(state) {
-      state.isOpen = false
+    closeFilterModal(state) {
+      state.isFilterOpen = false
+    },
+    openLocationsModal(state) {
+      state.isLocationsOpen = true
+    },
+    closeLocationsModal(state) {
+      state.isLocationsOpen = false
     },
   },
 })
 
-export const { openModal, closeModal } = modalSlice.actions
+export const {
+  openFilterModal,
+  closeFilterModal,
+  openLocationsModal,
+  closeLocationsModal,
+} = modalSlice.actions
 export default modalSlice.reducer
