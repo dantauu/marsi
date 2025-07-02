@@ -33,7 +33,9 @@ jobs:
       - name: Prepare yarn
         run: corepack prepare yarn@3.2.3 --activate
 
+      - name: Create .env.test from secrets
+        run: |
+          echo "VITE_BASE_URL=${{ secrets.VITE_BASE_URL }}" >> .env.test
+
       - name: Test
         run: yarn test
-        env:
-          VITE_BASE_URL: ${{ secrets.VITE_BASE_URL }}
