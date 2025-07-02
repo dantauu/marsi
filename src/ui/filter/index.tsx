@@ -1,4 +1,3 @@
-import React from "react"
 import SliderRange from "@/ui/filter/slider-range.tsx"
 
 type FilterSlideProps = {
@@ -6,7 +5,7 @@ type FilterSlideProps = {
   values: [number, number]
   min: number
   max: number
-  setValues: React.Dispatch<React.SetStateAction<[number, number]>>
+  setValues: (values: [number, number]) => void
 }
 
 export const FilterSlide = ({

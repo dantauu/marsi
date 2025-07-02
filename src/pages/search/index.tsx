@@ -1,10 +1,20 @@
 import { LikeCountNotify } from "@/features/search"
-import { FilterModal } from "@/entities/search"
 import CardHuman from "@/widgets/card/ui"
 import { LayoutSwitch } from "@/ui/index.ts"
 import { FilterButton } from "@/ui/index.ts"
+import { useGetUsersQuery } from "@/redux/api/user.ts"
+import { Route } from "@/app/routes/_app/_layout/search"
+import { useSearch } from "@tanstack/react-router"
 
 const Search = () => {
+  const searchParams = useSearch({ from: Route.id })
+  const { data: users, isLoading } = useGetUsersQuery(searchParams)
+
+  console.log("searchParams", searchParams)
+  if (isLoading) return <p>Загрузка...</p>
+  if (!users) throw new Error("Error Data")
+  console.log("DATA", users)
+
   return (
     <div data-testid="search" className="pb-[200px]">
       <LikeCountNotify />
@@ -12,8 +22,7 @@ const Search = () => {
         <FilterButton />
         <LayoutSwitch />
       </div>
-      <CardHuman />
-      <FilterModal />
+      <CardHuman data={users} />
     </div>
   )
 }
