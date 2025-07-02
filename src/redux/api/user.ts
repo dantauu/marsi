@@ -4,7 +4,7 @@ import type { UserCard } from "@/app/types/global.ts"
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:9000/",
+    baseUrl: import.meta.env.VITE_USERS_URL || "http://localhost:9000/",
   }),
   endpoints: (builder) => ({
     getUsers: builder.query<

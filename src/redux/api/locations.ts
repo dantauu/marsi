@@ -4,7 +4,7 @@ import type { Locations } from "@/app/types/global.ts"
 export const locationsApi = createApi({
   reducerPath: "locationsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:9000/",
+    baseUrl: import.meta.env.VITE_LOCATIONS_URL || "http://localhost:9000/",
   }),
   endpoints: (builder) => ({
     getLocations: builder.query<
