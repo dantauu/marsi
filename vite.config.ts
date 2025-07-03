@@ -5,13 +5,13 @@ import { tanstackRouter } from "@tanstack/router-plugin/vite"
 import path from "path"
 
 export default defineConfig({
-  plugins: [react(), tanstackRouter({ routesDirectory: "./src/app/routes" }), tailwindcss()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
+    plugins: [react(), tanstackRouter({ routesDirectory: "./src/app/routes" }), tailwindcss()],
+    resolve: {
+      alias: {
+        "@": path.resolve(__dirname, "./src"),
+      },
     },
-  },
-  optimizeDeps: {
-    include: ["react-swipeable"],
-  },
+    optimizeDeps: {
+      include: ["react-swipeable"],
+    },
 })
