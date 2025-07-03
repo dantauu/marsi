@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Copy .env.test
+        run: cp .env.test .env
+
       - name: Prepare yarn
         run: corepack prepare yarn@3.2.3 --activate
 
