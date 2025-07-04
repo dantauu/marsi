@@ -16,7 +16,7 @@ export const ProfileHeader = () => {
   const { user } = useTelegram()
   const [profile, _setProfile] = useState<ProfileForm>({
     id: user?.id || 1,
-    name: user?.username || "",
+    name: user?.first_name || "",
     age: "",
     avatar: user?.photo_url || "",
   })
