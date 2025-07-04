@@ -1,15 +1,11 @@
-import {
-  EditMainInfo,
-  PictureEdit,
-  EditAbout,
-  Hobbies,
-} from "@/features/profile-edit"
+import { PictureEdit, EditAbout, Hobbies } from "@/features/profile-edit"
+import { ProfileEditForm } from "@/shared/lib/profile-edit-form"
 
 const EditProfile = () => {
   return (
     <div data-testid="profile-edit" className="pb-[150px]">
       <PictureEdit />
-      <EditMainInfo className="mb-[30px]" />
+      <ProfileEditForm />
       <EditAbout />
       <Hobbies className="mt-[30px]" />
     </div>

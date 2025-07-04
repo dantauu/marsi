@@ -6,9 +6,8 @@ import { motion } from "framer-motion"
 type EditModalProps = {
   title: string
   children: React.ReactNode
-  onSave: (value: string | number) => void
+  onSave: () => void
   onClose: () => void
-  value: string | number
 }
 
 export const EditModal = ({
@@ -16,11 +15,7 @@ export const EditModal = ({
   children,
   onSave,
   onClose,
-  value,
 }: EditModalProps) => {
-  const handleSave = () => {
-    onSave(value)
-  }
   const { isEditOpen } = useAppSelector((state) => state.modal)
   useEffect(() => {
     if (isEditOpen) {
@@ -49,11 +44,17 @@ export const EditModal = ({
           <Button
             className="w-full h-[40px]"
             variant="green"
-            onClick={handleSave}
+            type="submit"
+            onClick={onSave}
           >
             Сохранить
           </Button>
-          <Button className="w-full h-[40px]" variant="red" onClick={onClose}>
+          <Button
+            className="w-full h-[40px]"
+            type="button"
+            variant="red"
+            onClick={onClose}
+          >
             Отмена
           </Button>
         </div>

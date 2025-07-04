@@ -1,3 +1,5 @@
+import type { EditFormSchema } from "@/app/providers/profile-edit-form"
+
 export type UserCard = {
   id?: number
   username: string
@@ -20,5 +22,7 @@ enum LikesTab {
   MUTUAL = "mutual",
   INCOMING = "incoming",
 }
+
+export type EditFormFields = keyof EditFormSchema
 
 export { LikesTab }

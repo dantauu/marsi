@@ -1,75 +1,61 @@
-import { useState } from "react"
+import { type JSX, useState } from "react"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
-import {
-  openEditModal,
-  closeEditModal,
-  setEditFieldValue,
-} from "@/redux/slices/modal-slice"
+import { openEditModal, closeEditModal } from "@/redux/slices/modal-slice"
 import { EditModal } from "@/widgets/modals/edit-modal"
 import ItemEdit from "@/shared/ui/item-edit"
 import { cn } from "@/lib/utils"
 import { AnimatePresence } from "framer-motion"
+import { useEditProfileForm } from "@/app/providers/profile-edit-form/profile-edit-context"
+import type { EditFormFields } from "@/app/types/global"
+import { type Control, Controller } from "react-hook-form"
+import type { EditFormSchema } from "@/app/providers/profile-edit-form"
 
 export const EditMainInfo = ({ className }: { className?: string }) => {
-  // 1. Локальный стейт для значений
-  const [fields, setFields] = useState({
-    name: "Артём",
-    gender: "Мужской",
-  })
-
-  const { isEditOpen, editFieldTitle, editFieldValue, editFieldKey } =
-    useAppSelector((state) => state.modal)
+  const form = useEditProfileForm()
   const dispatch = useAppDispatch()
+  const { isEditOpen } = useAppSelector((state) => state.modal)
 
-  // 2. Открытие модалки с текущим значением
-  const handleOpen = (key: keyof typeof fields, title: string) => {
-    dispatch(openEditModal({ key, title, value: fields[key] }))
+  const [currentField, setCurrentField] = useState<
+    keyof typeof fieldMeta | null
+  >(null)
+
+  const handleOpen = (key: EditFormFields) => {
+    dispatch(openEditModal())
+    setCurrentField(key)
   }
 
-  // 3. Сохраняем новое значение в стейт
-  const handleSave = (value: string | number) => {
-    setFields((prev) => ({
-      ...prev,
-      [editFieldKey!]: value,
-    }))
+  const handleSave = () => {
     dispatch(closeEditModal())
-  }
-
-  const handleChange = (value: string | number) => {
-    dispatch(setEditFieldValue(value))
+    setCurrentField(null)
   }
 
   return (
     <div className={cn("flex flex-col gap-2", className)}>
       <ItemEdit
         title="Имя"
-        text={fields.name}
-        onClick={() => handleOpen("name", "Имя")}
+        text={form.watch("first_name")}
+        onClick={() => handleOpen("first_name")}
       />
       <ItemEdit
         title="Пол"
-        text={fields.gender}
-        onClick={() => handleOpen("gender", "Пол")}
+        text={form.watch("gender")}
+        onClick={() => handleOpen("gender")}
       />
 
       <AnimatePresence>
-        {isEditOpen && (
+        {isEditOpen && currentField && (
           <EditModal
-            title={editFieldTitle!}
-            value={editFieldValue!}
+            title={fieldMeta[currentField].title}
             onSave={handleSave}
-            onClose={() => dispatch(closeEditModal())}
+            onClose={() => {
+              dispatch(closeEditModal())
+              setCurrentField(null)
+            }}
           >
-            {
-              {
-                name: (
-                  <EditName value={editFieldValue!} onChange={handleChange} />
-                ),
-                gender: (
-                  <EditGender value={editFieldValue!} onChange={handleChange} />
-                ),
-              }[editFieldKey!]
-            }
+            {fieldMeta[currentField].render({
+              control: form.control,
+              name: currentField,
+            })}
           </EditModal>
         )}
       </AnimatePresence>
@@ -77,37 +63,40 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
   )
 }
 
-export const EditName = ({
-  value,
-  onChange,
-}: {
-  value: string | number
-  onChange: (v: string) => void
-}) => {
-  return (
-    <input
-      className="w-full p-2 text-black"
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    />
-  )
+type RenderProps = {
+  control: Control<EditFormSchema>
+  name: EditFormFields
 }
 
-export const EditGender = ({
-  value,
-  onChange,
-}: {
-  value: string | number
-  onChange: (v: string) => void
-}) => {
-  return (
-    <select
-      className="w-full p-2 text-black"
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    >
-      <option value="Мужской">Мужской</option>
-      <option value="Женский">Женский</option>
-    </select>
-  )
+export const fieldMeta: Record<
+  EditFormFields,
+  { title: string; render: (props: RenderProps) => JSX.Element }
+> = {
+  first_name: {
+    title: "Имя",
+    render: ({ control, name }) => (
+      <Controller
+        name={name}
+        control={control}
+        render={({ field }) => (
+          <input className="w-full p-2 text-black" {...field} />
+        )}
+      />
+    ),
+  },
+  gender: {
+    title: "Пол",
+    render: ({ control, name }) => (
+      <Controller
+        name={name}
+        control={control}
+        render={({ field }) => (
+          <select className="w-full p-2 text-black" {...field}>
+            <option value="Мужской">Мужской</option>
+            <option value="Женский">Женский</option>
+          </select>
+        )}
+      />
+    ),
+  },
 }
