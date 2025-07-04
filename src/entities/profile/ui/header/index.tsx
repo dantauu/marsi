@@ -56,13 +56,6 @@ export const ProfileHeader = () => {
           )}
         </div>
       </div>
-      {/* <input
-        type="text"
-        value={profile.name}
-        onChange={handleNameChange}
-        placeholder="Введите имя"
-        className="border p-2"
-      /> */}
     </div>
   )
 }
