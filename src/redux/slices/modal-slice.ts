@@ -40,7 +40,7 @@ export const modalSlice = createSlice({
     },
     setEditFieldValue(state, action) {
       state.editFieldValue = action.payload
-    }
+    },
   },
 })
 
@@ -51,6 +51,6 @@ export const {
   closeLocationsModal,
   openEditModal,
   closeEditModal,
-  setEditFieldValue
+  setEditFieldValue,
 } = modalSlice.actions
 export default modalSlice.reducer

@@ -17,7 +17,8 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
     gender: "Мужской",
   })
 
-  const { isEditOpen, editFieldTitle, editFieldValue, editFieldKey } = useAppSelector((state) => state.modal)
+  const { isEditOpen, editFieldTitle, editFieldValue, editFieldKey } =
+    useAppSelector((state) => state.modal)
   const dispatch = useAppDispatch()
 
   // 2. Открытие модалки с текущим значением
@@ -51,33 +52,27 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
         onClick={() => handleOpen("gender", "Пол")}
       />
 
-        <AnimatePresence>
-      {isEditOpen && (
-        <EditModal
-          title={editFieldTitle!}
-          value={editFieldValue!}
-          onSave={handleSave}
-          onClose={() => dispatch(closeEditModal())}
-        >
-          {
+      <AnimatePresence>
+        {isEditOpen && (
+          <EditModal
+            title={editFieldTitle!}
+            value={editFieldValue!}
+            onSave={handleSave}
+            onClose={() => dispatch(closeEditModal())}
+          >
             {
-              name: (
-                <EditName
-                  value={editFieldValue!}
-                  onChange={handleChange}
-                />
-              ),
-              gender: (
-                <EditGender
-                  value={editFieldValue!}
-                  onChange={handleChange}
-                />
-              ),
-            }[editFieldKey!]
-          }
-        </EditModal>
-      )}
-        </AnimatePresence>
+              {
+                name: (
+                  <EditName value={editFieldValue!} onChange={handleChange} />
+                ),
+                gender: (
+                  <EditGender value={editFieldValue!} onChange={handleChange} />
+                ),
+              }[editFieldKey!]
+            }
+          </EditModal>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

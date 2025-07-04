@@ -34,9 +34,7 @@ const Location = () => {
           </div>
         </div>
       </div>
-      <AnimatePresence>
-        {isLocationsOpen && <LocationsModal />}
-      </AnimatePresence>
+      <AnimatePresence>{isLocationsOpen && <LocationsModal />}</AnimatePresence>
     </>
   )
 }
