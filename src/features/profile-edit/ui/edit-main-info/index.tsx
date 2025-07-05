@@ -7,17 +7,24 @@ import { cn } from "@/lib/utils"
 import { AnimatePresence } from "framer-motion"
 import { useEditProfileForm } from "@/app/providers/profile-edit-form/profile-edit-context"
 import type { EditFormFields } from "@/app/types/global"
-import { type Control, Controller } from "react-hook-form"
+import { type Control, Controller, useWatch } from "react-hook-form"
 import type { EditFormSchema } from "@/app/providers/profile-edit-form"
+import Button from "@/shared/ui/buttons/button.tsx"
 
 export const EditMainInfo = ({ className }: { className?: string }) => {
   const form = useEditProfileForm()
+  const {
+    control,
+    formState: { errors },
+  } = form
   const dispatch = useAppDispatch()
   const { isEditOpen } = useAppSelector((state) => state.modal)
 
   const [currentField, setCurrentField] = useState<
-    keyof typeof fieldMeta | null
+    keyof typeof FieldMeta | null
   >(null)
+
+  const error = currentField ? errors[currentField]?.message : null
 
   const handleOpen = (key: EditFormFields) => {
     dispatch(openEditModal())
@@ -29,30 +36,36 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
     setCurrentField(null)
   }
 
+  const first_name = useWatch({ control, name: "first_name" })
+  const gender = useWatch({ control, name: "gender" })
+  const age = useWatch({ control, name: "age" })
+  console.log("ERRORS", errors)
   return (
     <div className={cn("flex flex-col gap-2", className)}>
       <ItemEdit
         title="Имя"
-        text={form.watch("first_name")}
+        text={first_name}
         onClick={() => handleOpen("first_name")}
       />
       <ItemEdit
         title="Пол"
-        text={form.watch("gender")}
+        text={gender}
         onClick={() => handleOpen("gender")}
       />
+      <ItemEdit title="Возраст" text={age} onClick={() => handleOpen("age")} />
+      {errors && <p className="text-[25px] text-red-600">{errors.age?.message}</p>}
 
       <AnimatePresence>
         {isEditOpen && currentField && (
           <EditModal
-            title={fieldMeta[currentField].title}
+            title={FieldMeta[currentField].title}
             onSave={handleSave}
             onClose={() => {
               dispatch(closeEditModal())
               setCurrentField(null)
             }}
           >
-            {fieldMeta[currentField].render({
+            {FieldMeta[currentField].render({
               control: form.control,
               name: currentField,
             })}
@@ -68,7 +81,7 @@ type RenderProps = {
   name: EditFormFields
 }
 
-export const fieldMeta: Record<
+export const FieldMeta: Record<
   EditFormFields,
   { title: string; render: (props: RenderProps) => JSX.Element }
 > = {
@@ -78,9 +91,7 @@ export const fieldMeta: Record<
       <Controller
         name={name}
         control={control}
-        render={({ field }) => (
-          <input className="w-full p-2 text-black" {...field} />
-        )}
+        render={({ field }) => <NameEdit {...field} />}
       />
     ),
   },
@@ -90,13 +101,73 @@ export const fieldMeta: Record<
       <Controller
         name={name}
         control={control}
-        render={({ field }) => (
-          <select className="w-full p-2 text-black" {...field}>
-            <option value="Мужской">Мужской</option>
-            <option value="Женский">Женский</option>
-          </select>
-        )}
+        render={({ field }) => <GenderEdit {...field} />}
       />
     ),
   },
+  age: {
+    title: "Возраст",
+    render: ({ control, name }) => (
+      <Controller
+        name={name}
+        control={control}
+        render={({ field }) => <AgeEdit {...field} />}
+      />
+    ),
+  },
+}
+
+const GenderEdit = ({
+  value,
+  onChange,
+}: {
+  value: string | number | string[]
+  onChange: (v: string) => void
+}) => {
+  return (
+    <div className="flex justify-between">
+      <Button
+        className="w-[120px] h-[45px] text-[19px] duration-200"
+        onClick={() => onChange("Мужской")}
+        variant={value === "Мужской" ? "red" : "green"}
+      >
+        Мужской
+      </Button>
+      <Button
+        className="w-[120px] h-[45px] text-[19px] duration-200"
+        onClick={() => onChange("Женский")}
+        variant={value === "Женский" ? "red" : "green"}
+      >
+        Женский
+      </Button>
+    </div>
+  )
+}
+
+const NameEdit = ({ ...field }) => {
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Введите имя"
+        className="w-full h-[50px] border rounded-[5px] px-4 text-[20px] font-ManropeM "
+        {...field}
+      />
+    </div>
+  )
+}
+
+const AgeEdit = ({ ...field }) => {
+  return (
+    <div>
+      <input
+        type="number"
+        min={16}
+        placeholder="Введите ваш возраст (от 16)"
+        className="w-full h-[50px] border rounded-[5px] px-4 text-[20px] font-ManropeM "
+        value={field.value}
+        onChange={(e) => field.onChange(e.target.valueAsNumber)}
+      />
+    </div>
+  )
 }

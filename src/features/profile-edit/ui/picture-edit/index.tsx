@@ -1,18 +1,20 @@
 import { useTelegram } from "@/app/providers/telegram"
 import plusIcon from "@/assets/icons-source/plus.svg"
-import mockHuman from "@/assets/images/men-two.png"
-import React, { useState } from "react"
+import React from "react"
 import SvgPlus from "@/assets/icons/Plus.tsx"
+import { useEditProfileForm } from "@/app/providers/profile-edit-form/profile-edit-context.tsx"
+import { useWatch } from "react-hook-form"
 
 const pictureItems = [
   { id: 1, plusIcon: plusIcon },
   { id: 2, plusIcon: plusIcon },
-  { id: 3, plusIcon: plusIcon, mock: mockHuman },
+  { id: 3, plusIcon: plusIcon },
 ]
 
 export const PictureEdit = () => {
   const { user } = useTelegram()
-  const [preview, setPreview] = useState<(string | null)[]>([null, null, null])
+  const { setValue, control } = useEditProfileForm()
+  const photo_url = useWatch({ control, name: "photo_url" })
   const handlePictureChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
@@ -20,16 +22,17 @@ export const PictureEdit = () => {
     const file = e.target.files?.[0]
     if (file) {
       const url = URL.createObjectURL(file)
-      const updated = [...preview]
+      const updated = [...photo_url]
       updated[index] = url
-      setPreview(updated)
+      setValue("photo_url", updated, { shouldDirty: true })
     }
   }
+
   let userHavePhoto = false
   return (
     <div className="flex justify-between mb-[20px] px-2">
       {pictureItems.map((item, index) => {
-        let imageSrc = preview[index] || item.mock
+        let imageSrc = photo_url[index]
 
         if (!imageSrc && user?.photo_url && !userHavePhoto) {
           imageSrc = user?.photo_url

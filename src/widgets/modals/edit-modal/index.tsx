@@ -37,14 +37,16 @@ export const EditModal = ({
       exit={{ y: "100%" }}
       className="absolute w-full h-full inset-0 bg-[#00000087]"
     >
-      <div className="absolute px-2 w-full h-[60%] bg-white bottom-0 z-10">
-        <h3 className="text-center text-[21px] font-HelveticaB">{title}</h3>
+      <div className="absolute px-2 w-full h-[60%] bg-white bottom-0 z-10 rounded-tl-[60px] rounded-tr-[60px]">
+        <h3 className="text-center text-[23px] font-HelveticaB pb-5 pt-2">
+          {title}
+        </h3>
         <div>{children}</div>
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 pt-15">
           <Button
             className="w-full h-[40px]"
             variant="green"
-            type="submit"
+            type="button"
             onClick={onSave}
           >
             Сохранить

@@ -3,11 +3,12 @@ import { useForm } from "react-hook-form"
 import { type PropsWithChildren, useCallback } from "react"
 import { EditFormContext } from "./profile-edit-context.tsx"
 import { useTelegram } from "@/app/providers/telegram"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 export const editSchema = z.object({
   photo_url: z.array(z.string()),
   first_name: z.string(),
-  age: z.number(),
+  age: z.number().min(16, { message: "Минимальный возраст - 16" }).max(100),
   gender: z.string(),
   city: z.string(),
   height: z.number(),
@@ -45,6 +46,7 @@ export function EditProfileProvider({
   children,
 }: EditFormProps) {
   const form = useForm<EditFormSchema>({
+    resolver: zodResolver(editSchema),
     mode: "onChange",
     defaultValues,
   })

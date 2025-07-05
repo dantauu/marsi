@@ -2,7 +2,7 @@ import { MockCardData } from "@/lib/data/cards.ts"
 import Button from "@/shared/ui/buttons/button.tsx"
 import SvgArrow from "@/assets/icons/Arrow.tsx"
 
-export const LikeCard = ({ isLocked = false }: { isLocked?: boolean }) => {
+export const LikeCard = ({ isLocked }: { isLocked?: boolean }) => {
   return (
     <div className="flex flex-col gap-7">
       {MockCardData.map((item) => (
