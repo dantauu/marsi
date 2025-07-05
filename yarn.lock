@@ -737,6 +737,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hookform/resolvers@npm:^5.1.1":
+  version: 5.1.1
+  resolution: "@hookform/resolvers@npm:5.1.1"
+  dependencies:
+    "@standard-schema/utils": ^0.3.0
+  peerDependencies:
+    react-hook-form: ^7.55.0
+  checksum: e6182147c400c7951dc3ac3eec7bf7518b5d6bbc90168b0d8b1190c30983ad31ad004cf7ae946af7ceb0339455eb699326edaef255d897819769e32ae99663d2
+  languageName: node
+  linkType: hard
+
 "@humanfs/core@npm:^0.19.1":
   version: 0.19.1
   resolution: "@humanfs/core@npm:0.19.1"
@@ -4594,6 +4605,7 @@ __metadata:
   dependencies:
     "@chromatic-com/storybook": ^4
     "@eslint/js": ^9.25.0
+    "@hookform/resolvers": ^5.1.1
     "@reduxjs/toolkit": ^2.8.2
     "@storybook/addon-a11y": ^9.0.10
     "@storybook/addon-docs": ^9.0.10
@@ -4643,7 +4655,7 @@ __metadata:
     vite: ^6.3.5
     vite-plugin-svgr: 4.2.0
     vitest: ^3.2.4
-    zod: ^3.24.4
+    zod: ^3.25.73
   languageName: unknown
   linkType: soft
 
@@ -6759,9 +6771,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.24.2, zod@npm:^3.24.4":
+"zod@npm:^3.24.2":
   version: 3.25.67
   resolution: "zod@npm:3.25.67"
   checksum: 56ab904d33b1cd00041ce64ae05b0628fcbfeb7e707fa31cd498a97b540135e4dfe685200c9c62aea307695ee132870b4bc34f035228ea728aa75cc96a4954cb
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.25.73":
+  version: 3.25.73
+  resolution: "zod@npm:3.25.73"
+  checksum: e3a688df6389c18c4329985e26f937a692476f95bcb796444f09b7898eeb81e7ff1ba1c3b5ce187fa82f5970fac355f965d087dcfcc86ddae6da1e46c2670d8f
   languageName: node
   linkType: hard

@@ -5,7 +5,6 @@ import { useNavigate } from "@tanstack/react-router"
 import { useState } from "react"
 
 interface ProfileForm {
-  id: number
   name: string
   age?: string
   avatar?: string
@@ -15,7 +14,6 @@ export const ProfileHeader = () => {
   const navigate = useNavigate()
   const { user } = useTelegram()
   const [profile, _setProfile] = useState<ProfileForm>({
-    id: user?.id || 1,
     name: user?.first_name || "",
     age: "",
     avatar: user?.photo_url || "",
@@ -38,7 +36,6 @@ export const ProfileHeader = () => {
         variant="green"
       >
         Изменить
-        {profile.id}
         <SvgEdit />
       </Button>
       <div className="flex items-center gap-2">
@@ -59,13 +56,6 @@ export const ProfileHeader = () => {
           )}
         </div>
       </div>
-      {/* <input
-        type="text"
-        value={profile.name}
-        onChange={handleNameChange}
-        placeholder="Введите имя"
-        className="border p-2"
-      /> */}
     </div>
   )
 }

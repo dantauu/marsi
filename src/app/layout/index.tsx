@@ -1,4 +1,4 @@
-import { NavBar } from "@/widgets/nav-bar"
+import { NavBar } from "@/widgets/nav-bar/layout"
 import type { PropsWithChildren } from "react"
 import { useRouterState } from "@tanstack/react-router"
 import { FilterForm } from "@/shared/lib/filter-form"

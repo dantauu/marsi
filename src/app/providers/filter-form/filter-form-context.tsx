@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react"
 import type { UseFormReturn } from "react-hook-form"
-import type { FilterFormSchema } from "@/app/providers/filter-form/index.tsx"
+import type { FilterFormSchema } from "./index.tsx"
 
 export const FilterFormContext =
   createContext<UseFormReturn<FilterFormSchema> | null>(null)

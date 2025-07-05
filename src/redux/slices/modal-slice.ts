@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
   isFilterOpen: false,
   isLocationsOpen: false,
+  isEditOpen: false,
 }
 
 export const modalSlice = createSlice({
@@ -21,6 +22,12 @@ export const modalSlice = createSlice({
     closeLocationsModal(state) {
       state.isLocationsOpen = false
     },
+    openEditModal(state) {
+      state.isEditOpen = true
+    },
+    closeEditModal(state) {
+      state.isEditOpen = false
+    },
   },
 })
 
@@ -29,5 +36,7 @@ export const {
   closeFilterModal,
   openLocationsModal,
   closeLocationsModal,
+  openEditModal,
+  closeEditModal,
 } = modalSlice.actions
 export default modalSlice.reducer
