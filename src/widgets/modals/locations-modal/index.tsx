@@ -44,7 +44,7 @@ export const LocationsModal = () => {
       <div>
         <input
           type="text"
-          placeholder="Откуда вы ?"
+          placeholder="Выберите местоположение"
           value={inputValue}
           onChange={(e) => {
             const value = e.target.value

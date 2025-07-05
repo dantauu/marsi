@@ -35,14 +35,14 @@ export const EditModal = ({
       initial={{ y: "100%" }}
       animate={{ y: 0 }}
       exit={{ y: "100%" }}
-      className="absolute w-full h-full inset-0 bg-[#00000087]"
+      className="fixed bottom-0 w-full h-full z-10 inset-0 bg-[#00000087]"
     >
-      <div className="absolute px-2 w-full h-[60%] bg-white bottom-0 z-10 rounded-tl-[60px] rounded-tr-[60px]">
+      <div className="absolute flex flex-col px-2 w-full h-[60%] bg-white bottom-0 z-10 rounded-tl-[60px] rounded-tr-[60px]">
         <h3 className="text-center text-[23px] font-HelveticaB pb-5 pt-2">
           {title}
         </h3>
-        <div>{children}</div>
-        <div className="flex flex-col gap-5 pt-15">
+        <div className="overflow-y-auto">{children}</div>
+        <div className="flex flex-col gap-5 mt-5">
           <Button
             className="w-full h-[40px]"
             variant="green"

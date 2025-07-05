@@ -8,7 +8,10 @@ import { zodResolver } from "@hookform/resolvers/zod"
 export const editSchema = z.object({
   photo_url: z.array(z.string()),
   first_name: z.string(),
-  age: z.number().min(16, { message: "Минимальный возраст - 16" }).max(100),
+  age: z
+    .number({ invalid_type_error: "Введите корректный возраст", })
+    .min(16, { message: "Минимальный возраст - 16 лет" })
+    .max(100, { message: "Максимальный возраст -" + " 100 лет" }),
   gender: z.string(),
   city: z.string(),
   height: z.number(),
@@ -27,7 +30,7 @@ export function useFormEmptyValues(): EditFormSchema {
           ? user?.photo_url
           : [],
     first_name: user?.first_name || "",
-    age: 100,
+    age: 16,
     height: 140,
     city: "",
     gender: "",
