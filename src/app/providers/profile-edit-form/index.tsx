@@ -6,10 +6,10 @@ import { useTelegram } from "@/app/providers/telegram"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 export const editSchema = z.object({
-  photo_url: z.array(z.string()),
+  photo_url: z.array(z.string()).nullable(),
   first_name: z.string(),
   age: z
-    .number({ invalid_type_error: "Введите корректный возраст", })
+    .number({ invalid_type_error: "Введите корректный возраст" })
     .min(16, { message: "Минимальный возраст - 16 лет" })
     .max(100, { message: "Максимальный возраст -" + " 100 лет" }),
   gender: z.string(),
