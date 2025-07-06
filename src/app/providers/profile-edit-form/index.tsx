@@ -6,7 +6,7 @@ import { useTelegram } from "@/app/providers/telegram"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 export const editSchema = z.object({
-  photo_url: z.array(z.string()).nullable(),
+  photo_url: z.array(z.string()),
   first_name: z.string(),
   age: z
     .number({ invalid_type_error: "Введите корректный возраст" })
