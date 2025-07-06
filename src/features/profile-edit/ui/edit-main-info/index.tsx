@@ -45,10 +45,16 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
   const age = useWatch({ control, name: "age" })
   const city = useWatch({ control, name: "city" })
   const goal = useWatch({ control, name: "goal" })
+  const height = useWatch({ control, name: "height" })
 
   console.log("ERRORS", errors)
   return (
-    <div className={cn("flex flex-col gap-2", className)}>
+    <div
+      className={cn(
+        "flex flex-col gap-2 rounded-[18px] py-2 shadow-shadow-block",
+        className
+      )}
+    >
       <ItemEdit
         title="Имя"
         text={first_name}
@@ -60,14 +66,13 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
         onClick={() => handleOpen("gender")}
       />
       <ItemEdit title="Возраст" text={age} onClick={() => handleOpen("age")} />
-      {errors && (
-        <p className="text-[25px] text-red-600">{errors.age?.message}</p>
-      )}
       <ItemEdit title="Город" text={city} onClick={() => handleOpen("city")} />
-      {errors && (
-        <p className="text-[25px] text-red-600">{errors.city?.message}</p>
-      )}
       <ItemEdit title="Цель" text={goal} onClick={() => handleOpen("goal")} />
+      <ItemEdit
+        title="Ваш рост"
+        text={height}
+        onClick={() => handleOpen("height")}
+      />
 
       <AnimatePresence>
         {isEditOpen && currentField && (

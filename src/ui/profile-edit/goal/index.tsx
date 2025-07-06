@@ -3,9 +3,9 @@ import type { Goals } from "@/app/types/global.ts"
 import goalData from "@/lib/data/user-goal.tsx"
 
 export const EditGoal = ({
-                    value,
-                    onChange,
-                  }: {
+  value,
+  onChange,
+}: {
   value: string | number | string[]
   onChange: (v: string) => void
 }) => {

@@ -44,11 +44,11 @@ const EditProfile = () => {
   }
   return (
     <EditProfileProvider defaultValues={defaultValues} onSubmit={handleSubmit}>
-      <div data-testid="profile-edit" className="pb-[150px] pt-[40px]">
-        <SaveNavBar />
+      <div data-testid="profile-edit" className="pb-[150px] pt-[90px]">
+        <SaveNavBar className="pt-[50px]" />
         <PictureEdit />
         <EditMainInfo />
-        <EditAbout />
+        <EditAbout className="mt-7" />
         <Hobbies className="mt-[30px]" />
       </div>
     </EditProfileProvider>
