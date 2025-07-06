@@ -2,6 +2,7 @@ import SvgInspiration from "@/assets/icons/Inspiration"
 import SvgFriends from "@/assets/icons/Friends.tsx"
 import SvgCocktail from "@/assets/icons/Cocktail.tsx"
 import SvgMessage from "@/assets/icons/Message.tsx"
+import SvgTravel from "@/assets/icons/Travel.tsx"
 
 const goalData = [
   {
@@ -27,6 +28,12 @@ const goalData = [
     title: "В поисках вдохновения",
     description: "Найти человека способного вдонавлять",
     icon: <SvgInspiration />,
+  },
+  {
+    id: 5,
+    title: "Путешествия",
+    description: "Найти партнёра для поездки в путешествие",
+    icon: <SvgTravel />,
   },
 ]
 

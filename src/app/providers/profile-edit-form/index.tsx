@@ -16,6 +16,7 @@ export const editSchema = z.object({
   city: z.string(),
   height: z.number(),
   goal: z.string(),
+  hobbies: z.array(z.string()),
 })
 
 export type EditFormSchema = z.infer<typeof editSchema>
@@ -35,6 +36,7 @@ export function useFormEmptyValues(): EditFormSchema {
     city: "",
     gender: "",
     goal: "",
+    hobbies: [],
   }
 }
 

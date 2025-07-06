@@ -3,8 +3,9 @@ const SvgTravel = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
-    width={800}
-    height={800}
+    width={55}
+    height={55}
+    fill="#0007"
     viewBox="0 0 300 300"
     {...props}
   >

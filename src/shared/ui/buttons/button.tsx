@@ -14,7 +14,7 @@ type Variant = keyof typeof variants
 type ButtonProps = {
   variant: Variant
   children?: React.ReactNode
-  onClick?: () => void
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   className?: string
   type?: "submit" | "reset" | "button"
 }

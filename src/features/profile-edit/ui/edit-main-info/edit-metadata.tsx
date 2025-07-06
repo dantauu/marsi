@@ -2,7 +2,8 @@ import { type Control, Controller } from "react-hook-form"
 import type { EditFormSchema } from "@/app/providers/profile-edit-form"
 import type { EditFormFields } from "@/app/types/global.ts"
 import type { JSX } from "react"
-import { AgeEdit, CityEdit, EditGoal, GenderEdit, NameEdit } from "@/ui"
+import { CityEdit, EditGoal, EditHobbies, GenderEdit, NameEdit } from "@/ui"
+import { InputEdit } from "@/shared/ui/inputs/profile-edit"
 
 type RenderProps = {
   control: Control<EditFormSchema>
@@ -42,7 +43,13 @@ export const FieldMeta: Record<
       <Controller
         name={name}
         control={control}
-        render={({ field }) => <AgeEdit showErrors={showErrors} {...field} />}
+        render={({ field }) => (
+          <InputEdit
+            placeholder="Введите ваш возраст (от 16)"
+            showErrors={showErrors}
+            {...field}
+          />
+        )}
       />
     ),
   },
@@ -67,12 +74,28 @@ export const FieldMeta: Record<
     ),
   },
   height: {
-    title: "Цель",
-    render: ({ control, name }) => (
+    title: "Ваш рост",
+    render: ({ control, name, showErrors }) => (
       <Controller
         name={name}
         control={control}
-        render={({ field }) => <EditGoal {...field} />}
+        render={({ field }) => (
+          <InputEdit
+            placeholder="Введите ваш рост (от 140 до 220)"
+            showErrors={showErrors}
+            {...field}
+          />
+        )}
+      />
+    ),
+  },
+  hobbies: {
+    title: "Ваш рост",
+    render: ({ control }) => (
+      <Controller<EditFormSchema, "hobbies">
+        name={"hobbies"}
+        control={control}
+        render={({ field }) => <EditHobbies {...field} />}
       />
     ),
   },
