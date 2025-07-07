@@ -2,7 +2,7 @@ import { type Control, Controller } from "react-hook-form"
 import type { EditFormSchema } from "@/app/providers/profile-edit-form"
 import type { EditFormFields } from "@/app/types/global.ts"
 import type { JSX } from "react"
-import { CityEdit, EditGoal, GenderEdit, NameEdit } from "@/ui"
+import { CityEdit, EditGoal, EditHobbies, GenderEdit, NameEdit } from "@/ui"
 import { InputEdit } from "@/shared/ui/inputs/profile-edit"
 
 type RenderProps = {
@@ -86,6 +86,16 @@ export const FieldMeta: Record<
             {...field}
           />
         )}
+      />
+    ),
+  },
+  hobbies: {
+    title: "Ваш рост",
+    render: ({ control }) => (
+      <Controller<EditFormSchema, "hobbies">
+        name={"hobbies"}
+        control={control}
+        render={({ field }) => <EditHobbies {...field} />}
       />
     ),
   },

@@ -26,6 +26,11 @@ export type Goals = {
   icon: JSX.Element
 }
 
+export type Hobbies = {
+  id: number
+  title: string
+}
+
 enum LikesTab {
   MUTUAL = "mutual",
   INCOMING = "incoming",

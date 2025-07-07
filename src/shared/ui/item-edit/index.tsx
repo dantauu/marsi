@@ -6,7 +6,7 @@ const ItemEdit = ({
   onClick,
 }: {
   title?: string
-  text?: string | number
+  text?: string | string[] | number
   onClick: () => void
 }) => {
   return (

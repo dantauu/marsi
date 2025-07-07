@@ -1,17 +1,15 @@
-import {
-  EditAbout,
-  Hobbies,
-  EditMainInfo,
-  PictureEdit,
-} from "@/features/profile-edit"
+import { EditAbout, EditMainInfo, PictureEdit } from "@/features/profile-edit"
 import {
   type EditFormSchema,
   EditProfileProvider,
   useFormEmptyValues,
 } from "@/app/providers/profile-edit-form"
 import { SaveNavBar } from "@/widgets/nav-bar/save"
+import { useAppSelector } from "@/redux/hooks.ts"
+import { Overlay } from "@/widgets/overlay"
 
 const EditProfile = () => {
+  const { isEditOpen } = useAppSelector((state) => state.modal)
   const emptyValues = useFormEmptyValues()
 
   const defaultValues: EditFormSchema = {
@@ -22,6 +20,7 @@ const EditProfile = () => {
     city: emptyValues.city,
     gender: emptyValues.gender,
     goal: emptyValues.goal,
+    hobbies: emptyValues.hobbies,
   }
 
   const handleSubmit = (data: EditFormSchema) => {
@@ -44,12 +43,12 @@ const EditProfile = () => {
   }
   return (
     <EditProfileProvider defaultValues={defaultValues} onSubmit={handleSubmit}>
+      {isEditOpen && <Overlay />}
       <div data-testid="profile-edit" className="pb-[150px] pt-[90px]">
         <SaveNavBar className="pt-[50px]" />
         <PictureEdit />
         <EditMainInfo />
         <EditAbout className="mt-7" />
-        <Hobbies className="mt-[30px]" />
       </div>
     </EditProfileProvider>
   )

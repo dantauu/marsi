@@ -9,12 +9,14 @@ import { useEditProfileForm } from "@/app/providers/profile-edit-form/profile-ed
 import type { EditFormFields } from "@/app/types/global"
 import { useWatch } from "react-hook-form"
 import { FieldMeta } from "./edit-metadata.tsx"
+import { AddItem } from "@/features/profile-edit"
 
 export const EditMainInfo = ({ className }: { className?: string }) => {
   const form = useEditProfileForm()
   const {
     control,
     formState: { errors },
+    setValue,
   } = form
   const dispatch = useAppDispatch()
   const { isEditOpen } = useAppSelector((state) => state.modal)
@@ -46,6 +48,7 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
   const city = useWatch({ control, name: "city" })
   const goal = useWatch({ control, name: "goal" })
   const height = useWatch({ control, name: "height" })
+  const hobbies = useWatch({ control, name: "hobbies" })
 
   console.log("ERRORS", errors)
   return (
@@ -72,6 +75,14 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
         title="Ваш рост"
         text={height}
         onClick={() => handleOpen("height")}
+      />
+      <AddItem
+        onClick={() => handleOpen("hobbies")}
+        onRemove={(hobby) => {
+          const newHobby = hobbies.filter((h) => h !== hobby)
+          setValue("hobbies", newHobby)
+        }}
+        text={hobbies}
       />
 
       <AnimatePresence>

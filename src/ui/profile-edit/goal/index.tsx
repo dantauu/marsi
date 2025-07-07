@@ -9,10 +9,12 @@ export const EditGoal = ({
   value: string | number | string[]
   onChange: (v: string) => void
 }) => {
-  const [isGoal, setIsGoal] = useState(typeof value === "string" ? value : "")
+  const [isActive, setIsActive] = useState(
+    typeof value === "string" ? value : ""
+  )
   const handleClick = (goal: Goals) => {
     onChange(goal.title)
-    setIsGoal(goal.title)
+    setIsActive(goal.title)
   }
   return (
     <div className="flex flex-col py-2 gap-5 bg-[#0001] rounded-[5px]">
@@ -20,7 +22,7 @@ export const EditGoal = ({
         <div
           key={item.id}
           onClick={() => handleClick(item)}
-          className={`flex h-[80px] rounded-[10px] bg-white ${isGoal === item.title && "border-2"}`}
+          className={`flex h-[80px] rounded-[10px] bg-white ${isActive === item.title && "border-2"}`}
         >
           <div className="flex gap-2 items-center">
             {item.icon}
