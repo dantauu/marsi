@@ -90,7 +90,7 @@ export const FieldMeta: Record<
     ),
   },
   hobbies: {
-    title: "Ваш рост",
+    title: "Увлечения",
     render: ({ control }) => (
       <Controller<EditFormSchema, "hobbies">
         name={"hobbies"}
