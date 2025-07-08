@@ -1,6 +1,6 @@
 import SvgCheck from "@/assets/icons/Check"
 import SvgCross from "@/assets/icons/Cross"
-import type { UserCard } from "@/app/types/global.ts"
+import type { UserCard } from "@/app/types/global.d.ts"
 import { MockCardData } from "@/lib/data/cards.ts"
 import { SwiperCard } from "@/entities/slides/lib/swiper-card"
 

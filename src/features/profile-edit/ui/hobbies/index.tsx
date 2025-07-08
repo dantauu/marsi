@@ -14,7 +14,7 @@ export const AddItem = ({
   text: string[]
   onRemove: (v: string) => void
 }) => {
-  const isText = text.length === 3
+  const isValue = text.length === 3
   return (
     <div
       onClick={onClick}
@@ -46,7 +46,7 @@ export const AddItem = ({
             </div>
           ))}
         </div>
-        {!isText && (
+        {!isValue && (
           <Button
             type="button"
             className={`w-full h-[50px] text-lg bg-black text-white font-HelveticaB rounded-[10px] ${text.length >= 1 && "mt-4"}`}

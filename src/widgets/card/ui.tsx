@@ -1,6 +1,6 @@
 import { MockCardData } from "@/lib/data/cards"
 import { Card } from "@/entities/search/index.ts"
-import type { UserCardSearch } from "@/app/types/global.ts"
+import type { UserCardSearch } from "@/app/types/global.d.ts"
 
 const CardHuman = ({ data }: { data: UserCardSearch[] }) => {
   const avatar = new Map<number, string>(

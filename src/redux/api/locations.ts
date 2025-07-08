@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import type { Locations } from "@/app/types/global.ts"
+import type { Locations } from "@/app/types/global.d.ts"
 
 export const locationsApi = createApi({
   reducerPath: "locationsApi",

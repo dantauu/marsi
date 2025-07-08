@@ -1,7 +1,7 @@
 import type { EditFormSchema } from "@/app/providers/profile-edit-form"
 import { type JSX } from "react"
 
-export type UserCard = {
+type UserCard = {
   id?: number
   username: string
   age: number
@@ -11,32 +11,29 @@ export type UserCard = {
   goal: string
 }
 
-export type UserCardSearch = Omit<UserCard, "gender" | "goal" | "city">
 
-export type Locations = {
+type Locations = {
   id: number
   name: string
   region: string
 }
 
-export type Goals = {
+type Goals = {
   id: number
   title: string
   description: string
   icon: JSX.Element
 }
 
-export type Hobbies = {
+type Hobbies = {
   id: number
   title: string
 }
 
-enum LikesTab {
-  MUTUAL = "mutual",
-  INCOMING = "incoming",
-}
+type EditFormFields = keyof EditFormSchemaOmit
 
+//Omits
 type EditFormSchemaOmit = Omit<EditFormSchema, "photo_url">
-export type EditFormFields = keyof EditFormSchemaOmit
+type UserCardSearch = Omit<UserCard, "gender" | "goal" | "city">
 
-export { LikesTab }
+export type { UserCard, Locations, Goals, Hobbies, UserCardSearch, EditFormFields }

@@ -1,4 +1,4 @@
-import type { UserCardSearch } from "@/app/types/global.ts"
+import type { UserCardSearch } from "@/app/types/global.d.ts"
 import Button from "@/shared/ui/buttons/button.tsx"
 
 export const Card = ({ avatar, username, age }: UserCardSearch) => {

@@ -13,8 +13,6 @@ const Search = () => {
   console.log("searchParams", searchParams)
   if (isLoading) return <p>Загрузка...</p>
   if (!users) throw new Error("Error Data")
-  console.log("DATA", users)
-
   return (
     <div data-testid="search" className="pb-[200px]">
       <LikeCountNotify />

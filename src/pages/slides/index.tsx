@@ -11,6 +11,7 @@ const Slides = () => {
 
   if (isLoading) return <p>Загрузка...</p>
   if (!users) throw new Error("Error Data")
+  console.log("DATAUSERS", users)
   return (
     <div data-testid="slides" className="flex flex-col gap-5 px-2 pb-[150px]">
       <NotifyLastCard />

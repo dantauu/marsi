@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import type { UserCard } from "@/app/types/global.ts"
+import type { UserCard } from "@/app/types/global.d.ts"
 
 export const userApi = createApi({
   reducerPath: "userApi",
