@@ -1,5 +1,5 @@
 import hobbiesData from "@/lib/data/hobbies.ts"
-import type { Hobbies } from "@/app/types/global.ts"
+import type { Hobbies } from "@/app/types/global.d.ts"
 
 export const EditHobbies = ({
   value,

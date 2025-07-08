@@ -2,7 +2,7 @@ import { CardUnsubscribe } from "@/entities/likes/card-unsubscribe"
 import { useState } from "react"
 import { cn } from "@/lib/utils.tsx"
 import { CardSubscribe } from "@/entities/likes/card-subscribe"
-import { LikesTab } from "@/app/types/global.ts"
+import { LikesTab } from "@/app/types/enums.ts"
 
 const tabs = {
   [LikesTab.MUTUAL]: {

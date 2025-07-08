@@ -1,6 +1,6 @@
 import SvgCheck from "@/assets/icons/Check"
 import SvgCross from "@/assets/icons/Cross"
-import type { UserCard } from "@/app/types/global.ts"
+import type { UserCard } from "@/app/types/global.d.ts"
 import { MockCardData } from "@/lib/data/cards.ts"
 import { SwiperCard } from "@/entities/slides/lib/swiper-card"
 
@@ -77,7 +77,7 @@ export const SliderCard = ({ data }: { data: UserCard[] }) => {
                 />
                 <div className="absolute bottom-4 left-4">
                   <p className="text-white text-[40px] font-ManropeM">
-                    {item.username}, {item.age}
+                    {item.first_name}, {item.age}
                   </p>
                 </div>
               </div>

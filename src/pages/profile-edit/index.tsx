@@ -44,8 +44,8 @@ const EditProfile = () => {
   return (
     <EditProfileProvider defaultValues={defaultValues} onSubmit={handleSubmit}>
       {isEditOpen && <Overlay />}
-      <div data-testid="profile-edit" className="pb-[150px] pt-[90px]">
-        <SaveNavBar className="pt-[50px]" />
+      <div data-testid="profile-edit" className="pb-[150px] pt-[120px]">
+        <SaveNavBar className="pt-[80px]" />
         <PictureEdit />
         <EditMainInfo />
         <EditAbout className="mt-7" />

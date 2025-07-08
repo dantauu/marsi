@@ -2,11 +2,12 @@ import { useFilterForm } from "@/app/providers/filter-form/filter-form-context.t
 import { useState } from "react"
 import { useDebounce } from "@/lib/hooks/use-debounce.ts"
 import { useGetLocationsQuery } from "@/redux/api/locations.ts"
-import type { Locations } from "@/app/types/global.ts"
+import type { Locations } from "@/app/types/global.d.ts"
 import { motion } from "framer-motion"
 import SvgCross from "@/assets/icons/Cross.tsx"
 import { useAppDispatch } from "@/redux/hooks.ts"
 import { closeLocationsModal } from "@/redux/slices/modal-slice.ts"
+import LoadingBalls from "@/shared/ui/loading"
 
 export const LocationsModal = () => {
   const { setValue } = useFilterForm()
@@ -42,6 +43,7 @@ export const LocationsModal = () => {
         />
       </div>
       <div>
+        {isLoading ? <LoadingBalls /> : (
         <input
           type="text"
           placeholder="Выберите местоположение"
@@ -53,8 +55,7 @@ export const LocationsModal = () => {
           }}
           className="border p-2 rounded-xl w-full"
         />
-
-        {isLoading && <p>Загрузка...</p>}
+        )}
 
         <div className="pt-7 flex flex-col gap-4">
           {locations?.length ? (

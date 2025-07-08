@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import type { UserCard } from "@/app/types/global.ts"
+import type { FilteredUsers, UserCard } from "@/app/types/global.d.ts"
 
 export const userApi = createApi({
   reducerPath: "userApi",
@@ -9,14 +9,7 @@ export const userApi = createApi({
   endpoints: (builder) => ({
     getUsers: builder.query<
       UserCard[],
-      Partial<{
-        minAge: number
-        maxAge: number
-        minHeight: number
-        maxHeight: number
-        city: string
-        gender: string
-      }>
+      Partial<FilteredUsers>
     >({
       query: (params) => ({
         url: "users",

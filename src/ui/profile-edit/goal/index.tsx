@@ -1,5 +1,5 @@
 import { useState } from "react"
-import type { Goals } from "@/app/types/global.ts"
+import type { Goals } from "@/app/types/global.d.ts"
 import goalData from "@/lib/data/user-goal.tsx"
 
 export const EditGoal = ({
