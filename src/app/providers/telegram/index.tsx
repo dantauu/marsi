@@ -29,7 +29,7 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
       app.setBackgroundColor("#FFFFFF")
       app.expand()
 
-      if (app.isVersionAtLeast("6.2")) {
+      if (["android", "ios"].includes(app.platform)) {
         app.requestFullscreen()
       }
       setWebApp(app)
