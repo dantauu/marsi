@@ -11,9 +11,9 @@ const CardHuman = ({ data }: { data: UserCardSearch[] }) => {
       {data.map((item) => (
         <Card
           key={item.id}
-          avatar={avatar.get(Number(item.id))}
+          photo_url={avatar.get(Number(item.id))}
           age={item.age}
-          username={item.username}
+          first_name={item.first_name}
         />
       ))}
     </div>

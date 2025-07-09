@@ -77,7 +77,7 @@ export const SliderCard = ({ data }: { data: UserCard[] }) => {
                 />
                 <div className="absolute bottom-4 left-4">
                   <p className="text-white text-[40px] font-ManropeM">
-                    {item.username}, {item.age}
+                    {item.first_name}, {item.age}
                   </p>
                 </div>
               </div>
