@@ -13,6 +13,12 @@ type UserCard = {
   height: string
 }
 
+type UserInit = {
+  id: number
+  first_name: string
+  photo_url: string | undefined
+}
+
 type FilteredUsers = {
   minAge: number
   maxAge: number
@@ -46,4 +52,4 @@ type EditFormFields = keyof EditFormSchemaOmit
 type EditFormSchemaOmit = Omit<EditFormSchema, "photo_url">
 type UserCardSearch = Omit<UserCard, "gender" | "goal" | "city" | "hobbies" | "height">
 
-export type { UserCard, Locations, Goals, Hobbies, UserCardSearch, EditFormFields, FilteredUsers }
+export type { UserCard, Locations, Goals, Hobbies, UserCardSearch, EditFormFields, FilteredUsers, UserInit }
