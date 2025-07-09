@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import type { FilteredUsers, UserCard } from "@/app/types/global.d.ts"
+import type { FilteredUsers, UserCard, UserInit } from "@/app/types/global.d.ts"
 
 export const userApi = createApi({
   reducerPath: "userApi",
@@ -17,7 +17,14 @@ export const userApi = createApi({
         params,
       }),
     }),
+    initUser: builder.mutation<UserCard[], UserInit>({
+      query: (userData) => ({
+        url: "users/init",
+        method: "POST,",
+        body: userData
+      })
+    })
   }),
 })
 
-export const { useGetUsersQuery } = userApi
+export const { useGetUsersQuery, useInitUserMutation } = userApi
