@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import type { ReactNode } from "react"
 import type { WebApp, WebAppUser } from "@twa-dev/types"
 
@@ -36,23 +36,21 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
     }
   }, [])
 
+  if (!webApp) return
+
   const closeApp = () => {
     if (webApp) {
       webApp.close()
     }
   }
 
-  const value = useMemo(() => {
-    return webApp
-      ? {
+  const value = {
           webApp,
           unsafeData: webApp.initDataUnsafe,
           initData: webApp.initData,
           user: webApp.initDataUnsafe.user,
           closeApp,
-        }
-      : {}
-  }, [webApp])
+  }
 
   return (
     <TelegramContext.Provider value={value}>

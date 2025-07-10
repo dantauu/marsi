@@ -17,10 +17,10 @@ export const userApi = createApi({
         params,
       }),
     }),
-    initUser: builder.mutation<UserCard[], UserInit>({
+    initUser: builder.mutation<UserCard, UserInit>({
       query: (userData) => ({
         url: "users/init",
-        method: "POST,",
+        method: "POST",
         body: userData
       })
     })
