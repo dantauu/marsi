@@ -16,14 +16,16 @@ const CardHuman = ({ data }: { data: UserCardSearch[] }) => {
   return (
     <div className="grid grid-cols-2 justify-items-center gap-y-3">
       {data.map((item) => {
-        const photo = userPhoto.get(item.id) ?? avatar.get(Number(item.id)) ?? ""
-          return (
+        const photo =
+          userPhoto.get(item.id) ?? avatar.get(Number(item.id)) ?? ""
+        return (
           <Card
-        key = { item.id }
-        photo_url = {photo}
-        age = { item.age }
-        first_name = { item.first_name }
-        />)
+            key={item.id}
+            photo_url={photo}
+            age={item.age}
+            first_name={item.first_name}
+          />
+        )
       })}
     </div>
   )

@@ -43,18 +43,20 @@ export const LocationsModal = () => {
         />
       </div>
       <div>
-        {isLoading ? <LoadingBalls /> : (
-        <input
-          type="text"
-          placeholder="Выберите местоположение"
-          value={inputValue}
-          onChange={(e) => {
-            const value = e.target.value
-            const capitalized = value.charAt(0).toUpperCase() + value.slice(1)
-            setInputValue(capitalized)
-          }}
-          className="border p-2 rounded-xl w-full"
-        />
+        {isLoading ? (
+          <LoadingBalls />
+        ) : (
+          <input
+            type="text"
+            placeholder="Выберите местоположение"
+            value={inputValue}
+            onChange={(e) => {
+              const value = e.target.value
+              const capitalized = value.charAt(0).toUpperCase() + value.slice(1)
+              setInputValue(capitalized)
+            }}
+            className="border p-2 rounded-xl w-full"
+          />
         )}
 
         <div className="pt-7 flex flex-col gap-4">

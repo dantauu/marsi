@@ -50,6 +50,18 @@ type EditFormFields = keyof EditFormSchemaOmit
 
 //Omits
 type EditFormSchemaOmit = Omit<EditFormSchema, "photo_url">
-type UserCardSearch = Omit<UserCard, "gender" | "goal" | "city" | "hobbies" | "height">
+type UserCardSearch = Omit<
+  UserCard,
+  "gender" | "goal" | "city" | "hobbies" | "height"
+>
 
-export type { UserCard, Locations, Goals, Hobbies, UserCardSearch, EditFormFields, FilteredUsers, UserInit }
+export type {
+  UserCard,
+  Locations,
+  Goals,
+  Hobbies,
+  UserCardSearch,
+  EditFormFields,
+  FilteredUsers,
+  UserInit,
+}

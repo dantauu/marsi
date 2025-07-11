@@ -3,7 +3,8 @@ import { useTelegram } from "@/app/providers/telegram"
 import { useInitUserMutation } from "@/redux/api/user.ts"
 
 export const useInitUser = () => {
-  const [initUser, { isLoading, isError, isSuccess, error }] = useInitUserMutation()
+  const [initUser, { isLoading, isError, isSuccess, error }] =
+    useInitUserMutation()
   const { user } = useTelegram()
   const initialized = useRef(false)
 
@@ -13,7 +14,6 @@ export const useInitUser = () => {
 
     initialized.current = true
 
-
     initUser({
       id: user.id,
       first_name: user.first_name,
@@ -22,6 +22,6 @@ export const useInitUser = () => {
   }, [user])
 
   useEffect(() => {
-    console.log('data', { isLoading, isError, isSuccess, error })
+    console.log("data", { isLoading, isError, isSuccess, error })
   }, [isLoading, isError, isSuccess, error])
 }
