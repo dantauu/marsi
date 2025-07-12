@@ -45,11 +45,11 @@ export const TelegramProvider = ({ children }: TelegramProviderProps) => {
   }
 
   const value = {
-          webApp,
-          unsafeData: webApp.initDataUnsafe,
-          initData: webApp.initData,
-          user: webApp.initDataUnsafe.user,
-          closeApp,
+    webApp,
+    unsafeData: webApp.initDataUnsafe,
+    initData: webApp.initData,
+    user: webApp.initDataUnsafe.user,
+    closeApp,
   }
 
   return (

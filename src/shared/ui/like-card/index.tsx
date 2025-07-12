@@ -6,7 +6,10 @@ export const LikeCard = ({ isLocked }: { isLocked?: boolean }) => {
   return (
     <div className="flex flex-col gap-7">
       {MockCardData.map((item) => (
-        <div key={item.id} className="relative flex justify-between items-center rounded-[10px] shadow-shadow-block px-0.5 py-1.5">
+        <div
+          key={item.id}
+          className="relative flex justify-between items-center rounded-[10px] shadow-shadow-block px-0.5 py-1.5"
+        >
           {isLocked && (
             <div className="absolute z-1 inset-0 rounded-[10px] flex items-center justify-center">
               <Button variant="green" className="px-3 py-2">

@@ -4,8 +4,14 @@ import Button from "@/shared/ui/buttons/button.tsx"
 export const Card = ({ photo_url, first_name, age }: UserCardSearch) => {
   return (
     <div className="flex flex-col gap-2 w-[182px] h-[285px]">
-      <div className="w-[182px] h-[253.4px] object-cover bg-[#c2c1c1] rounded-[28px]">
-        <img className="w-full h-full rounded-[28px]" src={photo_url} alt="" />
+      <div className="w-[182px] h-[253.4px] bg-[#c2c1c1] rounded-[28px]">
+        {photo_url && (
+          <img
+            className="w-full h-full rounded-[28px] object-cover"
+            src={photo_url}
+            alt=""
+          />
+        )}
       </div>
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-1.5">
