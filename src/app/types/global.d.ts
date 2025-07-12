@@ -2,7 +2,7 @@ import type { EditFormSchema } from "@/app/providers/profile-edit-form"
 import { type JSX } from "react"
 
 type UserCard = {
-  id?: number
+  id: number
   first_name: string
   age: string
   photo_url: string | undefined
