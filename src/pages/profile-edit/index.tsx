@@ -1,31 +1,21 @@
 import { EditAbout, EditMainInfo, PictureEdit } from "@/features/profile-edit"
 import {
   type EditFormSchema,
-  EditProfileProvider,
-  useFormEmptyValues,
+  EditProfileProvider, useFormEmptyValues,
 } from "@/app/providers/profile-edit-form"
 import { SaveNavBar } from "@/widgets/nav-bar/save"
 import { useAppSelector } from "@/redux/hooks.ts"
 import { Overlay } from "@/widgets/overlay"
 import { useUpdateUserMutation } from "@/redux/api/user.ts"
 import { useTelegram } from "@/app/providers/telegram"
+import LoadingBalls from "@/shared/ui/loading"
 
 const EditProfile = () => {
   const { isEditOpen } = useAppSelector((state) => state.modal)
-  const emptyValues = useFormEmptyValues()
-  const { user } = useTelegram()
+  const { user: telegramUser } = useTelegram()
   const [updateUser] = useUpdateUserMutation()
 
-  const defaultValues: EditFormSchema = {
-    photo_url: emptyValues.photo_url,
-    first_name: emptyValues.first_name,
-    age: emptyValues.age,
-    height: emptyValues.height,
-    city: emptyValues.city,
-    gender: emptyValues.gender,
-    goal: emptyValues.goal,
-    hobbies: emptyValues.hobbies,
-  }
+  const { values: defaultValues, isLoading } = useFormEmptyValues()
 
   const handleSubmit = async (data: EditFormSchema) => {
     const changedEntries = Object.entries(data).filter(([key, value]) => {
@@ -42,12 +32,13 @@ const EditProfile = () => {
     })
 
     const changedData = Object.fromEntries(changedEntries)
-    if (user) {
-      await updateUser({ id: String(user.id), ...changedData })
+    if (telegramUser) {
+      await updateUser({ id: String(telegramUser.id), ...changedData })
     }
 
     console.log("Изменённые поля:", changedData)
   }
+  if (isLoading) return <LoadingBalls />
   return (
     <EditProfileProvider defaultValues={defaultValues} onSubmit={handleSubmit}>
       {isEditOpen && <Overlay />}
