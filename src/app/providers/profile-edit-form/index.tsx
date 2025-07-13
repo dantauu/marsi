@@ -30,11 +30,14 @@ export const editSchema = z.object({
 
 export type EditFormSchema = z.infer<typeof editSchema>
 
-export function useFormEmptyValues(): {values: EditFormSchema, isLoading: boolean} {
+export function useFormEmptyValues(): {values: EditFormSchema | null, isLoading: boolean} {
   const { user: telegramUser } = useTelegram()
-  const { data: users } = useGetUsersQuery()
+  const { data: users, isLoading: usersLoading } = useGetUsersQuery()
   const user = users?.find((u) => Number(u.id) === telegramUser?.id)
-
+  const isLoading = usersLoading || !telegramUser
+  if (isLoading) {
+    return { values: null, isLoading: true }
+  }
   const fallbackUser = {
     photo_url: [],
     first_name: telegramUser?.first_name ?? "",
@@ -49,6 +52,7 @@ export function useFormEmptyValues(): {values: EditFormSchema, isLoading: boolea
   const filledUser = user ?? fallbackUser
 
   return {
+    isLoading: false,
     values: {
     photo_url: Array.isArray(filledUser?.photo_url)
       ? filledUser?.photo_url
@@ -63,7 +67,6 @@ export function useFormEmptyValues(): {values: EditFormSchema, isLoading: boolea
     goal: filledUser?.goal ?? "",
     hobbies: filledUser?.hobbies ?? [],
     },
-    isLoading: false
   }
 }
 
