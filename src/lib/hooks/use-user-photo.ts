@@ -1,6 +1,6 @@
 import { useGetUsersQuery } from "@/redux/api/user.ts"
 import { MockCardData } from "@/lib/data/cards.ts"
-import type { FilteredUsers, UserCardSearch } from "@/app/types/global"
+import type { FilteredUsers } from "@/app/types/global"
 
 export const useUserPhoto = ({ params }: { params?: FilteredUsers } = {}) => {
   const { data: user } = useGetUsersQuery(params)
@@ -10,8 +10,5 @@ export const useUserPhoto = ({ params }: { params?: FilteredUsers } = {}) => {
     MockCardData.map((item) => [item.id, item.avatar])
   )
 
-  const photoMap = (item: UserCardSearch) => {
-    return  userPhoto.get(item.id) ?? mockAvatar.get(item.id) ?? ""
-  }
-  return {userPhoto, mockAvatar, photoMap}
+  return { userPhoto, mockAvatar }
 }

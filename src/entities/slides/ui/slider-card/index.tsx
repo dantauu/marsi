@@ -33,7 +33,8 @@ export const SliderCard = ({ data }: { data: UserCard[] }) => {
     >
       <div className="relative w-full h-[550px]">
         {data.map((item, index) => {
-          const photo = userPhoto.get(item.id) ?? mockAvatar.get(Number(item.id)) ?? ""
+          const photo =
+            userPhoto.get(item.id) ?? mockAvatar.get(Number(item.id)) ?? ""
           return (
             <div
               key={item.id}
