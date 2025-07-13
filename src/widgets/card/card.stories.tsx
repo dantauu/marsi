@@ -17,6 +17,6 @@ export default meta
 
 export const Card_Human: StoryObj = {
   render: () => {
-    return <Card first_name={"Катя"} age={"18"} photo_url={avatar} />
+    return <Card id={1} first_name={"Катя"} age={"18"} photo_url={avatar} />
   },
 }
