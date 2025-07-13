@@ -7,10 +7,14 @@ import {
 import { SaveNavBar } from "@/widgets/nav-bar/save"
 import { useAppSelector } from "@/redux/hooks.ts"
 import { Overlay } from "@/widgets/overlay"
+import { useUpdateUserMutation } from "@/redux/api/user.ts"
+import { useTelegram } from "@/app/providers/telegram"
 
 const EditProfile = () => {
   const { isEditOpen } = useAppSelector((state) => state.modal)
   const emptyValues = useFormEmptyValues()
+  const { user } = useTelegram()
+  const [updateUser] = useUpdateUserMutation()
 
   const defaultValues: EditFormSchema = {
     photo_url: emptyValues.photo_url,
@@ -23,7 +27,7 @@ const EditProfile = () => {
     hobbies: emptyValues.hobbies,
   }
 
-  const handleSubmit = (data: EditFormSchema) => {
+  const handleSubmit = async (data: EditFormSchema) => {
     const changedEntries = Object.entries(data).filter(([key, value]) => {
       const defaultValue = defaultValues[key as keyof EditFormSchema]
 
@@ -38,6 +42,9 @@ const EditProfile = () => {
     })
 
     const changedData = Object.fromEntries(changedEntries)
+    if (user) {
+      await updateUser(changedData)
+    }
 
     console.log("Изменённые поля:", changedData)
   }

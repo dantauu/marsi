@@ -7,7 +7,7 @@ export const InputEdit = ({
   showErrors,
 }: {
   value: string | number | string[]
-  onChange: (v: number) => void
+  onChange: (v: string) => void
   placeholder: string
   showErrors: boolean
 }) => {
@@ -23,7 +23,7 @@ export const InputEdit = ({
         placeholder={placeholder}
         className="w-full h-[50px] border rounded-[5px] px-4 text-[20px] font-ManropeM"
         value={value}
-        onChange={(e) => onChange(e.target.valueAsNumber)}
+        onChange={(e) => onChange(e.target.value)}
       />
       {showErrors && errors.age && (
         <p className="text-[20px] text-red-600">{errors.age?.message}</p>
