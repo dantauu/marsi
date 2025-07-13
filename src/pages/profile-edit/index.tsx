@@ -15,7 +15,7 @@ const EditProfile = () => {
   const { user: telegramUser } = useTelegram()
   const [updateUser] = useUpdateUserMutation()
 
-  const { values: defaultValues, isLoading } = useFormEmptyValues()
+  const { values, fallbackValues: defaultValues, isLoaded } = useFormEmptyValues()
 
   const handleSubmit = async (data: EditFormSchema) => {
     if (!defaultValues) return
@@ -39,9 +39,9 @@ const EditProfile = () => {
 
     console.log("Изменённые поля:", changedData)
   }
-  if (isLoading || !defaultValues) return <LoadingBalls />
+  if (!isLoaded || !defaultValues) return <LoadingBalls />
   return (
-    <EditProfileProvider defaultValues={defaultValues} onSubmit={handleSubmit}>
+    <EditProfileProvider values={values} defaultValues={defaultValues} onSubmit={handleSubmit}>
       {isEditOpen && <Overlay />}
       <div data-testid="profile-edit" className="pb-[150px] pt-[120px]">
         <SaveNavBar className="pt-[80px]" />
