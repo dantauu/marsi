@@ -15,7 +15,7 @@ export const useInitUser = () => {
     initialized.current = true
 
     initUser({
-      id: user.id,
+      id: String(user.id),
       first_name: user.first_name,
       photo_url: user.photo_url,
     })

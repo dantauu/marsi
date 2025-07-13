@@ -33,7 +33,7 @@ export type EditFormSchema = z.infer<typeof editSchema>
 export function useFormEmptyValues(): EditFormSchema {
   const { data: users } = useGetUsersQuery()
   const { user: telegramUser } = useTelegram()
-  const user = users?.find((u) => u.id === telegramUser?.id)
+  const user = users?.find((u) => Number(u.id) === telegramUser?.id)
 
   return {
     photo_url: Array.isArray(user?.photo_url)
