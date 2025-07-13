@@ -4,17 +4,26 @@ import { type PropsWithChildren, useCallback } from "react"
 import { EditFormContext } from "./profile-edit-context.tsx"
 import { useTelegram } from "@/app/providers/telegram"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useGetUsersQuery } from "@/redux/api/user.ts"
 
 export const editSchema = z.object({
   photo_url: z.array(z.string()),
   first_name: z.string(),
   age: z
-    .number({ invalid_type_error: "Введите корректный возраст" })
-    .min(16, { message: "Минимальный возраст - 16 лет" })
-    .max(100, { message: "Максимальный возраст -" + " 100 лет" }),
+    .string()
+    .nonempty({ message: "Введите возраст" }) // пустая строка
+    .refine(
+      (val) => {
+        const num = Number(val)
+        return !isNaN(num) && num >= 16 && num <= 100
+      },
+      {
+        message: "Возраст должен быть от 16 до 100",
+      }
+    ),
   gender: z.string(),
   city: z.string(),
-  height: z.number(),
+  height: z.string(),
   goal: z.string(),
   hobbies: z.array(z.string()),
 })
@@ -22,21 +31,24 @@ export const editSchema = z.object({
 export type EditFormSchema = z.infer<typeof editSchema>
 
 export function useFormEmptyValues(): EditFormSchema {
-  const { user } = useTelegram()
+  const { data: users } = useGetUsersQuery()
+  const { user: telegramUser } = useTelegram()
+  const user = users?.find((u) => u.id === telegramUser?.id)
+
   return {
-    photo_url:
-      typeof user?.photo_url === "string"
-        ? [user?.photo_url]
-        : Array.isArray(user?.photo_url)
-          ? user?.photo_url
-          : [],
-    first_name: user?.first_name || "",
-    age: 16,
-    height: 140,
-    city: "",
-    gender: "",
-    goal: "",
-    hobbies: [],
+    photo_url: Array.isArray(user?.photo_url)
+      ? user.photo_url
+      : user?.photo_url
+        ? [user.photo_url]
+        : [],
+
+    first_name: user?.first_name ?? "",
+    age: user?.age ?? "16",
+    height: user?.height ?? "140",
+    city: user?.city ?? "",
+    gender: user?.gender ?? "",
+    goal: user?.goal ?? "",
+    hobbies: user?.hobbies ?? [],
   }
 }
 

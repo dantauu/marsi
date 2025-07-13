@@ -1,5 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import type { FilteredUsers, UserCard, UserInit } from "@/app/types/global.d.ts"
+import type {
+  FilteredUsers,
+  UpdateUserData,
+  User,
+  UserInit,
+} from "@/app/types/global.d.ts"
 
 export const userApi = createApi({
   reducerPath: "userApi",
@@ -7,21 +12,29 @@ export const userApi = createApi({
     baseUrl: import.meta.env.VITE_BASE_URL || "http://localhost:9000/",
   }),
   endpoints: (builder) => ({
-    getUsers: builder.query<UserCard[], void | Partial<FilteredUsers>>({
+    getUsers: builder.query<User[], void | Partial<FilteredUsers>>({
       query: (params) => ({
         url: "users",
         method: "GET",
         ...(params ? { params } : {}),
       }),
     }),
-    initUser: builder.mutation<UserCard, UserInit>({
+    initUser: builder.mutation<User, UserInit>({
       query: (userData) => ({
         url: "users/init",
         method: "POST",
         body: userData,
       }),
     }),
+    updateUser: builder.mutation<UpdateUserData, Partial<UpdateUserData>>({
+      query: (userData) => ({
+        url: "users/update",
+        method: "PATCH",
+        body: userData,
+      }),
+    }),
   }),
 })
 
-export const { useGetUsersQuery, useInitUserMutation } = userApi
+export const { useGetUsersQuery, useInitUserMutation, useUpdateUserMutation } =
+  userApi
