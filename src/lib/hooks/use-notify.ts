@@ -12,6 +12,10 @@ export const useNotify = () => {
       loading: options?.loading || "Загрузка",
       success: options?.success || "Успешно",
       error: options?.error || "Ошибка",
+    }, {
+      style: {
+        marginTop: "50px"
+      }
     })
   }
   return { notify }
