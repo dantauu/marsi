@@ -18,6 +18,7 @@ const EditProfile = () => {
   const { values: defaultValues, isLoading } = useFormEmptyValues()
 
   const handleSubmit = async (data: EditFormSchema) => {
+    if (!defaultValues) return
     const changedEntries = Object.entries(data).filter(([key, value]) => {
       const defaultValue = defaultValues[key as keyof EditFormSchema]
 
@@ -38,7 +39,7 @@ const EditProfile = () => {
 
     console.log("Изменённые поля:", changedData)
   }
-  if (isLoading) return <LoadingBalls />
+  if (isLoading || !defaultValues) return <LoadingBalls />
   return (
     <EditProfileProvider defaultValues={defaultValues} onSubmit={handleSubmit}>
       {isEditOpen && <Overlay />}
