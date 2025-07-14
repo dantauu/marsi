@@ -43,7 +43,7 @@ const EditProfile = () => {
 
     const changedData = Object.fromEntries(changedEntries)
     if (user) {
-      await updateUser({ id: user.id, ...changedData })
+      await updateUser({ id: String(user.id), ...changedData })
     }
 
     console.log("Изменённые поля:", changedData)
