@@ -5,7 +5,7 @@ type User = {
   id: string
   first_name: string
   age: string
-  photo_url: string | undefined
+  photo_url: string[] | undefined
   gender: "male" | "female"
   city: string
   goal: string
@@ -17,7 +17,7 @@ type UpdateUserData = {
   id: string
   first_name?: string | undefined
   age?: string | undefined
-  photo_url?: string | undefined
+  photo_url?: string[] | undefined
   gender?: "male" | "female" | undefined
   city?: string | undefined
   goal?: string | undefined
@@ -28,7 +28,7 @@ type UpdateUserData = {
 type UserInit = {
   id: string
   first_name: string
-  photo_url: string | undefined
+  photo_url: string[] | undefined
 }
 
 type FilteredUsers = {
