@@ -12,12 +12,12 @@ const CardHuman = ({ data }: { data: UserCardSearch[] }) => {
     <div className="grid grid-cols-2 justify-items-center gap-y-3">
       {data.map((item) => {
         const photo =
-          userPhoto.get(item.id) ?? mockAvatar.get(Number(item.id)) ?? ""
+          userPhoto.get(item.id) ?? mockAvatar.get(Number(item.id)) ?? []
         return (
           <Card
             id={item.id}
             key={item.id}
-            photo_url={photo}
+            photo_url={Array.isArray(photo) ? photo : [photo]}
             age={item.age}
             first_name={item.first_name}
           />

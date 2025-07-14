@@ -75,7 +75,7 @@ export const SliderCard = ({ data }: { data: User[] }) => {
                 <div className="w-full h-full inset-0">
                   <img
                     className="w-full h-full object-cover object-center rounded-[28px]"
-                    src={photo}
+                    src={Array.isArray(photo) ? photo[0] ?? "" : photo ?? ""}
                     alt=""
                   />
                   <div className="absolute bottom-4 left-4">
