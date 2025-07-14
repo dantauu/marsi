@@ -2,7 +2,7 @@ import type { EditFormSchema } from "@/app/providers/profile-edit-form"
 import { type JSX } from "react"
 
 type User = {
-  id: number
+  id: string
   first_name: string
   age: string
   photo_url: string | undefined
@@ -14,7 +14,7 @@ type User = {
 }
 
 type UpdateUserData = {
-  id: number
+  id: string
   first_name?: string | undefined
   age?: string | undefined
   photo_url?: string | undefined
@@ -26,7 +26,7 @@ type UpdateUserData = {
 }
 
 type UserInit = {
-  id: number
+  id: string
   first_name: string
   photo_url: string | undefined
 }
