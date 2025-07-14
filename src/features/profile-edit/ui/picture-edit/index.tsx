@@ -4,6 +4,7 @@ import React from "react"
 import SvgPlus from "@/assets/icons/Plus.tsx"
 import { useEditProfileForm } from "@/app/providers/profile-edit-form/profile-edit-context.tsx"
 import { useWatch } from "react-hook-form"
+import { useUploadPhotoMutation } from "@/shared/api/user.ts"
 
 const pictureItems = [
   { id: 1, plusIcon: plusIcon },
@@ -11,20 +12,26 @@ const pictureItems = [
   { id: 3, plusIcon: plusIcon },
 ]
 
-export const PictureEdit = () => {
+export const PhotoEdit = () => {
   const { user } = useTelegram()
   const { setValue, control } = useEditProfileForm()
   const photo_url = useWatch({ control, name: "photo_url" })
-  const handlePictureChange = (
+  const [uploadPhoto] = useUploadPhotoMutation()
+
+  const handlePictureChange = async (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-    const file = e.target.files?.[0]
-    if (file) {
-      const url = URL.createObjectURL(file)
+    const file = e.target.files
+    if (!file?.length) return
+
+    try {
+      const uploadedUrls = await uploadPhoto([file[0]]).unwrap()
       const updated = [...photo_url]
-      updated[index] = url
-      setValue("photo_url", updated, { shouldDirty: true })
+      updated[index] = uploadedUrls[0]
+      setValue("photo_url", updated, {shouldDirty: true})
+    } catch (error) {
+      console.log('error photo upload', error)
     }
   }
 
