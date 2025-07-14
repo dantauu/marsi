@@ -35,11 +35,7 @@ function fetchUser(user?: User | null): Partial<EditFormSchema> {
   if (!user) return {}
 
   return {
-    photo_url: Array.isArray(user.photo_url)
-      ? user.photo_url
-      : user.photo_url
-        ? [user.photo_url]
-        : [],
+    photo_url: Array.isArray(user.photo_url) ? user.photo_url : [],
     first_name: user.first_name ?? "",
     age: user.age?.toString() ?? "16",
     height: user.height?.toString() ?? "140",
