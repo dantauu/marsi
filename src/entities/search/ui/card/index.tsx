@@ -8,7 +8,11 @@ export const Card = ({ photo_url, first_name, age }: UserCardSearch) => {
         {photo_url && (
           <img
             className="w-full h-full rounded-[28px] object-cover"
-            src={Array.isArray(photo_url) ? photo_url[0] ?? "" : photo_url ?? ""}
+            src={
+              Array.isArray(photo_url)
+                ? (photo_url[0] ?? "")
+                : (photo_url ?? "")
+            }
             alt=""
           />
         )}

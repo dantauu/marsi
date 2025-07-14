@@ -4,7 +4,7 @@ import { type PropsWithChildren, useCallback, useEffect, useRef } from "react"
 import { EditFormContext } from "./profile-edit-context.tsx"
 import { useTelegram } from "@/app/providers/telegram"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useGetUsersQuery } from "@/redux/api/user.ts"
+import { useGetUsersQuery } from "@/shared/api/user.ts"
 import type { User } from "@/app/types/global"
 
 export const editSchema = z.object({
@@ -46,8 +46,11 @@ function fetchUser(user?: User | null): Partial<EditFormSchema> {
   }
 }
 
-
-export function useFormEmptyValues(): {fallbackValues: EditFormSchema, values: Partial<EditFormSchema> | null, isLoaded: boolean} {
+export function useFormEmptyValues(): {
+  fallbackValues: EditFormSchema
+  values: Partial<EditFormSchema> | null
+  isLoaded: boolean
+} {
   const { user: telegramUser } = useTelegram()
   const { data: users, isFetching } = useGetUsersQuery()
   const user = users?.find((u) => Number(u.id) === telegramUser?.id) ?? null

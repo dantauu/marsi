@@ -1,12 +1,13 @@
 import { EditAbout, EditMainInfo, PictureEdit } from "@/features/profile-edit"
 import {
   type EditFormSchema,
-  EditProfileProvider, useFormEmptyValues,
+  EditProfileProvider,
+  useFormEmptyValues,
 } from "@/app/providers/profile-edit-form"
-import { SaveNavBar } from "@/widgets/nav-bar/save"
+import { SaveNavBar } from "@/widgets/nav-bar/save-edit-profile"
 import { useAppSelector } from "@/redux/hooks.ts"
 import { Overlay } from "@/widgets/overlay"
-import { useUpdateUserMutation } from "@/redux/api/user.ts"
+import { useUpdateUserMutation } from "@/shared/api/user.ts"
 import { useTelegram } from "@/app/providers/telegram"
 import LoadingBalls from "@/shared/ui/loading"
 
@@ -15,7 +16,11 @@ const EditProfile = () => {
   const { user: telegramUser } = useTelegram()
   const [updateUser] = useUpdateUserMutation()
 
-  const { values, fallbackValues: defaultValues, isLoaded } = useFormEmptyValues()
+  const {
+    values,
+    fallbackValues: defaultValues,
+    isLoaded,
+  } = useFormEmptyValues()
 
   const handleSubmit = async (data: EditFormSchema) => {
     if (!defaultValues) return
@@ -41,7 +46,11 @@ const EditProfile = () => {
   }
   if (!isLoaded || !defaultValues) return <LoadingBalls />
   return (
-    <EditProfileProvider values={values} defaultValues={defaultValues} onSubmit={handleSubmit}>
+    <EditProfileProvider
+      values={values}
+      defaultValues={defaultValues}
+      onSubmit={handleSubmit}
+    >
       {isEditOpen && <Overlay />}
       <div data-testid="profile-edit" className="pb-[150px] pt-[120px]">
         <SaveNavBar className="pt-[80px]" />
