@@ -19,6 +19,7 @@ export const SaveNavBar = ({ className }: { className?: string }) => {
         <Button
           className="w-[140px] h-[50px]"
           variant="red"
+          type="button"
           onClick={resetFilter}
         >
           Сбросить
