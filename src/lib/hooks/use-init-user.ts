@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect } from "react"
 import { useTelegram } from "@/app/providers/telegram"
 import { useInitUserMutation } from "@/redux/api/user.ts"
 
@@ -6,19 +6,19 @@ export const useInitUser = () => {
   const [initUser, { isLoading, isError, isSuccess, error }] =
     useInitUserMutation()
   const { user } = useTelegram()
-  const initialized = useRef(false)
 
   useEffect(() => {
     console.log("INIT USER TRIGGERED", user)
-    if (!user || initialized.current) return
-
-    initialized.current = true
+    if (!user) return
+    const key = `user-initialized-${user?.id}`
+    if (localStorage.getItem(key)) return
 
     initUser({
       id: String(user.id),
       first_name: user.first_name,
       photo_url: user.photo_url,
     })
+    localStorage.setItem(key, "true")
   }, [user])
 
   useEffect(() => {
