@@ -9,7 +9,7 @@ type User = {
   gender: "male" | "female"
   city: string
   goal: string
-  hobbies: []
+  hobbies: string[]
   height: string
 }
 
@@ -18,10 +18,10 @@ type UpdateUserData = {
   first_name?: string | undefined
   age?: string | undefined
   photo_url?: string[] | undefined
-  gender?: "male" | "female" | undefined
+  gender?: string | undefined
   city?: string | undefined
   goal?: string | undefined
-  hobbies?: [] | undefined
+  hobbies?: string[] | undefined
   height?: string | undefined
 }
 

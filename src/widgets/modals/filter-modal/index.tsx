@@ -2,7 +2,6 @@ import { AnimatePresence } from "framer-motion"
 import { useAppSelector } from "@/redux/hooks"
 import { motion } from "framer-motion"
 import { useCallback } from "react"
-import SaveSettingsNav from "@/shared/ui/nav-bar/save-settings-nav.tsx"
 import { Gender, Location } from "@/features/search"
 import { FilterSlide } from "@/ui"
 import { useNavigate } from "@tanstack/react-router"
@@ -11,6 +10,7 @@ import { formEmptyValues } from "@/app/providers/filter-form"
 import { useWatch } from "react-hook-form"
 import { useFilterForm } from "@/app/providers/filter-form/filter-form-context.tsx"
 import { useModalDrag } from "@/lib/utils/modal-drag"
+import SaveSettingsFilter from "@/widgets/nav-bar/save-settings-filter"
 
 export const FilterModal = () => {
   const form = useFilterForm()
@@ -107,7 +107,7 @@ export const FilterModal = () => {
               />
               <Location />
               <Gender />
-              <SaveSettingsNav reset={resetFilter} />
+              <SaveSettingsFilter reset={resetFilter} />
             </div>
           </motion.div>
         </motion.div>

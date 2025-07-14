@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useTelegram } from "@/app/providers/telegram"
-import { useInitUserMutation } from "@/redux/api/user.ts"
+import { useInitUserMutation } from "@/shared/api/user.ts"
 
 export const useInitUser = () => {
   const [initUser, { isLoading, isError, isSuccess, error }] =

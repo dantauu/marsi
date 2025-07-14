@@ -1,7 +1,7 @@
 import { SliderButtons, NotifyLastCard } from "@/features/slides"
 import { SliderCard } from "@/entities/slides"
 import { FilterButton } from "@/ui"
-import { useGetUsersQuery } from "@/redux/api/user.ts"
+import { useGetUsersQuery } from "@/shared/api/user.ts"
 import { useSearch } from "@tanstack/react-router"
 import { Route } from "@/app/routes/_app/_layout/slides"
 import LoadingBalls from "@/shared/ui/loading"
