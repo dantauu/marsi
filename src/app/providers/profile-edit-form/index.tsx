@@ -30,25 +30,40 @@ export const editSchema = z.object({
 
 export type EditFormSchema = z.infer<typeof editSchema>
 
-export function useFormEmptyValues(): EditFormSchema {
-  const { data: users } = useGetUsersQuery()
+export function useFormEmptyValues(): {values: EditFormSchema, isLoading: boolean} {
   const { user: telegramUser } = useTelegram()
+  const { data: users } = useGetUsersQuery()
   const user = users?.find((u) => Number(u.id) === telegramUser?.id)
 
-  return {
-    photo_url: Array.isArray(user?.photo_url)
-      ? user.photo_url
-      : user?.photo_url
-        ? [user.photo_url]
-        : [],
+  const fallbackUser = {
+    photo_url: [],
+    first_name: telegramUser?.first_name ?? "",
+    age: "16",
+    height: "140",
+    city: "",
+    gender: "",
+    goal: "",
+    hobbies: [],
+  }
 
-    first_name: user?.first_name ?? "",
-    age: user?.age ?? "16",
-    height: user?.height ?? "140",
-    city: user?.city ?? "",
-    gender: user?.gender ?? "",
-    goal: user?.goal ?? "",
-    hobbies: user?.hobbies ?? [],
+  const filledUser = user ?? fallbackUser
+
+  return {
+    values: {
+    photo_url: Array.isArray(filledUser?.photo_url)
+      ? filledUser?.photo_url
+      : filledUser?.photo_url
+        ? [filledUser?.photo_url]
+        : [],
+    first_name: filledUser?.first_name ?? "",
+    age: filledUser?.age ?? "16",
+    height: filledUser?.height ?? "140",
+    city: filledUser?.city ?? "",
+    gender: filledUser?.gender ?? "",
+    goal: filledUser?.goal ?? "",
+    hobbies: filledUser?.hobbies ?? [],
+    },
+    isLoading: false
   }
 }
 
