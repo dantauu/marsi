@@ -10,11 +10,13 @@ import { Overlay } from "@/widgets/overlay"
 import { useUpdateUserMutation } from "@/shared/api/user.ts"
 import { useTelegram } from "@/app/providers/telegram"
 import LoadingBalls from "@/shared/ui/loading"
+import { useNotify } from "@/lib/hooks/use-notify.ts"
 
 const EditProfile = () => {
   const { isEditOpen } = useAppSelector((state) => state.modal)
   const { user: telegramUser } = useTelegram()
   const [updateUser] = useUpdateUserMutation()
+  const { notify } = useNotify()
 
   const {
     values,
@@ -41,6 +43,16 @@ const EditProfile = () => {
     if (telegramUser) {
       await updateUser({ id: String(telegramUser.id), ...changedData })
     }
+
+
+    await notify(
+      updateUser({ id: String(telegramUser?.id), ...changedData }).unwrap(),
+      {
+        success: "Профиль успешно изменён",
+        error: "Ошибка",
+        loading: "Сохранение...",
+      }
+    )
 
     console.log("Изменённые поля:", changedData)
   }
