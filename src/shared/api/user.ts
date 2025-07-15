@@ -40,7 +40,7 @@ export const userApi = createApi({
           formData.append("file", file)
         })
         return {
-          url: "users/upload-photo",
+          url: "upload-photo",
           method: "POST",
           body: formData,
         }
