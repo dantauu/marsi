@@ -63,6 +63,7 @@ export const PhotoEdit = () => {
                 <img className="w-full h-full object-cover" src={imageSrc} />
                 <button
                   onClick={() => handleRemove(index)}
+                  type="button"
                   className="absolute top-1 right-1 rounded-full p-1 hover:bg-white"
                 >
                   <SvgCross className="text-white w-[40px] h-[40px]" />
