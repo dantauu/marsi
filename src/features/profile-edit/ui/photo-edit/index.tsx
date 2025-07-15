@@ -1,4 +1,3 @@
-import { useTelegram } from "@/app/providers/telegram"
 import plusIcon from "@/assets/icons-source/plus.svg"
 import React from "react"
 import SvgPlus from "@/assets/icons/Plus.tsx"
@@ -6,6 +5,7 @@ import { useEditProfileForm } from "@/app/providers/profile-edit-form/profile-ed
 import { useWatch } from "react-hook-form"
 import { useUploadPhotoMutation } from "@/shared/api/user.ts"
 import SvgCross from "@/assets/icons/Cross.tsx"
+import Button from "@/shared/ui/buttons/button.tsx"
 
 const pictureItems = [
   { id: 1, plusIcon: plusIcon },
@@ -14,7 +14,6 @@ const pictureItems = [
 ]
 
 export const PhotoEdit = () => {
-  const { user } = useTelegram()
   const { setValue, control } = useEditProfileForm()
   const photo_url = useWatch({ control, name: "photo_url" })
   const [uploadPhoto] = useUploadPhotoMutation()
@@ -42,16 +41,11 @@ export const PhotoEdit = () => {
     setValue("photo_url", updated, { shouldDirty: true })
   }
 
-  const userPhotoIndex = user?.photo_url && Array.isArray(photo_url) ? photo_url.findIndex((url) => !url) : -1
 
   return (
     <div className="flex justify-between mb-[20px] px-2">
       {pictureItems.map((item, index) => {
-        let imageSrc = photo_url[index] || undefined
-
-        if (!imageSrc && index === userPhotoIndex) {
-          imageSrc = user?.photo_url
-        }
+        const imageSrc = photo_url[index]
 
         return (
           <div
@@ -61,13 +55,14 @@ export const PhotoEdit = () => {
             {imageSrc ? (
               <>
                 <img className="w-full h-full object-cover" src={imageSrc} />
-                <button
+                <Button
                   onClick={() => handleRemove(index)}
                   type="button"
-                  className="absolute top-1 right-1 rounded-full p-1 hover:bg-white"
+                  variant="default"
+                  className="absolute top-1 right-1 rounded-full p-1"
                 >
                   <SvgCross className="text-white w-[40px] h-[40px]" />
-                </button>
+                </Button>
               </>
               ) : (
               <label className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer">
