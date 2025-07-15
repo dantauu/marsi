@@ -9,7 +9,7 @@ import { useEditProfileForm } from "@/app/providers/profile-edit-form/profile-ed
 import type { EditFormFields } from "@/app/types/global"
 import { useWatch } from "react-hook-form"
 import { FieldMeta } from "./edit-metadata.tsx"
-import { AddItem } from "@/features/profile-edit"
+import { AddHobbies } from "@/features/profile-edit"
 
 export const EditMainInfo = ({ className }: { className?: string }) => {
   const form = useEditProfileForm()
@@ -54,10 +54,11 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
   return (
     <div
       className={cn(
-        "flex flex-col gap-2 rounded-[18px] py-2 shadow-shadow-block",
+        "flex flex-col gap-4 rounded-[18px] py-2 shadow-shadow-block",
         className
       )}
     >
+      <p className="font-HelveticaB text-[21px] pl-2">Основное</p>
       <ItemEdit
         title="Имя"
         text={first_name}
@@ -76,13 +77,14 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
         text={height}
         onClick={() => handleOpen("height")}
       />
-      <AddItem
+      <AddHobbies
         onClick={() => handleOpen("hobbies")}
         onRemove={(hobby) => {
           const newHobby = hobbies.filter((h) => h !== hobby)
           setValue("hobbies", newHobby)
         }}
         text={hobbies}
+        className="mt-5"
       />
 
       <AnimatePresence>

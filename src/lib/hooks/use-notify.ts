@@ -17,7 +17,7 @@ export const useNotify = () => {
       },
       {
         style: {
-          marginTop: "0px",
+          marginTop: "80px",
         },
       }
     )

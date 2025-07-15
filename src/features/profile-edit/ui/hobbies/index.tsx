@@ -3,7 +3,7 @@ import SvgPlus from "@/assets/icons/Plus.tsx"
 import { cn } from "@/lib/utils.tsx"
 import SvgCrossOrigin from "@/assets/icons/CrossOrigin.tsx"
 
-export const AddItem = ({
+export const AddHobbies = ({
   className,
   onClick,
   onRemove,
