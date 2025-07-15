@@ -37,7 +37,7 @@ export const userApi = createApi({
       query: (files) => {
         const formData = new FormData()
         files.forEach((file) => {
-          formData.append("file", file)
+          formData.append("files", file)
         })
         return {
           url: "upload-photo",
