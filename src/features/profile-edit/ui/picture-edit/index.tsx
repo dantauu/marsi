@@ -26,9 +26,9 @@ export const PhotoEdit = () => {
     if (!file?.length) return
 
     try {
-      const uploadedUrls = await uploadPhoto([file[0]]).unwrap()
+      const uploadedUrls = await uploadPhoto(file[0]).unwrap()
       const updated = [...photo_url]
-      updated[index] = uploadedUrls[0]
+      updated[index] = uploadedUrls
       setValue("photo_url", updated, {shouldDirty: true})
     } catch (error) {
       console.log('error photo upload', error)

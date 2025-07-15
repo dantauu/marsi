@@ -33,12 +33,10 @@ export const userApi = createApi({
         body: userData,
       }),
     }),
-    uploadPhoto: builder.mutation<string[], File[]>({
-      query: (files) => {
+    uploadPhoto: builder.mutation<string, File>({
+      query: (file) => {
         const formData = new FormData()
-        files.forEach((file) => {
-          formData.append("files", file)
-        })
+        formData.append("files", file)
         return {
           url: "upload-photo",
           method: "POST",
