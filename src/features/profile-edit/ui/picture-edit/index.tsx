@@ -5,6 +5,7 @@ import SvgPlus from "@/assets/icons/Plus.tsx"
 import { useEditProfileForm } from "@/app/providers/profile-edit-form/profile-edit-context.tsx"
 import { useWatch } from "react-hook-form"
 import { useUploadPhotoMutation } from "@/shared/api/user.ts"
+import SvgCross from "@/assets/icons/Cross.tsx"
 
 const pictureItems = [
   { id: 1, plusIcon: plusIcon },
@@ -35,15 +36,21 @@ export const PhotoEdit = () => {
     }
   }
 
-  let userHavePhoto = false
+  const handleRemove = (index: number) => {
+    const updated = [...photo_url]
+    updated[index] = ""
+    setValue("photo_url", updated, { shouldDirty: true })
+  }
+
+  const userPhotoIndex = user?.photo_url && Array.isArray(photo_url) ? photo_url.findIndex((url) => !url) : -1
+
   return (
     <div className="flex justify-between mb-[20px] px-2">
       {pictureItems.map((item, index) => {
-        let imageSrc = photo_url[index]
+        let imageSrc = photo_url[index] || undefined
 
-        if (!imageSrc && user?.photo_url && !userHavePhoto) {
+        if (!imageSrc && index === userPhotoIndex) {
           imageSrc = user?.photo_url
-          userHavePhoto = true
         }
 
         return (
@@ -51,8 +58,17 @@ export const PhotoEdit = () => {
             key={item.id}
             className="relative w-[123px] h-[218px] overflow-hidden rounded-[10px] bg-[#D9D9D9]"
           >
-            <img className="w-full h-full object-cover" src={imageSrc} />
-            {!imageSrc && (
+            {imageSrc ? (
+              <>
+                <img className="w-full h-full object-cover" src={imageSrc} />
+                <button
+                  onClick={() => handleRemove(index)}
+                  className="absolute top-1 right-1 rounded-full p-1 hover:bg-white"
+                >
+                  <SvgCross className="text-white w-[40px] h-[40px]" />
+                </button>
+              </>
+              ) : (
               <label className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer">
                 <SvgPlus className="text-main-pink" />
                 <input

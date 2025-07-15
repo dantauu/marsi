@@ -41,6 +41,7 @@ export const userApi = createApi({
           url: "upload-photo",
           method: "POST",
           body: formData,
+          responseHandler: (response) => response.text()
         }
       }
     })
