@@ -14,7 +14,7 @@ export const useNotify = () => {
       error: options?.error || "Ошибка",
     }, {
       style: {
-        marginTop: "50px"
+        marginTop: "0px"
       }
     })
   }

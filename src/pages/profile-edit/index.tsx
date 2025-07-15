@@ -1,4 +1,4 @@
-import { EditAbout, EditMainInfo, PictureEdit } from "@/features/profile-edit"
+import { EditAbout, EditMainInfo, PhotoEdit } from "@/features/profile-edit"
 import {
   type EditFormSchema,
   EditProfileProvider,
@@ -48,7 +48,7 @@ const EditProfile = () => {
     await notify(
       updateUser({ id: String(telegramUser?.id), ...changedData }).unwrap(),
       {
-        success: "Профиль успешно изменён",
+        success: "Изменения сохранены",
         error: "Ошибка",
         loading: "Сохранение...",
       }
@@ -66,7 +66,7 @@ const EditProfile = () => {
       {isEditOpen && <Overlay />}
       <div data-testid="profile-edit" className="pb-[150px] pt-[120px]">
         <SaveNavBar className="pt-[80px]" />
-        <PictureEdit />
+        <PhotoEdit />
         <EditMainInfo />
         <EditAbout className="mt-7" />
       </div>
