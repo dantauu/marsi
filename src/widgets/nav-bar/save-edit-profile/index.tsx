@@ -24,11 +24,7 @@ export const SaveNavBar = ({ className }: { className?: string }) => {
         >
           Сбросить
         </Button>
-        <Button
-          className="w-[140px] h-[50px]"
-          type="submit"
-          variant="green"
-        >
+        <Button className="w-[140px] h-[50px]" type="submit" variant="green">
           Сохранить
         </Button>
       </div>

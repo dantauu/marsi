@@ -36,17 +36,29 @@ export const userApi = createApi({
     uploadPhoto: builder.mutation<string, File>({
       query: (file) => {
         const formData = new FormData()
-        formData.append("files", file)
+        formData.append("file", file)
         return {
           url: "upload-photo",
           method: "POST",
           body: formData,
-          responseHandler: (response) => response.text()
+          responseHandler: (response) => response.text(),
         }
-      }
-    })
+      },
+    }),
+    deletePhoto: builder.mutation<string, string>({
+      query: (file) => ({
+        url: `upload-photo?filename=${file}`,
+        method: "DELETE",
+        responseHandler: (response) => response.text(),
+      }),
+    }),
   }),
 })
 
-export const { useGetUsersQuery, useInitUserMutation, useUpdateUserMutation, useUploadPhotoMutation } =
-  userApi
+export const {
+  useGetUsersQuery,
+  useInitUserMutation,
+  useUpdateUserMutation,
+  useUploadPhotoMutation,
+  useDeletePhotoMutation,
+} = userApi
