@@ -44,7 +44,6 @@ const EditProfile = () => {
       await updateUser({ id: String(telegramUser.id), ...changedData })
     }
 
-
     await notify(
       updateUser({ id: String(telegramUser?.id), ...changedData }).unwrap(),
       {

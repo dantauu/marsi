@@ -3,7 +3,7 @@ import React from "react"
 import SvgPlus from "@/assets/icons/Plus.tsx"
 import { useEditProfileForm } from "@/app/providers/profile-edit-form/profile-edit-context.tsx"
 import { useWatch } from "react-hook-form"
-import { useUploadPhotoMutation } from "@/shared/api/user.ts"
+import { useDeletePhotoMutation, useUploadPhotoMutation } from "@/shared/api/user.ts"
 import SvgCross from "@/assets/icons/Cross.tsx"
 import Button from "@/shared/ui/buttons/button.tsx"
 
@@ -17,6 +17,7 @@ export const PhotoEdit = () => {
   const { setValue, control } = useEditProfileForm()
   const photo_url = useWatch({ control, name: "photo_url" })
   const [uploadPhoto] = useUploadPhotoMutation()
+  const [deletePhoto] = useDeletePhotoMutation()
 
   const handlePictureChange = async (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -29,18 +30,25 @@ export const PhotoEdit = () => {
       const uploadedUrls = await uploadPhoto(file[0]).unwrap()
       const updated = [...photo_url]
       updated[index] = uploadedUrls
-      setValue("photo_url", updated, {shouldDirty: true})
+      setValue("photo_url", updated, { shouldDirty: true })
     } catch (error) {
-      console.log('error photo upload', error)
+      console.log("error photo upload", error)
     }
   }
 
-  const handleRemove = (index: number) => {
+  const handleRemove = async (index: number) => {
     const updated = [...photo_url]
+    const deleteToFileName = updated[index]?.split("/").pop()
+    if (deleteToFileName) {
+      try {
+        await deletePhoto(deleteToFileName).unwrap()
+      } catch (err) {
+        console.log("Ошибка удаления", err)
+      }
+    }
     updated[index] = ""
     setValue("photo_url", updated, { shouldDirty: true })
   }
-
 
   return (
     <div className="flex justify-between mb-[20px] px-2">
@@ -64,7 +72,7 @@ export const PhotoEdit = () => {
                   <SvgCross className="text-white w-[40px] h-[40px]" />
                 </Button>
               </>
-              ) : (
+            ) : (
               <label className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer">
                 <SvgPlus className="text-main-pink" />
                 <input
