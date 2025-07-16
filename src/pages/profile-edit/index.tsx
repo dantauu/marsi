@@ -1,4 +1,4 @@
-import { EditAbout, EditMainInfo, PhotoEdit } from "@/features/profile-edit"
+import { EditMainInfo, PhotoEdit } from "@/features/profile-edit"
 import {
   type EditFormSchema,
   EditProfileProvider,
@@ -66,8 +66,7 @@ const EditProfile = () => {
       <div data-testid="profile-edit" className="pb-[150px] pt-[120px]">
         <SaveNavBar className="pt-[80px]" />
         <PhotoEdit />
-        <EditMainInfo />
-        <EditAbout className="mt-7" />
+        <EditMainInfo className="mt-10" />
       </div>
     </EditProfileProvider>
   )

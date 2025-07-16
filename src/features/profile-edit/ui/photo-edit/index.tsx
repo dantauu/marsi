@@ -3,7 +3,10 @@ import React from "react"
 import SvgPlus from "@/assets/icons/Plus.tsx"
 import { useEditProfileForm } from "@/app/providers/profile-edit-form/profile-edit-context.tsx"
 import { useWatch } from "react-hook-form"
-import { useDeletePhotoMutation, useUploadPhotoMutation } from "@/shared/api/user.ts"
+import {
+  useDeletePhotoMutation,
+  useUploadPhotoMutation,
+} from "@/shared/api/user.ts"
 import SvgCross from "@/assets/icons/Cross.tsx"
 import Button from "@/shared/ui/buttons/button.tsx"
 
