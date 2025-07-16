@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils.ts"
+import { cn } from "@/lib/utils/cn.tsx"
 import type { PropsWithChildren } from "react"
 
 type StoryProps = PropsWithChildren<{

@@ -1,6 +1,6 @@
 import Button from "@/shared/ui/buttons/button.tsx"
 import SvgPlus from "@/assets/icons/Plus.tsx"
-import { cn } from "@/lib/utils.tsx"
+import { cn } from "@/lib/utils/cn.tsx"
 import SvgCrossOrigin from "@/assets/icons/CrossOrigin.tsx"
 
 export const AddHobbies = ({

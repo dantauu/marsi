@@ -1,6 +1,6 @@
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useEditProfileForm } from "@/app/providers/profile-edit-form/profile-edit-context.tsx"
-import { cn } from "@/lib/utils.tsx"
+import { cn } from "@/lib/utils/cn.tsx"
 
 export const SaveNavBar = ({ className }: { className?: string }) => {
   const form = useEditProfileForm()

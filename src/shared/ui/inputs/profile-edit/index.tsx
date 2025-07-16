@@ -6,7 +6,7 @@ export const InputEdit = ({
   placeholder,
   showErrors,
 }: {
-  value: string | number | string[]
+  value: string | string[] | undefined
   onChange: (v: string) => void
   placeholder: string
   showErrors: boolean

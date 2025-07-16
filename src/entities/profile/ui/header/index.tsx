@@ -1,14 +1,11 @@
-import { useTelegram } from "@/app/providers/telegram"
 import SvgEdit from "@/assets/icons/Edit.tsx"
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useNavigate } from "@tanstack/react-router"
-import { useGetUsersQuery } from "@/shared/api/user.ts"
+import { useFindUser } from "@/lib/hooks/use-find-user.ts"
 
 export const ProfileHeader = () => {
   const navigate = useNavigate()
-  const { data: users } = useGetUsersQuery()
-  const { user: telegramUser } = useTelegram()
-  const user = users?.find((user) => Number(user?.id) === telegramUser?.id)
+  const { user } = useFindUser()
 
   const linkEditProfile = () => {
     navigate({ to: "/profile-edit" })
@@ -32,7 +29,7 @@ export const ProfileHeader = () => {
         <div className="">
           {user?.photo_url ? (
             <img
-              className="w-[78px] h-[78px] rounded-full"
+              className="w-[78px] h-[78px] rounded-full object-cover"
               src={
                 Array.isArray(user.photo_url)
                   ? (user.photo_url[0] ?? "")

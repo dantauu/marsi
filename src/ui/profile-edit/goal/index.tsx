@@ -6,7 +6,7 @@ export const EditGoal = ({
   value,
   onChange,
 }: {
-  value: string | number | string[]
+  value: string | string[] | undefined
   onChange: (v: string) => void
 }) => {
   const [isActive, setIsActive] = useState(

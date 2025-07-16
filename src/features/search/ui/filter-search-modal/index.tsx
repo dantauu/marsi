@@ -1,6 +1,6 @@
 import SvgArrow from "@/assets/icons/Arrow"
 import SvgLocation from "@/assets/icons/Location"
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils/cn.tsx"
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useCallback } from "react"
 import { useFilterForm } from "@/app/providers/filter-form/filter-form-context.tsx"
