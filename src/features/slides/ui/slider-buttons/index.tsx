@@ -7,12 +7,20 @@ import Button from "@/shared/ui/buttons/button.tsx"
 export const SliderButtons = () => {
   const dispatch = useAppDispatch()
   return (
-    <div className="flex items-center justify-between gap-5">
-      <Button variant="default" onClick={() => dispatch(handleDislike())}>
-        <SvgCross className="w-[82px] h-[82px] text-main-red" />
+    <div className="absolute bottom-0 w-full flex items-center justify-between px-3">
+      <Button
+        className="w-[100px] bg-main-red rounded-[14px] py-1"
+        variant="default"
+        onClick={() => dispatch(handleDislike())}
+      >
+        <SvgCross className="w-[50px] h-[50px] text-[#fff9] " />
       </Button>
-      <Button variant="default" onClick={() => dispatch(handleLike())}>
-        <SvgCheck className="w-[82px] h-[82px] text-main-green" />
+      <Button
+        className="w-[100px] bg-main-green rounded-[14px] py-1"
+        variant="default"
+        onClick={() => dispatch(handleLike())}
+      >
+        <SvgCheck className="w-[50px] h-[50px] text-[#fff9]" />
       </Button>
     </div>
   )

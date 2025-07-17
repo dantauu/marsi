@@ -44,7 +44,7 @@ function fetchUser(user?: User | null): Partial<EditFormSchema> {
     gender: user.gender ?? "",
     goal: user.goal ?? "",
     hobbies: Array.isArray(user.hobbies) ? user.hobbies : [],
-    deleted_photos: []
+    deleted_photos: [],
   }
 }
 

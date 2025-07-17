@@ -3,6 +3,9 @@ import SvgCross from "@/assets/icons/Cross"
 import type { User } from "@/app/types/global.d.ts"
 import { SwiperCard } from "@/entities/slides/lib/swiper-card"
 import { useUserPhoto } from "@/lib/hooks/use-user-photo.ts"
+import { MainInfoUser } from "@/entities/slides/ui/slider-card/main-info-user.tsx"
+import { SliderButtons } from "@/features/slides"
+import { SwipePhotos } from "@/ui/sliders/slides"
 
 export const SliderCard = ({ data }: { data: User[] }) => {
   //remove this
@@ -31,14 +34,14 @@ export const SliderCard = ({ data }: { data: User[] }) => {
       onMouseLeave={onSwipeEnd}
       style={{ touchAction: "none" }}
     >
-      <div className="relative w-full h-[550px]">
+      <div className="relative w-full h-screen">
         {data.map((item, index) => {
           const photo =
             userPhoto.get(item.id) ?? mockAvatar.get(Number(item.id)) ?? ""
           return (
             <div
               key={item.id}
-              className="absolute top-0 left-0 w-full h-full transition-all duration-500 ease-out"
+              className="absolute w-full h-fit border-1 rounded-[29px] transition-all duration-500 ease-out"
               style={{
                 transform: getCardTransform(index),
                 opacity:
@@ -72,21 +75,17 @@ export const SliderCard = ({ data }: { data: User[] }) => {
               />
 
               <div className="relative w-full h-full">
-                <div className="w-full h-full inset-0">
-                  <img
-                    className="w-full h-full object-cover object-center rounded-[28px]"
-                    src={
-                      Array.isArray(photo) ? (photo[0] ?? "") : (photo ?? "")
-                    }
-                    alt=""
-                  />
-                  <div className="absolute bottom-4 left-4">
-                    <p className="text-white text-[40px] font-ManropeM">
-                      {item.first_name}, {item.age}
-                    </p>
-                  </div>
+                <SwipePhotos
+                  photo_url={Array.isArray(photo) ? photo : [photo]}
+                />
+                <div className="absolute bottom-18 px-3">
+                  <p className="text-white text-[40px] font-ManropeM">
+                    {item.first_name}, {item.age}
+                  </p>
                 </div>
+                <SliderButtons />
               </div>
+              <MainInfoUser />
             </div>
           )
         })}

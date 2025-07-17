@@ -7,7 +7,10 @@ import {
 import { SaveNavBar } from "@/widgets/nav-bar/save-edit-profile"
 import { useAppSelector } from "@/redux/hooks.ts"
 import { Overlay } from "@/widgets/overlay"
-import { useDeletePhotoMutation, useUpdateUserMutation } from "@/shared/api/user.ts"
+import {
+  useDeletePhotoMutation,
+  useUpdateUserMutation,
+} from "@/shared/api/user.ts"
 import { useTelegram } from "@/app/providers/telegram"
 import LoadingBalls from "@/shared/ui/loading"
 import { useNotify } from "@/lib/hooks/use-notify.ts"
@@ -54,11 +57,12 @@ const EditProfile = () => {
 
     const normalizeData = {
       ...changedData,
-      gender: typeof gender === "string" ? getNormalizeGender(gender) : undefined,
+      gender:
+        typeof gender === "string" ? getNormalizeGender(gender) : undefined,
     }
 
     await notify(
-       updateUser({ id: String(telegramUser?.id), ...normalizeData }).unwrap(),
+      updateUser({ id: String(telegramUser?.id), ...normalizeData }).unwrap(),
       {
         success: "Изменения сохранены",
         error: "Ошибка",

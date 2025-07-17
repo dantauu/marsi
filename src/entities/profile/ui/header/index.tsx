@@ -11,7 +11,7 @@ export const ProfileHeader = () => {
     navigate({ to: "/profile-edit" })
   }
   return (
-    <div className="flex items-center justify-between mx-auto">
+    <div className="flex items-center justify-between mx-auto shadow-shadow-block rounded-[10px] p-1">
       <Button
         onClick={linkEditProfile}
         className="w-[116px] h-[39px] mini-mobile:w-[130px] mini-mobile:h-[42px] font-ManropeM"

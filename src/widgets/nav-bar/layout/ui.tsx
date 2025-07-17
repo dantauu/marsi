@@ -8,11 +8,11 @@ import { Link } from "@tanstack/react-router"
 import { useKeyboardOpen } from "@/lib/hooks/use-keyboard-open.ts"
 
 const navItems = [
-  { id: "More", Icon: SvgNewSet, text: "More", link: "/more" },
-  { id: "Subscribe", Icon: SvgDollar, text: "Subscribe", link: "/subscribe" },
-  { id: "Search", Icon: SvgSearch, text: "Search", link: "/search" },
-  { id: "Slides", Icon: SvgSlides, text: "Slides", link: "/slides" },
-  { id: "Profile", Icon: SvgProfile, text: "Profile", link: "/profile" },
+  { id: "More", Icon: SvgNewSet, text: "Ещё", link: "/more" },
+  { id: "Subscribe", Icon: SvgDollar, text: "Подписка", link: "/subscribe" },
+  { id: "Search", Icon: SvgSearch, text: "Поиск", link: "/search" },
+  { id: "Slides", Icon: SvgSlides, text: "Слайды", link: "/slides" },
+  { id: "Profile", Icon: SvgProfile, text: "Профиль", link: "/profile" },
 ]
 
 export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {

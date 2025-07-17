@@ -1,10 +1,11 @@
 import Block from "@/shared/ui/blocks/block.tsx"
 import { useFindUser } from "@/lib/hooks/use-find-user.ts"
 import { getGenderFormat } from "@/lib/utils/format-gender.ts"
+import { usePercentCount } from "@/lib/utils/get-percent-count"
 
 export const BasicInformation = () => {
-  const count = 100
   const { user } = useFindUser()
+  const { colors, percent } = usePercentCount()
   return (
     <div className="mt-[20px] shadow-shadow-block px-[8px] py-[8px] rounded-[10px]">
       <Block
@@ -12,7 +13,10 @@ export const BasicInformation = () => {
         text={
           <>
             Ключевая информация:
-            <span className="text-main-green font-HelveticaB"> {count}%</span>
+            <span style={{ color: colors }} className="font-HelveticaB">
+              {" "}
+              {percent}%
+            </span>
           </>
         }
       />
