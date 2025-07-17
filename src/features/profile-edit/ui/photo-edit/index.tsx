@@ -4,7 +4,6 @@ import SvgPlus from "@/assets/icons/Plus.tsx"
 import { useEditProfileForm } from "@/app/providers/profile-edit-form/profile-edit-context.tsx"
 import { useWatch } from "react-hook-form"
 import {
-  useDeletePhotoMutation,
   useUploadPhotoMutation,
 } from "@/shared/api/user.ts"
 import SvgCross from "@/assets/icons/Cross.tsx"
@@ -19,8 +18,8 @@ const pictureItems = [
 export const PhotoEdit = () => {
   const { setValue, control } = useEditProfileForm()
   const photo_url = useWatch({ control, name: "photo_url" })
+  const deletedPhotos = useWatch({ control, name: "deleted_photos" })
   const [uploadPhoto] = useUploadPhotoMutation()
-  const [deletePhoto] = useDeletePhotoMutation()
 
   const handlePictureChange = async (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -41,16 +40,13 @@ export const PhotoEdit = () => {
 
   const handleRemove = async (index: number) => {
     const updated = [...photo_url]
+    const deleted = deletedPhotos ?? []
     const deleteToFileName = updated[index]?.split("/").pop()
     if (deleteToFileName) {
-      try {
-        await deletePhoto(deleteToFileName).unwrap()
-      } catch (err) {
-        console.log("Ошибка удаления", err)
-      }
+      setValue("deleted_photos", [...deleted, deleteToFileName], { shouldDirty: true })
+      updated[index] = ""
+      setValue("photo_url", updated, { shouldDirty: true })
     }
-    updated[index] = ""
-    setValue("photo_url", updated, { shouldDirty: true })
   }
 
   return (

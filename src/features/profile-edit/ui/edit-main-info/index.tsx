@@ -3,13 +3,14 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { openEditModal, closeEditModal } from "@/redux/slices/modal-slice"
 import { EditModal } from "@/widgets/modals/edit-modal"
 import ItemEdit from "@/shared/ui/item-edit"
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils/cn.tsx"
 import { AnimatePresence } from "framer-motion"
 import { useEditProfileForm } from "@/app/providers/profile-edit-form/profile-edit-context"
 import type { EditFormFields } from "@/app/types/global"
 import { useWatch } from "react-hook-form"
 import { FieldMeta } from "./edit-metadata.tsx"
 import { AddHobbies } from "@/features/profile-edit"
+import { getGenderFormat } from "@/lib/utils/format-gender.ts"
 
 export const EditMainInfo = ({ className }: { className?: string }) => {
   const form = useEditProfileForm()
@@ -66,7 +67,7 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
       />
       <ItemEdit
         title="Пол"
-        text={gender}
+        text={getGenderFormat(gender)}
         onClick={() => handleOpen("gender")}
       />
       <ItemEdit title="Возраст" text={age} onClick={() => handleOpen("age")} />

@@ -1,5 +1,5 @@
 import type React from "react"
-import { cn } from "@/lib/utils.tsx"
+import { cn } from "@/lib/utils/cn.tsx"
 
 const variants = {
   green:

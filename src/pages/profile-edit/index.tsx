@@ -7,7 +7,7 @@ import {
 import { SaveNavBar } from "@/widgets/nav-bar/save-edit-profile"
 import { useAppSelector } from "@/redux/hooks.ts"
 import { Overlay } from "@/widgets/overlay"
-import { useUpdateUserMutation } from "@/shared/api/user.ts"
+import { useDeletePhotoMutation, useUpdateUserMutation } from "@/shared/api/user.ts"
 import { useTelegram } from "@/app/providers/telegram"
 import LoadingBalls from "@/shared/ui/loading"
 import { useNotify } from "@/lib/hooks/use-notify.ts"
@@ -16,6 +16,7 @@ const EditProfile = () => {
   const { isEditOpen } = useAppSelector((state) => state.modal)
   const { user: telegramUser } = useTelegram()
   const [updateUser] = useUpdateUserMutation()
+  const [deletePhoto] = useDeletePhotoMutation()
   const { notify } = useNotify()
 
   const {
@@ -39,13 +40,17 @@ const EditProfile = () => {
       return value !== defaultValue
     })
 
-    const changedData = Object.fromEntries(changedEntries)
-    if (telegramUser) {
-      await updateUser({ id: String(telegramUser.id), ...changedData })
+    const { deleted_photos = [] } = data
+
+    const changedData = Object.fromEntries(
+      changedEntries.filter(([key]) => key !== "deleted_photos")
+    )
+    for (const fileName of deleted_photos) {
+      await deletePhoto(fileName).unwrap()
     }
 
     await notify(
-      updateUser({ id: String(telegramUser?.id), ...changedData }).unwrap(),
+       updateUser({ id: String(telegramUser?.id), ...changedData }).unwrap(),
       {
         success: "Изменения сохранены",
         error: "Ошибка",

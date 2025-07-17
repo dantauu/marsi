@@ -10,7 +10,7 @@ export const GenderEdit = ({
   return (
     <div className="flex justify-between">
       <Button
-        className="w-[120px] h-[45px] text-[19px] duration-200"
+        className="w-[130px] h-[45px] text-[19px] duration-200"
         onClick={() => onChange("Мужской")}
         variant={value === "Мужской" ? "red" : "green"}
         type="button"
@@ -18,7 +18,7 @@ export const GenderEdit = ({
         Мужской
       </Button>
       <Button
-        className="w-[120px] h-[45px] text-[19px] duration-200"
+        className="w-[130px] h-[45px] text-[19px] duration-200"
         onClick={() => onChange("Женский")}
         variant={value === "Женский" ? "red" : "green"}
         type="button"

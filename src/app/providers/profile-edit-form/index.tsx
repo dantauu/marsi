@@ -2,17 +2,17 @@ import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { type PropsWithChildren, useCallback, useEffect, useRef } from "react"
 import { EditFormContext } from "./profile-edit-context.tsx"
-import { useTelegram } from "@/app/providers/telegram"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useGetUsersQuery } from "@/shared/api/user.ts"
 import type { User } from "@/app/types/global"
+import { useFindUser } from "@/lib/hooks/use-find-user.ts"
 
 export const editSchema = z.object({
   photo_url: z.array(z.string()),
   first_name: z.string(),
   age: z
     .string()
-    .nonempty({ message: "Введите возраст" }) // пустая строка
+    .nonempty({ message: "Введите возраст" })
     .refine(
       (val) => {
         const num = Number(val)
@@ -27,6 +27,7 @@ export const editSchema = z.object({
   height: z.string(),
   goal: z.string(),
   hobbies: z.array(z.string()),
+  deleted_photos: z.array(z.string()).optional(),
 })
 
 export type EditFormSchema = z.infer<typeof editSchema>
@@ -43,6 +44,7 @@ function fetchUser(user?: User | null): Partial<EditFormSchema> {
     gender: user.gender ?? "",
     goal: user.goal ?? "",
     hobbies: Array.isArray(user.hobbies) ? user.hobbies : [],
+    deleted_photos: []
   }
 }
 
@@ -51,9 +53,8 @@ export function useFormEmptyValues(): {
   values: Partial<EditFormSchema> | null
   isLoaded: boolean
 } {
-  const { user: telegramUser } = useTelegram()
-  const { data: users, isFetching } = useGetUsersQuery()
-  const user = users?.find((u) => Number(u.id) === telegramUser?.id) ?? null
+  const { isFetching } = useGetUsersQuery()
+  const { user } = useFindUser()
 
   const fallbackUser = {
     photo_url: [],

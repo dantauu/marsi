@@ -1,6 +1,6 @@
 import doubler from "@/assets/images/double.svg"
 import Button from "@/shared/ui/buttons/button.tsx"
-import { cn } from "@/lib/utils.tsx"
+import { cn } from "@/lib/utils/cn.tsx"
 import SvgCheckSvg from "@/assets/icons/CheckSvg.tsx"
 
 export const Purchase = () => {
