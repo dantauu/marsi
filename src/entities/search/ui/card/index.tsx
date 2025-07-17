@@ -1,9 +1,15 @@
 import type { UserCardSearch } from "@/app/types/global.d.ts"
 import Button from "@/shared/ui/buttons/button.tsx"
+import { useNavigate } from "@tanstack/react-router"
+import { Route as SlidesRoute } from "@/app/routes/_app/_layout/slides/$id.tsx"
 
-export const Card = ({ photo_url, first_name, age }: UserCardSearch) => {
+export const Card = ({ photo_url, first_name, age, id }: UserCardSearch) => {
+  const navigate = useNavigate()
   return (
-    <div className="flex flex-col gap-2 w-[182px] h-[285px]">
+    <div onClick={() => navigate({
+      to: SlidesRoute.to,
+      params: { id }
+    })} className="flex flex-col gap-2 w-[182px] h-[285px]">
       <div className="w-[182px] h-[253.4px] bg-[#c2c1c1] rounded-[28px]">
         {photo_url && (
           <img
