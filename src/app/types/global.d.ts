@@ -61,7 +61,7 @@ type Hobbies = {
 type EditFormFields = keyof EditFormSchemaOmit
 
 //Omits
-type EditFormSchemaOmit = Omit<EditFormSchema, "photo_url">
+type EditFormSchemaOmit = Omit<EditFormSchema, "photo_url" | "deleted_photos">
 type UserCardSearch = Omit<
   User,
   "gender" | "goal" | "city" | "hobbies" | "height"

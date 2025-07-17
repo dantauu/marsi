@@ -7,7 +7,7 @@ export const CityEdit = ({
   value,
   onChange,
 }: {
-  value: string | number | string[]
+  value: string | string[] | undefined
   onChange: (v: string) => void
 }) => {
   const [inputValue, setInputValue] = useState(
