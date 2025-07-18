@@ -1,11 +1,11 @@
 import { LikeCountNotify } from "@/features/search"
-import CardHuman from "@/widgets/card/ui"
-import { LayoutSwitch } from "@/ui/index.ts"
+import { LayoutSwitchButtons } from "@/ui/index.ts"
 import { FilterButton } from "@/ui/index.ts"
 import { useGetUsersQuery } from "@/shared/api/user.ts"
 import { Route } from "@/app/routes/_app/_layout/search"
 import { useSearch } from "@tanstack/react-router"
 import LoadingBalls from "@/shared/ui/loading"
+import { LayoutSwitch } from "@/widgets/card"
 
 const Search = () => {
   const searchParams = useSearch({ from: Route.id })
@@ -19,9 +19,9 @@ const Search = () => {
       <LikeCountNotify />
       <div className="flex px-[12px] items-center justify-between pb-[20px]">
         <FilterButton />
-        <LayoutSwitch />
+        <LayoutSwitchButtons />
       </div>
-      <CardHuman data={users} />
+      <LayoutSwitch data={users} />
     </div>
   )
 }

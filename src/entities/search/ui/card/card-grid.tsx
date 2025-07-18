@@ -1,8 +1,13 @@
-import type { UserCardSearch } from "@/app/types/global.d.ts"
+import type { UserCardGrid } from "@/app/types/global.d.ts"
 import { useNavigate } from "@tanstack/react-router"
 import { Route as SlidesRoute } from "@/app/routes/_app/_layout/slides/$id.tsx"
 
-export const Card = ({ photo_url, first_name, age, id }: UserCardSearch) => {
+export const CardGridLayout = ({
+  photo_url,
+  first_name,
+  age,
+  id,
+}: UserCardGrid) => {
   const navigate = useNavigate()
   return (
     <div
@@ -27,14 +32,10 @@ export const Card = ({ photo_url, first_name, age, id }: UserCardSearch) => {
           />
         )}
       </div>
-      <div className="flex items-center justify-between gap-2">
-        <div className="flex items-center gap-1.5">
-          <div className="flex">
-            <p className="font-HelveticaB text-[16px]">
-              {first_name}, {age}
-            </p>
-          </div>
-        </div>
+      <div className="">
+        <p className="font-HelveticaB text-[16px]">
+          {first_name}, {age}
+        </p>
       </div>
     </div>
   )
