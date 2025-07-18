@@ -18,7 +18,7 @@ export const SwipePhotos: React.FC<Props> = ({ photo_url }) => {
   })
 
   return (
-    <div {...handlers} style={{ userSelect: "none" }}>
+    <div className="select-none" {...handlers} style={{ userSelect: "none" }}>
       <div className="relative h-[500px]">
         <img
           src={photo_url[index]}
