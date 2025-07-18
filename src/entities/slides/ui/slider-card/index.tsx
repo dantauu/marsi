@@ -24,7 +24,7 @@ export const SliderCard = ({ data }: { data: User[] }) => {
 
   return (
     <div
-      className="relative w-full h-fit px-1 flex items-center justify-center overflow-hidden touch-none select-none"
+      className="relative w-full min-h-screen px-1 flex items-center justify-center overflow-hidden touch-none select-none"
       onMouseDown={onSwipeStart}
       onTouchStart={onSwipeStart}
       onMouseMove={onSwipeMove}
@@ -41,7 +41,7 @@ export const SliderCard = ({ data }: { data: User[] }) => {
           return (
             <div
               key={item.id}
-              className="flex flex-col gap-5 absolute w-full h-fit border-1 rounded-[29px] transition-all duration-500 ease-out"
+              className="flex flex-col gap-5 absolute w-full min-h-screen border-1 rounded-[29px] transition-all duration-500 ease-out"
               style={{
                 transform: getCardTransform(index),
                 opacity:
@@ -78,7 +78,7 @@ export const SliderCard = ({ data }: { data: User[] }) => {
                 <SwipePhotos
                   photo_url={Array.isArray(photo) ? photo : [photo]}
                 />
-                <div className="absolute bottom-18 z-40 px-3">
+                <div className="absolute bottom-18 z-50 px-3">
                   <p className="text-white text-[40px] font-ManropeM">
                     {item.first_name}, {item.age}
                   </p>
