@@ -1,7 +1,7 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from "@tanstack/react-router"
 import Slides from "@/pages/slides"
 
-export const Route = createFileRoute('/_app/_layout/slides/$id')({
+export const Route = createFileRoute("/_app/_layout/slides/$id")({
   component: RouteComponent,
 })
 

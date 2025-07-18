@@ -18,7 +18,9 @@ export const MainInfoUser = () => {
       </div>
       <div className="flex flex-col">
         <p className="font-HelveticaB text-[20px]">Увлечения</p>
-        <p className="text-[18px] shadow-shadow-block w-fit px-1 rounded-[8px]">{user?.hobbies || "Не указано"}</p>
+        <p className="text-[18px] shadow-shadow-block w-fit px-1 rounded-[8px]">
+          {user?.hobbies || "Не указано"}
+        </p>
       </div>
     </div>
   )

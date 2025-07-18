@@ -75,12 +75,14 @@ export const SliderCard = ({ data }: { data: User[] }) => {
               />
 
               <div className="relative w-full h-full">
-                  <SwipePhotos photo_url={Array.isArray(photo) ? photo : [photo]} />
-                  <div className="absolute bottom-18 px-3">
-                    <p className="text-white text-[40px] font-ManropeM">
-                      {item.first_name}, {item.age}
-                    </p>
-                  </div>
+                <SwipePhotos
+                  photo_url={Array.isArray(photo) ? photo : [photo]}
+                />
+                <div className="absolute bottom-18 px-3">
+                  <p className="text-white text-[40px] font-ManropeM">
+                    {item.first_name}, {item.age}
+                  </p>
+                </div>
                 <SliderButtons />
               </div>
               <MainInfoUser />

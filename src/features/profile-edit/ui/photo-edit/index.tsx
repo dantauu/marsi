@@ -3,9 +3,7 @@ import React from "react"
 import SvgPlus from "@/assets/icons/Plus.tsx"
 import { useEditProfileForm } from "@/app/providers/profile-edit-form/profile-edit-context.tsx"
 import { useWatch } from "react-hook-form"
-import {
-  useUploadPhotoMutation,
-} from "@/shared/api/user.ts"
+import { useUploadPhotoMutation } from "@/shared/api/user.ts"
 import SvgCross from "@/assets/icons/Cross.tsx"
 import Button from "@/shared/ui/buttons/button.tsx"
 
@@ -43,7 +41,9 @@ export const PhotoEdit = () => {
     const deleted = deletedPhotos ?? []
     const deleteToFileName = updated[index]?.split("/").pop()
     if (deleteToFileName) {
-      setValue("deleted_photos", [...deleted, deleteToFileName], { shouldDirty: true })
+      setValue("deleted_photos", [...deleted, deleteToFileName], {
+        shouldDirty: true,
+      })
       updated[index] = ""
       setValue("photo_url", updated, { shouldDirty: true })
     }

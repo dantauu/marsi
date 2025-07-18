@@ -55,11 +55,11 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
   return (
     <div
       className={cn(
-        "flex flex-col gap-4 rounded-[18px] py-2 shadow-shadow-block",
+        "flex flex-col gap-4 rounded-[18px] p-2 shadow-shadow-block",
         className
       )}
     >
-      <p className="font-HelveticaB text-[21px] pl-2">Основное</p>
+      <p className="font-HelveticaB text-[21px]">Основное</p>
       <ItemEdit
         title="Имя"
         text={first_name}
