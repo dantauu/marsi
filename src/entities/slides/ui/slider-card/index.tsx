@@ -23,8 +23,9 @@ export const SliderCard = ({ data }: { data: User[] }) => {
   } = SwiperCard()
 
   return (
+    <div className="flex flex-col gap-5 w-full h-full mb-20 border-1 rounded-[29px]">
     <div
-      className="relative w-full min-h-screen px-1 flex items-center justify-center overflow-hidden touch-none select-none"
+      className="relative w-full h-[500px] flex justify-center overflow-hidden touch-none select-none"
       onMouseDown={onSwipeStart}
       onTouchStart={onSwipeStart}
       onMouseMove={onSwipeMove}
@@ -32,16 +33,16 @@ export const SliderCard = ({ data }: { data: User[] }) => {
       onMouseUp={onSwipeEnd}
       onTouchEnd={onSwipeEnd}
       onMouseLeave={onSwipeEnd}
-      style={{ touchAction: "none" }}
+      style={{ touchAction: "pan-y" }}
     >
-      <div className="relative w-full h-screen">
+      <div className="relative w-full h-min">
         {data.map((item, index) => {
           const photo =
             userPhoto.get(item.id) ?? mockAvatar.get(Number(item.id)) ?? ""
           return (
             <div
               key={item.id}
-              className="flex flex-col gap-5 absolute w-full min-h-screen border-1 rounded-[29px] transition-all duration-500 ease-out"
+              className="flex flex-col gap-5 absolute w-full transition-all duration-500 ease-out"
               style={{
                 transform: getCardTransform(index),
                 opacity:
@@ -85,11 +86,12 @@ export const SliderCard = ({ data }: { data: User[] }) => {
                 </div>
                 <SliderButtons />
               </div>
-              <MainInfoUser />
             </div>
           )
         })}
       </div>
+    </div>
+      <MainInfoUser />
     </div>
   )
 }

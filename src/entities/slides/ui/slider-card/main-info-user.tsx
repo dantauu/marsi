@@ -3,7 +3,7 @@ import { useFindUser } from "@/lib/hooks/use-find-user.ts"
 export const MainInfoUser = () => {
   const { user } = useFindUser()
   return (
-    <div className="relative z-10 flex flex-col gap-2 py-4 px-4">
+    <div className="flex flex-col gap-2 p-4 overflow-y-scroll bg-white rounded-[29px] shadow-shadow-block">
       <div className="flex flex-col">
         <p className="font-HelveticaB text-[20px]">Цель знакомства</p>
         <p className="text-[18px]">{user?.goal ?? "Не указано"}</p>
