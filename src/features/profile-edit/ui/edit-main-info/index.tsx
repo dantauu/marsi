@@ -55,10 +55,11 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
   return (
     <div
       className={cn(
-        "flex flex-col gap-4 rounded-[18px] p-2 shadow-shadow-block",
+        "rounded-[18px] shadow-shadow-block",
         className
       )}
     >
+      <div className="flex flex-col gap-4 p-2">
       <p className="font-HelveticaB text-[21px]">Основное</p>
       <ItemEdit
         title="Имя"
@@ -87,6 +88,7 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
         text={hobbies}
         className="mt-5"
       />
+      </div>
 
       <AnimatePresence>
         {isEditOpen && currentField && (
