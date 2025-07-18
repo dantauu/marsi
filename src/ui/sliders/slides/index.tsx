@@ -34,7 +34,7 @@ export const SwipePhotos: React.FC<Props> = ({ photo_url }) => {
 
   return (
     <div
-      className="relative select-none"
+      className="relative select-none z-0"
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
     >
@@ -46,19 +46,14 @@ export const SwipePhotos: React.FC<Props> = ({ photo_url }) => {
           draggable={false}
         />
       </div>
-
-      {/* Левая часть */}
       <div
         className="absolute left-0 top-0 bottom-0 w-[50%] z-10"
         onClick={handleClickLeft}
       />
-      {/* Правая часть */}
       <div
         className="absolute right-0 top-0 bottom-0 w-[50%] z-10"
         onClick={handleClickRight}
       />
-
-      {/* Индикаторы */}
       <div className="flex justify-center gap-3 absolute top-8 left-0 right-0">
         {photo_url.map((_, i) => (
           <div

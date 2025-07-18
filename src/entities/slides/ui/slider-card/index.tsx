@@ -78,7 +78,7 @@ export const SliderCard = ({ data }: { data: User[] }) => {
                 <SwipePhotos
                   photo_url={Array.isArray(photo) ? photo : [photo]}
                 />
-                <div className="absolute bottom-18 px-3">
+                <div className="absolute bottom-18 z-20 px-3">
                   <p className="text-white text-[40px] font-ManropeM">
                     {item.first_name}, {item.age}
                   </p>

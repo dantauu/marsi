@@ -7,7 +7,7 @@ import Button from "@/shared/ui/buttons/button.tsx"
 export const SliderButtons = () => {
   const dispatch = useAppDispatch()
   return (
-    <div className="absolute bottom-0 w-full flex items-center justify-between px-3">
+    <div className="absolute bottom-0 z-20 w-full flex items-center justify-between px-3">
       <Button
         className="w-[100px] bg-main-red rounded-[14px] py-1"
         variant="default"
