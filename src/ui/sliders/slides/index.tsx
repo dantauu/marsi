@@ -18,7 +18,7 @@ export const SwipePhotos: React.FC<Props> = ({ photo_url }) => {
   })
 
   return (
-    <div className="select-none" {...handlers} style={{ userSelect: "none" }}>
+    <div {...handlers} style={{ userSelect: "none" }}>
       <div className="relative h-[500px]">
         <img
           src={photo_url[index]}
@@ -27,23 +27,11 @@ export const SwipePhotos: React.FC<Props> = ({ photo_url }) => {
         />
       </div>
       <div
-        style={{
-          position: "absolute",
-          left: 0,
-          top: 0,
-          bottom: 0,
-          width: "50%",
-        }}
+        className="absolute left-0 top-0 bottom-0 w-[50%] select-none"
         onClick={() => handSwipe("Right")}
       />
       <div
-        style={{
-          position: "absolute",
-          right: 0,
-          top: 0,
-          bottom: 0,
-          width: "50%",
-        }}
+        className="absolute right-0 top-0 bottom-0 w-[50%] select-none"
         onClick={() => handSwipe("Left")}
       />
       <div className="flex justify-center gap-3 absolute top-8 left-0 right-0">
