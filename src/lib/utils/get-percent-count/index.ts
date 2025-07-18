@@ -58,7 +58,7 @@ export const useAllPercentCount = () => {
                 ? "#a7cc00"
                 : percent <= 87.5
                   ? "#a7cc00"
-                  : "#31c29f"
+                  : "#69ff6d"
 
   return { colors, percent }
 }
