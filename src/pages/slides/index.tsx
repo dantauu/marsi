@@ -1,4 +1,4 @@
-import { SliderButtons, NotifyLastCard } from "@/features/slides"
+import { NotifyLastCard } from "@/features/slides"
 import { SliderCard } from "@/entities/slides"
 import { FilterButton } from "@/ui"
 import { useGetUsersQuery } from "@/shared/api/user.ts"
@@ -15,11 +15,10 @@ const Slides = () => {
   if (!users) throw new Error("Error Data")
   console.log("DATAUSERS", users)
   return (
-    <div data-testid="slides" className="flex flex-col gap-5 px-2 pb-[150px]">
+    <div data-testid="slides" className="flex flex-col gap-5 px-2 pb-[90px]">
       <NotifyLastCard />
       <FilterButton />
       <SliderCard data={id ? (selectedUser ? [selectedUser] : []) : users} />
-      <SliderButtons />
     </div>
   )
 }
