@@ -1,5 +1,5 @@
 import { LikeCountNotify } from "@/features/search"
-import CardHuman from "@/widgets/card/ui"
+import CardGrid from "@/widgets/card/layout/grid.tsx"
 import { LayoutSwitch } from "@/ui/index.ts"
 import { FilterButton } from "@/ui/index.ts"
 import { useGetUsersQuery } from "@/shared/api/user.ts"
@@ -21,7 +21,7 @@ const Search = () => {
         <FilterButton />
         <LayoutSwitch />
       </div>
-      <CardHuman data={users} />
+      <CardGrid data={users} />
     </div>
   )
 }

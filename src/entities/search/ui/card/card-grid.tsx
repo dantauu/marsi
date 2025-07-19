@@ -2,7 +2,7 @@ import type { UserCardSearch } from "@/app/types/global.d.ts"
 import { useNavigate } from "@tanstack/react-router"
 import { Route as SlidesRoute } from "@/app/routes/_app/_layout/slides/$id.tsx"
 
-export const Card = ({ photo_url, first_name, age, id }: UserCardSearch) => {
+export const CardGridLayout = ({ photo_url, first_name, age, id }: UserCardSearch) => {
   const navigate = useNavigate()
   return (
     <div

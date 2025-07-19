@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
-import CardHuman from "@/widgets/card/ui.tsx"
-import { Card } from "@/entities/search/index.ts"
+import CardGrid from "@/widgets/card/card-grid.tsx"
+import { CardGridLayout } from "@/entities/search/index.ts"
 import avatar from "@/assets/images/girl-three.png"
 
 const meta = {
-  title: "ui/Card",
-  component: CardHuman,
+  title: "ui/CardGridLayout",
+  component: CardGrid,
   argTypes: {
     children: {
       control: false,
@@ -17,6 +17,6 @@ export default meta
 
 export const Card_Human: StoryObj = {
   render: () => {
-    return <Card id={"1"} first_name={"Катя"} age={"18"} photo_url={[avatar]} />
+    return <CardGridLayout id={"1"} first_name={"Катя"} age={"18"} photo_url={[avatar]} />
   },
 }

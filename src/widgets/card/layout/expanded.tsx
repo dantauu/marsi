@@ -1,10 +1,10 @@
-import { Card } from "@/entities/search/index.ts"
+import { CardGridLayout } from "@/entities/search/index.ts"
 import type { UserCardSearch } from "@/app/types/global.d.ts"
 import { Route } from "@/app/routes/_app/_layout/search"
 import { useSearch } from "@tanstack/react-router"
 import { useUserPhoto } from "@/lib/hooks/use-user-photo.ts"
 
-const CardHuman = ({ data }: { data: UserCardSearch[] }) => {
+const CardExpanded = ({ data }: { data: UserCardSearch[] }) => {
   //remove this
   const params = useSearch({ from: Route.id })
   const { mockAvatar, userPhoto } = useUserPhoto(params)
@@ -14,7 +14,7 @@ const CardHuman = ({ data }: { data: UserCardSearch[] }) => {
         const photo =
           userPhoto.get(item.id) ?? mockAvatar.get(Number(item.id)) ?? []
         return (
-          <Card
+          <CardGridLayout
             id={item.id}
             key={item.id}
             photo_url={Array.isArray(photo) ? photo : [photo]}
@@ -27,4 +27,4 @@ const CardHuman = ({ data }: { data: UserCardSearch[] }) => {
   )
 }
 
-export default CardHuman
+export default CardExpanded
