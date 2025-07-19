@@ -1,10 +1,10 @@
 import { CardGridLayout } from "@/entities/search/index.ts"
-import type { UserCardSearch } from "@/app/types/global.d.ts"
+import type { UserCardGrid } from "@/app/types/global.d.ts"
 import { Route } from "@/app/routes/_app/_layout/search"
 import { useSearch } from "@tanstack/react-router"
 import { useUserPhoto } from "@/lib/hooks/use-user-photo.ts"
 
-const CardGrid = ({ data }: { data: UserCardSearch[] }) => {
+const CardGrid = ({ data }: { data: UserCardGrid[] }) => {
   //remove this
   const params = useSearch({ from: Route.id })
   const { mockAvatar, userPhoto } = useUserPhoto(params)

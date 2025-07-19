@@ -1,8 +1,15 @@
-import type { UserCardSearch } from "@/app/types/global.d.ts"
+import type { UserCardExpanded } from "@/app/types/global.d.ts"
 import { useNavigate } from "@tanstack/react-router"
 import { Route as SlidesRoute } from "@/app/routes/_app/_layout/slides/$id.tsx"
 
-export const CardExpandedLayout = ({ photo_url, first_name, age, id }: UserCardSearch) => {
+export const CardExpandedLayout = ({
+  id,
+  photo_url,
+  first_name,
+  age,
+  goal,
+  height,
+}: UserCardExpanded) => {
   const navigate = useNavigate()
   return (
     <div
@@ -12,9 +19,9 @@ export const CardExpandedLayout = ({ photo_url, first_name, age, id }: UserCardS
           params: { id },
         })
       }
-      className="flex flex-col gap-2 w-[182px] h-[285px]"
+      className="relative flex flex-col items-center gap-2 w-[300px] h-[380px]"
     >
-      <div className="w-[182px] h-[253.4px] bg-[#c2c1c1] rounded-[28px]">
+      <div className="absolute w-full h-full bg-[#c2c1c1] rounded-[28px]">
         {photo_url && (
           <img
             className="w-full h-full rounded-[28px] object-cover"
@@ -27,14 +34,16 @@ export const CardExpandedLayout = ({ photo_url, first_name, age, id }: UserCardS
           />
         )}
       </div>
-      <div className="flex items-center justify-between gap-2">
-        <div className="flex items-center gap-1.5">
-          <div className="flex">
-            <p className="font-HelveticaB text-[16px]">
-              {first_name}, {age} все сосали
-            </p>
-          </div>
-        </div>
+      <div className="flex flex-col absolute z-5 bottom-2 left-3">
+        <p className="font-HelveticaB text-[#ffffffc2] text-[21px]">
+          {first_name}, {age}
+        </p>
+        <p className="font-HelveticaB text-[#ffffffc2] text-[18px]">
+          Цель: {goal || "Не указано"}{" "}
+        </p>
+        <p className="font-HelveticaB text-[#ffffffc2] text-[18px]">
+          Рост: {height || "Не указано"}{" "}
+        </p>
       </div>
     </div>
   )

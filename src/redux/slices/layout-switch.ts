@@ -7,7 +7,7 @@ type LayoutState = {
 }
 
 const initialState: LayoutState = {
-  layout: "grid"
+  layout: "grid",
 }
 
 export const layoutSlice = createSlice({
@@ -23,8 +23,5 @@ export const layoutSlice = createSlice({
   },
 })
 
-export const {
-  setLayout,
-  toggleLayout,
-} = layoutSlice.actions
+export const { setLayout, toggleLayout } = layoutSlice.actions
 export default layoutSlice.reducer

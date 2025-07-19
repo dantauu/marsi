@@ -17,6 +17,13 @@ export default meta
 
 export const Card_Human: StoryObj = {
   render: () => {
-    return <CardGridLayout id={"1"} first_name={"Катя"} age={"18"} photo_url={[avatar]} />
+    return (
+      <CardGridLayout
+        id={"1"}
+        first_name={"Катя"}
+        age={"18"}
+        photo_url={[avatar]}
+      />
+    )
   },
 }

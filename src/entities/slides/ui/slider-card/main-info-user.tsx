@@ -6,21 +6,34 @@ export const MainInfoUser = () => {
     <div className="flex flex-col gap-2 p-4 overflow-y-scroll bg-white rounded-[29px] shadow-shadow-block">
       <div className="flex flex-col">
         <p className="font-HelveticaB text-[20px]">Цель знакомства</p>
-        <p className="text-[18px]">{user?.goal ?? "Не указано"}</p>
+        <p className="text-[18px]">{user?.goal || "Не указано"}</p>
       </div>
       <div className="flex flex-col">
         <p className="font-HelveticaB text-[20px]">Рост</p>
-        <p className="text-[18px]">{user?.height ?? "Не указано"}</p>
+        <p className="text-[18px]">{user?.height || "Не указано"}</p>
       </div>
       <div className="flex flex-col">
         <p className="font-HelveticaB text-[20px]">Город</p>
-        <p className="text-[18px]">{user?.city ?? "Не указано"}</p>
+        <p className="text-[18px]">{user?.city || "Не указано"}</p>
       </div>
       <div className="flex flex-col">
         <p className="font-HelveticaB text-[20px]">Увлечения</p>
-        <p className="text-[18px] shadow-shadow-block w-fit px-1 rounded-[8px]">
-          {(user?.hobbies.map((item) => item).join(", ") ?? "Не указано")}
-        </p>
+        <div className="flex">
+          {user?.hobbies?.length ? (
+            <div className="flex flex-wrap gap-4">
+              {user?.hobbies?.map((item, index) => (
+                <p
+                  key={index}
+                  className="shadow-shadow-block p-1 rounded-[5px]"
+                >
+                  {item}
+                </p>
+              ))}
+            </div>
+          ) : (
+            <p className="text-[18px]">Не указано</p>
+          )}
+        </div>
       </div>
     </div>
   )
