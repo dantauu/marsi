@@ -5,7 +5,7 @@ import { useGetUsersQuery } from "@/shared/api/user.ts"
 import { Route } from "@/app/routes/_app/_layout/search"
 import { useSearch } from "@tanstack/react-router"
 import LoadingBalls from "@/shared/ui/loading"
-import { LayoutSwitch } from "@/widgets/card"
+import { LayoutCard } from "@/widgets/card"
 
 const Search = () => {
   const searchParams = useSearch({ from: Route.id })
@@ -21,7 +21,7 @@ const Search = () => {
         <FilterButton />
         <LayoutSwitchButtons />
       </div>
-      <LayoutSwitch data={users} />
+      <LayoutCard data={users} />
     </div>
   )
 }
