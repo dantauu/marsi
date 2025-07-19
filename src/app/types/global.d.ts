@@ -38,6 +38,7 @@ type FilteredUsers = {
   maxHeight: number
   city: string
   gender: string
+  limit: number
 }
 
 type Locations = {

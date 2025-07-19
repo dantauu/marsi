@@ -1,6 +1,6 @@
 import type { User } from "@/app/types/global"
 
-export const MainInfoUser = ({ user }: { user: User | undefined }) => {
+export const MainInfoUser = ({ user }: { user: User }) => {
   return (
         <div className="flex flex-col gap-2 p-4 overflow-y-scroll bg-white rounded-[29px] shadow-shadow-block">
           <div className="flex flex-col">

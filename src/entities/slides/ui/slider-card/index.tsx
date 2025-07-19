@@ -6,14 +6,10 @@ import { useUserPhoto } from "@/lib/hooks/use-user-photo.ts"
 import { MainInfoUser } from "@/entities/slides/ui/slider-card/main-info-user.tsx"
 import { SliderButtons } from "@/features/slides"
 import { SwipePhotos } from "@/ui/sliders/slides"
-import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
 
 export const SliderCard = ({ data }: { data: User[] }) => {
   //remove this
   const { mockAvatar, userPhoto } = useUserPhoto()
-  const { user: thisUser } = useCurrentUser()
-  const currentUser = data.find((user) => user.id === thisUser?.id)
-  console.log("CURRENT USER", currentUser)
   const {
     onSwipeStart,
     onSwipeMove,
@@ -94,7 +90,7 @@ export const SliderCard = ({ data }: { data: User[] }) => {
           })}
         </div>
       </div>
-      {currentUser && <MainInfoUser user={currentUser} />}
+      <MainInfoUser user={data[currentIndex]} />
     </div>
   )
 }
