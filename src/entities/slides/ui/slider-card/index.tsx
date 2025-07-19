@@ -10,7 +10,6 @@ import { SwipePhotos } from "@/ui/sliders/slides"
 export const SliderCard = ({ data }: { data: User[] }) => {
   //remove this
   const { mockAvatar, userPhoto } = useUserPhoto()
-
   const {
     onSwipeStart,
     onSwipeMove,
@@ -91,7 +90,7 @@ export const SliderCard = ({ data }: { data: User[] }) => {
           })}
         </div>
       </div>
-      <MainInfoUser />
+      <MainInfoUser user={data[currentIndex]} />
     </div>
   )
 }
