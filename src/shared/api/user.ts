@@ -19,6 +19,9 @@ export const userApi = createApi({
         ...(params ? { params } : {}),
       }),
     }),
+    getUserById: builder.query<User, string>({
+      query: (id) => `user-id/${id}`
+    }),
     initUser: builder.mutation<User, UserInit>({
       query: (userData) => ({
         url: "users/init",
@@ -57,6 +60,7 @@ export const userApi = createApi({
 
 export const {
   useGetUsersQuery,
+  useGetUserByIdQuery,
   useInitUserMutation,
   useUpdateUserMutation,
   useUploadPhotoMutation,

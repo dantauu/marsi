@@ -13,7 +13,7 @@ const tabs = {
   },
 } as const
 
-export const LayoutSwitch = ({ data }: { data: UserCardExpanded[] }) => {
+export const LayoutCard = ({ data }: { data: UserCardExpanded[] }) => {
   const layout = useAppSelector((state) => state.layout_switch.layout)
   const { Component } = tabs[layout]
   return (

@@ -1,7 +1,7 @@
-import { useFindUser } from "@/lib/hooks/use-find-user.ts"
+import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
 
 export const usePercentCount = () => {
-  const { user } = useFindUser()
+  const { user } = useCurrentUser()
   const fields = [
     user?.age,
     user?.goal,
@@ -28,7 +28,7 @@ export const usePercentCount = () => {
 }
 
 export const useAllPercentCount = () => {
-  const { user } = useFindUser()
+  const { user } = useCurrentUser()
   const fields = [
     user?.age,
     user?.goal,
