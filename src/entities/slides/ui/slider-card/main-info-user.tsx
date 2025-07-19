@@ -19,7 +19,7 @@ export const MainInfoUser = () => {
       <div className="flex flex-col">
         <p className="font-HelveticaB text-[20px]">Увлечения</p>
         <p className="text-[18px] shadow-shadow-block w-fit px-1 rounded-[8px]">
-          {user?.hobbies.join(", ") ?? "Не указано"}
+          {(user?.hobbies.map((item) => item).join(", ") ?? "Не указано")}
         </p>
       </div>
     </div>
