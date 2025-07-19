@@ -19,7 +19,7 @@ export const MainInfoUser = ({ user }: { user: User }) => {
             <p className="font-HelveticaB text-[20px]">Увлечения</p>
             <div className="flex">
               {user.hobbies?.length ? (
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-wrap gap-x-3 gap-y-2">
                   {user.hobbies?.map((item, index) => (
                     <p
                       key={index}
