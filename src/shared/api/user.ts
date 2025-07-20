@@ -13,10 +13,10 @@ export const userApi = createApi({
   }),
   endpoints: (builder) => ({
     getUsers: builder.query<User[], void | Partial<FilteredUsers>>({
-      query: (params, limit = 20) => ({
+      query: (params, limit = 10, page = 1) => ({
         url: "users",
         method: "GET",
-        params: { ...params, limit },
+        params: { ...params, limit, offset: (page - 1) * limit },
       }),
     }),
     getUserById: builder.query<User, string>({

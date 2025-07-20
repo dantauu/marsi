@@ -6,8 +6,10 @@ import { Route } from "@/app/routes/_app/_layout/search"
 import { useSearch } from "@tanstack/react-router"
 import LoadingBalls from "@/shared/ui/loading"
 import { LayoutCard } from "@/widgets/card"
+import { useInView } from "react-intersection-observer"
 
 const Search = () => {
+  const { ref } = useInView({ threshold: 0.5 })
   const searchParams = useSearch({ from: Route.id })
   const { data: users, isLoading } = useGetUsersQuery(searchParams)
 
@@ -22,6 +24,7 @@ const Search = () => {
         <LayoutSwitchButtons />
       </div>
       <LayoutCard data={users} />
+      <div ref={ref} className="bg-red-500 w-full h-10"></div>
     </div>
   )
 }
