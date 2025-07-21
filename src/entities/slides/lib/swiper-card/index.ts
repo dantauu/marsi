@@ -54,7 +54,14 @@ export const SwiperCard = () => {
 
   const getOpacity = (x: number) => {
     const absX = Math.min(Math.abs(x), SWIPE_THRESHOLD)
-    return absX / (SWIPE_THRESHOLD / 2)
+    return absX / (SWIPE_THRESHOLD / 1.2)
+  }
+
+  const getCardRotation = () => {
+    const maxAngle = 5
+    const angle = (position.x / SWIPE_THRESHOLD) * maxAngle
+
+    return `rotateZ(${Math.max(-maxAngle, Math.min(angle, maxAngle))}deg)`
   }
 
   const getCardTransform = (index: number) => {
@@ -77,6 +84,7 @@ export const SwiperCard = () => {
   return {
     getCardTransform,
     getOpacity,
+    getCardRotation,
     onSwipeStart,
     onSwipeMove,
     onSwipeEnd,

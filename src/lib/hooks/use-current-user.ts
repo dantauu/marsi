@@ -5,8 +5,15 @@ export const useCurrentUser = () => {
   const { user: telegramUser } = useTelegram()
   const telegramUserId = telegramUser?.id
 
-  const { data: user, isLoading, isError, isFetching, error, refetch } = useGetUserByIdQuery(String(telegramUserId), {
+  const {
+    data: user,
+    isLoading,
+    isError,
+    isFetching,
+    error,
+    refetch,
+  } = useGetUserByIdQuery(String(telegramUserId), {
     skip: !telegramUserId,
   })
-  return { user: user ?? null, isError, isLoading, isFetching, error, refetch}
+  return { user: user ?? null, isError, isLoading, isFetching, error, refetch }
 }

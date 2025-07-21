@@ -39,6 +39,7 @@ type FilteredUsers = {
   city: string
   gender: string
   limit: number
+  offset: number
 }
 
 type Locations = {
