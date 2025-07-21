@@ -12,7 +12,7 @@ const CardGrid = ({ data }: { data: UserCardGrid[] }) => {
     <div className="grid grid-cols-2 justify-items-center gap-y-3">
       {data.map((item) => {
         const photo =
-          userPhoto.get(item.id) ?? mockAvatar.get(Number(item.id)) ?? []
+          item.photo_url ?? userPhoto.get(item.id) ?? mockAvatar.get(Number(item.id)) ?? []
         return (
           <CardGridLayout
             id={item.id}

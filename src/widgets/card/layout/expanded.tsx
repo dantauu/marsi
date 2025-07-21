@@ -12,7 +12,7 @@ const CardExpanded = ({ data }: { data: UserCardExpanded[] }) => {
     <div className="flex flex-col items-center gap-y-3">
       {data.map((item) => {
         const photo =
-          userPhoto.get(item.id) ?? mockAvatar.get(Number(item.id)) ?? []
+          item.photo_url ?? userPhoto.get(item.id) ?? mockAvatar.get(Number(item.id)) ?? []
         return (
           <CardExpandedLayout
             id={item.id}

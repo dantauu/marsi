@@ -1,34 +1,36 @@
-import { Route } from "@/app/routes/_app/_layout/search"
-import { useGetUsersQuery } from "@/shared/api/user.ts"
-import { useNavigate, useSearch } from "@tanstack/react-router"
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useInView } from "react-intersection-observer"
+import { useGetUsersQuery } from "@/shared/api/user"
+import type { User } from "@/app/types/global"
+
+const LIMIT = 10
 
 export const useFetchToScroll = () => {
-  const { inView, ref } = useInView({ threshold: 0.5 })
-  const searchParams = useSearch({ from: Route.id })
-  const navigate = useNavigate({ from: Route.id })
+  const [offset, setOffset] = useState(0)
+  const [users, setUsers] = useState<User[]>([])
 
-  const limit = Number(searchParams.limit) || 5
-  // const offset = Number(searchParams.offset) || 0
+  const { ref, inView } = useInView({ threshold: 0.5 })
 
-
-  const { data: users = [], isLoading, isSuccess, isFetching } = useGetUsersQuery({ ...searchParams, limit, offset: 0 })
-  console.log("USERS", users)
-  console.log("LIMIT", limit)
+  const {
+    data: newUsers = [],
+    isFetching,
+    isLoading,
+  } = useGetUsersQuery({ limit: LIMIT, offset })
 
   const useDataResponse = () => {
-    useEffect(() => {
-      if (inView && !isFetching && users?.length >= limit) {
-        navigate({
-          search: () => ({
-            ...searchParams,
-            limit: limit + 5,
-          })
-        })
-      }
-    }, [inView, isSuccess])
+  useEffect(() => {
+    if (inView && !isFetching && newUsers.length === LIMIT) {
+      setOffset((prev) => prev + LIMIT)
+    }
+  }, [inView, isFetching, newUsers])
+
+  useEffect(() => {
+    if (newUsers.length > 0) {
+      setUsers((prev) => [...prev, ...newUsers])
+    }
+  }, [newUsers])
+    console.log("NEW", newUsers)
   }
 
-  return { ref, items: users, useDataResponse, isLoading, isFetching }
+  return { ref, items: users, isLoading, isFetching, useDataResponse }
 }

@@ -1,3 +1,5 @@
+//TO DO: delete this hook before clean mock data
+
 import { useGetUsersQuery } from "@/shared/api/user.ts"
 import { MockCardData } from "@/lib/data/cards.ts"
 import type { FilteredUsers } from "@/app/types/global"
