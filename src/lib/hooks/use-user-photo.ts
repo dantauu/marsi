@@ -2,7 +2,9 @@ import { useGetUsersQuery } from "@/shared/api/user.ts"
 import { MockCardData } from "@/lib/data/cards.ts"
 import type { FilteredUsers } from "@/app/types/global"
 
-export const useUserPhoto = ({ params }: { params?: FilteredUsers } = {}) => {
+export const useUserPhoto = ({
+  params = {},
+}: { params?: Partial<FilteredUsers> } = {}) => {
   const { data: user } = useGetUsersQuery(params)
   const userPhoto = new Map(user?.map((item) => [item.id, item.photo_url]))
 

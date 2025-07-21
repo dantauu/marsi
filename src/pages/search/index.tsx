@@ -1,21 +1,19 @@
 import { LikeCountNotify } from "@/features/search"
 import { LayoutSwitchButtons } from "@/ui/index.ts"
 import { FilterButton } from "@/ui/index.ts"
-import { useGetUsersQuery } from "@/shared/api/user.ts"
 import { Route } from "@/app/routes/_app/_layout/search"
 import { useSearch } from "@tanstack/react-router"
 import LoadingBalls from "@/shared/ui/loading"
 import { LayoutCard } from "@/widgets/card"
-import { useInView } from "react-intersection-observer"
+import { useFetchToScroll } from "@/lib/hooks/use-fetch-scroll.ts"
 
 const Search = () => {
-  const { ref } = useInView({ threshold: 0.5 })
   const searchParams = useSearch({ from: Route.id })
-  const { data: users, isLoading } = useGetUsersQuery(searchParams)
-
+  const { ref, items, isLoading, isFetching, useDataResponse } = useFetchToScroll()
+  useDataResponse()
   console.log("searchParams", searchParams)
   if (isLoading) return <LoadingBalls />
-  if (!users) throw new Error("Error Data")
+  if (!items) throw new Error("Error Data")
   return (
     <div data-testid="search" className="pb-[200px]">
       <LikeCountNotify />
@@ -23,8 +21,9 @@ const Search = () => {
         <FilterButton />
         <LayoutSwitchButtons />
       </div>
-      <LayoutCard data={users} />
-      <div ref={ref} className="bg-red-500 w-full h-10"></div>
+      {items && <LayoutCard data={items} />}
+      {isFetching && <LoadingBalls />}
+      {!isLoading && <div ref={ref}></div>}
     </div>
   )
 }
