@@ -40,7 +40,7 @@ export const SliderCard = ({ data }: SliderCardProps) => {
             return (
               <div
                 key={item.id}
-                className="flex flex-col gap-5 absolute w-full transition-all duration-500 ease-out"
+                className="flex flex-col justify-between gap-5 absolute w-full transition-all duration-500 ease-out"
                 style={{
                   transform:
                     index === currentIndex
@@ -64,7 +64,7 @@ export const SliderCard = ({ data }: SliderCardProps) => {
                         ? getOpacity(position.x)
                         : 0,
                   }}
-                  className={`absolute z-10 w-full h-full rounded-[29px] ${position.x < 0 ? "bg-[#dc00003e]" : "bg-[#03dc0043]"}`}
+                  className={`absolute z-20 w-full h-full rounded-[29px] pointer-events-none ${position.x < 0 ? "bg-[#dc00003e]" : "bg-[#03dc0043]"}`}
                 ></div>
 
                 <div className="relative w-full h-full">

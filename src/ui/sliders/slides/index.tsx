@@ -34,11 +34,11 @@ export const SwipePhotos: React.FC<Props> = ({ photo_url }) => {
 
   return (
     <div
-      className="relative select-none z-0"
+      className="relative select-none z-10"
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
     >
-      <div className="relative h-[500px]">
+      <div className="h-[500px]">
         <img
           src={photo_url[index]}
           alt=""
@@ -47,11 +47,11 @@ export const SwipePhotos: React.FC<Props> = ({ photo_url }) => {
         />
       </div>
       <div
-        className="absolute left-0 top-0 bottom-0 w-[50%] z-10"
+        className="absolute left-0 top-0 bottom-0 w-[50%]"
         onClick={handleClickLeft}
       />
       <div
-        className="absolute right-0 top-0 bottom-0 w-[50%] z-10"
+        className="absolute right-0 top-0 bottom-0 w-[50%]"
         onClick={handleClickRight}
       />
       <div className="flex justify-center gap-3 absolute top-8 left-0 right-0">
