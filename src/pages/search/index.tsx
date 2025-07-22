@@ -9,8 +9,7 @@ import { useFetchToScroll } from "@/lib/hooks/use-fetch-scroll.ts"
 
 const Search = () => {
   const searchParams = useSearch({ from: Route.id })
-  const { ref, items, isLoading, isFetching, useDataResponse } = useFetchToScroll()
-  useDataResponse()
+  const { ref, items, isLoading, isFetching } = useFetchToScroll(searchParams)
   console.log("searchParams", searchParams)
   if (isLoading) return <LoadingBalls />
   if (!items) throw new Error("Error Data")

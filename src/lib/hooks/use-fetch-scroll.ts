@@ -2,12 +2,11 @@ import { useState, useEffect } from "react"
 import { useInView } from "react-intersection-observer"
 import { useGetUsersQuery } from "@/shared/api/user"
 import type { User } from "@/app/types/global"
-import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
-import { setCurrentIndex } from "@/redux/slices/slider-slice.ts"
+import { useAppSelector } from "@/redux/hooks.ts"
 
 const LIMIT = 10
 //for search
-export const useFetchToScroll = () => {
+export const useFetchToScroll = (params = {}) => {
   const [offset, setOffset] = useState(0)
   const [users, setUsers] = useState<User[]>([])
 
@@ -17,9 +16,13 @@ export const useFetchToScroll = () => {
     data: newUsers = [],
     isFetching,
     isLoading,
-  } = useGetUsersQuery({ limit: LIMIT, offset })
+  } = useGetUsersQuery({ limit: LIMIT, offset, ...params })
 
-  const useDataResponse = () => {
+  useEffect(() => {
+    setOffset(0)
+    setUsers([])
+  }, [JSON.stringify(params)])
+
   useEffect(() => {
     if (inView && !isFetching && newUsers.length === LIMIT) {
       setOffset((prev) => prev + LIMIT)
@@ -31,17 +34,15 @@ export const useFetchToScroll = () => {
       setUsers((prev) => [...prev, ...newUsers])
     }
   }, [newUsers])
-    console.log("NEW", newUsers)
-  }
+  console.log("NEW", newUsers)
 
-  return { ref, items: users, isLoading, isFetching, useDataResponse }
+  return { ref, items: users, isLoading, isFetching }
 }
 
 //for slides
 export const useFetchToSlide = (params = {}) => {
   const [offset, setOffset] = useState(0)
   const [users, setUsers] = useState<User[]>([])
-  const dispatch = useAppDispatch()
   const currentIndex = useAppSelector((state) => state.slider.currentIndex)
 
   const {
@@ -49,27 +50,24 @@ export const useFetchToSlide = (params = {}) => {
     isFetching,
     isLoading,
   } = useGetUsersQuery({ limit: LIMIT, offset, ...params })
+  const countNewUsers = newUsers.length
 
   useEffect(() => {
-    if (newUsers.length > 0) {
-      setUsers(prev => [...prev, ...newUsers])
+    setOffset(0)
+    setUsers([])
+  }, [JSON.stringify(params)])
+
+  useEffect(() => {
+    if (countNewUsers > 0) {
+      setUsers((prev) => [...prev, ...newUsers])
     }
-    console.log("QUERY 1")
   }, [newUsers])
 
   useEffect(() => {
-    if (currentIndex >= users.length - 2 && !isFetching) {
-      setOffset(prev => prev + LIMIT)
+    if (currentIndex >= users.length - 2 && !isFetching && countNewUsers > 0) {
+      setOffset((prev) => prev + LIMIT)
     }
-    console.log("QUERY 2")
-
   }, [users.length, currentIndex])
-  console.log("INDEX:", currentIndex)
-  console.log("LENGTH:", users.length)
 
-  const changeCurrentIndex = (index: number) => {
-    dispatch(setCurrentIndex(index))
-  }
-
-  return { users, isLoading, currentIndex, changeCurrentIndex }
+  return { users, isLoading, currentIndex }
 }
