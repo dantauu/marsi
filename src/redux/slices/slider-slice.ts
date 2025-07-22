@@ -1,5 +1,4 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
-import { MockCardData } from "@/lib/data/cards"
 
 interface SliderState {
   currentIndex: number
@@ -30,6 +29,9 @@ export const sliderSlice = createSlice({
       state.startPosition = action.payload
       state.exitDirection = null
     },
+    setCurrentIndex: (state, action: PayloadAction<number>) => {
+      state.currentIndex = action.payload
+    },
     updatePosition: (state, action: PayloadAction<number>) => {
       if (!state.isDragging) return
       const dx = action.payload - state.startPosition.x
@@ -44,36 +46,31 @@ export const sliderSlice = createSlice({
       state.lastDirection = direction
 
       if (Math.abs(state.position.x) > SWIPE_THRESHOLD) {
-        if (state.currentIndex < MockCardData.length) {
           state.exitDirection = direction
           state.currentIndex += 1
-        }
       }
 
       state.position = { x: 0 }
       state.isDragging = false
     },
     handleLike: (state) => {
-      if (state.currentIndex < MockCardData.length) {
         state.lastDirection = "right"
         state.exitDirection = "right"
         state.currentIndex += 1
         state.position = { x: 0 }
-      }
     },
     handleDislike: (state) => {
-      if (state.currentIndex < MockCardData.length) {
         state.lastDirection = "left"
         state.exitDirection = "left"
         state.currentIndex += 1
         state.position = { x: 0 }
-      }
     },
   },
 })
 
 export const {
   startDragging,
+  setCurrentIndex,
   updatePosition,
   endDragging,
   handleLike,

@@ -2,21 +2,25 @@ import SvgCheck from "@/assets/icons/Check"
 import SvgCross from "@/assets/icons/Cross"
 import type { User } from "@/app/types/global.d.ts"
 import { SwiperCard } from "@/entities/slides/lib/swiper-card"
-import { useUserPhoto } from "@/lib/hooks/use-user-photo.ts"
 import { MainInfoUser } from "@/entities/slides/ui/slider-card/main-info-user.tsx"
 import { SliderButtons } from "@/features/slides"
 import { SwipePhotos } from "@/ui/sliders/slides"
 
-export const SliderCard = ({ data }: { data: User[] }) => {
+type SliderCardProps = {
+  data: User[],
+  currentIndex: number,
+  setCurrentIndex: (index: number) => void,
+}
+
+export const SliderCard = ({ data, currentIndex, setCurrentIndex }: SliderCardProps) => {
   //remove this
-  const { mockAvatar, userPhoto } = useUserPhoto()
   const {
     onSwipeStart,
     onSwipeMove,
     onSwipeEnd,
     getCardTransform,
     getOpacity,
-    currentIndex,
+    // currentIndex,
     position,
     SWIPE_THRESHOLD,
   } = SwiperCard()
@@ -36,8 +40,6 @@ export const SliderCard = ({ data }: { data: User[] }) => {
       >
         <div className="relative w-full h-min">
           {data.map((item, index) => {
-            const photo =
-              userPhoto.get(item.id) ?? mockAvatar.get(Number(item.id)) ?? ""
             return (
               <div
                 key={item.id}
@@ -76,7 +78,7 @@ export const SliderCard = ({ data }: { data: User[] }) => {
 
                 <div className="relative w-full h-full">
                   <SwipePhotos
-                    photo_url={Array.isArray(photo) ? photo : [photo]}
+                    photo_url={Array.isArray(item.photo_url) ? item.photo_url : []}
                   />
                   <div className="absolute bottom-18 z-50 px-3">
                     <p className="text-white text-[40px] font-ManropeM">
