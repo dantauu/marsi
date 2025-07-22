@@ -36,7 +36,7 @@ export const useFetchToScroll = (params = {}) => {
   }, [newUsers])
   console.log("NEW", newUsers)
 
-  return { ref, items: users, isLoading, isFetching }
+  return { ref, users, isLoading, isFetching }
 }
 
 //for slides

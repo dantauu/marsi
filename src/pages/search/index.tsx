@@ -9,10 +9,10 @@ import { useFetchToScroll } from "@/lib/hooks/use-fetch-scroll.ts"
 
 const Search = () => {
   const searchParams = useSearch({ from: Route.id })
-  const { ref, items, isLoading, isFetching } = useFetchToScroll(searchParams)
+  const { ref, users, isLoading, isFetching } = useFetchToScroll(searchParams)
   console.log("searchParams", searchParams)
   if (isLoading) return <LoadingBalls />
-  if (!items) throw new Error("Error Data")
+  if (!users) throw new Error("Error Data")
   return (
     <div data-testid="search" className="pb-[200px]">
       <LikeCountNotify />
@@ -20,9 +20,9 @@ const Search = () => {
         <FilterButton />
         <LayoutSwitchButtons />
       </div>
-      {items && <LayoutCard data={items} />}
+      {users && <LayoutCard data={users} />}
       {isFetching && <LoadingBalls />}
-      {!isLoading && <div ref={ref}></div>}
+      {!isLoading && <div className="w-full h-2" ref={ref}></div>}
     </div>
   )
 }

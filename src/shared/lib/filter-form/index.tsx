@@ -1,4 +1,4 @@
-import { useNavigate } from "@tanstack/react-router"
+import { useNavigate, useSearch } from "@tanstack/react-router"
 import { Route } from "@/app/routes/_app/_layout/search"
 import {
   FilterFormProvider,
@@ -8,7 +8,6 @@ import {
 import { slugify } from "transliteration"
 import { useAppDispatch } from "@/redux/hooks.ts"
 import { closeFilterModal } from "@/redux/slices/modal-slice.ts"
-import { useFilterParams } from "@/lib/hooks/use-filter-params.ts"
 import { FilterModal } from "@/widgets/modals/filter-modal"
 
 export const FilterForm = () => {
@@ -17,16 +16,16 @@ export const FilterForm = () => {
     dispatch(closeFilterModal())
   }
   const navigate = useNavigate({ from: Route.id })
-  const search = useFilterParams()
+  const searchParams = useSearch({ strict: false })
 
   const defaultValues: FilterFormSchema = {
-    minAge: search.minAge ?? formEmptyValues.minAge,
-    maxAge: search.maxAge ?? formEmptyValues.maxAge,
-    minHeight: search.minHeight ?? formEmptyValues.minHeight,
-    maxHeight: search.maxHeight ?? formEmptyValues.maxHeight,
-    city: search.location ?? formEmptyValues.city,
-    region: search.region ?? formEmptyValues.region,
-    gender: search.gender ?? "",
+    minAge: searchParams.minAge ?? formEmptyValues.minAge,
+    maxAge: searchParams.maxAge ?? formEmptyValues.maxAge,
+    minHeight: searchParams.minHeight ?? formEmptyValues.minHeight,
+    maxHeight: searchParams.maxHeight ?? formEmptyValues.maxHeight,
+    city: searchParams.location ?? formEmptyValues.city,
+    region: searchParams.region ?? formEmptyValues.region,
+    gender: searchParams.gender ?? "",
   }
 
   const handleSubmit = (data: FilterFormSchema) => {
@@ -45,7 +44,7 @@ export const FilterForm = () => {
       gender: data.gender || undefined,
     }
 
-    navigate({ search: { ...search, ...params }, replace: true })
+    navigate({ search: { ...searchParams, ...params }, replace: true })
   }
 
   return (
