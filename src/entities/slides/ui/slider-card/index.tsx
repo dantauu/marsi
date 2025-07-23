@@ -20,7 +20,7 @@ export const SliderCard = ({ data }: SliderCardProps) => {
     currentIndex,
     position,
     SWIPE_THRESHOLD,
-  } = SwiperCard()
+  } = SwiperCard({ data })
 
   return (
     <div className="flex flex-col gap-5 w-full h-full mb-20 border-1 rounded-[29px]">

@@ -5,9 +5,14 @@ import {
   startDragging,
   updatePosition,
 } from "@/redux/slices/slider-slice.ts"
+import { useLikeUserMutation } from "@/shared/api/user.ts"
+import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
+import type { User } from "@/app/types/global"
 
-export const SwiperCard = () => {
+export const SwiperCard = ({ data }: { data: User[] }) => {
   const SWIPE_THRESHOLD = 50
+  const [likeUser] = useLikeUserMutation()
+  const { user } = useCurrentUser()
   const dispatch = useAppDispatch()
   const { currentIndex, position, isDragging, exitDirection } = useAppSelector(
     (state) => state.slider
@@ -70,10 +75,25 @@ export const SwiperCard = () => {
     }
   }
 
-  const onSwipeEnd = (e: React.TouchEvent | React.MouseEvent) => {
+  const onSwipeEnd = async (e: React.TouchEvent | React.MouseEvent) => {
     if (!isDragging || !isHorizontalSwipe.current) return
     const clientX = getEndClientX(e)
     dispatch(endDragging(clientX))
+
+    const deltaX = clientX - startX.current
+    const swipedRight = deltaX > SWIPE_THRESHOLD
+    if (swipedRight && user?.id) {
+      try {
+        const likedUserId = data[currentIndex].id
+        await likeUser({
+          likerId: user?.id,
+          likedId: likedUserId,
+        }).unwrap()
+        console.log("💚 Liked:", likedUserId)
+      } catch (err) {
+        console.error("Ошибка при лайке:", err)
+      }
+    }
   }
 
   const getOpacity = (x: number) => {

@@ -14,10 +14,10 @@ export const SliderButtons = ({
   const dispatch = useAppDispatch()
   const [likeUser] = useLikeUserMutation()
   const { user } = useCurrentUser()
-  if (!user) throw new Error("User not found")
+
   const handleLikeUser = () => {
-    if (currentUserId && user.id) {
-      likeUser({ likerId: user.id, likedId: currentUserId })
+    if (currentUserId && user?.id) {
+      likeUser({ likerId: user?.id, likedId: currentUserId })
       dispatch(handleLike())
     }
   }
