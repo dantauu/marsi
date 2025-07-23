@@ -3,14 +3,22 @@ import Button from "@/shared/ui/buttons/button.tsx"
 import { useNavigate } from "@tanstack/react-router"
 import { useGetLikesToMeQuery } from "@/shared/api/user.ts"
 import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
+import LoadingBalls from "@/shared/ui/loading"
 
 export const LikeCount = () => {
   const navigate = useNavigate()
-  const { user: currentUser } = useCurrentUser()
-  if (!currentUser) throw new Error("User does not exist")
-  const { data } = useGetLikesToMeQuery(currentUser?.id, {
-    skip: !currentUser?.id
+  const { user: currentUser, isFetching: userFetching, isLoading: userLoading } = useCurrentUser()
+
+  const { data, isFetching: likesFetching } = useGetLikesToMeQuery(currentUser?.id ?? "", {
+    skip: !currentUser?.id,
   })
+
+  const isPending = userLoading || userFetching || !currentUser || likesFetching
+
+  if (isPending) {
+    return <LoadingBalls />
+  }
+
   return (
     <div className="flex flex-col items-center justify-between py-2 w-full mini-mobile:w-[210px] h-[85px] mini-mobile:h-[105px] shadow-shadow-block rounded-[10px]">
       <div className="flex items-center gap-1">
