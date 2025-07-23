@@ -1,25 +1,32 @@
 import Button from "@/shared/ui/buttons/button.tsx"
 import SvgArrow from "@/assets/icons/Arrow.tsx"
-import type { User } from "@/app/types/global"
-import { useUnlikeUserMutation } from "@/shared/api/user.ts"
+import { useGetLikesToMeQuery, useUnlikeUserMutation } from "@/shared/api/user.ts"
 import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
+import LoadingBalls from "@/shared/ui/loading"
 
 export const LikeCard = ({
-  users,
   isLocked,
 }: {
   isLocked?: boolean
-  users: User[] | undefined
 }) => {
+  const { user: currentUser, isLoading: userLoading, isFetching: userFetching } = useCurrentUser()
   const [unlikeUser, { isLoading }] = useUnlikeUserMutation()
-  const { user: currentUser } = useCurrentUser()
+  const { data: users, refetch, isFetching: likesFetching } = useGetLikesToMeQuery(currentUser?.id ?? "", {
+    skip: !currentUser?.id
+  })
   const handleUnlikeUser = async (likedId: string) => {
     if (!currentUser?.id) return
     try {
       await unlikeUser({ likerId: currentUser?.id, likedId })
+      refetch()
     } catch (error) {
       console.error(error)
     }
+  }
+  const isPending = userLoading || userFetching || !currentUser || likesFetching
+
+  if (isPending) {
+    return <LoadingBalls />
   }
   return (
     <div>
