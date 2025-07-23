@@ -36,6 +36,26 @@ export const userApi = createApi({
         body: userData,
       }),
     }),
+    likeUser: builder.mutation<void, string>({
+      query: (likeId) => ({
+        url: "likes",
+        method: "POST",
+        body: { likeId }
+      })
+    }),
+    unlikeUser: builder.mutation<void, string>({
+      query: (likeId) => ({
+        url: "likes",
+        method: "DELETE",
+        body: { likeId }
+      })
+    }),
+    getMyLikes: builder.query<User[], void>({
+      query: () => "likes/mine"
+    }),
+    getLikesToMe: builder.query<User[], void>({
+      query: () => "likes/who-liked-me"
+    }),
     uploadPhoto: builder.mutation<string, File>({
       query: (file) => {
         const formData = new FormData()
@@ -63,6 +83,10 @@ export const {
   useGetUserByIdQuery,
   useInitUserMutation,
   useUpdateUserMutation,
+  useLikeUserMutation,
+  useUnlikeUserMutation,
+  useGetMyLikesQuery,
+  useGetLikesToMeQuery,
   useUploadPhotoMutation,
   useDeletePhotoMutation,
 } = userApi

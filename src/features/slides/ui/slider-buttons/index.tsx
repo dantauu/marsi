@@ -3,9 +3,17 @@ import SvgCross from "@/assets/icons/Cross"
 import { useAppDispatch } from "@/redux/hooks"
 import { handleDislike, handleLike } from "@/redux/slices/slider-slice.ts"
 import Button from "@/shared/ui/buttons/button.tsx"
+import { useLikeUserMutation } from "@/shared/api/user.ts"
 
-export const SliderButtons = () => {
+export const SliderButtons = ({ currentUserId }: { currentUserId: string | undefined }) => {
   const dispatch = useAppDispatch()
+  const [likeUser] = useLikeUserMutation()
+  const handleLikeUser = () => {
+    if (currentUserId) {
+      likeUser(currentUserId)
+      dispatch(handleLike())
+    }
+  }
   return (
     <div className="absolute bottom-0 z-50 w-full flex items-center justify-between px-3">
       <Button
@@ -18,7 +26,7 @@ export const SliderButtons = () => {
       <Button
         className="w-[100px] bg-main-green rounded-[14px] py-1"
         variant="default"
-        onClick={() => dispatch(handleLike())}
+        onClick={() => handleLikeUser()}
       >
         <SvgCheck className="w-[50px] h-[50px] text-[#fff9]" />
       </Button>

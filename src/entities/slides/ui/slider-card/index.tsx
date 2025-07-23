@@ -78,7 +78,7 @@ export const SliderCard = ({ data }: SliderCardProps) => {
                       {item.first_name}, {item.age}
                     </p>
                   </div>
-                  <SliderButtons />
+                  <SliderButtons currentUserId={item.id} />
                 </div>
               </div>
             )
