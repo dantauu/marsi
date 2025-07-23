@@ -9,7 +9,11 @@ export const FilterButton = () => {
     dispatch(openFilterModal())
   }
   return (
-    <Button onClick={handleClick} className="font-ManropeM shadow-shadow-block p-1 rounded-[7px]" variant="default">
+    <Button
+      onClick={handleClick}
+      className="font-ManropeM shadow-shadow-block p-1 rounded-[7px]"
+      variant="default"
+    >
       Фильтры
       <SvgFilterIcon />
     </Button>

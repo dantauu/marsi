@@ -7,11 +7,18 @@ import LoadingBalls from "@/shared/ui/loading"
 
 export const LikeCount = () => {
   const navigate = useNavigate()
-  const { user: currentUser, isFetching: userFetching, isLoading: userLoading } = useCurrentUser()
+  const {
+    user: currentUser,
+    isFetching: userFetching,
+    isLoading: userLoading,
+  } = useCurrentUser()
 
-  const { data, isFetching: likesFetching } = useGetLikesToMeQuery(currentUser?.id ?? "", {
-    skip: !currentUser?.id,
-  })
+  const { data, isFetching: likesFetching } = useGetLikesToMeQuery(
+    currentUser?.id ?? "",
+    {
+      skip: !currentUser?.id,
+    }
+  )
 
   const isPending = userLoading || userFetching || !currentUser || likesFetching
 
@@ -26,9 +33,7 @@ export const LikeCount = () => {
           <p className="font-ManropeM text-[16px]">Получено лайков:</p>
         </div>
         <div className="">
-          <p className="font-HelveticaB text-[16px]">
-            {data?.length || 0}
-          </p>
+          <p className="font-HelveticaB text-[16px]">{data?.length || 0}</p>
         </div>
       </div>
       <Button

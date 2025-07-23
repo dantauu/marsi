@@ -6,7 +6,7 @@ export const MyLikesCard = () => {
   const { user: currentUser } = useCurrentUser()
   if (!currentUser) throw new Error("Not user")
   const { data: users } = useGetMyLikesQuery(currentUser?.id, {
-    skip: !currentUser?.id
+    skip: !currentUser?.id,
   })
   return <LikeCard users={users} isLocked={false} />
 }

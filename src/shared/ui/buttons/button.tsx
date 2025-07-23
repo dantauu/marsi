@@ -17,6 +17,7 @@ type ButtonProps = {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
   className?: string
   type?: "submit" | "reset" | "button"
+  disabled?: boolean
 }
 
 const Button = ({
@@ -24,12 +25,14 @@ const Button = ({
   children,
   onClick,
   type,
+  disabled,
   className,
 }: ButtonProps) => {
   const variantName = variants[variant]
   return (
     <div className="">
       <button
+        disabled={disabled}
         type={type}
         onClick={onClick}
         className={cn(variantName, className)}
