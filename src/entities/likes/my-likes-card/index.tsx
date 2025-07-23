@@ -12,7 +12,7 @@ export const MyLikesCard = () => {
   } = useGetMyLikesQuery(currentUser?.id ?? "", {
     skip: !currentUser?.id,
   })
-  const [unlikeUser, { isLoading: unlikeLoading}] = useUnlikeUserMutation()
+  const [unlikeUser, { isLoading: unlikeLoading }] = useUnlikeUserMutation()
   const handleUnlike = async (likedId: string) => {
     if (!currentUser?.id) return
     try {
@@ -22,6 +22,7 @@ export const MyLikesCard = () => {
       console.error(error)
     }
   }
-  if (userLoading || unlikeLoading || isFetching || !currentUser) return <LoadingBalls />
+  if (userLoading || unlikeLoading || isFetching || !currentUser)
+    return <LoadingBalls />
   return <LikeCard users={users} onUnlike={handleUnlike} isLocked={false} />
 }

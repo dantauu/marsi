@@ -6,6 +6,7 @@ import { useWatch } from "react-hook-form"
 import { useUploadPhotoMutation } from "@/shared/api/user.ts"
 import SvgCross from "@/assets/icons/Cross.tsx"
 import Button from "@/shared/ui/buttons/button.tsx"
+import heic2any from "heic2any"
 
 const pictureItems = [
   { id: 1, plusIcon: plusIcon },
@@ -23,11 +24,28 @@ export const PhotoEdit = () => {
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-    const file = e.target.files
-    if (!file?.length) return
+    const file = e.target.files?.[0]
+    if (!file) return
 
     try {
-      const uploadedUrls = await uploadPhoto(file[0]).unwrap()
+      let processedFile: File | Blob = file
+      const fileExt = file.name.split(".").pop()?.toLowerCase()
+      if (fileExt === "heic" || fileExt === "heif") {
+        const convertedBlob = await heic2any({
+          blob: file,
+          toType: "image/jpeg",
+          quality: 0.9,
+        })
+        processedFile = new File(
+          [convertedBlob as BlobPart],
+          file.name.replace(/\.[^/.]+$/, ".jpg"),
+          {
+            type: "image/jpeg",
+          }
+        )
+      }
+
+      const uploadedUrls = await uploadPhoto(processedFile).unwrap()
       const updated = [...photo_url]
       updated[index] = uploadedUrls
       setValue("photo_url", updated, { shouldDirty: true })
