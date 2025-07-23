@@ -36,25 +36,25 @@ export const userApi = createApi({
         body: userData,
       }),
     }),
-    likeUser: builder.mutation<void, string>({
-      query: (likeId) => ({
+    likeUser: builder.mutation<void, { likerId: string; likedId: string }>({
+      query: ({ likedId, likerId }) => ({
         url: "likes",
         method: "POST",
-        body: { likeId }
-      })
+        body: { likedId, likerId },
+      }),
     }),
-    unlikeUser: builder.mutation<void, string>({
-      query: (likeId) => ({
+    unlikeUser: builder.mutation<void, { likerId: string; likedId: string }>({
+      query: ({ likedId, likerId }) => ({
         url: "likes",
         method: "DELETE",
-        body: { likeId }
-      })
+        body: { likerId, likedId },
+      }),
     }),
     getMyLikes: builder.query<User[], void>({
-      query: () => "likes/mine"
+      query: (userId) => `likes/mine?userId=${userId}`,
     }),
     getLikesToMe: builder.query<User[], void>({
-      query: () => "likes/who-liked-me"
+      query: (userId) => `likes/who-liked-me?userId=${userId}`,
     }),
     uploadPhoto: builder.mutation<string, File>({
       query: (file) => {

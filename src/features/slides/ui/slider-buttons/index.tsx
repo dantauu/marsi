@@ -4,13 +4,16 @@ import { useAppDispatch } from "@/redux/hooks"
 import { handleDislike, handleLike } from "@/redux/slices/slider-slice.ts"
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useLikeUserMutation } from "@/shared/api/user.ts"
+import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
 
 export const SliderButtons = ({ currentUserId }: { currentUserId: string | undefined }) => {
   const dispatch = useAppDispatch()
   const [likeUser] = useLikeUserMutation()
+  const { user } = useCurrentUser()
+  if (!user) throw new Error("User not found")
   const handleLikeUser = () => {
-    if (currentUserId) {
-      likeUser(currentUserId)
+    if (currentUserId && user.id) {
+      likeUser({ likerId: user.id, likedId: currentUserId })
       dispatch(handleLike())
     }
   }
