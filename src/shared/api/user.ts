@@ -50,10 +50,10 @@ export const userApi = createApi({
         body: { likerId, likedId },
       }),
     }),
-    getMyLikes: builder.query<User[], void>({
+    getMyLikes: builder.query<User[], string>({
       query: (userId) => `likes/mine?userId=${userId}`,
     }),
-    getLikesToMe: builder.query<User[], void>({
+    getLikesToMe: builder.query<User[], string>({
       query: (userId) => `likes/who-liked-me?userId=${userId}`,
     }),
     uploadPhoto: builder.mutation<string, File>({
