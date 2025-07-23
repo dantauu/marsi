@@ -1,29 +1,16 @@
 import Button from "@/shared/ui/buttons/button.tsx"
 import SvgArrow from "@/assets/icons/Arrow.tsx"
-import { useUnlikeUserMutation } from "@/shared/api/user.ts"
-import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
 import type { User } from "@/app/types/global"
 
 export const LikeCard = ({
   isLocked,
   users,
-  onUnliked,
+  onUnlike,
 }: {
   isLocked?: boolean
   users: User[] | undefined
-  onUnliked?: () => void
+  onUnlike?: (userId: string) => void
 }) => {
-  const { user: currentUser } = useCurrentUser()
-  const [unlikeUser, { isLoading }] = useUnlikeUserMutation()
-  const handleUnlikeUser = async (likedId: string) => {
-    if (!currentUser?.id) return
-    try {
-      await unlikeUser({ likerId: currentUser.id, likedId })
-      onUnliked?.()
-    } catch (error) {
-      console.error(error)
-    }
-  }
   return (
     <div>
       {users && users.length > 0 ? (
@@ -57,8 +44,7 @@ export const LikeCard = ({
               </div>
               <div className={`flex gap-2 ${isLocked && "blur-[4px] filter"}`}>
                 <Button
-                  disabled={isLoading}
-                  onClick={() => handleUnlikeUser(item.id)}
+                  onClick={() => onUnlike?.(item.id)}
                   variant="red"
                   className="w-[100px] h-[35px]"
                 >
