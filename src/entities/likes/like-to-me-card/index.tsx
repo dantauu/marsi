@@ -1,5 +1,8 @@
 import { LikeCard } from "@/shared/ui/like-card"
-import { useGetLikesToMeQuery, useUnlikeUserMutation } from "@/shared/api/user.ts"
+import {
+  useGetLikesToMeQuery,
+  useUnlikeUserMutation,
+} from "@/shared/api/user.ts"
 import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
 import LoadingBalls from "@/shared/ui/loading"
 
@@ -12,7 +15,7 @@ export const LikesToMeCard = () => {
   } = useGetLikesToMeQuery(currentUser?.id ?? "", {
     skip: !currentUser?.id,
   })
-  const [unlikeUser, { isLoading: unlikeLoading}] = useUnlikeUserMutation()
+  const [unlikeUser, { isLoading: unlikeLoading }] = useUnlikeUserMutation()
   const handleUnlike = async (likerId: string) => {
     if (!currentUser?.id) return
     try {
@@ -23,6 +26,7 @@ export const LikesToMeCard = () => {
     }
   }
 
-  if (userLoading || unlikeLoading || isFetching || !currentUser) return <LoadingBalls />
+  if (userLoading || unlikeLoading || isFetching || !currentUser)
+    return <LoadingBalls />
   return <LikeCard users={users} onUnlike={handleUnlike} isLocked={false} />
 }

@@ -56,7 +56,7 @@ export const userApi = createApi({
     getLikesToMe: builder.query<User[], string>({
       query: (userId) => `likes/who-liked-me?userId=${userId}`,
     }),
-    uploadPhoto: builder.mutation<string, File>({
+    uploadPhoto: builder.mutation<string, File | Blob>({
       query: (file) => {
         const formData = new FormData()
         formData.append("file", file)
