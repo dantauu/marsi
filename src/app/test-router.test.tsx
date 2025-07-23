@@ -3,7 +3,7 @@ import {
   createRouter,
   RouterProvider,
 } from "@tanstack/react-router"
-import { describe, it } from "vitest"
+import { describe, it, vi } from "vitest"
 import { render } from "@testing-library/react"
 import { TechnicalWork } from "@/widgets/technical-work"
 import { routeTree } from "@/routeTree.gen.ts"
@@ -16,6 +16,10 @@ type renderWithRouteProps = {
   findId: string
   nameRoute: string
 }
+
+vi.mock("heic2any", () => ({
+  default: vi.fn(() => Promise.resolve(new Blob())),
+}))
 
 const createTestRouter = (initial: string = "/") => {
   return createRouter({
