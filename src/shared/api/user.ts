@@ -45,8 +45,8 @@ export const userApi = createApi({
     }),
     unlikeUser: builder.mutation<void, { likerId: string; likedId: string }>({
       query: ({ likedId, likerId }) => ({
-        url: "likes",
-        method: "DELETE",
+        url: "likes/unlike",
+        method: "POST",
         body: { likerId, likedId },
       }),
     }),

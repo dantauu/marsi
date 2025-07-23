@@ -16,6 +16,7 @@ export const LikeCard = ({ isLocked }: { isLocked?: boolean }) => {
   const [unlikeUser, { isLoading }] = useUnlikeUserMutation()
   const {
     data: users,
+    refetch,
     isFetching: likesFetching,
   } = useGetLikesToMeQuery(currentUser?.id ?? "", {
     skip: !currentUser?.id,
@@ -24,6 +25,7 @@ export const LikeCard = ({ isLocked }: { isLocked?: boolean }) => {
     if (!currentUser?.id) return
     try {
       await unlikeUser({ likerId: currentUser?.id, likedId })
+      refetch()
     } catch (error) {
       console.error(error)
     }
