@@ -1,39 +1,52 @@
 import SvgArrow from "@/assets/icons/Arrow"
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useNavigate } from "@tanstack/react-router"
-import { useGetLikesToMeQuery } from "@/shared/api/user.ts"
-import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
 import LoadingBalls from "@/shared/ui/loading"
+import type { User } from "@/app/types/global"
 
-export const LikeCount = () => {
+type LikeCountProps = {
+  isPending: boolean
+  likesToMe: User[] | undefined
+  myLikes: User[] | undefined
+}
+
+export const LikeCount = ({
+  isPending,
+  likesToMe,
+  myLikes,
+}: LikeCountProps) => {
   const navigate = useNavigate()
-  const {
-    user: currentUser,
-    isFetching: userFetching,
-    isLoading: userLoading,
-  } = useCurrentUser()
-
-  const { data, isFetching: likesFetching } = useGetLikesToMeQuery(
-    currentUser?.id ?? "",
-    {
-      skip: !currentUser?.id,
-    }
-  )
-
-  const isPending = userLoading || userFetching || !currentUser || likesFetching
 
   return (
-    <div className="flex flex-col items-center justify-between py-2 w-full mini-mobile:w-[210px] h-[85px] mini-mobile:h-[105px] shadow-shadow-block rounded-[10px]">
-      <div className="flex items-center gap-1">
-        <div className="">
-          <p className="font-ManropeM text-[16px]">Получено лайков:</p>
+    <div className="flex flex-col items-center justify-between py-1 w-full mini-mobile:w-[210px] h-[115px] mini-mobile:h-[115px] shadow-shadow-block rounded-[10px]">
+      <div className="">
+        <div className="flex items-center gap-1">
+          <div className="">
+            <p className="font-ManropeM text-[16px]">Получено лайков:</p>
+          </div>
+          <div className="">
+            {isPending ? (
+              <LoadingBalls className="w-10" />
+            ) : (
+              <p className="font-HelveticaB text-[16px]">
+                {myLikes?.length || 0}
+              </p>
+            )}
+          </div>
         </div>
-        <div className="">
-          {isPending ? (
-            <LoadingBalls className="w-10" />
-          ) : (
-            <p className="font-HelveticaB text-[16px]">{data?.length || 0}</p>
-          )}
+        <div className="flex items-center gap-1 -mt-2.5">
+          <div className="">
+            <p className="font-ManropeM text-[16px]">Лайки от меня:</p>
+          </div>
+          <div className="">
+            {isPending ? (
+              <LoadingBalls className="w-10" />
+            ) : (
+              <p className="font-HelveticaB text-[16px]">
+                {likesToMe?.length || 0}
+              </p>
+            )}
+          </div>
         </div>
       </div>
       <Button

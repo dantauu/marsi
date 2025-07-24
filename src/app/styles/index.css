@@ -44,7 +44,7 @@
   --font-ManropeM: "ManropeM";
   --font-ManropeEB: "ManropeEB";
   --font-HelveticaB: "HelveticaB";
-  --breakpoint-mini-mobile: 378px;
+  --breakpoint-mini-mobile: 393px;
 }
 
 @layer utilities {

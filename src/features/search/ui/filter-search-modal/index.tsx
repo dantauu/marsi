@@ -24,13 +24,15 @@ const Location = () => {
         <div className="">
           <p className="font-HelveticaB text-[20px]">Местоположение</p>
         </div>
-        <div className="h-[60px] flex justify-start items-center px-2 rounded-[10px] gap-2 bg-black">
-          <SvgLocation />
-          <div className="w-full flex justify-between items-center gap-2">
-            <p className="text-white font-ManropeM text-[18px]">
+        <div className="h-[60px] w-full flex justify-center items-center px-1 rounded-[10px] gap-2 bg-black">
+          {!city && (
+            <SvgLocation className="w-[34px] h-[36px] mini-mobile:w-[44px] mini-mobile:h-[46px]" />
+          )}
+          <div className="flex items-center gap-2">
+            <p className="text-white font-ManropeM text-[15.5px] mini-mobile:text-[17.5px]">
               {city ? `${city}, ${region}` : "Выберите мастоположение"}
             </p>
-            <SvgArrow className="text-white w-[20px] h-[20px]" />
+            {!city && <SvgArrow className="text-white w-[20px] h-[20px]" />}
           </div>
         </div>
       </div>
@@ -50,7 +52,7 @@ const Gender = () => {
   const handleButtonClick = useCallback(
     (button: string) => {
       const buttonIsActive = button === gender
-      setValue("gender", buttonIsActive ? button : button, {
+      setValue("gender", buttonIsActive ? "" : button, {
         shouldDirty: true,
       })
     },
@@ -69,7 +71,7 @@ const Gender = () => {
             key={item.id}
             onClick={() => handleButtonClick(item.id)}
             className={cn(
-              `w-[140px] h-[50px] text-[20px] font-ManropeM duration-300 ${isButtonActive(item.id) && "bg-main-red"}`
+              `w-[130px] h-[45px] mini-mobile:w-[140px] mini-mobile:h-[50px] mini-mobile:text-[20px] text-[18px] font-ManropeM duration-300 ${isButtonActive(item.id) && "bg-main-red"}`
             )}
             variant="green"
           >

@@ -38,7 +38,7 @@ export const SwipePhotos: React.FC<Props> = ({ photo_url }) => {
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
     >
-      <div className="h-[500px]">
+      <div className="h-[440px] mini-mobile:h-[500px]">
         <img
           src={photo_url[index]}
           alt=""

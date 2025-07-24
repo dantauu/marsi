@@ -23,9 +23,9 @@ export const SliderCard = ({ data }: SliderCardProps) => {
   } = SwiperCard({ data })
 
   return (
-    <div className="flex flex-col gap-5 w-full h-full mb-20 border-1 rounded-[29px]">
+    <div className="flex flex-col gap-5 w-full max-w-[430px] h-full mx-auto mb-20 border-1 rounded-[29px]">
       <div
-        className="relative w-full h-[500px] flex justify-center overflow-hidden touch-none select-none"
+        className="relative w-full h-[440px] mini-mobile:h-[500px] flex justify-center overflow-hidden touch-none select-none"
         onMouseDown={onSwipeStart}
         onTouchStart={onSwipeStart}
         onMouseMove={onSwipeMove}
@@ -74,7 +74,7 @@ export const SliderCard = ({ data }: SliderCardProps) => {
                     }
                   />
                   <div className="absolute bottom-18 z-50 px-3">
-                    <p className="text-white text-[40px] font-ManropeM">
+                    <p className="text-white text-[35px] mini-mobile:text-[40px] font-ManropeM">
                       {item.first_name}, {item.age}
                     </p>
                   </div>

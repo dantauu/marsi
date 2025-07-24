@@ -11,11 +11,11 @@ export const FilterButton = () => {
   return (
     <Button
       onClick={handleClick}
-      className="font-ManropeM shadow-shadow-block p-1 rounded-[7px]"
+      className="font-ManropeM shadow-shadow-block p-0.5 rounded-[7px] text-[15px] mini-mobile:text-[16px]"
       variant="default"
     >
       Фильтры
-      <SvgFilterIcon />
+      <SvgFilterIcon className="mini-mobile:w-[32px] w-[28px]" />
     </Button>
   )
 }
