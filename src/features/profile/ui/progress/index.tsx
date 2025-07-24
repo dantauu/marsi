@@ -7,7 +7,7 @@ export const Progress = () => {
   const navigate = useNavigate()
   return (
     <div className="flex flex-col items-center justify-between py-1.5 mini-mobile:h-[105px] h-[85px] bg-main-green w-full mini-mobile:w-[180px] rounded-[10px] cursor-pointer">
-      <div className="flex flex-col justify-center items-center w-full">
+      <div className="flex flex-row justify-center items-center w-full mini-mobile:flex-col">
         <p className="text-center text-white font-HelveticaB text-[16px]">
           Прогресс
         </p>
@@ -16,7 +16,7 @@ export const Progress = () => {
         </p>
       </div>
       <Button
-        className="w-[140px] h-[35px] bg-white rounded-xl font-HelveticaB"
+        className="w-[125px] h-[35px] bg-white rounded-[8px] font-HelveticaB"
         variant="default"
         onClick={() => navigate({ to: "/profile-edit" })}
       >

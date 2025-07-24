@@ -1,6 +1,8 @@
 import Button from "@/shared/ui/buttons/button.tsx"
 import SvgArrow from "@/assets/icons/Arrow.tsx"
 import type { User } from "@/app/types/global"
+import SvgTrash from "@/assets/icons/Trash.tsx"
+import SvgMessageLike from "@/assets/icons/MessageLike.tsx"
 
 export const LikeCard = ({
   isLocked,
@@ -31,7 +33,7 @@ export const LikeCard = ({
                 className={`flex items-center gap-1 ${isLocked && "filter blur-[5px] inset-0"}`}
               >
                 <img
-                  className="min-w-[80px] h-[80px] object-cover rounded-full"
+                  className="min-w-[70px] h-[70px] mini-mobile:min-w-[80px] mini-mobile:h-[80px] object-cover rounded-full"
                   src={
                     Array.isArray(item.photo_url)
                       ? item.photo_url[0]
@@ -42,16 +44,15 @@ export const LikeCard = ({
                   {item.first_name}, {item.age}
                 </p>
               </div>
-              <div className={`flex gap-2 ${isLocked && "blur-[4px] filter"}`}>
+              <div className={`flex gap-3 ${isLocked && "blur-[4px] filter"}`}>
                 <Button
                   onClick={() => onUnlike?.(item.id)}
-                  variant="red"
-                  className="w-[100px] h-[35px]"
+                  variant="default"
                 >
-                  Удалить
+                  <SvgTrash className="w-12 h-12" />
                 </Button>
-                <Button variant="green" className="w-[100px] h-[35px]">
-                  Написать
+                <Button variant="default">
+                  <SvgMessageLike className="w-13 h-13" />
                 </Button>
               </div>
             </div>
