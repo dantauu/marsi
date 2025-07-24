@@ -17,9 +17,9 @@ export const CardGridLayout = ({
           params: { id },
         })
       }
-      className="flex flex-col gap-2 w-[182px] h-[285px]"
+      className="flex flex-col gap-2 w-[158px] h-[250px] mini-mobile:w-[182px] mini-mobile:h-[285px]"
     >
-      <div className="w-[182px] h-[253.4px] bg-[#c2c1c1] rounded-[28px]">
+      <div className="w-full h-[253.4px] bg-[#c2c1c1] rounded-[28px]">
         {photo_url && (
           <img
             className="w-full h-full rounded-[28px] object-cover"

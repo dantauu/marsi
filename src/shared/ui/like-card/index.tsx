@@ -45,10 +45,7 @@ export const LikeCard = ({
                 </p>
               </div>
               <div className={`flex gap-3 ${isLocked && "blur-[4px] filter"}`}>
-                <Button
-                  onClick={() => onUnlike?.(item.id)}
-                  variant="default"
-                >
+                <Button onClick={() => onUnlike?.(item.id)} variant="default">
                   <SvgTrash className="w-12 h-12" />
                 </Button>
                 <Button variant="default">
