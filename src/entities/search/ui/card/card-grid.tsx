@@ -22,7 +22,7 @@ export const CardGridLayout = ({
       <div className="w-full h-[253.4px] bg-[#c2c1c1] rounded-[28px]">
         {photo_url && (
           <img
-            className="w-full h-full rounded-[28px] object-cover"
+            className="w-full rounded-[28px] object-cover h-[218px] mini-mobile:h-full"
             src={
               Array.isArray(photo_url)
                 ? (photo_url[0] ?? "")
