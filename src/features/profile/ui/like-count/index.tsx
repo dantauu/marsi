@@ -19,7 +19,7 @@ export const LikeCount = ({
 
   return (
     <div className="flex flex-col items-center justify-between py-1 w-full mini-mobile:w-[210px] h-[115px] mini-mobile:h-[115px] shadow-shadow-block rounded-[10px]">
-      <div className="">
+      <div className={`flex flex-col ${!isPending && "gap-4.5"}`}>
         <div className="flex items-center gap-1">
           <div className="">
             <p className="font-ManropeM text-[16px]">Получено лайков:</p>
