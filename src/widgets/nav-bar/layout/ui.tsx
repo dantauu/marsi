@@ -21,7 +21,7 @@ export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
     <>
       {!isKeyboard && (
         <div className="fixed z-5 bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg">
-          <nav className="flex justify-between items-center px-7 pt-[12px]">
+          <nav className="flex justify-between items-center px-4 pt-[12px] mini-mobile:px-7">
             {navItems.map(({ id, Icon, text, link }) => {
               const isActive = activePath === link
               return (
@@ -33,13 +33,13 @@ export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
                   <Icon
                     className={cn(
                       isActive ? "text-main-pink" : "text-white",
-                      "transition-all w-full stroke-current"
+                      "transition-all stroke-current w-[32px] h-[34px] mini-mobile:w-full mini-mobile:h-full"
                     )}
                   />
                   <p
                     className={cn(
                       isActive ? "text-main-pink" : "text-white",
-                      "font-ManropeM text-[12.5px]"
+                      "font-ManropeM text-[12px] mini-mobile:text-[12.5px]"
                     )}
                   >
                     {text}

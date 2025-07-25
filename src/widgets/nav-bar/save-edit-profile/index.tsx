@@ -24,7 +24,11 @@ export const SaveNavBar = ({ className }: { className?: string }) => {
         >
           Сбросить
         </Button>
-        <Button className="w-[120px] h-[47px] mini-mobile:w-[140px] mini-mobile:h-[50px] mini-mobile:text-[16px] text-[15px]" type="submit" variant="green">
+        <Button
+          className="w-[120px] h-[47px] mini-mobile:w-[140px] mini-mobile:h-[50px] mini-mobile:text-[16px] text-[15px]"
+          type="submit"
+          variant="green"
+        >
           Сохранить
         </Button>
       </div>

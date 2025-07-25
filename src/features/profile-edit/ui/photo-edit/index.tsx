@@ -7,6 +7,7 @@ import { useUploadPhotoMutation } from "@/shared/api/user.ts"
 import SvgCross from "@/assets/icons/Cross.tsx"
 import Button from "@/shared/ui/buttons/button.tsx"
 import heic2any from "heic2any"
+import LoadingBalls from "@/shared/ui/loading"
 
 const pictureItems = [
   { id: 1, plusIcon: plusIcon },
@@ -18,7 +19,7 @@ export const PhotoEdit = () => {
   const { setValue, control } = useEditProfileForm()
   const photo_url = useWatch({ control, name: "photo_url" })
   const deletedPhotos = useWatch({ control, name: "deleted_photos" })
-  const [uploadPhoto] = useUploadPhotoMutation()
+  const [uploadPhoto, { isLoading }] = useUploadPhotoMutation()
 
   const handlePictureChange = async (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -91,7 +92,7 @@ export const PhotoEdit = () => {
               </>
             ) : (
               <label className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer">
-                <SvgPlus className="text-main-pink w-[50px] h-[50px]" />
+                {isLoading ? (<LoadingBalls />) : (<SvgPlus className="text-main-pink w-[50px] h-[50px]" />)}
                 <input
                   type="file"
                   accept="image/*"
