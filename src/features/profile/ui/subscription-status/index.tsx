@@ -4,7 +4,7 @@ import Button from "@/shared/ui/buttons/button.tsx"
 
 export const SubscriptionStatus = () => {
   return (
-    <div className="flex justify-between items-center mt-[20px] h-[68px] px-2 shadow-shadow-block rounded-[10px]">
+    <div className="flex flex-col justify-between items-center mt-[20px] h-[68px] p-1 shadow-shadow-block rounded-[10px] mini-mobile:flex-row">
       <div className="flex items-center gap-2">
         <div className="">
           <p className="font-ManropeM text-[15px] mini-mobile:text-16px">

@@ -18,5 +18,5 @@ const useMediaQuery = (mediaQuery: string) => {
 }
 
 export const useIsMiniMobile = () => {
-  return useMediaQuery("(max-width: 378px")
+  return useMediaQuery("(max-width: 393px")
 }

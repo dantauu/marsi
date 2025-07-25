@@ -75,7 +75,7 @@ export const PhotoEdit = () => {
         return (
           <div
             key={item.id}
-            className="relative w-[123px] h-[218px] overflow-hidden rounded-[10px] bg-[#D9D9D9]"
+            className="relative w-[95px] h-[185px] mini-mobile:w-[123px] mini-mobile:h-[218px] overflow-hidden rounded-[10px] bg-[#D9D9D9]"
           >
             {imageSrc ? (
               <>
@@ -91,7 +91,7 @@ export const PhotoEdit = () => {
               </>
             ) : (
               <label className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer">
-                <SvgPlus className="text-main-pink" />
+                <SvgPlus className="text-main-pink w-[50px] h-[50px]" />
                 <input
                   type="file"
                   accept="image/*"

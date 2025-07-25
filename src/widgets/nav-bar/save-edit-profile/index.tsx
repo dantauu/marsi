@@ -17,14 +17,14 @@ export const SaveNavBar = ({ className }: { className?: string }) => {
     >
       <div className="flex justify-between py-5 px-5">
         <Button
-          className="w-[140px] h-[50px]"
+          className="w-[120px] h-[47px] mini-mobile:w-[140px] mini-mobile:h-[50px] mini-mobile:text-[16px] text-[15px]"
           variant="red"
           type="button"
           onClick={resetFilter}
         >
           Сбросить
         </Button>
-        <Button className="w-[140px] h-[50px]" type="submit" variant="green">
+        <Button className="w-[120px] h-[47px] mini-mobile:w-[140px] mini-mobile:h-[50px] mini-mobile:text-[16px] text-[15px]" type="submit" variant="green">
           Сохранить
         </Button>
       </div>

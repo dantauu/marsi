@@ -29,7 +29,7 @@ export const ProfileHeader = () => {
         <div className="">
           {user?.photo_url ? (
             <img
-              className="w-[78px] h-[78px] rounded-full object-cover"
+              className="w-[72px] h-[72px] rounded-full object-cover mini-mobile:w-[78px] mini-mobile:h-[78px]"
               src={
                 Array.isArray(user.photo_url)
                   ? (user.photo_url[0] ?? "")
@@ -38,7 +38,7 @@ export const ProfileHeader = () => {
               alt=""
             />
           ) : (
-            <div className="w-[78px] h-[78px] bg-[#e0e0e0] rounded-full"></div>
+            <div className="w-[72px] h-[72px] bg-[#e0e0e0] rounded-full mini-mobile:w-[78px] mini-mobile:h-[78px]"></div>
           )}
         </div>
       </div>
