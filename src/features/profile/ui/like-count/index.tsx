@@ -29,7 +29,7 @@ export const LikeCount = ({
               <LoadingBalls className="w-10" />
             ) : (
               <p className="font-HelveticaB text-[16px]">
-                {myLikes?.length || 0}
+                {likesToMe?.length || 0}
               </p>
             )}
           </div>
@@ -43,7 +43,7 @@ export const LikeCount = ({
               <LoadingBalls className="w-10" />
             ) : (
               <p className="font-HelveticaB text-[16px]">
-                {likesToMe?.length || 0}
+                {myLikes?.length || 0}
               </p>
             )}
           </div>
