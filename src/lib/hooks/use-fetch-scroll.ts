@@ -3,12 +3,15 @@ import { useInView } from "react-intersection-observer"
 import { useGetUsersQuery } from "@/shared/api/user"
 import type { User } from "@/app/types/global"
 import { useAppSelector } from "@/redux/hooks.ts"
+import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
 
 const LIMIT = 10
 //for search
 export const useFetchToScroll = (params = {}) => {
   const [offset, setOffset] = useState(0)
   const [users, setUsers] = useState<User[]>([])
+  const { user } = useCurrentUser()
+  const id = user?.id
 
   const { ref, inView } = useInView({ threshold: 0.5 })
 
@@ -16,7 +19,7 @@ export const useFetchToScroll = (params = {}) => {
     data: newUsers = [],
     isFetching,
     isLoading,
-  } = useGetUsersQuery({ limit: LIMIT, offset, ...params })
+  } = useGetUsersQuery({ limit: LIMIT, offset, id, ...params } )
 
   useEffect(() => {
     setOffset(0)
@@ -44,12 +47,14 @@ export const useFetchToSlide = (params = {}) => {
   const [offset, setOffset] = useState(0)
   const [users, setUsers] = useState<User[]>([])
   const currentIndex = useAppSelector((state) => state.slider.currentIndex)
+  const { user } = useCurrentUser()
+  const id = user?.id
 
   const {
     data: newUsers = [],
     isFetching,
     isLoading,
-  } = useGetUsersQuery({ limit: LIMIT, offset, ...params })
+  } = useGetUsersQuery({ limit: LIMIT, offset, id, ...params })
   const countNewUsers = newUsers.length
 
   useEffect(() => {
