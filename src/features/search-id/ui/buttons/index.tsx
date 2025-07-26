@@ -13,11 +13,11 @@ export const Buttons = ({
   currentUserId: string | undefined
 }) => {
   const dispatch = useAppDispatch()
-  const [likeUser] = useLikeUserMutation()
-  const { data: likedUser } = useGetMyLikesQuery(currentUserId ?? "")
-  const liked = likedUser?.some((u) => u.id === currentUserId)
   const { user } = useCurrentUser()
-    const { notify } = useNotify()
+  const [likeUser] = useLikeUserMutation()
+  const { data: likedUser } = useGetMyLikesQuery(user?.id ?? "")
+  const liked = likedUser?.some((u) => u.id === currentUserId)
+  const { notify } = useNotify()
 
   const handleLikeUser = async () => {
     if (currentUserId && user?.id) {
