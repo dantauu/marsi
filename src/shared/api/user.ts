@@ -12,7 +12,7 @@ export const userApi = createApi({
     baseUrl: import.meta.env.VITE_BASE_URL || "http://localhost:9000/",
   }),
   endpoints: (builder) => ({
-    getUsers: builder.query<User[], Partial<FilteredUsers> & { id: string }>({
+    getUsers: builder.query<User[], Partial<FilteredUsers> & { id?: string }>({
       query: ({ id, ...params }) => ({
         url: "users",
         method: "GET",
