@@ -15,7 +15,7 @@ export const Buttons = ({
   const dispatch = useAppDispatch()
   const { user } = useCurrentUser()
   const [likeUser] = useLikeUserMutation()
-  const { data: likedUser } = useGetMyLikesQuery(user?.id ?? "")
+  const { data: likedUser, refetch } = useGetMyLikesQuery(user?.id ?? "")
   const liked = likedUser?.some((u) => u.id === currentUserId)
   const { notify } = useNotify()
 
@@ -27,6 +27,7 @@ export const Buttons = ({
         error: "Что то пошло не так",
         loading: "Загрузка..."
       })
+      refetch()
     }
   }
   return (
