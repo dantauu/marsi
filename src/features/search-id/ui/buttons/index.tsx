@@ -6,6 +6,7 @@ import { useGetMyLikesQuery, useLikeUserMutation } from "@/shared/api/user.ts"
 import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
 import SvgHeart from "@/assets/icons/Heart.tsx"
 import { useNotify } from "@/lib/hooks/use-notify.ts"
+import { useMemo } from "react"
 
 export const Buttons = ({
   currentUserId,
@@ -15,12 +16,15 @@ export const Buttons = ({
   const dispatch = useAppDispatch()
   const { user } = useCurrentUser()
   const [likeUser] = useLikeUserMutation()
-  const { data: likedUser, refetch } = useGetMyLikesQuery(user?.id ?? "")
-  const liked = likedUser?.some((u) => u.id === currentUserId)
+  const { data: likedUser, refetch } = useGetMyLikesQuery(user?.id ?? "", {
+    skip: !user?.id
+  })
+  const liked = useMemo(() => likedUser?.some((u) => u.id === currentUserId), [likedUser, currentUserId])
+
   const { notify } = useNotify()
 
   const handleLikeUser = async () => {
-    if (currentUserId && user?.id) {
+    if (currentUserId && user?.id && !liked) {
       dispatch(handleLike())
       await notify(likeUser({ likerId: user?.id, likedId: currentUserId }).unwrap(), {
         success: "Лайк поставлен",
