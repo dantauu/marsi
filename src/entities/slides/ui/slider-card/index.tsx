@@ -2,7 +2,7 @@ import type { User } from "@/app/types/global.d.ts"
 import { SwiperCard } from "@/entities/slides/lib/swiper-card"
 import { MainInfoUser } from "@/entities/slides/ui/slider-card/main-info-user.tsx"
 import { SliderButtons } from "@/features/slides"
-import { SwipePhotos } from "@/ui/sliders/slides"
+import { SwipePhotos } from "@/ui/sliders/swipe-photo"
 
 type SliderCardProps = {
   data: User[]

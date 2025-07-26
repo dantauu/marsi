@@ -9,8 +9,8 @@ const SvgMessageLike = (props: SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      stroke="#31C29F"
       fill="#31C29F"
+      stroke="#31C29F"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}

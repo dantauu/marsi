@@ -66,8 +66,8 @@ describe("TanStack Router", () => {
   })
   testRenderWithRoute({
     testRoute: "/slides",
-    findId: "slides",
-    nameRoute: "Render slides",
+    findId: "swipe-photo",
+    nameRoute: "Render swipe-photo",
   })
   testRenderWithRoute({
     testRoute: "/more",

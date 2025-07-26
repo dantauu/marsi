@@ -34,7 +34,7 @@ export const SwipePhotos: React.FC<Props> = ({ photo_url }) => {
 
   return (
     <div
-      className="relative select-none z-10"
+      className="relative select-none z-5"
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
     >

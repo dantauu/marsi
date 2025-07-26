@@ -19,7 +19,7 @@ export const useFetchToScroll = (params = {}) => {
     data: newUsers = [],
     isFetching,
     isLoading,
-  } = useGetUsersQuery({ limit: LIMIT, offset, id, ...params } )
+  } = useGetUsersQuery({ limit: LIMIT, offset, id, ...params })
 
   useEffect(() => {
     setOffset(0)
@@ -42,7 +42,7 @@ export const useFetchToScroll = (params = {}) => {
   return { ref, users, isLoading, isFetching }
 }
 
-//for slides
+//for swipe-photo
 export const useFetchToSlide = (params = {}) => {
   const [offset, setOffset] = useState(0)
   const [users, setUsers] = useState<User[]>([])
