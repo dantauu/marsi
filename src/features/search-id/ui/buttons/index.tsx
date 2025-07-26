@@ -2,27 +2,35 @@ import SvgCross from "@/assets/icons/Cross"
 import { useAppDispatch } from "@/redux/hooks"
 import { handleDislike, handleLike } from "@/redux/slices/slider-slice.ts"
 import Button from "@/shared/ui/buttons/button.tsx"
-import { useLikeUserMutation } from "@/shared/api/user.ts"
+import { useGetMyLikesQuery, useLikeUserMutation } from "@/shared/api/user.ts"
 import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
 import SvgHeart from "@/assets/icons/Heart.tsx"
+import { useNotify } from "@/lib/hooks/use-notify.ts"
 
-export const SliderButtons = ({
+export const Buttons = ({
   currentUserId,
 }: {
   currentUserId: string | undefined
 }) => {
   const dispatch = useAppDispatch()
   const [likeUser] = useLikeUserMutation()
+  const { data: likedUser } = useGetMyLikesQuery(currentUserId ?? "")
+  const liked = likedUser?.some((u) => u.id === currentUserId)
   const { user } = useCurrentUser()
+    const { notify } = useNotify()
 
-  const handleLikeUser = () => {
+  const handleLikeUser = async () => {
     if (currentUserId && user?.id) {
-      likeUser({ likerId: user?.id, likedId: currentUserId })
       dispatch(handleLike())
+      await notify(likeUser({ likerId: user?.id, likedId: currentUserId }).unwrap(), {
+        success: "Лайк поставлен",
+        error: "Что то пошло не так",
+        loading: "Загрузка..."
+      })
     }
   }
   return (
-    <div className="absolute bottom-0 z-50 w-full flex items-center justify-between px-3">
+    <div className="absolute bottom-0 z-5 w-full flex items-center justify-between px-3">
       <Button
         className="w-[100px] bg-main-red rounded-[14px] py-1"
         variant="default"
@@ -35,7 +43,7 @@ export const SliderButtons = ({
         variant="default"
         onClick={() => handleLikeUser()}
       >
-        <SvgHeart className="w-[50px] h-[50px] text-[#fff9]" />
+        <SvgHeart className={`w-[50px] h-[50px] text-[#fff9] ${liked && "text-main-red duration-150"}`} />
       </Button>
     </div>
   )

@@ -92,7 +92,11 @@ export const PhotoEdit = () => {
               </>
             ) : (
               <label className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer">
-                {isLoading ? (<LoadingBalls />) : (<SvgPlus className="text-main-pink w-[50px] h-[50px]" />)}
+                {isLoading ? (
+                  <LoadingBalls />
+                ) : (
+                  <SvgPlus className="text-main-pink w-[50px] h-[50px]" />
+                )}
                 <input
                   type="file"
                   accept="image/*"
