@@ -5,7 +5,10 @@ import LoadingBalls from "@/shared/ui/loading"
 
 export const SearchId = () => {
   const { id } = useParams({ strict: false })
-  const { data: user, isLoading, isFetching } = useGetUserByIdQuery(id)
+  const shouldFetch = Boolean(id && id != "undefined")
+  const { data: user, isLoading, isFetching } = useGetUserByIdQuery(id, {
+    skip: !shouldFetch
+  })
   if (isLoading || isFetching) return <LoadingBalls />
   return (
     <div className="px-2 pb-30">
