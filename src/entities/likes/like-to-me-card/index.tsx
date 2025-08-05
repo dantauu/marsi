@@ -18,9 +18,11 @@ export const LikesToMeCard = () => {
   const [unlikeUser, { isLoading: unlikeLoading }] = useUnlikeUserMutation()
   const handleUnlike = async (likerId: string) => {
     if (!currentUser?.id) return
+    const scrollY = window.scrollY
     try {
       await unlikeUser({ likerId, likedId: currentUser?.id })
-      refetch()
+      await refetch()
+      window.scrollTo({ top: scrollY })
     } catch (error) {
       console.error(error)
     }
