@@ -11,6 +11,7 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_URL || "http://localhost:9000/",
   }),
+  tagTypes: ["User"],
   endpoints: (builder) => ({
     getUsers: builder.query<User[], Partial<FilteredUsers> & { id?: string }>({
       query: ({ id, ...params }) => ({
@@ -22,6 +23,7 @@ export const userApi = createApi({
     }),
     getUserById: builder.query<User, string>({
       query: (id) => `users/user-id/${id}`,
+      providesTags: (_result, _error, id) => [{ type: "User", id }],
     }),
     initUser: builder.mutation<User, UserInit>({
       query: (userData) => ({
@@ -43,6 +45,9 @@ export const userApi = createApi({
         method: "POST",
         body: { likedId, likerId },
       }),
+      invalidatesTags: (_result, _error, { likedId }) => [
+        { type: "User", id: likedId },
+      ],
     }),
     unlikeUser: builder.mutation<void, { likerId: string; likedId: string }>({
       query: ({ likedId, likerId }) => ({

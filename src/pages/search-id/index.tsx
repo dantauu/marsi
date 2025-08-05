@@ -10,14 +10,13 @@ export const SearchId = () => {
     data: user,
     isLoading,
     isFetching,
-    refetch: userRefetch,
   } = useGetUserByIdQuery(id, {
     skip: !shouldFetch,
   })
   if (isLoading || isFetching) return <LoadingBalls />
   return (
     <div className="px-2 pb-30">
-      <SearchIdCard userRefetch={userRefetch} data={user ? [user] : []} />
+      <SearchIdCard data={user ? [user] : []} />
     </div>
   )
 }
