@@ -6,16 +6,20 @@ import { useSearch } from "@tanstack/react-router"
 import LoadingBalls from "@/shared/ui/loading"
 import { LayoutCard } from "@/widgets/card"
 import { useFetchToScroll } from "@/lib/hooks/use-fetch-scroll.ts"
+import { useGetLikesToMeQuery } from "@/shared/api/user.ts"
+import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
 
 const Search = () => {
   const searchParams = useSearch({ from: Route.id })
   const { ref, users, isLoading, isFetching } = useFetchToScroll(searchParams)
+  const { user: currentUser } = useCurrentUser()
+  const { data: countLikes } = useGetLikesToMeQuery(currentUser?.id ?? "")
   console.log("searchParams", searchParams)
   if (isLoading) return <LoadingBalls />
   if (!users) throw new Error("Error Data")
   return (
     <div data-testid="search" className="pb-[200px]">
-      <LikeCountNotify />
+      <LikeCountNotify countLikes={countLikes} />
       <div className="flex px-[12px] items-center justify-between pb-[20px]">
         <FilterButton />
         <LayoutSwitchButtons />

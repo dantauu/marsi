@@ -12,7 +12,6 @@ export const SearchIdCard = ({ data }: SliderCardProps) => {
   const { currentIndex } = SwiperCard({ data })
   const currentUser = data[currentIndex] ?? data[data.length - 1] ?? null
 
-
   return (
     <div className="flex flex-col gap-5 w-full max-w-[430px] h-full mx-auto mb-20 border-1 rounded-[29px]">
       <div className="relative w-full h-[440px] mini-mobile:h-[500px] flex justify-center overflow-hidden touch-none select-none">

@@ -1,6 +1,6 @@
 import type { UserCardGrid } from "@/app/types/global.d.ts"
 import { useNavigate } from "@tanstack/react-router"
-import { Route as SlidesRoute } from "@/app/routes/_app/_layout/search-id/$id.tsx"
+import { Route as SlidesIdRoute } from "@/app/routes/_app/_layout/search-id/$id.tsx"
 
 export const CardGridLayout = ({
   photo_url,
@@ -13,7 +13,7 @@ export const CardGridLayout = ({
     <div
       onClick={() =>
         navigate({
-          to: SlidesRoute.to,
+          to: SlidesIdRoute.to,
           params: { id },
         })
       }

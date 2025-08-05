@@ -1,8 +1,10 @@
 import SvgArrow from "@/assets/icons/Arrow"
 import SvgBrokeHeart from "@/assets/icons/BrokeHeart"
 import Button from "@/shared/ui/buttons/button.tsx"
+import { useNavigate } from "@tanstack/react-router"
 
 export const SubscriptionStatus = () => {
+  const navigate = useNavigate()
   return (
     <div className="flex flex-col justify-between items-center mt-[20px] h-[68px] p-1 shadow-shadow-block rounded-[10px] mini-mobile:flex-row">
       <div className="flex items-center gap-2">
@@ -16,6 +18,7 @@ export const SubscriptionStatus = () => {
       <Button
         className="font-HelveticaB w-[120px] h-[30px] mini-mobile:w-[127px] text-[14.8px] mini-mobile:text-[16px]"
         variant="green"
+        onClick={() => navigate({ to: "/subscribe" })}
       >
         Приобрести <SvgArrow />
       </Button>

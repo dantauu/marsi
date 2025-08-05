@@ -1,4 +1,3 @@
-import SvgDollar from "@/assets/icons/Dollar"
 import SvgNewSet from "@/assets/icons/NewSet"
 import SvgProfile from "@/assets/icons/Profile"
 import SvgSearch from "@/assets/icons/Search"
@@ -6,10 +5,12 @@ import SvgSlides from "@/assets/icons/Slides"
 import { cn } from "@/lib/utils/cn.tsx"
 import { Link } from "@tanstack/react-router"
 import { useKeyboardOpen } from "@/lib/hooks/use-keyboard-open.ts"
+import SvgHeartNav from "@/assets/icons/HeartNav.tsx"
 
 const navItems = [
   { id: "More", Icon: SvgNewSet, text: "Ещё", link: "/more" },
-  { id: "Subscribe", Icon: SvgDollar, text: "Подписка", link: "/subscribe" },
+  // { id: "Subscribe", Icon: SvgDollar, text: "Подписка", link: "/subscribe" },
+  { id: "Likes", Icon: SvgHeartNav, text: "Лайки", link: "/likes" },
   { id: "Search", Icon: SvgSearch, text: "Поиск", link: "/search" },
   { id: "Slides", Icon: SvgSlides, text: "Слайды", link: "/slides" },
   { id: "Profile", Icon: SvgProfile, text: "Профиль", link: "/profile" },
@@ -33,7 +34,7 @@ export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
                   <Icon
                     className={cn(
                       isActive ? "text-main-pink" : "text-white",
-                      "transition-all stroke-current w-[32px] h-[34px] mini-mobile:w-full mini-mobile:h-full"
+                      "transition-all stroke-current w-[30px] h-[34px] mini-mobile:w-[35px] mini-mobile:h-[38px]"
                     )}
                   />
                   <p

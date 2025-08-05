@@ -26,5 +26,12 @@ export const MyLikesCard = () => {
   }
   if (userLoading || unlikeLoading || isFetching || !currentUser)
     return <LoadingBalls />
-  return <LikeCard users={users} onUnlike={handleUnlike} isLocked={false} />
+  return (
+    <LikeCard
+      isMessage={false}
+      users={users}
+      onUnlike={handleUnlike}
+      isLocked={false}
+    />
+  )
 }
