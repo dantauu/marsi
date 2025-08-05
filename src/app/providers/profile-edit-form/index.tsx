@@ -1,10 +1,10 @@
 import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { type PropsWithChildren, useCallback, useEffect, useRef } from "react"
-import { EditFormContext } from "./profile-edit-context.tsx"
+import { EditFormContext } from "@/app/context/profile-edit-context.tsx"
 import { zodResolver } from "@hookform/resolvers/zod"
 import type { User } from "@/app/types/global"
-import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 
 export const editSchema = z.object({
   photo_url: z.array(z.string()),
@@ -52,7 +52,7 @@ export function useFormEmptyValues(): {
   values: Partial<EditFormSchema> | null
   isLoaded: boolean
 } {
-  const { user, isFetching } = useCurrentUser()
+  const { user, isFetching } = useUserMe()
 
   const fallbackUser = {
     photo_url: [],

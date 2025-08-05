@@ -3,14 +3,14 @@ import { useInView } from "react-intersection-observer"
 import { useGetUsersQuery } from "@/shared/api/user"
 import type { User } from "@/app/types/global"
 import { useAppSelector } from "@/redux/hooks.ts"
-import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 
 const LIMIT = 10
 //for search
 export const useFetchToScroll = (params = {}) => {
   const [offset, setOffset] = useState(0)
   const [users, setUsers] = useState<User[]>([])
-  const { user } = useCurrentUser()
+  const { user } = useUserMe()
   const id = user?.id
 
   const { ref, inView } = useInView({ threshold: 0.5 })
@@ -47,7 +47,7 @@ export const useFetchToSlide = (params = {}) => {
   const [offset, setOffset] = useState(0)
   const [users, setUsers] = useState<User[]>([])
   const currentIndex = useAppSelector((state) => state.slider.currentIndex)
-  const { user } = useCurrentUser()
+  const { user } = useUserMe()
   const id = user?.id
 
   const {

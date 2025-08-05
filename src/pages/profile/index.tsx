@@ -1,7 +1,7 @@
 import { SubscriptionStatus, Progress, LikeCount } from "@/features/profile"
 import { ProfileHeader } from "@/entities/profile"
 import { BasicInformation } from "@/ui/index.ts"
-import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import { useGetLikesToMeQuery, useGetMyLikesQuery } from "@/shared/api/user.ts"
 
 const Profile = () => {
@@ -9,7 +9,7 @@ const Profile = () => {
     user: currentUser,
     isFetching: userFetching,
     isLoading: userLoading,
-  } = useCurrentUser()
+  } = useUserMe()
   const { data: likesToMe, isFetching: likesToMeFetching } =
     useGetLikesToMeQuery(currentUser?.id ?? "", {
       skip: !currentUser?.id,

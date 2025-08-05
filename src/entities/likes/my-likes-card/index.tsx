@@ -1,10 +1,10 @@
 import { LikeCard } from "@/shared/ui/like-card"
 import { useGetMyLikesQuery, useUnlikeUserMutation } from "@/shared/api/user.ts"
-import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import LoadingBalls from "@/shared/ui/loading"
 
 export const MyLikesCard = () => {
-  const { user: currentUser, isLoading: userLoading } = useCurrentUser()
+  const { user: currentUser, isLoading: userLoading } = useUserMe()
   const {
     data: users,
     isFetching,

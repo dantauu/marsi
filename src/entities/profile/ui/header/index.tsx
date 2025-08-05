@@ -1,11 +1,11 @@
 import SvgEdit from "@/assets/icons/Edit.tsx"
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useNavigate } from "@tanstack/react-router"
-import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 
 export const ProfileHeader = () => {
   const navigate = useNavigate()
-  const { user } = useCurrentUser()
+  const { user } = useUserMe()
 
   const linkEditProfile = () => {
     navigate({ to: "/profile-edit" })

@@ -3,7 +3,7 @@ import { useAppDispatch } from "@/redux/hooks"
 import { handleDislike, handleLike } from "@/redux/slices/slider-slice.ts"
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useLikeUserMutation } from "@/shared/api/user.ts"
-import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import SvgHeart from "@/assets/icons/Heart.tsx"
 
 export const SliderButtons = ({
@@ -13,7 +13,7 @@ export const SliderButtons = ({
 }) => {
   const dispatch = useAppDispatch()
   const [likeUser] = useLikeUserMutation()
-  const { user } = useCurrentUser()
+  const { user } = useUserMe()
 
   const handleLikeUser = () => {
     if (currentUserId && user?.id) {
