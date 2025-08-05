@@ -1,24 +1,20 @@
-import { SliderButtons, NotifyLastCard } from "@/features/slides"
+import { NotifyLastCard } from "@/features/slides"
 import { SliderCard } from "@/entities/slides"
 import { FilterButton } from "@/ui"
-import { useGetUsersQuery } from "@/shared/api/user.ts"
 import { useSearch } from "@tanstack/react-router"
-import { Route } from "@/app/routes/_app/_layout/slides"
 import LoadingBalls from "@/shared/ui/loading"
+import { useFetchToSlide } from "@/lib/hooks/use-fetch-scroll.ts"
 
 const Slides = () => {
-  const searchParams = useSearch({ from: Route.id })
-  const { data: users, isLoading } = useGetUsersQuery(searchParams)
-
+  const searchParams = useSearch({ strict: false })
+  const { users, isLoading, currentIndex } = useFetchToSlide(searchParams)
   if (isLoading) return <LoadingBalls />
-  if (!users) throw new Error("Error Data")
   console.log("DATAUSERS", users)
   return (
-    <div data-testid="slides" className="flex flex-col gap-5 px-2 pb-[150px]">
-      <NotifyLastCard />
+    <div data-testid="slides" className="flex flex-col gap-5 px-2 pb-[90px]">
+      <NotifyLastCard currentIndex={currentIndex} usersCount={users.length} />
       <FilterButton />
       <SliderCard data={users} />
-      <SliderButtons />
     </div>
   )
 }

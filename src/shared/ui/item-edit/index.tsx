@@ -16,10 +16,12 @@ const ItemEdit = ({
     >
       <div className="flex items-center gap-2">
         <div>
-          <p className="font-ManropeM text-[20px] black">{title}:</p>
+          <p className="font-ManropeM text-[17.2px] mini-mobile:text-[20px]">
+            {title}:
+          </p>
         </div>
         <div className="">
-          <p className="w-full h-[30px] text-black font-ManropeM text-[20px]">
+          <p className="w-full text-black font-ManropeM text-[17.2px] mini-mobile:text-[20px]">
             {text}
           </p>
         </div>

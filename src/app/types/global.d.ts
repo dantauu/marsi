@@ -38,6 +38,8 @@ type FilteredUsers = {
   maxHeight: number
   city: string
   gender: string
+  limit: number
+  offset: number
 }
 
 type Locations = {
@@ -62,17 +64,19 @@ type EditFormFields = keyof EditFormSchemaOmit
 
 //Omits
 type EditFormSchemaOmit = Omit<EditFormSchema, "photo_url" | "deleted_photos">
-type UserCardSearch = Omit<
+type UserCardGrid = Omit<
   User,
   "gender" | "goal" | "city" | "hobbies" | "height"
 >
+type UserCardExpanded = Omit<User, "gender" | "city" | "hobbies">
 
 export type {
   User,
   Locations,
   Goals,
   Hobbies,
-  UserCardSearch,
+  UserCardGrid,
+  UserCardExpanded,
   EditFormFields,
   FilteredUsers,
   UserInit,

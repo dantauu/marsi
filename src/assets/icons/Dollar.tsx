@@ -12,7 +12,7 @@ const SvgDollar = (props: SVGProps<SVGSVGElement>) => (
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      strokeWidth={3}
+      strokeWidth={2.5}
       d="M12.637 1v38m8.939-30.327C17.649 3.679 2.785 3.157 2.785 11.909s21.399 4.565 20.164 14.872C21.918 35.374 5.816 35.492 1 28.633"
     />
   </svg>

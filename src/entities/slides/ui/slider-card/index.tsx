@@ -1,96 +1,91 @@
-import SvgCheck from "@/assets/icons/Check"
-import SvgCross from "@/assets/icons/Cross"
 import type { User } from "@/app/types/global.d.ts"
 import { SwiperCard } from "@/entities/slides/lib/swiper-card"
-import { useUserPhoto } from "@/lib/hooks/use-user-photo.ts"
+import { MainInfoUser } from "@/entities/slides/ui/slider-card/main-info-user.tsx"
+import { SliderButtons } from "@/features/slides"
+import { SwipePhotos } from "@/ui/sliders/swipe-photo"
 
-export const SliderCard = ({ data }: { data: User[] }) => {
+type SliderCardProps = {
+  data: User[]
+}
+
+export const SliderCard = ({ data }: SliderCardProps) => {
   //remove this
-  const { mockAvatar, userPhoto } = useUserPhoto()
-
   const {
     onSwipeStart,
     onSwipeMove,
     onSwipeEnd,
     getCardTransform,
+    getCardRotation,
     getOpacity,
     currentIndex,
     position,
     SWIPE_THRESHOLD,
-  } = SwiperCard()
+  } = SwiperCard({ data })
 
   return (
-    <div
-      className="swipe-container relative w-full h-fit px-1 flex items-center justify-center overflow-hidden touch-none select-none"
-      onMouseDown={onSwipeStart}
-      onTouchStart={onSwipeStart}
-      onMouseMove={onSwipeMove}
-      onTouchMove={onSwipeMove}
-      onMouseUp={onSwipeEnd}
-      onTouchEnd={onSwipeEnd}
-      onMouseLeave={onSwipeEnd}
-      style={{ touchAction: "none" }}
-    >
-      <div className="relative w-full h-[550px]">
-        {data.map((item, index) => {
-          const photo =
-            userPhoto.get(item.id) ?? mockAvatar.get(Number(item.id)) ?? ""
-          return (
-            <div
-              key={item.id}
-              className="absolute top-0 left-0 w-full h-full transition-all duration-500 ease-out"
-              style={{
-                transform: getCardTransform(index),
-                opacity:
-                  index === currentIndex
-                    ? 1
-                    : index === currentIndex + 1
-                      ? Math.abs(position.x) / SWIPE_THRESHOLD
-                      : 0,
-                zIndex: index === currentIndex ? 2 : 1,
-                pointerEvents: index === currentIndex ? "auto" : "none",
-              }}
-            >
-              <SvgCross
-                className="w-[96px] h-[96px] absolute top-55 left-33 text-red-500 transition-opacity duration-100 z-10"
+    <div className="flex flex-col gap-5 w-full max-w-[430px] h-full mx-auto mb-20 border-1 rounded-[29px]">
+      <div
+        className="relative w-full h-[440px] mini-mobile:h-[500px] flex justify-center overflow-hidden touch-none select-none"
+        onMouseDown={onSwipeStart}
+        onTouchStart={onSwipeStart}
+        onMouseMove={onSwipeMove}
+        onTouchMove={onSwipeMove}
+        onMouseUp={onSwipeEnd}
+        onTouchEnd={onSwipeEnd}
+        onMouseLeave={onSwipeEnd}
+        style={{ touchAction: "pan-y" }}
+      >
+        <div className="relative w-full h-min">
+          {data.map((item, index) => {
+            return (
+              <div
+                key={item.id}
+                className="flex flex-col justify-between gap-5 absolute w-full transition-all duration-500 ease-out"
                 style={{
+                  transform:
+                    index === currentIndex
+                      ? `${getCardTransform(index)} ${getCardRotation()}`
+                      : getCardTransform(index),
                   opacity:
-                    index === currentIndex && position.x < 0
-                      ? getOpacity(position.x)
-                      : 0,
+                    index === currentIndex
+                      ? 1
+                      : index === currentIndex + 1
+                        ? Math.abs(position.x) / SWIPE_THRESHOLD
+                        : 0,
+                  zIndex: index === currentIndex ? 2 : 1,
+                  pointerEvents: index === currentIndex ? "auto" : "none",
                 }}
-              />
+              >
+                <div
+                  style={{
+                    opacity:
+                      index === currentIndex &&
+                      (position.x < 0 || position.x > 0)
+                        ? getOpacity(position.x)
+                        : 0,
+                  }}
+                  className={`absolute z-20 w-full h-full rounded-[29px] pointer-events-none ${position.x < 0 ? "bg-[#dc00003e]" : "bg-[#03dc0043]"}`}
+                ></div>
 
-              <SvgCheck
-                className="w-[96px] h-[96px] absolute top-55 right-33 text-green-500 transition-opacity duration-100 z-10"
-                style={{
-                  opacity:
-                    index === currentIndex && position.x > 0
-                      ? getOpacity(position.x)
-                      : 0,
-                }}
-              />
-
-              <div className="relative w-full h-full">
-                <div className="w-full h-full inset-0">
-                  <img
-                    className="w-full h-full object-cover object-center rounded-[28px]"
-                    src={
-                      Array.isArray(photo) ? (photo[0] ?? "") : (photo ?? "")
+                <div className="relative w-full h-full">
+                  <SwipePhotos
+                    photo_url={
+                      Array.isArray(item.photo_url) ? item.photo_url : []
                     }
-                    alt=""
                   />
-                  <div className="absolute bottom-4 left-4">
-                    <p className="text-white text-[40px] font-ManropeM">
+                  <div className="absolute bottom-18 z-50 px-3">
+                    <p className="text-white text-[35px] mini-mobile:text-[40px] font-ManropeM">
                       {item.first_name}, {item.age}
                     </p>
                   </div>
+                  <SliderButtons currentUserId={item.id} />
                 </div>
               </div>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
+      <MainInfoUser user={data[currentIndex]} />
     </div>
   )
 }

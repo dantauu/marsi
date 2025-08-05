@@ -1,28 +1,27 @@
 import Button from "@/shared/ui/buttons/button.tsx"
+import { useNavigate } from "@tanstack/react-router"
+import { useAllPercentCount } from "@/lib/utils/get-percent-count"
 
 export const Progress = () => {
+  const { colors, percent } = useAllPercentCount()
+  const navigate = useNavigate()
   return (
-    <div className="flex items-center px-2 mt-[20px] h-[42px] shadow-shadow-block rounded-[10px]">
-      <div className="flex justify-between items-center w-full">
-        <div className="flex items-center gap-2">
-          <div className="">
-            <p className="font-HelveticaB text-[16px] mini-mobile:text-[18px]">
-              Прогресс заполнения:
-            </p>
-          </div>
-          <div className="">
-            <p className="text-red-500 font-HelveticaB text-[16px] mini-mobile:text-[16.5px]">
-              20%
-            </p>
-          </div>
-        </div>
-        <Button
-          className="font-HelveticaB text-blue-600 text-[14px] mini-mobile:text-16px"
-          variant="default"
-        >
-          Продолжить
-        </Button>
+    <div className="flex flex-col items-center justify-between py-1.5 mini-mobile:h-[115px] h-[85px] bg-main-green w-full mini-mobile:w-[180px] rounded-[10px] cursor-pointer">
+      <div className="flex flex-row justify-center items-center w-full mini-mobile:flex-col">
+        <p className="text-center text-white font-HelveticaB text-[16px]">
+          Общий прогресс
+        </p>
+        <p className="text-center text-white font-HelveticaB text-[16px] pl-2">
+          заполнения: <span style={{ color: colors }}>{percent}%</span>
+        </p>
       </div>
+      <Button
+        className="w-[125px] h-[35px] bg-white rounded-[8px] font-HelveticaB"
+        variant="default"
+        onClick={() => navigate({ to: "/profile-edit" })}
+      >
+        Продолжить
+      </Button>
     </div>
   )
 }

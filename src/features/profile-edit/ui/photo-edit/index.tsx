@@ -3,11 +3,11 @@ import React from "react"
 import SvgPlus from "@/assets/icons/Plus.tsx"
 import { useEditProfileForm } from "@/app/providers/profile-edit-form/profile-edit-context.tsx"
 import { useWatch } from "react-hook-form"
-import {
-  useUploadPhotoMutation,
-} from "@/shared/api/user.ts"
+import { useUploadPhotoMutation } from "@/shared/api/user.ts"
 import SvgCross from "@/assets/icons/Cross.tsx"
 import Button from "@/shared/ui/buttons/button.tsx"
+import heic2any from "heic2any"
+import LoadingBalls from "@/shared/ui/loading"
 
 const pictureItems = [
   { id: 1, plusIcon: plusIcon },
@@ -19,17 +19,34 @@ export const PhotoEdit = () => {
   const { setValue, control } = useEditProfileForm()
   const photo_url = useWatch({ control, name: "photo_url" })
   const deletedPhotos = useWatch({ control, name: "deleted_photos" })
-  const [uploadPhoto] = useUploadPhotoMutation()
+  const [uploadPhoto, { isLoading }] = useUploadPhotoMutation()
 
   const handlePictureChange = async (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-    const file = e.target.files
-    if (!file?.length) return
+    const file = e.target.files?.[0]
+    if (!file) return
 
     try {
-      const uploadedUrls = await uploadPhoto(file[0]).unwrap()
+      let processedFile: File | Blob = file
+      const fileExt = file.name.split(".").pop()?.toLowerCase()
+      if (fileExt === "heic" || fileExt === "heif") {
+        const convertedBlob = await heic2any({
+          blob: file,
+          toType: "image/jpeg",
+          quality: 0.9,
+        })
+        processedFile = new File(
+          [convertedBlob as BlobPart],
+          file.name.replace(/\.[^/.]+$/, ".jpg"),
+          {
+            type: "image/jpeg",
+          }
+        )
+      }
+
+      const uploadedUrls = await uploadPhoto(processedFile).unwrap()
       const updated = [...photo_url]
       updated[index] = uploadedUrls
       setValue("photo_url", updated, { shouldDirty: true })
@@ -43,7 +60,9 @@ export const PhotoEdit = () => {
     const deleted = deletedPhotos ?? []
     const deleteToFileName = updated[index]?.split("/").pop()
     if (deleteToFileName) {
-      setValue("deleted_photos", [...deleted, deleteToFileName], { shouldDirty: true })
+      setValue("deleted_photos", [...deleted, deleteToFileName], {
+        shouldDirty: true,
+      })
       updated[index] = ""
       setValue("photo_url", updated, { shouldDirty: true })
     }
@@ -57,7 +76,7 @@ export const PhotoEdit = () => {
         return (
           <div
             key={item.id}
-            className="relative w-[123px] h-[218px] overflow-hidden rounded-[10px] bg-[#D9D9D9]"
+            className="relative w-[95px] h-[185px] mini-mobile:w-[123px] mini-mobile:h-[218px] overflow-hidden rounded-[10px] bg-[#D9D9D9]"
           >
             {imageSrc ? (
               <>
@@ -73,7 +92,11 @@ export const PhotoEdit = () => {
               </>
             ) : (
               <label className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer">
-                <SvgPlus className="text-main-pink" />
+                {isLoading ? (
+                  <LoadingBalls />
+                ) : (
+                  <SvgPlus className="text-main-pink w-[50px] h-[50px]" />
+                )}
                 <input
                   type="file"
                   accept="image/*"

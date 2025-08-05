@@ -4,11 +4,13 @@ import sliderReducer from "./slices/slider-slice.ts"
 import { userApi } from "@/shared/api/user.ts"
 import { setupListeners } from "@reduxjs/toolkit/query"
 import { locationsApi } from "@/redux/api/locations.ts"
+import { layoutSlice } from "@/redux/slices/layout-switch.ts"
 
 export const store = configureStore({
   reducer: {
     modal: modalReducer,
     slider: sliderReducer,
+    layout_switch: layoutSlice.reducer,
     [userApi.reducerPath]: userApi.reducer,
     [locationsApi.reducerPath]: locationsApi.reducer,
   },

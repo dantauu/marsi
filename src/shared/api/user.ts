@@ -11,13 +11,19 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_URL || "http://localhost:9000/",
   }),
+  tagTypes: ["User"],
   endpoints: (builder) => ({
-    getUsers: builder.query<User[], void | Partial<FilteredUsers>>({
-      query: (params) => ({
+    getUsers: builder.query<User[], Partial<FilteredUsers> & { id?: string }>({
+      query: ({ id, ...params }) => ({
         url: "users",
         method: "GET",
-        ...(params ? { params } : {}),
+        params,
+        headers: id ? { "x-user-id": id } : {},
       }),
+    }),
+    getUserById: builder.query<User, string>({
+      query: (id) => `users/user-id/${id}`,
+      providesTags: (_result, _error, id) => [{ type: "User", id }],
     }),
     initUser: builder.mutation<User, UserInit>({
       query: (userData) => ({
@@ -33,7 +39,30 @@ export const userApi = createApi({
         body: userData,
       }),
     }),
-    uploadPhoto: builder.mutation<string, File>({
+    likeUser: builder.mutation<void, { likerId: string; likedId: string }>({
+      query: ({ likedId, likerId }) => ({
+        url: "likes",
+        method: "POST",
+        body: { likedId, likerId },
+      }),
+      invalidatesTags: (_result, _error, { likedId }) => [
+        { type: "User", id: likedId },
+      ],
+    }),
+    unlikeUser: builder.mutation<void, { likerId: string; likedId: string }>({
+      query: ({ likedId, likerId }) => ({
+        url: "likes/unlike",
+        method: "POST",
+        body: { likedId, likerId },
+      }),
+    }),
+    getMyLikes: builder.query<User[], string>({
+      query: (userId) => `likes/mine?userId=${userId}`,
+    }),
+    getLikesToMe: builder.query<User[], string>({
+      query: (userId) => `likes/who-liked-me?userId=${userId}`,
+    }),
+    uploadPhoto: builder.mutation<string, File | Blob>({
       query: (file) => {
         const formData = new FormData()
         formData.append("file", file)
@@ -57,8 +86,13 @@ export const userApi = createApi({
 
 export const {
   useGetUsersQuery,
+  useGetUserByIdQuery,
   useInitUserMutation,
   useUpdateUserMutation,
+  useLikeUserMutation,
+  useUnlikeUserMutation,
+  useGetMyLikesQuery,
+  useGetLikesToMeQuery,
   useUploadPhotoMutation,
   useDeletePhotoMutation,
 } = userApi

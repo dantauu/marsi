@@ -53,40 +53,45 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
 
   console.log("ERRORS", errors)
   return (
-    <div
-      className={cn(
-        "flex flex-col gap-4 rounded-[18px] py-2 shadow-shadow-block",
-        className
-      )}
-    >
-      <p className="font-HelveticaB text-[21px] pl-2">Основное</p>
-      <ItemEdit
-        title="Имя"
-        text={first_name}
-        onClick={() => handleOpen("first_name")}
-      />
-      <ItemEdit
-        title="Пол"
-        text={getGenderFormat(gender)}
-        onClick={() => handleOpen("gender")}
-      />
-      <ItemEdit title="Возраст" text={age} onClick={() => handleOpen("age")} />
-      <ItemEdit title="Город" text={city} onClick={() => handleOpen("city")} />
-      <ItemEdit title="Цель" text={goal} onClick={() => handleOpen("goal")} />
-      <ItemEdit
-        title="Ваш рост"
-        text={height}
-        onClick={() => handleOpen("height")}
-      />
-      <AddHobbies
-        onClick={() => handleOpen("hobbies")}
-        onRemove={(hobby) => {
-          const newHobby = hobbies.filter((h) => h !== hobby)
-          setValue("hobbies", newHobby)
-        }}
-        text={hobbies}
-        className="mt-5"
-      />
+    <div className={cn("rounded-[18px] shadow-shadow-block", className)}>
+      <div className="flex flex-col gap-4 p-2">
+        <p className="font-HelveticaB text-[21px]">Основное</p>
+        <ItemEdit
+          title="Имя"
+          text={first_name}
+          onClick={() => handleOpen("first_name")}
+        />
+        <ItemEdit
+          title="Пол"
+          text={getGenderFormat(gender)}
+          onClick={() => handleOpen("gender")}
+        />
+        <ItemEdit
+          title="Возраст"
+          text={age}
+          onClick={() => handleOpen("age")}
+        />
+        <ItemEdit
+          title="Город"
+          text={city}
+          onClick={() => handleOpen("city")}
+        />
+        <ItemEdit title="Цель" text={goal} onClick={() => handleOpen("goal")} />
+        <ItemEdit
+          title="Ваш рост"
+          text={height}
+          onClick={() => handleOpen("height")}
+        />
+        <AddHobbies
+          onClick={() => handleOpen("hobbies")}
+          onRemove={(hobby) => {
+            const newHobby = hobbies.filter((h) => h !== hobby)
+            setValue("hobbies", newHobby)
+          }}
+          text={hobbies}
+          className="mt-5"
+        />
+      </div>
 
       <AnimatePresence>
         {isEditOpen && currentField && (

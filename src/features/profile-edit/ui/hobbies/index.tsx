@@ -25,7 +25,9 @@ export const AddHobbies = ({
       )}
     >
       <div>
-        <p className="text-xl font-HelveticaB">Увлечения</p>
+        <p className="text-xl font-HelveticaB text-[18px] mini-mobile:text-[20px]">
+          Увлечения
+        </p>
         <div className="flex flex-wrap gap-3">
           {text.map((item, index) => (
             <div
@@ -49,10 +51,11 @@ export const AddHobbies = ({
         {!isValue && (
           <Button
             type="button"
-            className={`w-full h-[50px] text-lg bg-black text-white font-HelveticaB rounded-[10px] ${text.length >= 1 && "mt-4"}`}
+            className={`w-full h-[50px] text-[16px] mini-mobile:text-[18px] bg-black text-white font-HelveticaB rounded-[10px] ${text.length >= 1 && "mt-4"}`}
             variant={"default"}
           >
-            Добавить <SvgPlus className="w-[30px] h-[30px]" />
+            Добавить{" "}
+            <SvgPlus className="w-[25px] h-[25px] mini-mobile:w-[30px] mini-mobile:h-[30px]" />
           </Button>
         )}
       </div>
