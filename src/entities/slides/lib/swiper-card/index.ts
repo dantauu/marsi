@@ -89,7 +89,6 @@ export const SwiperCard = ({ data }: { data: User[] }) => {
           likerId: user?.id,
           likedId: likedUserId,
         }).unwrap()
-        console.log("💚 Liked:", likedUserId)
       } catch (err) {
         console.error("Ошибка при лайке:", err)
       }

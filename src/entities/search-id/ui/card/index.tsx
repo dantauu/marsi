@@ -10,6 +10,8 @@ type SliderCardProps = {
 
 export const SearchIdCard = ({ data }: SliderCardProps) => {
   const { currentIndex } = SwiperCard({ data })
+  const currentUser = data[currentIndex] ?? data[data.length - 1] ?? null
+
 
   return (
     <div className="flex flex-col gap-5 w-full max-w-[430px] h-full mx-auto mb-20 border-1 rounded-[29px]">
@@ -39,7 +41,7 @@ export const SearchIdCard = ({ data }: SliderCardProps) => {
           })}
         </div>
       </div>
-      <MainInfoUser user={data[currentIndex]} />
+      <MainInfoUser user={currentUser} />
     </div>
   )
 }
