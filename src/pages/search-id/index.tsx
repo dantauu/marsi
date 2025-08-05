@@ -6,13 +6,18 @@ import LoadingBalls from "@/shared/ui/loading"
 export const SearchId = () => {
   const { id } = useParams({ strict: false })
   const shouldFetch = Boolean(id && id != "undefined")
-  const { data: user, isLoading, isFetching } = useGetUserByIdQuery(id, {
-    skip: !shouldFetch
+  const {
+    data: user,
+    isLoading,
+    isFetching,
+    refetch: userRefetch,
+  } = useGetUserByIdQuery(id, {
+    skip: !shouldFetch,
   })
   if (isLoading || isFetching) return <LoadingBalls />
   return (
     <div className="px-2 pb-30">
-      <SearchIdCard data={user ? [user] : []} />
+      <SearchIdCard userRefetch={userRefetch} data={user ? [user] : []} />
     </div>
   )
 }

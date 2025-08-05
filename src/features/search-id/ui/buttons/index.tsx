@@ -10,28 +10,37 @@ import { useMemo } from "react"
 
 export const Buttons = ({
   currentUserId,
+  userRefetch,
 }: {
   currentUserId: string | undefined
+  userRefetch: () => void | Promise<unknown>
 }) => {
   const dispatch = useAppDispatch()
   const { user } = useCurrentUser()
   const [likeUser] = useLikeUserMutation()
   const { data: likedUser, refetch } = useGetMyLikesQuery(user?.id ?? "", {
-    skip: !user?.id
+    skip: !user?.id,
   })
-  const liked = useMemo(() => likedUser?.some((u) => u.id === currentUserId), [likedUser, currentUserId])
+  const liked = useMemo(
+    () => likedUser?.some((u) => u.id === currentUserId),
+    [likedUser, currentUserId]
+  )
 
   const { notify } = useNotify()
 
   const handleLikeUser = async () => {
     if (currentUserId && user?.id && !liked) {
       dispatch(handleLike())
-      await notify(likeUser({ likerId: user?.id, likedId: currentUserId }).unwrap(), {
-        success: "Лайк поставлен",
-        error: "Что то пошло не так",
-        loading: "Загрузка..."
-      })
+      await notify(
+        likeUser({ likerId: user?.id, likedId: currentUserId }).unwrap(),
+        {
+          success: "Лайк поставлен",
+          error: "Что то пошло не так",
+          loading: "Загрузка...",
+        }
+      )
       refetch()
+      userRefetch()
     }
   }
   return (
@@ -48,7 +57,9 @@ export const Buttons = ({
         variant="default"
         onClick={() => handleLikeUser()}
       >
-        <SvgHeart className={`w-[50px] h-[50px] text-[#fff9] ${liked && "text-main-red duration-150"}`} />
+        <SvgHeart
+          className={`w-[50px] h-[50px] text-[#fff9] ${liked && "text-main-red duration-150"}`}
+        />
       </Button>
     </div>
   )

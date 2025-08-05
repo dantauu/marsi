@@ -6,9 +6,10 @@ import { Buttons } from "@/features/search-id/index.ts"
 
 type SliderCardProps = {
   data: User[]
+  userRefetch: () => void | Promise<unknown>
 }
 
-export const SearchIdCard = ({ data }: SliderCardProps) => {
+export const SearchIdCard = ({ data, userRefetch }: SliderCardProps) => {
   const { currentIndex } = SwiperCard({ data })
 
   return (
@@ -32,7 +33,7 @@ export const SearchIdCard = ({ data }: SliderCardProps) => {
                       {item.first_name}, {item.age}
                     </p>
                   </div>
-                  <Buttons currentUserId={item.id} />
+                  <Buttons userRefetch={userRefetch} currentUserId={item.id} />
                 </div>
               </div>
             )
