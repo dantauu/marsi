@@ -26,9 +26,6 @@ export const LikeCard = ({
             <div
               key={item.id}
               className="relative flex justify-between items-center rounded-[10px] shadow-shadow-block px-0.5 py-1.5"
-              onClick={() => {
-                navigate({ to: SlidesIdRoute.to, params: { id: item.id } })
-              }}
             >
               {isLocked && (
                 <div className="absolute z-1 inset-0 rounded-[10px] flex items-center justify-center">
@@ -38,7 +35,10 @@ export const LikeCard = ({
                 </div>
               )}
               <div
-                className={`flex items-center gap-1 ${isLocked && "filter blur-[5px] inset-0"}`}
+                className={`w-full flex items-center gap-1 ${isLocked && "filter blur-[5px] inset-0"}`}
+                onClick={() => {
+                  navigate({ to: SlidesIdRoute.to, params: { id: item.id } })
+                }}
               >
                 <img
                   className="min-w-[70px] h-[70px] mini-mobile:min-w-[80px] mini-mobile:h-[80px] object-cover rounded-full"
