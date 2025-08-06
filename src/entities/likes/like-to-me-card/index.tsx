@@ -4,7 +4,7 @@ import {
   useUnlikeUserMutation,
 } from "@/shared/api/user.ts"
 import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
-import LoadingBalls from "@/shared/ui/loading"
+import LoadingBalls from "@/shared/ui/loading"g
 
 export const LikesToMeCard = () => {
   const { user: currentUser, isLoading: userLoading } = useCurrentUser()

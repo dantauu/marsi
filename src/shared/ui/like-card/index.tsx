@@ -27,7 +27,7 @@ export const LikeCard = ({
             <div
               key={item.id}
               className="relative flex justify-between items-center rounded-[10px] shadow-shadow-block px-0.5 py-1.5"
-              onClick={() => { navigate({ to: SlidesIdRoute.to, params: item.id }) }}
+              onClick={() => { navigate({ to: SlidesIdRoute.to, params: { id: item.id } }) }}
             >
               {isLocked && (
                 <div className="absolute z-1 inset-0 rounded-[10px] flex items-center justify-center">
