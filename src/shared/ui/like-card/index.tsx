@@ -8,10 +8,12 @@ export const LikeCard = ({
   isLocked,
   users,
   onUnlike,
+                           isMessage
 }: {
   isLocked?: boolean
   users: User[] | undefined
   onUnlike?: (userId: string) => void
+  isMessage?: boolean
 }) => {
   return (
     <div>
@@ -46,11 +48,13 @@ export const LikeCard = ({
               </div>
               <div className={`flex gap-3 ${isLocked && "blur-[4px] filter"}`}>
                 <Button onClick={() => onUnlike?.(item.id)} variant="default">
-                  <SvgTrash className="w-12 h-12" />
+                  <SvgTrash className="w-10 h-10" />
                 </Button>
-                <Button variant="default">
-                  <SvgMessageLike className="w-13 h-13" />
-                </Button>
+                {isMessage && (
+                  <Button variant="default">
+                    <SvgMessageLike className="w-11 h-11" />
+                  </Button>
+                )}
               </div>
             </div>
           ))}
