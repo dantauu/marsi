@@ -3,18 +3,22 @@ import SvgArrow from "@/assets/icons/Arrow.tsx"
 import type { User } from "@/app/types/global"
 import SvgTrash from "@/assets/icons/Trash.tsx"
 import SvgMessageLike from "@/assets/icons/MessageLike.tsx"
+import { useNavigate } from "@tanstack/react-router"
+import { Route as SlidesIdRoute } from "@/app/routes/_app/_layout/search-id/$id.tsx"
+
 
 export const LikeCard = ({
   isLocked,
   users,
   onUnlike,
-                           isMessage
+  isMessage,
 }: {
   isLocked?: boolean
   users: User[] | undefined
   onUnlike?: (userId: string) => void
   isMessage?: boolean
 }) => {
+  const navigate = useNavigate()
   return (
     <div>
       {users && users.length > 0 ? (
@@ -23,6 +27,7 @@ export const LikeCard = ({
             <div
               key={item.id}
               className="relative flex justify-between items-center rounded-[10px] shadow-shadow-block px-0.5 py-1.5"
+              onClick={() => { navigate({ to: SlidesIdRoute.to, params: item.id }) }}
             >
               {isLocked && (
                 <div className="absolute z-1 inset-0 rounded-[10px] flex items-center justify-center">
@@ -60,7 +65,7 @@ export const LikeCard = ({
           ))}
         </div>
       ) : (
-        <p>Пока никого нет</p>
+        <p className="flex justify-center">Пока никого нет</p>
       )}
     </div>
   )

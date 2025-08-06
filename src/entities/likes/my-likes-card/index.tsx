@@ -2,7 +2,6 @@ import { LikeCard } from "@/shared/ui/like-card"
 import { useGetMyLikesQuery, useUnlikeUserMutation } from "@/shared/api/user.ts"
 import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
 import LoadingBalls from "@/shared/ui/loading"
-import { MockCardData } from "@/lib/data/cards.ts"
 
 export const MyLikesCard = () => {
   const { user: currentUser, isLoading: userLoading } = useCurrentUser()
@@ -25,7 +24,14 @@ export const MyLikesCard = () => {
       console.error(error)
     }
   }
-  if (!(userLoading || unlikeLoading || isFetching || !currentUser))
+  if (userLoading || unlikeLoading || isFetching || !currentUser)
     return <LoadingBalls />
-  return <LikeCard isMessage={false} users={MockCardData} onUnlike={handleUnlike} isLocked={false} />
+  return (
+    <LikeCard
+      isMessage={false}
+      users={users}
+      onUnlike={handleUnlike}
+      isLocked={false}
+    />
+  )
 }

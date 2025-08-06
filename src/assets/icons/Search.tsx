@@ -2,8 +2,8 @@ import type { SVGProps } from "react"
 const SvgSearch = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={29}
-    height={29}
+    width={25}
+    height={25}
     fill="none"
     viewBox="0 0 34 34"
     {...props}
