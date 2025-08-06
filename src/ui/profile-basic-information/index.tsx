@@ -1,10 +1,10 @@
 import Block from "@/shared/ui/blocks/block.tsx"
 import { getGenderFormat } from "@/lib/utils/format-gender.ts"
 import { usePercentCount } from "@/lib/utils/get-percent-count"
-import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 
 export const BasicInformation = () => {
-  const { user } = useCurrentUser()
+  const { user } = useUserMe()
   const { colors, percent } = usePercentCount()
   return (
     <div className="mt-[20px] shadow-shadow-block px-[8px] py-[8px] rounded-[10px]">

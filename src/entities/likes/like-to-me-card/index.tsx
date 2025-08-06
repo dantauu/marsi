@@ -3,24 +3,24 @@ import {
   useGetLikesToMeQuery,
   useUnlikeUserMutation,
 } from "@/shared/api/user.ts"
-import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import LoadingBalls from "@/shared/ui/loading"
 
 export const LikesToMeCard = () => {
-  const { user: currentUser, isLoading: userLoading } = useCurrentUser()
+  const { user: userMe, isLoading: userLoading } = useUserMe()
   const {
     data: users,
     isFetching,
     refetch,
-  } = useGetLikesToMeQuery(currentUser?.id ?? "", {
-    skip: !currentUser?.id,
+  } = useGetLikesToMeQuery(userMe?.id ?? "", {
+    skip: !userMe?.id,
   })
   const [unlikeUser, { isLoading: unlikeLoading }] = useUnlikeUserMutation()
   const handleUnlike = async (likerId: string) => {
-    if (!currentUser?.id) return
+    if (!userMe?.id) return
     const scrollY = window.scrollY
     try {
-      await unlikeUser({ likerId, likedId: currentUser?.id })
+      await unlikeUser({ likerId, likedId: userMe?.id })
       await refetch()
       window.scrollTo({ top: scrollY })
     } catch (error) {
@@ -28,7 +28,14 @@ export const LikesToMeCard = () => {
     }
   }
 
-  if (userLoading || unlikeLoading || isFetching || !currentUser)
+  if (userLoading || unlikeLoading || isFetching || !userMe)
     return <LoadingBalls />
-  return <LikeCard isMessage={true} users={users} onUnlike={handleUnlike} isLocked={false} />
+  return (
+    <LikeCard
+      isMessage={true}
+      users={users}
+      onUnlike={handleUnlike}
+      isLocked={false}
+    />
+  )
 }

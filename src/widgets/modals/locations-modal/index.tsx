@@ -1,4 +1,4 @@
-import { useFilterForm } from "@/app/providers/filter-form/filter-form-context.tsx"
+import { useFilterForm } from "@/app/context/filter-form-context.tsx"
 import { useState } from "react"
 import { useDebounce } from "@/lib/hooks/use-debounce.ts"
 import { useGetLocationsQuery } from "@/redux/api/locations.ts"

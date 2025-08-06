@@ -1,7 +1,7 @@
 import plusIcon from "@/assets/icons-source/plus.svg"
 import React from "react"
 import SvgPlus from "@/assets/icons/Plus.tsx"
-import { useEditProfileForm } from "@/app/providers/profile-edit-form/profile-edit-context.tsx"
+import { useEditProfileForm } from "@/app/context/profile-edit-context.tsx"
 import { useWatch } from "react-hook-form"
 import { useUploadPhotoMutation } from "@/shared/api/user.ts"
 import SvgCross from "@/assets/icons/Cross.tsx"

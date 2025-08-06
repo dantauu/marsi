@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react"
 import type { UseFormReturn } from "react-hook-form"
-import type { EditFormSchema } from "./index.tsx"
+import type { EditFormSchema } from "@/app/providers/profile-edit-form"
 
 export const EditFormContext =
   createContext<UseFormReturn<EditFormSchema> | null>(null)

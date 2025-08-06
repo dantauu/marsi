@@ -1,4 +1,4 @@
-import { useEditProfileForm } from "@/app/providers/profile-edit-form/profile-edit-context.tsx"
+import { useEditProfileForm } from "@/app/context/profile-edit-context.tsx"
 
 export const InputEdit = ({
   value,

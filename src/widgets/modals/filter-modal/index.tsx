@@ -8,7 +8,7 @@ import { useNavigate } from "@tanstack/react-router"
 import { Route } from "@/app/routes/_app/_layout/search"
 import { formEmptyValues } from "@/app/providers/filter-form"
 import { useWatch } from "react-hook-form"
-import { useFilterForm } from "@/app/providers/filter-form/filter-form-context.tsx"
+import { useFilterForm } from "@/app/context/filter-form-context.tsx"
 import { useModalDrag } from "@/lib/utils/modal-drag"
 import SaveSettingsFilter from "@/widgets/nav-bar/save-settings-filter"
 

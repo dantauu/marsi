@@ -7,12 +7,12 @@ import LoadingBalls from "@/shared/ui/loading"
 import { LayoutCard } from "@/widgets/card"
 import { useFetchToScroll } from "@/lib/hooks/use-fetch-scroll.ts"
 import { useGetLikesToMeQuery } from "@/shared/api/user.ts"
-import { useCurrentUser } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 
 const Search = () => {
   const searchParams = useSearch({ from: Route.id })
   const { ref, users, isLoading, isFetching } = useFetchToScroll(searchParams)
-  const { user: currentUser } = useCurrentUser()
+  const { user: currentUser } = useUserMe()
   const { data: countLikes } = useGetLikesToMeQuery(currentUser?.id ?? "")
   console.log("searchParams", searchParams)
   if (isLoading) return <LoadingBalls />
