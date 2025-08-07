@@ -57,9 +57,11 @@ export const LikeCard = ({
                   <SvgTrash className="w-10 h-10" />
                 </Button>
                 {isMessage && (
-                  <Button variant="default">
-                    <SvgMessageLike className="w-11 h-11" />
-                  </Button>
+                  <a href={`https://t.me/${item.username}`}>
+                    <Button variant="default">
+                      <SvgMessageLike className="w-11 h-11" />
+                    </Button>
+                  </a>
                 )}
               </div>
             </div>
