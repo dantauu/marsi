@@ -35,7 +35,13 @@ const EditProfile = () => {
 
   const handleSubmit = async (data: EditFormSchema) => {
     if (!defaultValues) return
-    const changedEntries = Object.entries(data).filter(([key, value]) => {
+    const validatePhoto = (data.photo_url || []).filter((url) => typeof url === "string" && url.trim() !== "")
+    const finalData = {
+      ...data,
+      photo_url: validatePhoto.length > 0 ? validatePhoto : undefined
+    }
+
+    const changedEntries = Object.entries(finalData).filter(([key, value]) => {
       const defaultValue = defaultValues[key as keyof EditFormSchema]
 
       if (Array.isArray(value) && Array.isArray(defaultValue)) {
