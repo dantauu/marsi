@@ -17,6 +17,7 @@ export const useInitUser = () => {
       id: String(user.id),
       first_name: user.first_name,
       photo_url: user.photo_url ? [user.photo_url] : [],
+      username: user.username,
     })
     localStorage.setItem(key, "true")
   }, [user])

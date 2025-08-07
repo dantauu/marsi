@@ -4,6 +4,7 @@ import { type JSX } from "react"
 type User = {
   id: string
   first_name: string
+  username?: string
   age: string
   photo_url: string[] | undefined
   gender: "male" | "female"
@@ -29,6 +30,7 @@ type UserInit = {
   id: string
   first_name: string
   photo_url: string[] | undefined
+  username?: string | undefined
 }
 
 type FilteredUsers = {
