@@ -36,7 +36,7 @@ const EditProfile = () => {
   const handleSubmit = async (data: EditFormSchema) => {
     if (!defaultValues) return
     const validatePhoto = (data.photo_url || []).filter(
-      (url) => typeof url === "string" && url.trim() !== ""
+      (url) => url.trim() !== ""
     )
     const finalData = {
       ...data,
