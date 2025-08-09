@@ -35,10 +35,12 @@ const EditProfile = () => {
 
   const handleSubmit = async (data: EditFormSchema) => {
     if (!defaultValues) return
-    const validatePhoto = (data.photo_url || []).filter((url) => typeof url === "string" && url.trim() !== "")
+    const validatePhoto = (data.photo_url || []).filter(
+      (url) => typeof url === "string" && url.trim() !== ""
+    )
     const finalData = {
       ...data,
-      photo_url: validatePhoto.length > 0 ? validatePhoto : undefined
+      photo_url: validatePhoto.length > 0 ? validatePhoto : undefined,
     }
 
     const changedEntries = Object.entries(finalData).filter(([key, value]) => {
