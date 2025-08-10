@@ -15,12 +15,9 @@ import { useTelegram } from "@/app/providers/telegram"
 import LoadingBalls from "@/shared/ui/loading"
 import { useNotify } from "@/lib/hooks/use-notify.ts"
 import { getNormalizeGender } from "@/lib/utils/format-gender.ts"
-import Button from "@/shared/ui/buttons/button"
-import { useNavigate } from "@tanstack/react-router"
-import SvgArrow from "@/assets/icons/Arrow.tsx"
+import { ButtonBack } from "@/shared/ui/buttons/button-back"
 
 const EditProfile = () => {
-  const navigate = useNavigate()
   const { isEditOpen } = useAppSelector((state) => state.modal)
   const { user: telegramUser } = useTelegram()
   const [updateUser] = useUpdateUserMutation()
@@ -94,14 +91,7 @@ const EditProfile = () => {
       {isEditOpen && <Overlay />}
       <div data-testid="profile-edit" className="pb-[150px] pt-[120px]">
         <SaveNavBar className="pt-[80px]" />
-        <Button
-          className="w-[115px] h-[40px] rounded-[7px] mx-2 mb-7 shadow-shadow-block text-[19px] text-[#000] font-ManropeM"
-          onClick={() => navigate({ to: "/profile" })}
-          variant="default"
-        >
-          <SvgArrow className="w-[20px] h-[20px] rotate-180 text-[#0007]" />{" "}
-          Назад
-        </Button>
+        <ButtonBack />
         <PhotoEdit />
         <EditMainInfo className="mt-10" />
       </div>
