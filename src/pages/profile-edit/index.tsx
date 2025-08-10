@@ -91,7 +91,7 @@ const EditProfile = () => {
       {isEditOpen && <Overlay />}
       <div data-testid="profile-edit" className="pb-[150px] pt-[120px]">
         <SaveNavBar className="pt-[80px]" />
-        <ButtonBack />
+        <ButtonBack path={"/profile"} />
         <PhotoEdit />
         <EditMainInfo className="mt-10" />
       </div>
