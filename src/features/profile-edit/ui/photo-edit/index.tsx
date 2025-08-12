@@ -16,7 +16,7 @@ const pictureItems = [
 ]
 
 export const PhotoEdit = () => {
-  const { setValue, control } = useEditProfileForm()
+  const { setValue, getValues, control } = useEditProfileForm()
   const photo_url = useWatch({ control, name: "photo_url" })
   const deletedPhotos = useWatch({ control, name: "deleted_photos" })
   const [uploadPhoto, { isLoading }] = useUploadPhotoMutation()
@@ -56,16 +56,16 @@ export const PhotoEdit = () => {
   }
 
   const handleRemove = async (index: number) => {
-    const updated = [...photo_url]
-    const deleted = deletedPhotos ?? []
-    const deleteToFileName = updated[index]?.split("/").pop()
-    if (deleteToFileName) {
-      setValue("deleted_photos", [...deleted, deleteToFileName], {
+    const currentPhoto = getValues("photo_url") ?? []
+    const photoToDelete = currentPhoto[index]
+    if (photoToDelete && !photoToDelete.startsWith("http")) {
+      const fileName = photoToDelete.split("/").pop() ?? ""
+      setValue("deleted_photos", [...(deletedPhotos ?? []), fileName], {
         shouldDirty: true,
       })
-      updated[index] = ""
-      setValue("photo_url", updated, { shouldDirty: true })
     }
+    const updatePhoto = currentPhoto.filter((_, i) => i !== index)
+    setValue("photo_url", updatePhoto, { shouldDirty: true })
   }
 
   return (
