@@ -8,10 +8,12 @@ import { LayoutCard } from "@/widgets/card"
 import { useFetchToScroll } from "@/lib/hooks/use-fetch-scroll.ts"
 import { useGetLikesToMeQuery } from "@/shared/api/user.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
+import { useScrollRestore } from "@/lib/hooks/use-scroll-restore.ts"
 
 const Search = () => {
   const searchParams = useSearch({ from: Route.id })
   const { ref, users, isLoading, isFetching } = useFetchToScroll(searchParams)
+  useScrollRestore("search", [users?.length])
   const { user: currentUser } = useUserMe()
   const { data: countLikes } = useGetLikesToMeQuery(currentUser?.id ?? "")
   console.log("searchParams", searchParams)
