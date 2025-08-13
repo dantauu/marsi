@@ -1,5 +1,5 @@
 import type { User } from "@/app/types/global.d.ts"
-import { MainInfoUser } from "@/entities/slides/ui/slider-card/main-info-user.tsx"
+import { MainInfoUser } from "@/shared/ui/user/main-info"
 import { SwipePhotos } from "@/ui/sliders/swipe-photo"
 import { SwiperCard } from "@/entities/slides/lib/swiper-card"
 import { Buttons } from "@/features/search-id/index.ts"
@@ -14,7 +14,7 @@ export const SearchIdCard = ({ data }: SliderCardProps) => {
 
   return (
     <div className="flex flex-col gap-5 w-full max-w-[430px] h-full mx-auto mb-20 border-1 rounded-[29px]">
-      <div className="relative w-full h-[440px] mini-mobile:h-[500px] flex justify-center overflow-hidden touch-none select-none">
+      <div className="relative w-full h-[440px] mini-mobile:h-[500px] flex justify-center overflow-hidden">
         <div className="relative w-full h-min">
           {data.map((item) => {
             return (

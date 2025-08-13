@@ -17,7 +17,9 @@ export const SearchId = () => {
   if (isLoading || isFetching) return <LoadingBalls />
   return (
     <div className="px-2 pb-30">
-      <ButtonBack className="mb-3" path={"/search"} />
+      <div className="flex justify-end">
+        <ButtonBack className="mb-3" path={"/search"} />
+      </div>
       <SearchIdCard data={user ? [user] : []} />
     </div>
   )

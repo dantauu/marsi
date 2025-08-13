@@ -14,11 +14,7 @@ export const ButtonBack = ({ path, className, onClick }: ButtonBackProps) => {
 
   const handleClick = () => {
     onClick?.()
-    if (window.history.length > 1) {
-      navigate({ to: "/search", replace: false })
-    } else {
-      navigate({ to: path })
-    }
+    navigate({ to: path })
   }
 
   return (
