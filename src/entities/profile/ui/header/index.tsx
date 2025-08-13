@@ -26,7 +26,7 @@ export const ProfileHeader = () => {
             {user?.first_name || "Не указано"}, {user?.age || "16"}
           </p>
         </div>
-        <div className="">
+        <div onClick={() => navigate({ to: "/profile-edit" })} className="">
           {user?.photo_url ? (
             <img
               className="w-[72px] h-[72px] rounded-full object-cover mini-mobile:w-[78px] mini-mobile:h-[78px]"
