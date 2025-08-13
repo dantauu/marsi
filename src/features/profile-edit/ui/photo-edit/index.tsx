@@ -56,16 +56,16 @@ export const PhotoEdit = () => {
   }
 
   const handleRemove = async (index: number) => {
-    const currentPhoto = getValues("photo_url")
+    const currentPhoto = getValues("photo_url") ?? []
     const photoToDelete = currentPhoto[index]
     if (photoToDelete && !photoToDelete.startsWith("http")) {
       const fileName = photoToDelete.split("/").pop() ?? ""
-      setValue("deleted_photos", [...(getValues("deleted_photos") ?? []), fileName], {
+      setValue("deleted_photos", [...(deletedPhotos ?? []), fileName], {
         shouldDirty: true,
       })
-      const updatePhoto = currentPhoto.filter((_, i) => i !== index)
-      setValue("photo_url", updatePhoto, { shouldDirty: true })
     }
+    const updatePhoto = currentPhoto.filter((_, i) => i !== index)
+    setValue("photo_url", updatePhoto, { shouldDirty: true })
   }
 
   return (
