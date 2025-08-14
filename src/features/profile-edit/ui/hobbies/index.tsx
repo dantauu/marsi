@@ -55,7 +55,7 @@ export const AddHobbies = ({
             variant={"default"}
           >
             Добавить{" "}
-            <SvgPlus className="w-[25px] h-[25px] mini-mobile:w-[30px] mini-mobile:h-[30px]" />
+            <SvgPlus className="w-[25px] h-[25px] mini-mobile:w-[30px] mini-mobile:h-[30px] stroke-3" />
           </Button>
         )}
       </div>

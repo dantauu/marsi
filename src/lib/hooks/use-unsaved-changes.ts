@@ -1,12 +1,12 @@
 import { useRouter } from "@tanstack/react-router"
 import { useRef, useState } from "react"
 
-export const useUnsavedChanges = (isDirty: boolean) => {
+export const useUnsavedChanges = (isDirty?: boolean) => {
   const router = useRouter()
   const [showModal, setShowModal] = useState(false)
   const nextPath = useRef<string | null>(null)
 
-  const guardedNavigate = (to: string) => {
+  const navigate = (to: string) => {
     if (isDirty) {
       nextPath.current = to
       setShowModal(true)
@@ -19,7 +19,9 @@ export const useUnsavedChanges = (isDirty: boolean) => {
     if (nextPath.current) {
       router.navigate({ to: nextPath.current })
       nextPath.current = null
+      setShowModal(false)
     }
   }
-  return { showModal, setShowModal, confirmLeave, navigate: guardedNavigate }
+
+  return { showModal, setShowModal, confirmLeave, navigate }
 }

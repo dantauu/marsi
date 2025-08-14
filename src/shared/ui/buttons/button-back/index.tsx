@@ -5,7 +5,7 @@ import SvgBack from "@/assets/icons/Back.tsx"
 
 type ButtonBackProps = {
   className?: string
-  path: string
+  path?: string
   onClick?: () => void
 }
 
@@ -25,6 +25,7 @@ export const ButtonBack = ({ path, className, onClick }: ButtonBackProps) => {
       )}
       onClick={handleClick}
       variant="default"
+      type="button"
     >
       <SvgBack className="w-[30px] h-[30px] text-[#0007]" />
     </Button>

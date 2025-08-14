@@ -1,12 +1,8 @@
-import { EditMainInfo, PhotoEdit } from "@/features/profile-edit"
 import {
   type EditFormSchema,
   EditProfileProvider,
   useFormEmptyValues,
 } from "@/app/providers/profile-edit-form"
-import { SaveNavBar } from "@/widgets/nav-bar/save-edit-profile"
-import { useAppSelector } from "@/redux/hooks.ts"
-import { Overlay } from "@/widgets/overlay"
 import {
   useDeletePhotoMutation,
   useUpdateUserMutation,
@@ -15,13 +11,9 @@ import { useTelegram } from "@/app/providers/telegram"
 import LoadingBalls from "@/shared/ui/loading"
 import { useNotify } from "@/lib/hooks/use-notify.ts"
 import { getNormalizeGender } from "@/lib/utils/format-gender.ts"
-// import { ButtonBack } from "@/shared/ui/buttons/button-back"
-import { useMemo } from "react"
-import { useUnsavedChanges } from "@/lib/hooks/use-unsaved-changes.ts"
-import Button from "@/shared/ui/buttons/button.tsx"
+import { EditProfileContent } from "@/pages/profile-edit/content.tsx"
 
 const EditProfile = () => {
-  const { isEditOpen } = useAppSelector((state) => state.modal)
   const { user: telegramUser } = useTelegram()
   const [updateUser] = useUpdateUserMutation()
   const [deletePhoto] = useDeletePhotoMutation()
@@ -32,12 +24,6 @@ const EditProfile = () => {
     fallbackValues: defaultValues,
     isLoaded,
   } = useFormEmptyValues()
-
-  const isDirty = useMemo(() => {
-    if (!values) return false
-    return JSON.stringify(values) !== JSON.stringify(defaultValues)
-  }, [values, defaultValues])
-  const { showModal, setShowModal, confirmLeave, navigate } = useUnsavedChanges(isDirty)
 
   const handleSubmit = async (data: EditFormSchema) => {
     if (!defaultValues) return
@@ -97,23 +83,7 @@ const EditProfile = () => {
       defaultValues={defaultValues}
       onSubmit={handleSubmit}
     >
-      {isEditOpen && <Overlay />}
-      <div data-testid="profile-edit" className="pb-[150px] pt-[120px]">
-        <SaveNavBar className="pt-[80px]" />
-        {/*<ButtonBack path={"/profile"} />*/}
-        <Button type={"button"} variant={"default"} onClick={() => navigate("/profile")}>Назад</Button>
-        <PhotoEdit />
-        <EditMainInfo className="mt-10" />
-      </div>
-      <>
-        {showModal && (
-          <div className="fixed bg-white top-0 flex justify-center items-center h-full">
-            <p>Внимание! Вы не сохранили изменения.</p>
-            <Button type={"button"} variant={"default"} onClick={confirmLeave}>Уйти</Button>
-            <Button type={"button"} variant={"default"} onClick={() => setShowModal(false)}>Остаться</Button>
-          </div>
-        )}
-      </>
+      <EditProfileContent />
     </EditProfileProvider>
   )
 }
