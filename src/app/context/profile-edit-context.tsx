@@ -3,7 +3,7 @@ import type { UseFormReturn } from "react-hook-form"
 import type { EditFormSchema } from "@/app/providers/profile-edit-form"
 
 export const EditFormContext =
-  createContext<UseFormReturn<EditFormSchema> | null>(null)
+  createContext<UseFormReturn<EditFormSchema> & { isDirty?: boolean } | null>(null)
 
 export const useEditProfileForm = () => {
   const context = useContext(EditFormContext)

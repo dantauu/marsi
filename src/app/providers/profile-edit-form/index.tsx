@@ -90,7 +90,6 @@ export function EditProfileProvider({
     defaultValues,
   })
   const hasReset = useRef(false)
-
   useEffect(() => {
     if (values && !hasReset.current) {
       form.reset({ ...defaultValues, ...values })
@@ -111,7 +110,7 @@ export function EditProfileProvider({
   )
 
   return (
-    <EditFormContext.Provider value={form}>
+    <EditFormContext.Provider value={{ ...form, isDirty: form.formState.isDirty }}>
       <form onSubmit={form.handleSubmit(handleSubmit)}>{children}</form>
     </EditFormContext.Provider>
   )
