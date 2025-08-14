@@ -1,4 +1,4 @@
-import { RenderTabs } from "@/widgets/like-card"
+import { RenderTabs } from "@/widgets/render-like-card"
 
 const Likes = () => {
   return (
