@@ -21,8 +21,8 @@ export const QuestionBlock = ({
           className="flex flex-col items-center px-2 shadow-shadow-block rounded-xl"
         >
           <div onClick={() => onClick(item.id)} className="flex items-center w-full justify-between h-15">
-            <p>{item.question}</p>
-              <SvgPlus className="w-7 h-7 stroke-[3.5]" />
+            <p className="font-ManropeM text-[16.5px]">{item.question}</p>
+              <SvgPlus className="min-w-7 h-7 stroke-[3.5]" />
           </div>
           <AnimatePresence>
             {isResponse === item.id && (

@@ -8,7 +8,7 @@ const More = () => {
     setResponse((prev) => (prev === id ? null : id))
   }
   return (
-    <div className="px-2" data-testid="more">
+    <div className="px-2 mt-4" data-testid="more">
       <QuestionBlock
         isResponse={response}
         onClick={handleClick}
