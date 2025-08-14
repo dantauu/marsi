@@ -1,21 +1,42 @@
 import SvgPlus from "@/assets/icons/Plus.tsx"
-import type { questionDataTypes } from "@/lib/data/question.ts"
-import Button from "@/shared/ui/buttons/button.tsx"
+import type { questionDataTypes } from "@/lib/data/question.tsx"
+import { AnimatePresence, motion } from "framer-motion"
 
 type QuestionBlockProps = {
   data: questionDataTypes[]
   onClick: (id: number) => void
-  isResponse: number | undefined
+  isResponse?: number | null
 }
 
-export const QuestionBlock = ({ data, onClick, isResponse }: QuestionBlockProps) => {
+export const QuestionBlock = ({
+  data,
+  onClick,
+  isResponse,
+}: QuestionBlockProps) => {
   return (
-    <div>
+    <div className="flex flex-col gap-7">
       {data.map((item) => (
-        <div className="flex justify-between shadow-shadow-block">
-          <p>{item.question}</p>
-          <Button onClick={() => onClick(item.id)} variant={"default"}><SvgPlus /></Button>
-          {isResponse === item.id && <p>{item.response}</p>}
+        <div
+          key={item.id}
+          className="flex flex-col items-center px-2 shadow-shadow-block rounded-xl"
+        >
+          <div onClick={() => onClick(item.id)} className="flex items-center w-full justify-between h-15">
+            <p>{item.question}</p>
+              <SvgPlus className="w-7 h-7 stroke-[3.5]" />
+          </div>
+          <AnimatePresence>
+            {isResponse === item.id && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                className="overflow-hidden w-full"
+              >
+                <p className="w-full text-[#0000009e]">{item.response}</p>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       ))}
     </div>

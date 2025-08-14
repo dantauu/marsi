@@ -95,7 +95,7 @@ export const PhotoEdit = () => {
                 {isLoading ? (
                   <LoadingBalls />
                 ) : (
-                  <SvgPlus className="text-main-pink w-[50px] h-[50px]" />
+                  <SvgPlus className="text-main-pink stroke-3 w-[50px] h-[50px]" />
                 )}
                 <input
                   type="file"

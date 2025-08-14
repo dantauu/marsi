@@ -2,7 +2,7 @@ import SvgArrow from "@/assets/icons/Arrow"
 import SvgBrokeHeart from "@/assets/icons/BrokeHeart"
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useNavigate } from "@tanstack/react-router"
-
+//TODO add subscribe
 export const SubscriptionStatus = () => {
   const navigate = useNavigate()
   return (
