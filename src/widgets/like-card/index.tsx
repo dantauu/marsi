@@ -34,7 +34,7 @@ export const RenderTabs = () => {
           </button>
         ))}
       </div>
-      <div className="mt-4">g
+      <div className="mt-4">
         <Component />
       </div>
     </div>
