@@ -11,9 +11,7 @@ import { useTelegram } from "@/app/providers/telegram"
 import LoadingBalls from "@/shared/ui/loading"
 import { useNotify } from "@/lib/hooks/use-notify.ts"
 import { getNormalizeGender } from "@/lib/utils/format-gender.ts"
-// import { ButtonBack } from "@/shared/ui/buttons/button-back"
 import { EditProfileContent } from "@/pages/profile-edit/content.tsx"
-// import Button from "@/shared/ui/buttons/button.tsx"
 
 const EditProfile = () => {
   const { user: telegramUser } = useTelegram()
@@ -26,7 +24,6 @@ const EditProfile = () => {
     fallbackValues: defaultValues,
     isLoaded,
   } = useFormEmptyValues()
-
 
   const handleSubmit = async (data: EditFormSchema) => {
     if (!defaultValues) return

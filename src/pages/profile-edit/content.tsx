@@ -9,7 +9,8 @@ import { ButtonBack } from "@/shared/ui/buttons/button-back"
 
 export const EditProfileContent = () => {
   const { isDirty } = useEditProfileForm()
-  const { showModal, setShowModal, confirmLeave, navigate } = useUnsavedChanges(isDirty)
+  const { showModal, setShowModal, confirmLeave, navigate } =
+    useUnsavedChanges(isDirty)
   const { isEditOpen } = useAppSelector((state) => state.modal)
 
   return (
@@ -17,7 +18,7 @@ export const EditProfileContent = () => {
       {isEditOpen && <Overlay />}
       <div data-testid="profile-edit" className="pb-[150px] pt-[120px]">
         <SaveNavBar className="pt-[80px]" />
-        <ButtonBack onClick={() => navigate("/profile")}/>
+        <ButtonBack onClick={() => navigate("/profile")} />
         <PhotoEdit />
         <EditMainInfo className="mt-10" />
       </div>

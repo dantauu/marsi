@@ -110,7 +110,9 @@ export function EditProfileProvider({
   )
 
   return (
-    <EditFormContext.Provider value={{ ...form, isDirty: form.formState.isDirty }}>
+    <EditFormContext.Provider
+      value={{ ...form, isDirty: form.formState.isDirty }}
+    >
       <form onSubmit={form.handleSubmit(handleSubmit)}>{children}</form>
     </EditFormContext.Provider>
   )

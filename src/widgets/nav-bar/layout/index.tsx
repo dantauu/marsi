@@ -3,7 +3,7 @@ import SvgProfile from "@/assets/icons/Profile"
 import SvgSearch from "@/assets/icons/Search"
 import SvgSlides from "@/assets/icons/Slides"
 import { cn } from "@/lib/utils/cn.tsx"
-import { Link } from "@tanstack/react-router"
+import { Link, useRouterState } from "@tanstack/react-router"
 import { useKeyboardOpen } from "@/lib/hooks/use-keyboard-open.ts"
 import SvgHeartNav from "@/assets/icons/HeartNav.tsx"
 
@@ -16,8 +16,13 @@ const navItems = [
   { id: "Profile", Icon: SvgProfile, text: "Профиль", link: "/profile" },
 ]
 
+
+
 export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
+  const { location } = useRouterState()
+  const path = location.pathname
   const isKeyboard = useKeyboardOpen()
+  if (path.startsWith("/profile-edit")) return
   return (
     <>
       {!isKeyboard && (
