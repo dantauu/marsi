@@ -11,7 +11,7 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_URL || "http://localhost:9000/",
   }),
-  tagTypes: ["User"],
+  tagTypes: ["LikesToMe"],
   endpoints: (builder) => ({
     getUsers: builder.query<User[], Partial<FilteredUsers> & { id?: string }>({
       query: ({ id, ...params }) => ({
@@ -57,6 +57,8 @@ export const userApi = createApi({
     }),
     getLikesToMe: builder.query<User[], string>({
       query: (userId) => `likes/who-liked-me?userId=${userId}`,
+      providesTags: (_result, _error, userId) =>
+        userId ? [{ type: "LikesToMe", id: userId }] : [],
     }),
     uploadPhoto: builder.mutation<string, File | Blob>({
       query: (file) => {

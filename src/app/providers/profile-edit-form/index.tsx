@@ -1,6 +1,6 @@
 import { z } from "zod"
 import { useForm } from "react-hook-form"
-import { type PropsWithChildren, useCallback, useEffect } from "react"
+import { type PropsWithChildren, useCallback, useEffect, useState } from "react"
 import { EditFormContext } from "@/app/context/profile-edit-context.tsx"
 import { zodResolver } from "@hookform/resolvers/zod"
 import type { User } from "@/app/types/global"
@@ -89,14 +89,14 @@ export function EditProfileProvider({
     mode: "onChange",
     defaultValues,
   })
+  const [initialized, setInitialized] = useState(false)
   useEffect(() => {
     if (!values) return
-    const current = form.getValues()
-    const next = { ...defaultValues, ...values }
-    if (JSON.stringify(current) !== JSON.stringify(next)) {
-      form.reset(next)
+    if (!initialized) {
+      form.reset({ ...defaultValues, ...values })
+      setInitialized(true)
     }
-  }, [values, defaultValues, form])
+  }, [values, defaultValues, initialized, form])
 
   const { refetch } = useUserMe()
 
@@ -108,7 +108,7 @@ export function EditProfileProvider({
         console.warn("Invalid edit form:", result.error)
         return
       }
-     await onSubmit(data)
+      await onSubmit(data)
       form.reset(data)
       await refetch()
       window.scrollTo({ top: scrollY })
