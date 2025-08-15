@@ -98,15 +98,16 @@ export function EditProfileProvider({
   }, [values, defaultValues, form])
 
   const handleSubmit = useCallback(
-    (data: EditFormSchema) => {
+    async (data: EditFormSchema) => {
       const result = editSchema.safeParse(data)
       if (!result.success) {
         console.warn("Invalid edit form:", result.error)
         return
       }
-      onSubmit(data)
+     await onSubmit(data)
+      form.reset(data)
     },
-    [onSubmit]
+    [onSubmit, form]
   )
 
   return (

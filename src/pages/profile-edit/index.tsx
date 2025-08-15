@@ -13,11 +13,13 @@ import { useNotify } from "@/lib/hooks/use-notify.ts"
 import { getNormalizeGender } from "@/lib/utils/format-gender.ts"
 import { EditProfileContent } from "@/pages/profile-edit/content.tsx"
 
+
 const EditProfile = () => {
   const { user: telegramUser } = useTelegram()
   const [updateUser] = useUpdateUserMutation()
   const [deletePhoto] = useDeletePhotoMutation()
   const { notify } = useNotify()
+
 
   const {
     values,
