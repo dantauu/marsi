@@ -16,8 +16,6 @@ const navItems = [
   { id: "Profile", Icon: SvgProfile, text: "Профиль", link: "/profile" },
 ]
 
-
-
 export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
   const { location } = useRouterState()
   const path = location.pathname

@@ -19,7 +19,12 @@ export const UnsavedChangesModal = ({
         <p className="font-ManropeM text-[17px]">Вы не сохранили изменения.</p>
       </div>
       <div className="flex gap-5">
-        <Button className="w-[112px] h-[32px] text-[18px]" variant="red" type="button" onClick={confirmLeave}>
+        <Button
+          className="w-[112px] h-[32px] text-[18px]"
+          variant="red"
+          type="button"
+          onClick={confirmLeave}
+        >
           Уйти
         </Button>
         <Button
