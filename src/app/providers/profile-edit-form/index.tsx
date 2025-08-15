@@ -89,20 +89,16 @@ export function EditProfileProvider({
     mode: "onChange",
     defaultValues,
   })
-  const { refetch } = useUserMe()
   useEffect(() => {
     if (!values) return
-    refetch().then((result) => {
-      if (!result.isSuccess) return
+    const current = form.getValues()
+    const next = { ...defaultValues, ...values }
+    if (JSON.stringify(current) !== JSON.stringify(next)) {
+      form.reset(next)
+    }
+  }, [values, defaultValues, form])
 
-      const current = form.getValues()
-      const next = { ...defaultValues, ...values }
-
-      if (JSON.stringify(current) !== JSON.stringify(next)) {
-        form.reset(next)
-      }
-    })
-  }, [values, defaultValues, form, refetch])
+  const { refetch } = useUserMe()
 
   const handleSubmit = useCallback(
     async (data: EditFormSchema) => {
@@ -112,7 +108,7 @@ export function EditProfileProvider({
         console.warn("Invalid edit form:", result.error)
         return
       }
-      await onSubmit(data)
+     await onSubmit(data)
       form.reset(data)
       await refetch()
       window.scrollTo({ top: scrollY })
