@@ -94,6 +94,7 @@ export function EditProfileProvider({
       form.reset({ ...defaultValues, ...values })
     }
   }, [values, defaultValues, form])
+  const { refetch } = useUserMe()
 
   const handleSubmit = useCallback(
     async (data: EditFormSchema) => {
@@ -103,9 +104,9 @@ export function EditProfileProvider({
         return
       }
      await onSubmit(data)
-      form.reset(data)
+      await refetch()
     },
-    [onSubmit, form]
+    [onSubmit, refetch]
   )
 
   return (
