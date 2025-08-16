@@ -1,7 +1,7 @@
 import { LikeCard } from "@/shared/ui/like-card"
 import {
   useGetLikesToMeQuery,
-  useUnlikeUserMutation,
+  useUnlikeIncomingUserMutation,
 } from "@/shared/api/user.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import LoadingBalls from "@/shared/ui/loading"
@@ -15,7 +15,7 @@ export const LikesToMeCard = () => {
   } = useGetLikesToMeQuery(userMe?.id ?? "", {
     skip: !userMe?.id,
   })
-  const [unlikeUser, { isLoading: unlikeLoading }] = useUnlikeUserMutation()
+  const [unlikeUser, { isLoading: unlikeLoading }] = useUnlikeIncomingUserMutation()
   const handleUnlike = async (likerId: string) => {
     if (!userMe?.id) return
     const scrollY = window.scrollY
