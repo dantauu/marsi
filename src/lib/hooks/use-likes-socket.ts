@@ -14,7 +14,7 @@ export const useLikesSocket = (userId?: string) => {
       query: { userId },
     })
     socket.on("new_like", ({ from }) => {
-      toast.success(`Пользователь ${from} поставил(а) вам лайк!`, {
+      toast.success(`${from} поставил(а) вам лайк!`, {
         icon: "💜",
         duration: 3000,
         style: {
