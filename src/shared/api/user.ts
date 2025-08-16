@@ -51,7 +51,7 @@ export const userApi = createApi({
         method: "POST",
         body: { likedId, likerId },
       }),
-      invalidatesTags: (_result, _error, { likedId }) => [{ type: "LikesToMe", id: likedId }]
+      invalidatesTags: (_result, _error, { likerId }) => [{ type: "LikesToMe", id: likerId }]
     }),
     getMyLikes: builder.query<User[], string>({
       query: (userId) => `likes/mine?userId=${userId}`,
