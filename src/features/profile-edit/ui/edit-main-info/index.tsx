@@ -11,6 +11,7 @@ import { useWatch } from "react-hook-form"
 import { FieldMeta } from "./edit-metadata.tsx"
 import { AddHobbies } from "@/features/profile-edit"
 import { getGenderFormat } from "@/lib/utils/format-gender.ts"
+import type { EditFormSchema } from "@/app/providers/profile-edit-form"
 
 export const EditMainInfo = ({ className }: { className?: string }) => {
   const form = useEditProfileForm()
@@ -26,10 +27,14 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
     keyof typeof FieldMeta | null
   >(null)
   const [showErrors, setShowErrors] = useState(false)
+  const [originalValue, setOriginalValue] = useState<Partial<EditFormSchema>>(
+    {}
+  )
 
   const handleOpen = (key: EditFormFields) => {
     dispatch(openEditModal())
     setCurrentField(key)
+    setOriginalValue({ [key]: form.getValues(key) })
   }
 
   const handleSave = () => {
@@ -41,6 +46,15 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
         setShowErrors(false)
       }
     })
+  }
+  const handleCancel = () => {
+    if (!currentField) return
+    setShowErrors(false)
+    if (originalValue[currentField] !== undefined) {
+      form.setValue(currentField, originalValue[currentField])
+      dispatch(closeEditModal())
+      setCurrentField(null)
+    }
   }
 
   const first_name = useWatch({ control, name: "first_name" })
@@ -98,10 +112,7 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
           <EditModal
             title={FieldMeta[currentField].title}
             onSave={handleSave}
-            onClose={() => {
-              dispatch(closeEditModal())
-              setCurrentField(null)
-            }}
+            onClose={handleCancel}
           >
             {FieldMeta[currentField].render({
               control: form.control,
