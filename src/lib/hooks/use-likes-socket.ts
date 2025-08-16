@@ -31,16 +31,22 @@ export const useLikesSocket = (userId?: string) => {
       dispatch(userApi.util.invalidateTags([{ type: "LikesToMe", id: userId }]))
     })
 
-    socket.on("like_remove", ({ from }) => {
-      toast.success(`${from} отменил(а) лайк`, {
-        icon: "💔",
-        duration: 3000,
-        style: {
-          marginTop: "80px",
-        },
-      })
-      dispatch(userApi.util.invalidateTags([{ type: "LikesToMe", id: userId }]))
+    socket.on("like_remove", ({ from, targetId }) => {
+      if (targetId === userId) {
+        toast.success(`${from} отменил(а) лайк`, {
+          icon: "💔",
+          duration: 3000,
+          style: { marginTop: "80px" },
+        })
+      } else if (from === userId) {
+        toast.success(`Вы отменили лайк ${targetId}`, {
+          icon: "💔",
+          duration: 3000,
+          style: { marginTop: "80px" },
+        })
+      }
     })
+
 
     return () => {
       socket.disconnect()
