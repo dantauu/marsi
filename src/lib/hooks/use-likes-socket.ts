@@ -24,6 +24,17 @@ export const useLikesSocket = (userId?: string) => {
       dispatch(userApi.util.invalidateTags([{ type: "LikesToMe", id: userId }]))
     })
 
+    socket.on("like_remove", ({ from }) => {
+      toast.success(`${from} отменил(а) лайк`, {
+        icon: "💔",
+        duration: 3000,
+        style: {
+          marginTop: "80px",
+        },
+      })
+      dispatch(userApi.util.invalidateTags([{ type: "LikesToMe", id: userId }]))
+    })
+
     return () => {
       socket.disconnect()
     }
