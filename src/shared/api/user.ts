@@ -11,7 +11,7 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_URL || "http://localhost:9000/",
   }),
-  tagTypes: ["LikesToMe"],
+  tagTypes: ["LikesToMe", "MyLikes"],
   endpoints: (builder) => ({
     getUsers: builder.query<User[], Partial<FilteredUsers> & { id?: string }>({
       query: ({ id, ...params }) => ({
@@ -70,6 +70,7 @@ export const userApi = createApi({
     }),
     getMyLikes: builder.query<User[], string>({
       query: (userId) => `likes/mine?userId=${userId}`,
+      providesTags: (_result, _error, userId) => userId ? [{ type: "MyLikes", id: userId }] : []
     }),
     getLikesToMe: builder.query<User[], string>({
       query: (userId) => `likes/who-liked-me?userId=${userId}`,

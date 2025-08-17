@@ -51,6 +51,7 @@ export const useLikesSocket = (userId?: string) => {
         },
       })
       dispatch(userApi.util.invalidateTags([{ type: "LikesToMe", id: userId }]))
+      dispatch(userApi.util.invalidateTags([{ type: "MyLikes", id: userId }]))
     })
 
     return () => {
