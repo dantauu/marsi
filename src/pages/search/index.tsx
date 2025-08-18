@@ -9,10 +9,15 @@ import { useFetchToScroll } from "@/lib/hooks/use-fetch-scroll.ts"
 import { useGetLikesToMeQuery } from "@/shared/api/user.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import { useScrollRestore } from "@/lib/hooks/use-scroll-restore.ts"
+import { useAppSelector } from "@/redux/hooks.ts"
 
 const Search = () => {
   const searchParams = useSearch({ from: Route.id })
-  const { ref, users, isLoading, isFetching } = useFetchToScroll(searchParams)
+  const filters = useAppSelector((state) => state.filters)
+  const cleanedFilters = Object.fromEntries(
+    Object.entries(filters).filter(([_, v]) => v !== "" && v !== null && v !== undefined)
+  )
+  const { ref, users, isLoading, isFetching } = useFetchToScroll(cleanedFilters)
   useScrollRestore("search", [users?.length])
   const { user: currentUser } = useUserMe()
   const { data: countLikes } = useGetLikesToMeQuery(currentUser?.id ?? "")
