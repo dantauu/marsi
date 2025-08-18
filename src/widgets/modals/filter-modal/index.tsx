@@ -21,6 +21,7 @@ export const FilterModal = () => {
 
   const resetFilter = () => {
     reset(formEmptyValues)
+    sessionStorage.removeItem("searchFilters")
     dispatch(resetFilters())
   }
   const [minAge, maxAge, minHeight, maxHeight] = useWatch({
