@@ -21,7 +21,7 @@ export const Card_Human: StoryObj = {
       <CardGridLayout
         id={"1"}
         first_name={"Катя"}
-        age={"18"}
+        age={18}
         photo_url={[avatar]}
       />
     )
