@@ -15,7 +15,7 @@ const Search = () => {
   const searchParams = useSearch({ from: Route.id })
   const filters = useAppSelector((state) => state.filters)
   const cleanedFilters = Object.fromEntries(
-    Object.entries(filters).filter(([_, v]) => v !== "" && v !== null && v !== undefined)
+    Object.entries(filters).filter(([_, value]) => value !== "" && value != null)
   )
   const { ref, users, isLoading, isFetching } = useFetchToScroll(cleanedFilters)
   useScrollRestore("search", [users?.length])

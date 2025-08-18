@@ -17,7 +17,7 @@ export type FilterFormSchema = z.infer<typeof filterSchema>
 
 export const formEmptyValues: FilterFormSchema = {
   minAge: 16,
-  maxAge: 100,
+  maxAge: 99,
   minHeight: 140,
   maxHeight: 230,
   city: "",

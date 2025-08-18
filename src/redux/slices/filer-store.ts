@@ -10,9 +10,9 @@ export const filterStore  = createSlice({
     setFilters(state, action: PayloadAction<Partial<FilterFormSchema>>) {
       return { ...state, ...action.payload }
     },
-    resetFilter: () => initialState
+    resetFilters: () => initialState
   }
 })
 
-export const { setFilters, resetFilter } = filterStore.actions
+export const { setFilters, resetFilters } = filterStore.actions
 export default filterStore.reducer
