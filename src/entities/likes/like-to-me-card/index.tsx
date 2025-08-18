@@ -15,7 +15,8 @@ export const LikesToMeCard = () => {
   } = useGetLikesToMeQuery(userMe?.id ?? "", {
     skip: !userMe?.id,
   })
-  const [unlikeUser, { isLoading: unlikeLoading }] = useUnlikeIncomingUserMutation()
+  const [unlikeUser, { isLoading: unlikeLoading }] =
+    useUnlikeIncomingUserMutation()
   const handleUnlike = async (likerId: string) => {
     if (!userMe?.id) return
     const scrollY = window.scrollY
