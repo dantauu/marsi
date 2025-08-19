@@ -10,20 +10,28 @@ export const editSchema = z.object({
   photo_url: z.array(z.string()),
   first_name: z.string(),
   age: z
-    .string()
-    .nonempty({ message: "Введите возраст" })
-    .refine(
-      (val) => {
-        const num = Number(val)
-        return !isNaN(num) && num >= 16 && num <= 100
-      },
-      {
-        message: "Возраст должен быть от 16 до 100",
-      }
-    ),
+    .number({
+      required_error: "Введите возраст",
+      invalid_type_error: "Возраст должен быть числом",
+    })
+    .int("Возраст должен быть целым числом")
+    .min(16, "Возраст должен быть не меньше 16")
+    .max(100, "Возраст должен быть не больше 100")
+    .nullable(),
   gender: z.string(),
   city: z.string(),
-  height: z.string(),
+  height: z
+    .string()
+    .nonempty("Введите рост")
+    .refine((val) => {
+      const num = Number(val)
+      return !isNaN(num) && num >= 120 && num <= 230
+    }, (val) => {
+      const num = Number(val)
+      if (isNaN(num)) return { message: "Рост должен быть числом" }
+      if (num < 120) return { message: "Минимальная высота 120" }
+      return { message: "Максимальная высота 230" }
+    }),
   goal: z.string(),
   hobbies: z.array(z.string()),
   deleted_photos: z.array(z.string()).optional(),
@@ -37,8 +45,8 @@ function fetchUser(user?: User | null): Partial<EditFormSchema> {
   return {
     photo_url: Array.isArray(user.photo_url) ? user.photo_url : [],
     first_name: user.first_name ?? "",
-    age: user.age?.toString() ?? "16",
-    height: user.height?.toString() ?? "140",
+    age: user.age ?? null,
+    height: user.height?.toString() ?? "",
     city: user.city ?? "",
     gender: user.gender ?? "",
     goal: user.goal ?? "",
@@ -57,8 +65,8 @@ export function useFormEmptyValues(): {
   const fallbackUser = {
     photo_url: [],
     first_name: "",
-    age: "16",
-    height: "140",
+    age: null,
+    height: "",
     city: "",
     gender: "",
     goal: "",

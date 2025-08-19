@@ -5,7 +5,7 @@ type User = {
   id: string
   first_name: string
   username?: string
-  age: string
+  age: number | null
   photo_url: string[] | undefined
   gender: "male" | "female"
   city: string
@@ -17,7 +17,7 @@ type User = {
 type UpdateUserData = {
   id: string
   first_name?: string | undefined
-  age?: string | undefined
+  age?: number | null
   photo_url?: string[] | undefined
   gender?: string | undefined
   city?: string | undefined
