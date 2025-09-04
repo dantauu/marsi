@@ -82,16 +82,22 @@ export const FilterModal = () => {
             <div className="flex flex-col gap-10 pt-[40px] pb-[200px] px-2 overflow-auto h-full">
               <FilterSlide
                 title="Возраст"
-                values={[minAge, maxAge]}
+                values={[
+                  minAge ?? 16,
+                  maxAge ?? 100,
+                ]}
                 setValues={handleSliderAge}
                 min={16}
                 max={100}
               />
               <FilterSlide
                 title="Рост"
-                values={[minHeight, maxHeight]}
+                values={[
+                  minHeight ?? 120,
+                  maxHeight ?? 230,
+                ]}
                 setValues={handleSliderHeight}
-                min={140}
+                min={120}
                 max={230}
               />
               <Location />

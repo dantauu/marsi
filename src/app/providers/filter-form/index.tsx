@@ -4,22 +4,22 @@ import { type PropsWithChildren, useCallback } from "react"
 import { FilterFormContext } from "@/app/context/filter-form-context.tsx"
 
 export const filterSchema = z.object({
-  minAge: z.number(),
-  maxAge: z.number(),
-  minHeight: z.number(),
-  maxHeight: z.number(),
-  city: z.string(),
-  region: z.string(),
-  gender: z.string(),
+  minAge: z.number().optional().nullable(),
+  maxAge: z.number().optional().nullable(),
+  minHeight: z.number().optional().nullable(),
+  maxHeight: z.number().optional().nullable(),
+  city: z.string().optional(),
+  region: z.string().optional(),
+  gender: z.string().optional(),
 })
 
 export type FilterFormSchema = z.infer<typeof filterSchema>
 
 export const formEmptyValues: FilterFormSchema = {
-  minAge: 16,
-  maxAge: 100,
-  minHeight: 140,
-  maxHeight: 230,
+  minAge: null,
+  maxAge: null,
+  minHeight: null,
+  maxHeight: null,
   city: "",
   region: "",
   gender: "",
