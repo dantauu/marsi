@@ -9,7 +9,7 @@ import SvgHeart from "@/assets/icons/Heart.tsx"
 export const SliderButtons = ({
   currentUserId,
 }: {
-  currentUserId: string | undefined
+  currentUserId: number | undefined
 }) => {
   const dispatch = useAppDispatch()
   const [likeUser] = useLikeUserMutation()

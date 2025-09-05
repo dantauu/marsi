@@ -11,11 +11,11 @@ const Profile = () => {
     isLoading: userLoading,
   } = useUserMe()
   const { data: likesToMe, isFetching: likesToMeFetching } =
-    useGetLikesToMeQuery(currentUser?.id ?? "", {
+    useGetLikesToMeQuery(currentUser?.id ?? undefined, {
       skip: !currentUser?.id,
     })
   const { data: myLikes, isFetching: myLikesFetching } = useGetMyLikesQuery(
-    currentUser?.id ?? "",
+    currentUser?.id ?? undefined,
     {
       skip: !currentUser?.id,
     }

@@ -9,11 +9,11 @@ export const MyLikesCard = () => {
     data: users,
     isFetching,
     refetch,
-  } = useGetMyLikesQuery(currentUser?.id ?? "", {
+  } = useGetMyLikesQuery(currentUser?.id ?? undefined, {
     skip: !currentUser?.id,
   })
   const [unlikeUser, { isLoading: unlikeLoading }] = useUnlikeUserMutation()
-  const handleUnlike = async (likedId: string) => {
+  const handleUnlike = async (likedId: number) => {
     if (!currentUser?.id) return
     const scrollY = window.scrollY
     try {

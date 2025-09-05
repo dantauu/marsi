@@ -66,7 +66,7 @@ const EditProfile = () => {
     }
 
     await notify(
-      updateUser({ id: String(telegramUser?.id), ...normalizeData }).unwrap(),
+      updateUser({ id: telegramUser?.id, ...normalizeData }).unwrap(),
       {
         success: "Изменения сохранены",
         error: "Ошибка",

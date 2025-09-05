@@ -13,15 +13,15 @@ export const userApi = createApi({
   }),
   tagTypes: ["LikesToMe", "MyLikes"],
   endpoints: (builder) => ({
-    getUsers: builder.query<User[], Partial<FilteredUsers> & { id?: string }>({
+    getUsers: builder.query<User[], Partial<FilteredUsers> & { id?: number }>({
       query: ({ id, ...params }) => ({
         url: "users",
         method: "GET",
         params,
-        headers: id ? { "x-user-id": id } : {},
+        headers: id ? { "x-user-id": String(id) } : {},
       }),
     }),
-    getUserById: builder.query<User, string>({
+    getUserById: builder.query<User, number | void>({
       query: (id) => `users/user-id/${id}`,
     }),
     initUser: builder.mutation<User, UserInit>({
@@ -38,7 +38,7 @@ export const userApi = createApi({
         body: userData,
       }),
     }),
-    likeUser: builder.mutation<void, { likerId: string; likedId: string }>({
+    likeUser: builder.mutation<void, { likerId: number; likedId: number }>({
       query: ({ likedId, likerId }) => ({
         url: "likes",
         method: "POST",
@@ -48,7 +48,7 @@ export const userApi = createApi({
         { type: "LikesToMe", id: likedId },
       ],
     }),
-    unlikeUser: builder.mutation<void, { likerId: string; likedId: string }>({
+    unlikeUser: builder.mutation<void, { likerId: number; likedId: number }>({
       query: ({ likedId, likerId }) => ({
         url: "likes/unlike",
         method: "POST",
@@ -60,7 +60,7 @@ export const userApi = createApi({
     }),
     unlikeIncomingUser: builder.mutation<
       void,
-      { likerId: string; likedId: string }
+      { likerId: number; likedId: number }
     >({
       query: ({ likedId, likerId }) => ({
         url: "likes/incoming-unlike",
@@ -71,12 +71,12 @@ export const userApi = createApi({
         { type: "LikesToMe", id: likedId },
       ],
     }),
-    getMyLikes: builder.query<User[], string>({
+    getMyLikes: builder.query<User[], number | void>({
       query: (userId) => `likes/mine?userId=${userId}`,
       providesTags: (_result, _error, userId) =>
         userId ? [{ type: "MyLikes", id: userId }] : [],
     }),
-    getLikesToMe: builder.query<User[], string>({
+    getLikesToMe: builder.query<User[], number | void>({
       query: (userId) => `likes/who-liked-me?userId=${userId}`,
       providesTags: (_result, _error, userId) =>
         userId ? [{ type: "LikesToMe", id: userId }] : [],
