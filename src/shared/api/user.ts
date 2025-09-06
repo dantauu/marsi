@@ -48,6 +48,16 @@ export const userApi = createApi({
         { type: "LikesToMe", id: likedId },
       ],
     }),
+    dislikeUser: builder.mutation<
+      void,
+      { dislikerId: string; dislikedId: string }
+    >({
+      query: ({ dislikedId, dislikerId }) => ({
+        url: "dislikes",
+        method: "POST",
+        body: { dislikedId, dislikerId },
+      }),
+    }),
     unlikeUser: builder.mutation<void, { likerId: string; likedId: string }>({
       query: ({ likedId, likerId }) => ({
         url: "likes/unlike",
@@ -109,6 +119,7 @@ export const {
   useInitUserMutation,
   useUpdateUserMutation,
   useLikeUserMutation,
+  useDislikeUserMutation,
   useUnlikeUserMutation,
   useUnlikeIncomingUserMutation,
   useGetMyLikesQuery,

@@ -2,7 +2,10 @@ import SvgCross from "@/assets/icons/Cross"
 import { useAppDispatch } from "@/redux/hooks"
 import { handleDislike, handleLike } from "@/redux/slices/slider-slice.ts"
 import Button from "@/shared/ui/buttons/button.tsx"
-import { useLikeUserMutation } from "@/shared/api/user.ts"
+import {
+  useDislikeUserMutation,
+  useLikeUserMutation,
+} from "@/shared/api/user.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import SvgHeart from "@/assets/icons/Heart.tsx"
 
@@ -13,6 +16,7 @@ export const SliderButtons = ({
 }) => {
   const dispatch = useAppDispatch()
   const [likeUser] = useLikeUserMutation()
+  const [dislikeUser] = useDislikeUserMutation()
   const { user } = useUserMe()
 
   const handleLikeUser = () => {
@@ -21,12 +25,19 @@ export const SliderButtons = ({
       dispatch(handleLike())
     }
   }
+
+  const handleDislikeUser = () => {
+    if (currentUserId && user?.id) {
+      dislikeUser({ dislikerId: user?.id, dislikedId: currentUserId })
+      dispatch(handleDislike())
+    }
+  }
   return (
     <div className="absolute bottom-0 z-50 w-full flex items-center justify-between px-3">
       <Button
         className="w-[100px] bg-main-red rounded-[14px] py-1"
         variant="default"
-        onClick={() => dispatch(handleDislike())}
+        onClick={() => handleDislikeUser()}
       >
         <SvgCross className="w-[50px] h-[50px] text-[#fff9] " />
       </Button>
