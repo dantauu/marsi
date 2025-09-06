@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-
+//this hook delete item from DOM after open keyboard
 export const useKeyboardOpen = () => {
   const [visibleKeyboard, setVisibleKeyboard] = useState(false)
   const [initialHeight, setInitialHeight] = useState<number | null>(null)

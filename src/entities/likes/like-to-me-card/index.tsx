@@ -2,7 +2,7 @@ import { LikeCard } from "@/shared/ui/like-card"
 import {
   useGetLikesToMeQuery,
   useUnlikeIncomingUserMutation,
-} from "@/shared/api/user.ts"
+} from "@/shared/api/likes.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import LoadingBalls from "@/shared/ui/loading"
 

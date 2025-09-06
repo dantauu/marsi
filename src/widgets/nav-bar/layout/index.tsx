@@ -4,7 +4,6 @@ import SvgSearch from "@/assets/icons/Search"
 import SvgSlides from "@/assets/icons/Slides"
 import { cn } from "@/lib/utils/cn.tsx"
 import { Link, useRouterState } from "@tanstack/react-router"
-import { useKeyboardOpen } from "@/lib/hooks/use-keyboard-open.ts"
 import SvgHeartNav from "@/assets/icons/HeartNav.tsx"
 
 const navItems = [
@@ -19,11 +18,8 @@ const navItems = [
 export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
   const { location } = useRouterState()
   const path = location.pathname
-  const isKeyboard = useKeyboardOpen()
   if (path.startsWith("/profile-edit")) return
   return (
-    <>
-      {!isKeyboard && (
         <div className="fixed z-5 bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg">
           <nav className="flex justify-between items-center px-4 pt-[12px] mini-mobile:px-7">
             {navItems.map(({ id, Icon, text, link }) => {
@@ -53,7 +49,5 @@ export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
             })}
           </nav>
         </div>
-      )}
-    </>
   )
 }
