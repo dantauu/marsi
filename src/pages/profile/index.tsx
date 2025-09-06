@@ -1,4 +1,4 @@
-import { SubscriptionStatus, Progress, LikeCount } from "@/features/profile"
+import { Progress, LikeCount } from "@/features/profile"
 import { ProfileHeader } from "@/entities/profile"
 import { BasicInformation } from "@/ui/index.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
@@ -37,7 +37,7 @@ const Profile = () => {
         />
         <Progress />
       </div>
-      <SubscriptionStatus />
+      {/*<SubscriptionStatus />*/}
       <BasicInformation />
     </div>
   )

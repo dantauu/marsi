@@ -1,39 +1,28 @@
 import { AnimatePresence } from "framer-motion"
-import { useAppSelector } from "@/redux/hooks"
+import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { motion } from "framer-motion"
 import { useCallback } from "react"
 import { Gender, Location } from "@/features/search"
 import { FilterSlide } from "@/ui"
-import { useNavigate } from "@tanstack/react-router"
-import { Route } from "@/app/routes/_app/_layout/search"
 import { formEmptyValues } from "@/app/providers/filter-form"
 import { useWatch } from "react-hook-form"
 import { useFilterForm } from "@/app/context/filter-form-context.tsx"
 import { useModalDrag } from "@/lib/utils/modal-drag"
 import SaveSettingsFilter from "@/widgets/nav-bar/save-settings-filter"
+import { resetFilters } from "@/redux/slices/filer-store.ts"
 
 export const FilterModal = () => {
   const form = useFilterForm()
   const { reset, setValue, control } = form
-  const navigate = useNavigate({ from: Route.id })
   const { isFilterOpen } = useAppSelector((state) => state.modal)
   const { y, dragStart, handleDrag, handleDragEnd, bgOpacity, dragControls } =
     useModalDrag()
+  const dispatch = useAppDispatch()
 
   const resetFilter = () => {
     reset(formEmptyValues)
-    navigate({
-      search: {
-        minAge: undefined,
-        maxAge: undefined,
-        minHeight: undefined,
-        maxHeight: undefined,
-        city: undefined,
-        region: undefined,
-        gender: undefined,
-      },
-      replace: true,
-    })
+    sessionStorage.removeItem("searchFilters")
+    dispatch(resetFilters())
   }
   const [minAge, maxAge, minHeight, maxHeight] = useWatch({
     control,
@@ -93,16 +82,16 @@ export const FilterModal = () => {
             <div className="flex flex-col gap-10 pt-[40px] pb-[200px] px-2 overflow-auto h-full">
               <FilterSlide
                 title="Возраст"
-                values={[minAge, maxAge]}
+                values={[minAge ?? 16, maxAge ?? 100]}
                 setValues={handleSliderAge}
                 min={16}
                 max={100}
               />
               <FilterSlide
                 title="Рост"
-                values={[minHeight, maxHeight]}
+                values={[minHeight ?? 120, maxHeight ?? 230]}
                 setValues={handleSliderHeight}
-                min={140}
+                min={120}
                 max={230}
               />
               <Location />

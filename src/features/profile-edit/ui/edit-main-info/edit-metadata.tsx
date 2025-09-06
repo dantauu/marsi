@@ -48,6 +48,7 @@ export const FieldMeta: Record<
             placeholder="Введите ваш возраст (от 16)"
             showErrors={showErrors}
             {...field}
+            onChange={(val) => field.onChange(Number(val))}
           />
         )}
       />
@@ -81,7 +82,7 @@ export const FieldMeta: Record<
         control={control}
         render={({ field }) => (
           <InputEdit
-            placeholder="Введите ваш рост (от 140 до 220)"
+            placeholder="Введите ваш рост (от 120 до 230)"
             showErrors={showErrors}
             {...field}
           />

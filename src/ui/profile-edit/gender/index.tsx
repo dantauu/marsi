@@ -4,7 +4,7 @@ export const GenderEdit = ({
   value,
   onChange,
 }: {
-  value: string | string[] | undefined
+  value: string | string[] | number | undefined | null
   onChange: (v: string) => void
 }) => {
   return (

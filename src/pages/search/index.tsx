@@ -8,12 +8,23 @@ import { LayoutCard } from "@/widgets/card"
 import { useFetchToScroll } from "@/lib/hooks/use-fetch-scroll.ts"
 import { useGetLikesToMeQuery } from "@/shared/api/user.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
+import { useScrollRestore } from "@/lib/hooks/use-scroll-restore.ts"
+import { useAppSelector } from "@/redux/hooks.ts"
 
 const Search = () => {
   const searchParams = useSearch({ from: Route.id })
-  const { ref, users, isLoading, isFetching } = useFetchToScroll(searchParams)
+  const filters = useAppSelector((state) => state.filters)
+  const cleanedFilters = Object.fromEntries(
+    Object.entries(filters).filter(
+      ([_, value]) => value !== "" && value != null
+    )
+  )
+  const { ref, users, isLoading, isFetching } = useFetchToScroll(cleanedFilters)
+  useScrollRestore("search", [users?.length])
   const { user: currentUser } = useUserMe()
-  const { data: countLikes } = useGetLikesToMeQuery(currentUser?.id ?? "")
+  const { data: countLikes } = useGetLikesToMeQuery(currentUser?.id ?? "", {
+    skip: !currentUser?.id,
+  })
   console.log("searchParams", searchParams)
   if (isLoading) return <LoadingBalls />
   if (!users) throw new Error("Error Data")
@@ -26,7 +37,7 @@ const Search = () => {
       </div>
       {users && <LayoutCard data={users} />}
       {isFetching && <LoadingBalls />}
-      {!isLoading && <div className="w-full h-2" ref={ref}></div>}
+      <div className="w-full h-2" ref={ref}></div>
     </div>
   )
 }

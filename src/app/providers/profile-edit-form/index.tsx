@@ -1,6 +1,6 @@
 import { z } from "zod"
 import { useForm } from "react-hook-form"
-import { type PropsWithChildren, useCallback, useEffect, useRef } from "react"
+import { type PropsWithChildren, useCallback, useEffect, useState } from "react"
 import { EditFormContext } from "@/app/context/profile-edit-context.tsx"
 import { zodResolver } from "@hookform/resolvers/zod"
 import type { User } from "@/app/types/global"
@@ -10,20 +10,31 @@ export const editSchema = z.object({
   photo_url: z.array(z.string()),
   first_name: z.string(),
   age: z
+    .number({
+      required_error: "Введите возраст",
+      invalid_type_error: "Возраст должен быть числом",
+    })
+    .int("Возраст должен быть целым числом")
+    .min(16, "Возраст должен быть не меньше 16")
+    .max(100, "Возраст должен быть не больше 100")
+    .nullable(),
+  gender: z.string(),
+  city: z.string(),
+  height: z
     .string()
-    .nonempty({ message: "Введите возраст" })
+    .nonempty("Введите рост")
     .refine(
       (val) => {
         const num = Number(val)
-        return !isNaN(num) && num >= 16 && num <= 100
+        return !isNaN(num) && num >= 120 && num <= 230
       },
-      {
-        message: "Возраст должен быть от 16 до 100",
+      (val) => {
+        const num = Number(val)
+        if (isNaN(num)) return { message: "Рост должен быть числом" }
+        if (num < 120) return { message: "Минимальная высота 120" }
+        return { message: "Максимальная высота 230" }
       }
     ),
-  gender: z.string(),
-  city: z.string(),
-  height: z.string(),
   goal: z.string(),
   hobbies: z.array(z.string()),
   deleted_photos: z.array(z.string()).optional(),
@@ -37,8 +48,8 @@ function fetchUser(user?: User | null): Partial<EditFormSchema> {
   return {
     photo_url: Array.isArray(user.photo_url) ? user.photo_url : [],
     first_name: user.first_name ?? "",
-    age: user.age?.toString() ?? "16",
-    height: user.height?.toString() ?? "140",
+    age: user.age ?? null,
+    height: user.height?.toString() ?? "",
     city: user.city ?? "",
     gender: user.gender ?? "",
     goal: user.goal ?? "",
@@ -57,8 +68,8 @@ export function useFormEmptyValues(): {
   const fallbackUser = {
     photo_url: [],
     first_name: "",
-    age: "16",
-    height: "140",
+    age: null,
+    height: "",
     city: "",
     gender: "",
     goal: "",
@@ -89,29 +100,37 @@ export function EditProfileProvider({
     mode: "onChange",
     defaultValues,
   })
-  const hasReset = useRef(false)
-
+  const [initialized, setInitialized] = useState(false)
   useEffect(() => {
-    if (values && !hasReset.current) {
+    if (!values) return
+    if (!initialized) {
       form.reset({ ...defaultValues, ...values })
-      hasReset.current = true
+      setInitialized(true)
     }
-  }, [values, defaultValues, form])
+  }, [values, defaultValues, initialized, form])
+
+  const { refetch } = useUserMe()
 
   const handleSubmit = useCallback(
-    (data: EditFormSchema) => {
+    async (data: EditFormSchema) => {
+      const scrollY = window.scrollY
       const result = editSchema.safeParse(data)
       if (!result.success) {
         console.warn("Invalid edit form:", result.error)
         return
       }
-      onSubmit(data)
+      await onSubmit(data)
+      form.reset(data)
+      await refetch()
+      window.scrollTo({ top: scrollY })
     },
-    [onSubmit]
+    [onSubmit, refetch, form]
   )
 
   return (
-    <EditFormContext.Provider value={form}>
+    <EditFormContext.Provider
+      value={{ ...form, isDirty: form.formState.isDirty }}
+    >
       <form onSubmit={form.handleSubmit(handleSubmit)}>{children}</form>
     </EditFormContext.Provider>
   )

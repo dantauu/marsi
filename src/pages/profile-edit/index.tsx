@@ -1,12 +1,8 @@
-import { EditMainInfo, PhotoEdit } from "@/features/profile-edit"
 import {
   type EditFormSchema,
   EditProfileProvider,
   useFormEmptyValues,
 } from "@/app/providers/profile-edit-form"
-import { SaveNavBar } from "@/widgets/nav-bar/save-edit-profile"
-import { useAppSelector } from "@/redux/hooks.ts"
-import { Overlay } from "@/widgets/overlay"
 import {
   useDeletePhotoMutation,
   useUpdateUserMutation,
@@ -15,13 +11,9 @@ import { useTelegram } from "@/app/providers/telegram"
 import LoadingBalls from "@/shared/ui/loading"
 import { useNotify } from "@/lib/hooks/use-notify.ts"
 import { getNormalizeGender } from "@/lib/utils/format-gender.ts"
-import Button from "@/shared/ui/buttons/button"
-import { useNavigate } from "@tanstack/react-router"
-import SvgArrow from "@/assets/icons/Arrow.tsx"
+import { EditProfileContent } from "@/pages/profile-edit/content.tsx"
 
 const EditProfile = () => {
-  const navigate = useNavigate()
-  const { isEditOpen } = useAppSelector((state) => state.modal)
   const { user: telegramUser } = useTelegram()
   const [updateUser] = useUpdateUserMutation()
   const [deletePhoto] = useDeletePhotoMutation()
@@ -35,7 +27,15 @@ const EditProfile = () => {
 
   const handleSubmit = async (data: EditFormSchema) => {
     if (!defaultValues) return
-    const changedEntries = Object.entries(data).filter(([key, value]) => {
+    const validatePhoto = (data.photo_url || []).filter(
+      (url) => url.trim() !== ""
+    )
+    const finalData = {
+      ...data,
+      photo_url: validatePhoto.length > 0 ? validatePhoto : undefined,
+    }
+
+    const changedEntries = Object.entries(finalData).filter(([key, value]) => {
       const defaultValue = defaultValues[key as keyof EditFormSchema]
 
       if (Array.isArray(value) && Array.isArray(defaultValue)) {
@@ -83,20 +83,7 @@ const EditProfile = () => {
       defaultValues={defaultValues}
       onSubmit={handleSubmit}
     >
-      {isEditOpen && <Overlay />}
-      <div data-testid="profile-edit" className="pb-[150px] pt-[120px]">
-        <SaveNavBar className="pt-[80px]" />
-        <Button
-          className="w-[115px] h-[40px] rounded-[7px] mx-2 mb-7 shadow-shadow-block text-[19px] text-[#000] font-ManropeM"
-          onClick={() => navigate({ to: "/profile" })}
-          variant="default"
-        >
-          <SvgArrow className="w-[20px] h-[20px] rotate-180 text-[#0007]" />{" "}
-          Назад
-        </Button>
-        <PhotoEdit />
-        <EditMainInfo className="mt-10" />
-      </div>
+      <EditProfileContent />
     </EditProfileProvider>
   )
 }

@@ -11,7 +11,7 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_URL || "http://localhost:9000/",
   }),
-  tagTypes: ["User"],
+  tagTypes: ["LikesToMe", "MyLikes"],
   endpoints: (builder) => ({
     getUsers: builder.query<User[], Partial<FilteredUsers> & { id?: string }>({
       query: ({ id, ...params }) => ({
@@ -44,6 +44,19 @@ export const userApi = createApi({
         method: "POST",
         body: { likedId, likerId },
       }),
+      invalidatesTags: (_result, _error, { likedId }) => [
+        { type: "LikesToMe", id: likedId },
+      ],
+    }),
+    dislikeUser: builder.mutation<
+      void,
+      { dislikerId: string; dislikedId: string }
+    >({
+      query: ({ dislikedId, dislikerId }) => ({
+        url: "dislikes",
+        method: "POST",
+        body: { dislikedId, dislikerId },
+      }),
     }),
     unlikeUser: builder.mutation<void, { likerId: string; likedId: string }>({
       query: ({ likedId, likerId }) => ({
@@ -51,12 +64,32 @@ export const userApi = createApi({
         method: "POST",
         body: { likedId, likerId },
       }),
+      invalidatesTags: (_result, _error, { likedId }) => [
+        { type: "LikesToMe", id: likedId },
+      ],
+    }),
+    unlikeIncomingUser: builder.mutation<
+      void,
+      { likerId: string; likedId: string }
+    >({
+      query: ({ likedId, likerId }) => ({
+        url: "likes/incoming-unlike",
+        method: "POST",
+        body: { likedId, likerId },
+      }),
+      invalidatesTags: (_result, _error, { likedId }) => [
+        { type: "LikesToMe", id: likedId },
+      ],
     }),
     getMyLikes: builder.query<User[], string>({
       query: (userId) => `likes/mine?userId=${userId}`,
+      providesTags: (_result, _error, userId) =>
+        userId ? [{ type: "MyLikes", id: userId }] : [],
     }),
     getLikesToMe: builder.query<User[], string>({
       query: (userId) => `likes/who-liked-me?userId=${userId}`,
+      providesTags: (_result, _error, userId) =>
+        userId ? [{ type: "LikesToMe", id: userId }] : [],
     }),
     uploadPhoto: builder.mutation<string, File | Blob>({
       query: (file) => {
@@ -86,7 +119,9 @@ export const {
   useInitUserMutation,
   useUpdateUserMutation,
   useLikeUserMutation,
+  useDislikeUserMutation,
   useUnlikeUserMutation,
+  useUnlikeIncomingUserMutation,
   useGetMyLikesQuery,
   useGetLikesToMeQuery,
   useUploadPhotoMutation,
