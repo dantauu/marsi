@@ -19,7 +19,7 @@ export const Card_Human: StoryObj = {
   render: () => {
     return (
       <CardGridLayout
-        id={"1"}
+        id={1}
         first_name={"Катя"}
         age={18}
         photo_url={[avatar]}

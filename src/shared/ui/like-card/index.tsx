@@ -14,7 +14,7 @@ export const LikeCard = ({
 }: {
   isLocked?: boolean
   users: User[] | undefined
-  onUnlike?: (userId: string) => void
+  onUnlike?: (userId: number) => void
   isMessage?: boolean
 }) => {
   const navigate = useNavigate()

@@ -14,7 +14,7 @@ export const useInitUser = () => {
     if (localStorage.getItem(key)) return
 
     initUser({
-      id: String(user.id),
+      id: user.id,
       first_name: user.first_name,
       photo_url: user.photo_url ? [user.photo_url] : [],
       username: user.username,

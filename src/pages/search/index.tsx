@@ -22,7 +22,7 @@ const Search = () => {
   const { ref, users, isLoading, isFetching } = useFetchToScroll(cleanedFilters)
   useScrollRestore("search", [users?.length])
   const { user: currentUser } = useUserMe()
-  const { data: countLikes } = useGetLikesToMeQuery(currentUser?.id ?? "", {
+  const { data: countLikes } = useGetLikesToMeQuery(currentUser?.id ?? undefined, {
     skip: !currentUser?.id,
   })
   console.log("searchParams", searchParams)
