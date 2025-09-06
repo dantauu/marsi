@@ -10,7 +10,7 @@ import { useLikesSocket } from "@/lib/hooks/use-likes-socket.ts"
 const Layout = ({ children }: PropsWithChildren) => {
   const router = useRouterState()
   const { user: userMe } = useUserMe()
-  useLikesSocket(userMe?.id)
+  useLikesSocket(Number(userMe?.id))
   useInitUser()
   return (
     <div className="pt-[80px]">

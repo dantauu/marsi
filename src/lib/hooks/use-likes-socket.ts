@@ -7,14 +7,14 @@ import likeSound from "@/assets/sound/like.mp3"
 
 let socket: Socket
 
-export const useLikesSocket = (userId?: string) => {
+export const useLikesSocket = (userId?: number) => {
   const dispatch = useAppDispatch()
   useEffect(() => {
     if (!userId) return
     const audio = new Audio(likeSound)
 
     socket = io(import.meta.env.VITE_BASE_URL, {
-      query: { userId },
+      query: { userId: String(userId) },
     })
     socket.on("new_like", ({ from }) => {
       audio.currentTime = 0
