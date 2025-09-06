@@ -12,7 +12,7 @@ export const useUserMe = () => {
     isFetching,
     error,
     refetch,
-  } = useGetUserByIdQuery(telegramUserId ?? undefined, {
+  } = useGetUserByIdQuery(String(telegramUserId), {
     skip: !telegramUserId,
   })
   return { user: user ?? null, isError, isLoading, isFetching, error, refetch }

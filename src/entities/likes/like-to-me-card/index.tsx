@@ -12,12 +12,12 @@ export const LikesToMeCard = () => {
     data: users,
     isFetching,
     refetch,
-  } = useGetLikesToMeQuery(userMe?.id ?? undefined, {
+  } = useGetLikesToMeQuery(userMe?.id ?? "", {
     skip: !userMe?.id,
   })
   const [unlikeUser, { isLoading: unlikeLoading }] =
     useUnlikeIncomingUserMutation()
-  const handleUnlike = async (likerId: number) => {
+  const handleUnlike = async (likerId: string) => {
     if (!userMe?.id) return
     const scrollY = window.scrollY
     try {

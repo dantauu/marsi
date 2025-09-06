@@ -11,12 +11,12 @@ import { useMemo } from "react"
 export const Buttons = ({
   currentUserId,
 }: {
-  currentUserId: number | undefined
+  currentUserId: string | undefined
 }) => {
   const dispatch = useAppDispatch()
   const { user } = useUserMe()
   const [likeUser] = useLikeUserMutation()
-  const { data: likedUser, refetch } = useGetMyLikesQuery(user?.id ?? undefined, {
+  const { data: likedUser, refetch } = useGetMyLikesQuery(user?.id ?? "", {
     skip: !user?.id,
   })
   const liked = useMemo(
