@@ -5,8 +5,8 @@ import {
   startDragging,
   updatePosition,
 } from "@/redux/slices/slider-slice.ts"
-import { useLikeUserMutation } from "@/shared/api/user.ts"
-import { useDislikeUserMutation } from "@/shared/api/user.ts"
+import { useLikeUserMutation } from "@/shared/api/likes.ts"
+import { useDislikeUserMutation } from "@/shared/api/likes.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import type { User } from "@/app/types/global"
 

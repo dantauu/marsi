@@ -1,5 +1,8 @@
 import { LikeCard } from "@/shared/ui/like-card"
-import { useGetMyLikesQuery, useUnlikeUserMutation } from "@/shared/api/user.ts"
+import {
+  useGetMyLikesQuery,
+  useUnlikeUserMutation,
+} from "@/shared/api/likes.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import LoadingBalls from "@/shared/ui/loading"
 

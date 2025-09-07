@@ -5,7 +5,7 @@ import Button from "@/shared/ui/buttons/button.tsx"
 import {
   useDislikeUserMutation,
   useLikeUserMutation,
-} from "@/shared/api/user.ts"
+} from "@/shared/api/likes.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import SvgHeart from "@/assets/icons/Heart.tsx"
 

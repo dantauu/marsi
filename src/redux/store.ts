@@ -2,10 +2,10 @@ import { configureStore } from "@reduxjs/toolkit"
 import modalReducer from "./slices/modal-slice"
 import sliderReducer from "./slices/slider-slice.ts"
 import filtersReducer from "./slices/filer-store.ts"
-import { userApi } from "@/shared/api/user.ts"
 import { setupListeners } from "@reduxjs/toolkit/query"
 import { locationsApi } from "@/redux/api/locations.ts"
 import { layoutSlice } from "@/redux/slices/layout-switch.ts"
+import { baseApi } from "@/redux/api/base-api.ts"
 
 export const store = configureStore({
   reducer: {
@@ -13,13 +13,11 @@ export const store = configureStore({
     slider: sliderReducer,
     filters: filtersReducer,
     layout_switch: layoutSlice.reducer,
-    [userApi.reducerPath]: userApi.reducer,
     [locationsApi.reducerPath]: locationsApi.reducer,
+    [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(userApi.middleware)
-      .concat(locationsApi.middleware),
+    getDefaultMiddleware().concat(baseApi.middleware),
 })
 
 setupListeners(store.dispatch)
