@@ -1,7 +1,7 @@
 import { AnimatePresence } from "framer-motion"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { motion } from "framer-motion"
-import { useCallback } from "react"
+import { useCallback, useEffect } from "react"
 import { Gender, Location } from "@/features/search"
 import { FilterSlide } from "@/ui"
 import { formEmptyValues } from "@/app/providers/filter-form"
@@ -38,6 +38,16 @@ export const FilterModal = () => {
     setValue("minHeight", values[0], { shouldDirty: true })
     setValue("maxHeight", values[1], { shouldDirty: true })
   }, [])
+
+  useEffect(() => {
+    if (isFilterOpen) {
+      document.body.style.overflow = "hidden"
+
+      return () => {
+        document.body.style.overflow = ""
+      }
+    }
+  }, [isFilterOpen])
 
   return (
     <AnimatePresence>

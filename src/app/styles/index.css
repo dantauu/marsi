@@ -66,6 +66,9 @@
       rgba(255, 85, 159, 0.5) 100%
     );
   }
+  .bg-test {
+    background: linear-gradient(90deg, #ffe8f2 0%, #f9eace 100%);
+  }
 }
 
 @layer base {

@@ -58,8 +58,8 @@ export const SwipePhotos: React.FC<Props> = ({ photo_url }) => {
         {photo_url.map((_, i) => (
           <div
             key={i}
-            className={`w-[40px] h-[6px] border-white border-1 rounded-2xl duration-200 ${
-              i === index ? "bg-white" : "bg-transparent"
+            className={`w-[40px] h-[6px] rounded-2xl duration-200 ${
+              i === index ? "bg-white" : "bg-[#ffffff8a]"
             }`}
           />
         ))}
