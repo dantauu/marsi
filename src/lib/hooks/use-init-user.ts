@@ -13,14 +13,19 @@ export const useInitUser = () => {
     const key = `user-initialized-${user?.id}`
     if (localStorage.getItem(key)) return
 
-    initUser({
-      id: String(user.id),
-      first_name: user.first_name,
-      photo_url: user.photo_url ? [user.photo_url] : [],
-      username: user.username,
-    })
-    localStorage.setItem(key, "true")
-  }, [user])
+    const timer = setTimeout(() => {
+      initUser({
+        id: String(user.id),
+        first_name: user.first_name,
+        photo_url: user.photo_url ? [user.photo_url] : [],
+        username: user.username,
+      })
+
+      localStorage.setItem(key, "true")
+    }, 700)
+
+    return () => clearTimeout(timer)
+  }, [user, initUser])
 
   useEffect(() => {
     console.log("data", { isLoading, isError, isSuccess, error })
