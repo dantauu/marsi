@@ -20,7 +20,7 @@ export const useInitUser = () => {
     })
       .unwrap()
       .then(() => setIsInit(true))
-  }, [user])
+  }, [user, initUser])
 
   return { isInitLoading, isError, isSuccess, error, isInit }
 }
