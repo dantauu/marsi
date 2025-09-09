@@ -23,7 +23,7 @@ export const ProfileHeader = () => {
       <div className="flex items-center gap-2">
         <div className="">
           <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px]">
-            {user?.first_name || "Не указано"}, {user?.age || "Не указано"}
+            {user?.first_name || "Не указано"}, {user?.age || "16"}
           </p>
         </div>
         <div onClick={() => navigate({ to: "/profile-edit" })} className="">
