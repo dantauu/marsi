@@ -5,9 +5,10 @@ export const EditHobbies = ({
   value,
   onChange,
 }: {
-  value: string[]
+  value: string[] | undefined
   onChange: (v: string[]) => void
 }) => {
+  if (!value) return
   const handleClick = (hobby: Hobbies) => {
     const exists = value.includes(hobby.title)
     if (!exists && value.length >= 3) return

@@ -18,8 +18,8 @@ export const editSchema = z.object({
     .min(16, "Возраст должен быть не меньше 16")
     .max(100, "Возраст должен быть не больше 100")
     .nullable(),
-  gender: z.string(),
-  city: z.string(),
+  gender: z.string().optional(),
+  city: z.string().optional(),
   height: z
     .string()
     .refine(
@@ -33,9 +33,9 @@ export const editSchema = z.object({
         if (num < 120) return { message: "Минимальная высота 120" }
         return { message: "Максимальная высота 230" }
       }
-    ),
-  goal: z.string(),
-  hobbies: z.array(z.string()),
+    ).optional(),
+  goal: z.string().optional(),
+  hobbies: z.array(z.string()).optional(),
   deleted_photos: z.array(z.string()).optional(),
 })
 

@@ -99,10 +99,10 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
         <AddHobbies
           onClick={() => handleOpen("hobbies")}
           onRemove={(hobby) => {
-            const newHobby = hobbies.filter((h) => h !== hobby)
+            const newHobby = hobbies!.filter((h) => h !== hobby)
             setValue("hobbies", newHobby)
           }}
-          text={hobbies}
+          text={hobbies ?? []}
           className="mt-5"
         />
       </div>
