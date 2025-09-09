@@ -1,7 +1,9 @@
 import { useTelegram } from "@/app/providers/telegram"
 import { useGetUserByIdQuery } from "@/shared/api/user.ts"
+import { useInitUser } from "@/lib/hooks/use-init-user.ts"
 
 export const useUserMe = () => {
+  const { isInitLoading, isInit } = useInitUser()
   const { user: telegramUser } = useTelegram()
   const telegramUserId = telegramUser?.id
 
@@ -13,7 +15,14 @@ export const useUserMe = () => {
     error,
     refetch,
   } = useGetUserByIdQuery(String(telegramUserId), {
-    skip: !telegramUserId,
+    skip: !telegramUserId || !isInit,
   })
-  return { user: user ?? null, isError, isLoading, isFetching, error, refetch }
+  return {
+    user: user ?? null,
+    isError,
+    isLoading: isInitLoading || isLoading,
+    isFetching,
+    error,
+    refetch,
+  }
 }
