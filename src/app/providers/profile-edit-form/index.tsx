@@ -24,16 +24,18 @@ export const editSchema = z.object({
     .string()
     .refine(
       (val) => {
+        if (!val) return true
         const num = Number(val)
         return !isNaN(num) && num >= 120 && num <= 230
       },
       (val) => {
+        if (!val) return { message: "" }
         const num = Number(val)
         if (isNaN(num)) return { message: "Рост должен быть числом" }
         if (num < 120) return { message: "Минимальная высота 120" }
         return { message: "Максимальная высота 230" }
       }
-    ).optional(),
+    ).optional().nullable(),
   goal: z.string().optional(),
   hobbies: z.array(z.string()).optional(),
   deleted_photos: z.array(z.string()).optional(),
