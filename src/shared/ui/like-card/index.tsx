@@ -1,6 +1,6 @@
 import Button from "@/shared/ui/buttons/button.tsx"
 import SvgArrow from "@/assets/icons/Arrow.tsx"
-import type { User } from "@/app/types/global"
+import type { User } from "@/app/types/user"
 import SvgTrash from "@/assets/icons/Trash.tsx"
 import SvgMessageLike from "@/assets/icons/MessageLike.tsx"
 import { useNavigate } from "@tanstack/react-router"

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form"
 import { type PropsWithChildren, useCallback, useEffect, useState } from "react"
 import { EditFormContext } from "@/app/context/profile-edit-context.tsx"
 import { zodResolver } from "@hookform/resolvers/zod"
-import type { User } from "@/app/types/global"
+import type { User } from "@/app/types/user"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 
 export const editSchema = z.object({

@@ -2,7 +2,7 @@ import SvgArrow from "@/assets/icons/Arrow"
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useNavigate } from "@tanstack/react-router"
 import LoadingBalls from "@/shared/ui/loading"
-import type { User } from "@/app/types/global"
+import type { User } from "@/app/types/user"
 
 type LikeCountProps = {
   isPending: boolean

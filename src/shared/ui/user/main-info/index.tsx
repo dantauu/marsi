@@ -1,4 +1,4 @@
-import type { User } from "@/app/types/global"
+import type { User } from "@/app/types/user"
 
 export const MainInfoUser = ({ user }: { user: User }) => {
   return (

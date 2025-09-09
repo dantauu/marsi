@@ -8,7 +8,7 @@ import {
 import { useLikeUserMutation } from "@/shared/api/likes.ts"
 import { useDislikeUserMutation } from "@/shared/api/likes.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
-import type { User } from "@/app/types/global"
+import type { User } from "@/app/types/user"
 
 export const SwiperCard = ({ data }: { data: User[] }) => {
   const SWIPE_THRESHOLD = 50

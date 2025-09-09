@@ -1,4 +1,4 @@
-import type { User } from "@/app/types/global.d.ts"
+import type { User } from "@/app/types/user"
 import { SwiperCard } from "@/entities/slides/lib/swiper-card"
 import { MainInfoUser } from "@/shared/ui/user/main-info"
 import { SliderButtons } from "@/features/slides"
@@ -9,7 +9,6 @@ type SliderCardProps = {
 }
 
 export const SliderCard = ({ data }: SliderCardProps) => {
-  //remove this
   const {
     onSwipeStart,
     onSwipeMove,

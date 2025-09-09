@@ -1,4 +1,4 @@
-import type { User } from "@/app/types/global.d.ts"
+import type { User } from "@/app/types/user"
 import { MainInfoUser } from "@/shared/ui/user/main-info"
 import { SwipePhotos } from "@/ui/sliders/swipe-photo"
 import { SwiperCard } from "@/entities/slides/lib/swiper-card"

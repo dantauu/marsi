@@ -1,4 +1,4 @@
-import type { User } from "@/app/types/global"
+import type { User } from "@/app/types/user"
 import { baseApi } from "@/redux/api/base-api.ts"
 
 export const likesApi = baseApi.injectEndpoints({

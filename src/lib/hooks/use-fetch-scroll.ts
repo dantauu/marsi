@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useInView } from "react-intersection-observer"
 import { useGetUsersQuery } from "@/shared/api/user"
-import type { User } from "@/app/types/global"
+import type { User } from "@/app/types/user"
 import { useAppSelector } from "@/redux/hooks.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 

@@ -1,9 +1,5 @@
-import type {
-  FilteredUsers,
-  UpdateUserData,
-  User,
-  UserInit,
-} from "@/app/types/global.d.ts"
+import type { FilteredUsers } from "@/app/types/global.d.ts"
+import type { User, UserInit, UpdateUserData } from "@/app/types/user"
 import { baseApi } from "@/redux/api/base-api.ts"
 
 export const userApi = baseApi.injectEndpoints({
