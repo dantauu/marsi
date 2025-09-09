@@ -14,7 +14,7 @@ export const useUserMe = () => {
     if (stored) {
       setUserId(String(telegramUserId))
     }
-  }, [userId])
+  }, [telegramUserId])
 
     const query = useGetUserByIdQuery(String(userId), {
       skip: !userId,
