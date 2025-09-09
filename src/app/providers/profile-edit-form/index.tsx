@@ -22,7 +22,6 @@ export const editSchema = z.object({
   city: z.string(),
   height: z
     .string()
-    .nonempty("Введите рост")
     .refine(
       (val) => {
         const num = Number(val)
