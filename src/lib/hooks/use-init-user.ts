@@ -1,33 +1,26 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useTelegram } from "@/app/providers/telegram"
 import { useInitUserMutation } from "@/shared/api/user.ts"
 
 export const useInitUser = () => {
-  const [initUser, { isLoading, isError, isSuccess, error }] =
+  const [initUser, { isLoading: isInitLoading, isError, isSuccess, error }] =
     useInitUserMutation()
   const { user } = useTelegram()
+  const [isInit, setIsInit] = useState<boolean>(false)
 
   useEffect(() => {
     console.log("INIT USER TRIGGERED", user)
     if (!user) return
-    const key = `user-initialized-${user?.id}`
-    if (localStorage.getItem(key)) return
 
-    const timer = setTimeout(() => {
-      initUser({
-        id: String(user.id),
-        first_name: user.first_name,
-        photo_url: user.photo_url ? [user.photo_url] : [],
-        username: user.username,
-      })
+    initUser({
+      id: String(user.id),
+      first_name: user.first_name,
+      photo_url: user.photo_url ? [user.photo_url] : [],
+      username: user.username,
+    })
+      .unwrap()
+      .then(() => setIsInit(true))
+  }, [user])
 
-      localStorage.setItem(key, "true")
-    }, 700)
-
-    return () => clearTimeout(timer)
-  }, [user, initUser])
-
-  useEffect(() => {
-    console.log("data", { isLoading, isError, isSuccess, error })
-  }, [isLoading, isError, isSuccess, error])
+  return { isInitLoading, isError, isSuccess, error, isInit }
 }
