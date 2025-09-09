@@ -13,14 +13,14 @@ export const useInitUser = () => {
     const key = `user-initialized-${user?.id}`
     if (localStorage.getItem(key)) return
 
-      initUser({
-        id: String(user.id),
-        first_name: user.first_name,
-        photo_url: user.photo_url ? [user.photo_url] : [],
-        username: user.username,
-      })
+    initUser({
+      id: String(user.id),
+      first_name: user.first_name,
+      photo_url: user.photo_url ? [user.photo_url] : [],
+      username: user.username,
+    })
 
-      localStorage.setItem(key, "true")
+    localStorage.setItem(key, "true")
   }, [user])
 
   useEffect(() => {
