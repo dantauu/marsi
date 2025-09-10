@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { useTelegram } from "@/app/providers/telegram"
 import { useAuthUserMutation, useInitUserMutation } from "@/shared/api/user.ts"
 import Cookies from "js-cookie"
@@ -8,9 +8,11 @@ export const useInitUser = () => {
     useInitUserMutation()
   const { user } = useTelegram()
   const [authUser] = useAuthUserMutation()
+  const initializedRef = useRef(false)
 
   useEffect(() => {
     if (!user || Cookies.get("jwt")) return
+    initializedRef.current = true
     const initialize = async () => {
       try {
         const initUserPayload = {
@@ -25,6 +27,7 @@ export const useInitUser = () => {
         Cookies.set("jwt", access_token, { expires: 7 })
       } catch (error) {
         console.error(error)
+        initializedRef.current = false
       }
     }
     initialize()
@@ -33,5 +36,5 @@ export const useInitUser = () => {
   useEffect(() => {
     console.log("data", { isLoading, isError, isSuccess, error })
   }, [isLoading, isError, isSuccess, error])
-  return {isLoading}
+  return {isLoading, isSuccess}
 }

@@ -4,11 +4,11 @@ import { useInitUser } from "@/lib/hooks/use-init-user.ts"
 
 export const useUserMe = () => {
   const { user: telegramUser } = useTelegram()
-  const { isLoading } = useInitUser()
+  const { isLoading, isSuccess } = useInitUser()
   const telegramUserId = telegramUser?.id
 
   const query = useGetUserByIdQuery(String(telegramUserId), {
-    skip: !telegramUserId || isLoading
+    skip: !telegramUserId || isLoading || !isSuccess
   })
 
   return {
