@@ -1,40 +1,47 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useTelegram } from "@/app/providers/telegram"
-import { useAuthUserMutation, useInitUserMutation } from "@/shared/api/user.ts"
+import { useAuthUserMutation, useInitUserMutation } from "@/shared/api/user"
 import Cookies from "js-cookie"
 
 export const useInitUser = () => {
-  const [initUser, { isLoading, isError, isSuccess, error }] =
-    useInitUserMutation()
+  const [initUser] = useInitUserMutation()
+  const [authUser] = useAuthUserMutation()
   const { user } = useTelegram()
-  const [authUser, { isLoading: authLoading }] = useAuthUserMutation()
+
   const initializedRef = useRef(false)
+  const [ready, setReady] = useState(!!Cookies.get("jwt"))
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<unknown>(null)
 
   useEffect(() => {
-    if (!user || Cookies.get("jwt") || initializedRef.current) return
-    const initialize = async () => {
+    if (!user || ready || initializedRef.current) return
+
+    initializedRef.current = true
+    setIsLoading(true)
+
+    const run = async () => {
       try {
-        initializedRef.current = true
-        const initUserPayload = {
+        const initData = await initUser({
           id: String(user.id),
           first_name: user.first_name,
           photo_url: user.photo_url ? [user.photo_url] : [],
           username: user.username,
-        }
-        const initData = await initUser(initUserPayload).unwrap()
+        }).unwrap()
 
         const { access_token } = await authUser(initData).unwrap()
         Cookies.set("jwt", access_token, { expires: 7 })
-      } catch (error) {
-        console.error(error)
+        setReady(true)
+      } catch (e) {
+        console.error(e)
+        setError(e)
         initializedRef.current = false
+      } finally {
+        setIsLoading(false)
       }
     }
-    initialize()
-  }, [user])
 
-  useEffect(() => {
-    console.log("data", { isLoading, isError, isSuccess, error })
-  }, [isLoading, isError, isSuccess, error])
-  return { authLoading, isLoading }
+    run()
+  }, [user, ready])
+
+  return { ready, isLoading, error }
 }
