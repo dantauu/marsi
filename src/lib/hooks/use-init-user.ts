@@ -10,7 +10,7 @@ export const useInitUser = () => {
   const initializedRef = useRef(false)
 
   useEffect(() => {
-    if (!user || localStorage.get("jwt") || initializedRef.current) return
+    if (!user || localStorage.getItem("jwt") || initializedRef.current) return
     const initialize = async () => {
       try {
         initializedRef.current = true
@@ -23,7 +23,7 @@ export const useInitUser = () => {
         const initData = await initUser(initUserPayload).unwrap()
 
         const { access_token } = await authUser(initData).unwrap()
-        localStorage.set("jwt", access_token, { expires: 7 })
+        localStorage.setItem("jwt", access_token)
       } catch (error) {
         console.error(error)
         initializedRef.current = false

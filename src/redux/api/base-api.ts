@@ -5,7 +5,7 @@ export const baseApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_URL || "http://localhost:9000/",
     prepareHeaders: (headers) => {
-      const token = localStorage.get("jwt")
+      const token = localStorage.getItem("jwt")
       if (token) headers.set("Authorization", `Bearer ${token}`)
       return headers
     },
