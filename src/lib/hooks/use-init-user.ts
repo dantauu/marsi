@@ -11,10 +11,10 @@ export const useInitUser = () => {
   const initializedRef = useRef(false)
 
   useEffect(() => {
-    if (!user || Cookies.get("jwt")) return
-    initializedRef.current = true
+    if (!user || Cookies.get("jwt") || initializedRef.current) return
     const initialize = async () => {
       try {
+        initializedRef.current = true
         const initUserPayload = {
           id: String(user.id),
           first_name: user.first_name,
