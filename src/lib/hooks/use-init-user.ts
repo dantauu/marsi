@@ -10,11 +10,9 @@ export const useInitUser = () => {
   const [authUser] = useAuthUserMutation()
 
   useEffect(() => {
-    if (!user) return
+    if (!user || Cookies.get("jwt")) return
     const initialize = async () => {
       try {
-        if (Cookies.get("jwt")) return
-
         const initUserPayload = {
           id: String(user.id),
           first_name: user.first_name,
@@ -30,7 +28,7 @@ export const useInitUser = () => {
       }
     }
     initialize()
-  }, [user, initUser, authUser])
+  }, [user])
 
   useEffect(() => {
     console.log("data", { isLoading, isError, isSuccess, error })
