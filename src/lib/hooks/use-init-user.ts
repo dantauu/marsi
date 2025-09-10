@@ -7,7 +7,7 @@ export const useInitUser = () => {
   const [initUser, { isLoading, isError, isSuccess, error }] =
     useInitUserMutation()
   const { user } = useTelegram()
-  const [authUser] = useAuthUserMutation()
+  const [authUser, { isLoading: authLoading }] = useAuthUserMutation()
   const initializedRef = useRef(false)
 
   useEffect(() => {
@@ -36,4 +36,5 @@ export const useInitUser = () => {
   useEffect(() => {
     console.log("data", { isLoading, isError, isSuccess, error })
   }, [isLoading, isError, isSuccess, error])
+  return { authLoading, isLoading }
 }
