@@ -1,14 +1,13 @@
 import { useTelegram } from "@/app/providers/telegram"
 import { useGetUserByIdQuery } from "@/shared/api/user.ts"
-import { useInitUser } from "@/lib/hooks/use-init-user.ts"
+import Cookies from "js-cookie"
 
 export const useUserMe = () => {
   const { user: telegramUser } = useTelegram()
-  const { isLoading, isSuccess } = useInitUser()
   const telegramUserId = telegramUser?.id
 
   const query = useGetUserByIdQuery(String(telegramUserId), {
-    skip: !telegramUserId || isLoading || !isSuccess
+    skip: !telegramUserId || !Cookies.get("jwt"),
   })
 
   return {
