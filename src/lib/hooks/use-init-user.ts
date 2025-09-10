@@ -35,4 +35,5 @@ export const useInitUser = () => {
   useEffect(() => {
     console.log("data", { isLoading, isError, isSuccess, error })
   }, [isLoading, isError, isSuccess, error])
+  return {isSuccess}
 }
