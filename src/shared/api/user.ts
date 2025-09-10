@@ -9,7 +9,6 @@ export const userApi = baseApi.injectEndpoints({
         method: "POST",
         url: "auth/user",
         body: initData,
-        credentials: "include",
       }),
     }),
     getUsers: builder.query<User[], Partial<FilteredUsers> & { id?: string }>({
