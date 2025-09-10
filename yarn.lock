@@ -2076,6 +2076,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/js-cookie@npm:^3.0.6":
+  version: 3.0.6
+  resolution: "@types/js-cookie@npm:3.0.6"
+  checksum: 272d551687547445cb210213c73e72e0e5d58ad73e2e444a65d688b8ff9425529779ee0cd6492aaa1f070161916d4254ef2b1a76d64179100437f60749d094ef
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:^7.0.15":
   version: 7.0.15
   resolution: "@types/json-schema@npm:7.0.15"
@@ -4250,6 +4257,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"js-cookie@npm:^3.0.5":
+  version: 3.0.5
+  resolution: "js-cookie@npm:3.0.5"
+  checksum: 2dbd2809c6180fbcf060c6957cb82dbb47edae0ead6bd71cbeedf448aa6b6923115003b995f7d3e3077bfe2cb76295ea6b584eb7196cca8ba0a09f389f64967a
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -4666,6 +4680,7 @@ __metadata:
     "@testing-library/jest-dom": ^6.6.3
     "@testing-library/react": ^16.3.0
     "@twa-dev/types": ^8.0.2
+    "@types/js-cookie": ^3.0.6
     "@types/node": ^22.15.21
     "@types/react": ^19.1.2
     "@types/react-dom": ^19.1.2
@@ -4681,6 +4696,7 @@ __metadata:
     framer-motion: ^12.14.0
     globals: ^16.0.0
     heic2any: ^0.0.4
+    js-cookie: ^3.0.5
     jsdom: ^26.1.0
     playwright: ^1.53.0
     prettier: ^3.5.3

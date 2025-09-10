@@ -35,7 +35,9 @@ export const editSchema = z.object({
         if (num < 120) return { message: "Минимальная высота 120" }
         return { message: "Максимальная высота 230" }
       }
-    ).optional().nullable(),
+    )
+    .optional()
+    .nullable(),
   goal: z.string().optional(),
   hobbies: z.array(z.string()).optional(),
   deleted_photos: z.array(z.string()).optional(),
