@@ -3,7 +3,7 @@ import { useTelegram } from "@/app/providers/telegram"
 import { useAuthUserMutation, useInitUserMutation } from "@/shared/api/user.ts"
 
 export const useInitUser = () => {
-  const [initUser, {isSuccess}] =
+  const [initUser] =
     useInitUserMutation()
   const { user } = useTelegram()
   const [authUser] = useAuthUserMutation()
@@ -31,5 +31,4 @@ export const useInitUser = () => {
     }
     initialize()
   }, [user])
-  return { isSuccess }
 }
