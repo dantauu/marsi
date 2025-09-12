@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useTelegram } from "@/app/providers/telegram"
 import { useAuthUserMutation, useInitUserMutation } from "@/shared/api/user.ts"
 
@@ -8,9 +8,10 @@ export const useInitUser = () => {
   const { user } = useTelegram()
   const [authUser] = useAuthUserMutation()
   const initializedRef = useRef(false)
+  const [isToken, setIsToken] = useState<string | null>(localStorage.getItem("jwt"))
 
   useEffect(() => {
-    if (!user || localStorage.getItem("jwt") || initializedRef.current) return
+    if (!user || isToken || initializedRef.current) return
     const initialize = async () => {
       try {
         initializedRef.current = true
@@ -24,6 +25,7 @@ export const useInitUser = () => {
 
         const { access_token } = await authUser(initData).unwrap()
         localStorage.setItem("jwt", access_token)
+        setIsToken(access_token)
       } catch (error) {
         console.error(error)
         initializedRef.current = false
@@ -31,4 +33,5 @@ export const useInitUser = () => {
     }
     initialize()
   }, [user])
+  return { isToken }
 }
