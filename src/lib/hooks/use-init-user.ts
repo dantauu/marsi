@@ -1,16 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useTelegram } from "@/app/providers/telegram";
 import { useAuthUserMutation, useInitUserMutation } from "@/shared/api/user.ts";
 import { useGetUserByIdQuery } from "@/shared/api/user.ts";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
+import { setToken } from "@/redux/slices/auth.ts"
 
 export const useInitUser = () => {
   const { user } = useTelegram();
   const [initUser] = useInitUserMutation();
   const [authUser] = useAuthUserMutation();
-  const [isToken, setIsToken] = useState<string | null>(localStorage.getItem("jwt"));
+  const token = useAppSelector((state) => state.auth.token)
+  const dispatch = useAppDispatch()
 
   const { isError } = useGetUserByIdQuery(String(user?.id), {
-    skip: !user?.id || !isToken,
+    skip: !user?.id || !token,
   });
 
   useEffect(() => {
@@ -18,12 +21,12 @@ export const useInitUser = () => {
 
     const initialize = async () => {
       try {
-        if (isToken && isError) {
+        if (token && isError) {
           localStorage.removeItem("jwt");
-          setIsToken(null);
+          dispatch(setToken(null));
         }
 
-        if (!isToken) {
+        if (!token) {
           const initUserPayload = {
             id: String(user.id),
             first_name: user.first_name,
@@ -35,7 +38,7 @@ export const useInitUser = () => {
           const { access_token } = await authUser(initData).unwrap();
 
           localStorage.setItem("jwt", access_token);
-          setIsToken(access_token);
+          dispatch(setToken(access_token));
         }
       } catch (error) {
         console.error(error);
@@ -43,7 +46,5 @@ export const useInitUser = () => {
     };
 
     initialize();
-  }, [user, isToken, isError, initUser, authUser]);
-
-  return { isToken };
+  }, [user, token, isError, initUser, authUser]);
 };

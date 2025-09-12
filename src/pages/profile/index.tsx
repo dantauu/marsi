@@ -3,15 +3,13 @@ import { ProfileHeader } from "@/entities/profile"
 import { BasicInformation } from "@/ui/index.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import { useGetLikesToMeQuery, useGetMyLikesQuery } from "@/shared/api/likes.ts"
-import { useInitUser } from "@/lib/hooks/use-init-user.ts"
 
 const Profile = () => {
-  const { isToken } = useInitUser()
   const {
     user: currentUser,
     isFetching: userFetching,
     isLoading: userLoading,
-  } = useUserMe(isToken!)
+  } = useUserMe()
   const { data: likesToMe, isFetching: likesToMeFetching } =
     useGetLikesToMeQuery(currentUser?.id ?? "", {
       skip: !currentUser?.id,
