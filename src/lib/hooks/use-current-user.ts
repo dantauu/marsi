@@ -1,7 +1,7 @@
 import { useTelegram } from "@/app/providers/telegram"
 import { useGetUserByIdQuery } from "@/shared/api/user.ts"
 
-export const useUserMe = (isToken: string) => {
+export const useUserMe = (isToken?: string) => {
   const { user: telegramUser } = useTelegram()
   const telegramUserId = telegramUser?.id
 
