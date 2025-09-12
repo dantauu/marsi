@@ -22,7 +22,6 @@ export const useInitUser = () => {
     const initialize = async () => {
       try {
         if (token && isError) {
-          localStorage.removeItem("jwt");
           dispatch(setToken(null));
         }
 
@@ -37,7 +36,6 @@ export const useInitUser = () => {
           const initData = await initUser(initUserPayload).unwrap();
           const { access_token } = await authUser(initData).unwrap();
 
-          localStorage.setItem("jwt", access_token);
           dispatch(setToken(access_token));
         }
       } catch (error) {
