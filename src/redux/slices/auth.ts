@@ -1,8 +1,7 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
 
-
 type AuthState = {
-  token: string | null,
+  token: string | null
 }
 
 const initialState: AuthState = {
@@ -20,9 +19,9 @@ const authSlice = createSlice({
       } else {
         localStorage.removeItem("jwt")
       }
-    }
-  }
+    },
+  },
 })
 
-export const { setToken } = authSlice.actions;
+export const { setToken } = authSlice.actions
 export default authSlice.reducer
