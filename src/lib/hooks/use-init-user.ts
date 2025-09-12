@@ -32,6 +32,6 @@ export const useInitUser = () => {
       }
     }
     initialize()
-  }, [user])
+  }, [user, isToken])
   return { isToken }
 }
