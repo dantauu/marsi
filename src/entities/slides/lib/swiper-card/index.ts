@@ -115,8 +115,9 @@ export const SwiperCard = ({ data }: { data: User[] }) => {
     return absX / (SWIPE_THRESHOLD / 1.2)
   }
 
+  //for rotate card in swipe
   const getCardRotation = () => {
-    const maxAngle = 5
+    const maxAngle = 0
     const angle = (position.x / SWIPE_THRESHOLD) * maxAngle
     return `rotateZ(${Math.max(-maxAngle, Math.min(angle, maxAngle))}deg)`
   }
@@ -129,7 +130,7 @@ export const SwiperCard = ({ data }: { data: User[] }) => {
     } else if (index === currentIndex - 1 && exitDirection === "right") {
       return "translateX(100%)"
     } else if (index === currentIndex + 1) {
-      return "translateX(100%)"
+      return "translateX(0%)"
     }
     return `translateX(${(index - currentIndex) * 100}%)`
   }

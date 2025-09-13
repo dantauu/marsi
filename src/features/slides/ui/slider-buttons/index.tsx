@@ -33,20 +33,22 @@ export const SliderButtons = ({
     }
   }
   return (
-    <div className="absolute bottom-0 z-50 w-full flex items-center justify-between px-3">
+    <div className="absolute bottom-0 z-50 w-full flex items-center justify-center gap-5 px-3 pb-4">
       <Button
-        className="w-[100px] bg-main-red rounded-[14px] py-1"
+        className="w-[65px] h-[65px] bg-white rounded-full py-1"
         variant="default"
         onClick={() => handleDislikeUser()}
+        onMouseDown={(e) => e.stopPropagation()}
       >
-        <SvgCross className="w-[50px] h-[50px] text-[#fff9] " />
+        <SvgCross className="w-[40px] h-[40px] text-black" />
       </Button>
       <Button
-        className="w-[100px] bg-main-green rounded-[14px] py-1"
+        className="w-[65px] h-[65px] bg-white rounded-full py-1"
         variant="default"
         onClick={() => handleLikeUser()}
+        onMouseDown={(e) => e.stopPropagation()}
       >
-        <SvgHeart className="w-[50px] h-[50px] text-[#fff9]" />
+        <SvgHeart className="w-[40px] h-[40px] text-main-red" />
       </Button>
     </div>
   )

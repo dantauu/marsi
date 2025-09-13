@@ -15,6 +15,7 @@ type ButtonProps = {
   variant: Variant
   children?: React.ReactNode
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
+  onMouseDown?: (e: React.MouseEvent<HTMLButtonElement>) => void
   className?: string
   type?: "submit" | "reset" | "button"
   disabled?: boolean
@@ -24,6 +25,7 @@ const Button = ({
   variant,
   children,
   onClick,
+  onMouseDown,
   type,
   disabled,
   className,
@@ -35,6 +37,7 @@ const Button = ({
         disabled={disabled}
         type={type}
         onClick={onClick}
+        onMouseDown={onMouseDown}
         className={cn(variantName, className)}
       >
         {children}

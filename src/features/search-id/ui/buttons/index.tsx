@@ -44,21 +44,21 @@ export const Buttons = ({
     }
   }
   return (
-    <div className="absolute bottom-0 z-5 w-full flex items-center justify-between px-3">
+    <div className="absolute bottom-0 z-5 w-full flex items-center justify-center gap-5 px-3 pb-4">
       <Button
-        className="w-[90px] h-[60px] bg-main-red rounded-[14px] py-1"
+        className="w-[65px] h-[65px] bg-white rounded-full py-1"
         variant="default"
         onClick={() => navigate({ to: "/search" })}
       >
-        <SvgBack className="w-[42px] h-[42px] text-[#fff9] " />
+        <SvgBack className="w-[42px] h-[42px] text-[#0005] " />
       </Button>
       <Button
-        className="w-[90px] h-[60px] bg-main-green rounded-[14px] py-1"
+        className="w-[65px] h-[65px] bg-white rounded-full py-1"
         variant="default"
         onClick={() => handleLikeUser()}
       >
         <SvgHeart
-          className={`w-[50px] h-[50px] text-[#fff9] ${liked && "text-main-red duration-150"}`}
+          className={`w-[50px] h-[50px] text-[#0005] ${liked && "text-main-red duration-150"}`}
         />
       </Button>
     </div>

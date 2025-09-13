@@ -3,6 +3,7 @@ import { SwiperCard } from "@/entities/slides/lib/swiper-card"
 import { MainInfoUser } from "@/shared/ui/user/main-info"
 import { SliderButtons } from "@/features/slides"
 import { SwipePhotos } from "@/ui/sliders/swipe-photo"
+import SvgPoint from "@/assets/icons/Point.tsx"
 
 type SliderCardProps = {
   data: User[]
@@ -22,9 +23,9 @@ export const SliderCard = ({ data }: SliderCardProps) => {
   } = SwiperCard({ data })
 
   return (
-    <div className="flex flex-col gap-5 w-full max-w-[430px] h-full mx-auto mb-20 border-1 rounded-[29px]">
+    <div className="flex flex-col gap-5 w-full max-w-[430px] h-full mx-auto mb-20">
       <div
-        className="relative w-full h-[440px] mini-mobile:h-[500px] flex justify-center overflow-hidden touch-none select-none"
+        className="relative w-full h-[430px] mini-mobile:h-[460px] flex justify-center overflow-hidden touch-none select-none"
         onMouseDown={onSwipeStart}
         onTouchStart={onSwipeStart}
         onMouseMove={onSwipeMove}
@@ -72,10 +73,16 @@ export const SliderCard = ({ data }: SliderCardProps) => {
                       Array.isArray(item.photo_url) ? item.photo_url : []
                     }
                   />
-                  <div className="absolute bottom-18 z-50 px-3">
-                    <p className="text-white text-[35px] mini-mobile:text-[40px] font-ManropeM">
+                  <div onMouseDown={(e) => e.stopPropagation()} className="absolute flex flex-col justify-center items-center w-full bottom-23 z-50">
+                    <p className="text-white text-[25px] mini-mobile:text-[30px] font-ManropeM">
                       {item.first_name}, {item.age}
                     </p>
+                    <div className="flex justify-center items-center">
+                      <SvgPoint className="w-[27px] h-[27px] text-white" />
+                      <p className="text-white text-[15px] mini-mobile:text-[18px] font-ManropeM">
+                        {item?.city}, {item.photo_url?.length} фото
+                      </p>
+                    </div>
                   </div>
                   <SliderButtons currentUserId={item.id} />
                 </div>
@@ -84,7 +91,7 @@ export const SliderCard = ({ data }: SliderCardProps) => {
           })}
         </div>
       </div>
-      <MainInfoUser user={data[currentIndex]} />
+      {/*<MainInfoUser user={data[currentIndex]} />*/}
     </div>
   )
 }

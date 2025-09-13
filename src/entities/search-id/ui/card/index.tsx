@@ -3,6 +3,7 @@ import { MainInfoUser } from "@/shared/ui/user/main-info"
 import { SwipePhotos } from "@/ui/sliders/swipe-photo"
 import { SwiperCard } from "@/entities/slides/lib/swiper-card"
 import { Buttons } from "@/features/search-id/index.ts"
+import SvgPoint from "@/assets/icons/Point.tsx"
 
 type SliderCardProps = {
   data: User[]
@@ -13,8 +14,8 @@ export const SearchIdCard = ({ data }: SliderCardProps) => {
   const currentUser = data[currentIndex] ?? data[data.length - 1] ?? null
 
   return (
-    <div className="flex flex-col gap-5 w-full max-w-[430px] h-full mx-auto mb-20 border-1 rounded-[29px]">
-      <div className="relative w-full h-[440px] mini-mobile:h-[500px] flex justify-center overflow-hidden">
+    <div className="flex flex-col gap-5 w-full max-w-[430px] h-full mx-auto mb-20">
+      <div className="relative w-full h-[430px] mini-mobile:h-[460px] flex justify-center overflow-hidden">
         <div className="relative w-full h-min">
           {data.map((item) => {
             return (
@@ -28,10 +29,16 @@ export const SearchIdCard = ({ data }: SliderCardProps) => {
                       Array.isArray(item.photo_url) ? item.photo_url : []
                     }
                   />
-                  <div className="absolute bottom-18 z-20 px-3">
-                    <p className="text-white text-[35px] mini-mobile:text-[40px] font-ManropeM">
-                      {item.first_name}, {item.age}
+                  <div className="absolute flex flex-col items-center justify-center w-full bottom-23 z-20 px-3">
+                    <p className="text-white text-[25px] mini-mobile:text-[30px] font-ManropeM">
+                      {item.first_name}, {item.age ? item.age : "?"}
                     </p>
+                    <div className="flex justify-center items-center">
+                      <SvgPoint className="w-[27px] h-[27px] text-white" />
+                      <p className="text-white text-[15px] mini-mobile:text-[18px] font-ManropeM">
+                        {item?.city ? item?.city : "Не указано"}, {item.photo_url?.length} фото
+                      </p>
+                    </div>
                   </div>
                   <Buttons currentUserId={item.id} />
                 </div>
@@ -40,7 +47,7 @@ export const SearchIdCard = ({ data }: SliderCardProps) => {
           })}
         </div>
       </div>
-      <MainInfoUser user={currentUser} />
+      {/*<MainInfoUser user={currentUser} />*/}
     </div>
   )
 }

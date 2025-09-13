@@ -38,32 +38,32 @@ export const SwipePhotos: React.FC<Props> = ({ photo_url }) => {
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
     >
-      <div className="h-[440px] mini-mobile:h-[500px]">
+      <div className="h-[430px] mini-mobile:h-[460px]">
         <img
           src={photo_url[index]}
           alt=""
-          className="w-full h-full object-cover rounded-[28px] select-none"
+          className="w-full h-full object-cover rounded-[20px] select-none"
           draggable={false}
         />
       </div>
-      <div
-        className="absolute left-0 top-0 bottom-0 w-[50%]"
-        onClick={handleClickLeft}
-      />
-      <div
-        className="absolute right-0 top-0 bottom-0 w-[50%]"
-        onClick={handleClickRight}
-      />
-      <div className="flex justify-center gap-3 absolute top-8 left-0 right-0">
-        {photo_url.map((_, i) => (
-          <div
-            key={i}
-            className={`w-[40px] h-[6px] rounded-2xl duration-200 ${
-              i === index ? "bg-white" : "bg-[#ffffff8a]"
-            }`}
-          />
-        ))}
-      </div>
+      {/*<div*/}
+      {/*  className="absolute left-0 top-0 bottom-0 w-[50%]"*/}
+      {/*  onClick={handleClickLeft}*/}
+      {/*/>*/}
+      {/*<div*/}
+      {/*  className="absolute right-0 top-0 bottom-0 w-[50%]"*/}
+      {/*  onClick={handleClickRight}*/}
+      {/*/>*/}
+      {/*<div className="flex justify-center gap-3 absolute top-8 left-0 right-0">*/}
+      {/*  {photo_url.map((_, i) => (*/}
+      {/*    <div*/}
+      {/*      key={i}*/}
+      {/*      className={`w-[40px] h-[6px] rounded-2xl duration-200 ${*/}
+      {/*        i === index ? "bg-white" : "bg-[#ffffff8a]"*/}
+      {/*      }`}*/}
+      {/*    />*/}
+      {/*  ))}*/}
+      {/*</div>*/}
     </div>
   )
 }

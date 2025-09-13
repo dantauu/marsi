@@ -18,7 +18,7 @@ const Slides = () => {
   return (
     <div
       data-testid="slides"
-      className="flex flex-col gap-5 pt-3 px-2 pb-[90px]"
+      className="flex flex-col gap-3 pt-3 px-2"
     >
       <NotifyLastCard currentIndex={currentIndex} usersCount={users.length} />
       <FilterButton />
