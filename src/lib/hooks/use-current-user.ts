@@ -7,7 +7,6 @@ export const useUserMe = () => {
   const telegramUserId = telegramUser?.id
   const token = useAppSelector((state) => state.auth.token)
 
-
   const query = useGetUserByIdQuery(String(telegramUserId), {
     skip: !telegramUserId || !token,
   })
