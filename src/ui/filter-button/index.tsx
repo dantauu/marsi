@@ -11,7 +11,7 @@ export const FilterButton = () => {
   return (
     <Button
       onClick={handleClick}
-      className="font-ManropeM shadow-shadow-block p-0.5 rounded-[7px] text-[15px] mini-mobile:text-[16px]"
+      className="font-ManropeM ml-2 shadow-shadow-block p-0.5 rounded-[7px] text-[15px] mini-mobile:text-[16px]"
       variant="default"
     >
       Фильтры

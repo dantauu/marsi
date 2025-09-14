@@ -1,9 +1,12 @@
 import type { User } from "@/app/types/user"
 import { SwiperCard } from "@/entities/slides/lib/swiper-card"
-import { MainInfoUser } from "@/shared/ui/user/main-info"
 import { SliderButtons } from "@/features/slides"
 import { SwipePhotos } from "@/ui/sliders/swipe-photo"
 import SvgPoint from "@/assets/icons/Point.tsx"
+import Button from "@/shared/ui/buttons/button.tsx"
+import SvgArrow from "@/assets/icons/Arrow.tsx"
+import { useState } from "react"
+import { MoreInformation } from "@/widgets/modals/more-information"
 
 type SliderCardProps = {
   data: User[]
@@ -21,9 +24,10 @@ export const SliderCard = ({ data }: SliderCardProps) => {
     position,
     SWIPE_THRESHOLD,
   } = SwiperCard({ data })
+  const [isMore, setIsMore] = useState(false)
 
   return (
-    <div className="flex flex-col gap-5 w-full max-w-[430px] h-full mx-auto mb-20">
+    <div className=" flex flex-col gap-2 w-full max-w-[430px] h-full mx-auto mb-20">
       <div
         className="relative w-full h-[430px] mini-mobile:h-[460px] flex justify-center overflow-hidden touch-none select-none"
         onMouseDown={onSwipeStart}
@@ -67,7 +71,7 @@ export const SliderCard = ({ data }: SliderCardProps) => {
                   className={`absolute z-20 w-full h-full rounded-[29px] pointer-events-none ${position.x < 0 ? "bg-[#dc00003e]" : "bg-[#03dc0043]"}`}
                 ></div>
 
-                <div className="relative w-full h-full">
+                <div className="relative px-2 w-full h-full">
                   <SwipePhotos
                     photo_url={
                       Array.isArray(item.photo_url) ? item.photo_url : []
@@ -91,7 +95,8 @@ export const SliderCard = ({ data }: SliderCardProps) => {
           })}
         </div>
       </div>
-      {/*<MainInfoUser user={data[currentIndex]} />*/}
+      <MoreInformation setIsMore={setIsMore} isMore={isMore} data={data} />
+      <Button onClick={() => setIsMore(true)} className="w-full h-[35px]" variant={"green"}>Подробнее <SvgArrow /></Button>
     </div>
   )
 }
