@@ -36,7 +36,8 @@ export const SearchIdCard = ({ data }: SliderCardProps) => {
                     <div className="flex justify-center items-center">
                       <SvgPoint className="w-[27px] h-[27px] text-white" />
                       <p className="text-white text-[15px] mini-mobile:text-[18px] font-ManropeM">
-                        {item?.city ? item?.city : "Не указано"}, {item.photo_url?.length} фото
+                        {item?.city ? item?.city : "Не указано"},{" "}
+                        {item.photo_url?.length} фото
                       </p>
                     </div>
                   </div>

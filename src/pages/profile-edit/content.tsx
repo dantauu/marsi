@@ -13,13 +13,16 @@ export const EditProfileContent = () => {
   const { showModal, setShowModal, confirmLeave, navigate } =
     useUnsavedChanges(isDirty)
   const { isEditOpen } = useAppSelector((state) => state.modal)
-  const {webApp} = useTelegram()
+  const { webApp } = useTelegram()
   const platform = webApp?.platform ?? ""
   const mobile = ["android", "ios"]
   return (
     <>
       {isEditOpen && <Overlay />}
-      <div data-testid="profile-edit" className={`pb-[120px] ${mobile.includes(platform) ? "pt-[120px]" : "pt-[160px]"}`}>
+      <div
+        data-testid="profile-edit"
+        className={`pb-[120px] ${mobile.includes(platform) ? "pt-[120px]" : "pt-[160px]"}`}
+      >
         <SaveNavBar className="pt-[80px]" />
         <ButtonBack onClick={() => navigate("/profile")} />
         <PhotoEdit />

@@ -30,12 +30,14 @@ const Search = () => {
   if (!users) throw new Error("Error Data")
   return (
     <div data-testid="search" className="pb-[200px]">
-      <LikeCountNotify countLikes={countLikes} />
-      <div className="flex px-[12px] items-center justify-between pb-[20px]">
-        <FilterButton />
-        <LayoutSwitchButtons />
+      <div className="fixed z-10 top-0 w-full bg-white">
+        <LikeCountNotify countLikes={countLikes} />
+        <div className="flex px-[12px] items-center justify-between pb-[5px]">
+          <FilterButton />
+          <LayoutSwitchButtons />
+        </div>
       </div>
-      {users && <LayoutCard data={users} />}
+      <div className="pt-[80px]">{users && <LayoutCard data={users} />}</div>
       {isFetching && <LoadingBalls />}
       <div className="w-full h-2" ref={ref}></div>
     </div>

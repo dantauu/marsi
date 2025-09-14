@@ -13,7 +13,7 @@ const Layout = ({ children }: PropsWithChildren) => {
   const router = useRouterState()
   const { user: userMe } = useUserMe()
   useLikesSocket(userMe?.id)
-  const {webApp} = useTelegram()
+  const { webApp } = useTelegram()
   const platform = webApp?.platform ?? ""
   const mobile = ["android", "ios"]
   return (

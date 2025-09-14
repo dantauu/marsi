@@ -29,7 +29,7 @@ export const SliderCard = ({ data }: SliderCardProps) => {
   return (
     <div className=" flex flex-col gap-2 w-full max-w-[430px] h-full mx-auto mb-20">
       <div
-        className="relative w-full h-[430px] mini-mobile:h-[460px] flex justify-center overflow-hidden touch-none select-none"
+        className="relative w-full h-[430px] mini-mobile:h-[490px] flex justify-center overflow-hidden touch-none select-none"
         onMouseDown={onSwipeStart}
         onTouchStart={onSwipeStart}
         onMouseMove={onSwipeMove}
@@ -68,16 +68,19 @@ export const SliderCard = ({ data }: SliderCardProps) => {
                         ? getOpacity(position.x)
                         : 0,
                   }}
-                  className={`absolute z-20 w-full h-full rounded-[29px] pointer-events-none ${position.x < 0 ? "bg-[#dc00003e]" : "bg-[#03dc0043]"}`}
+                  className={`absolute z-20 w-full h-full rounded-[20px] pointer-events-none ${position.x < 0 ? "bg-[#dc00003e]" : "bg-[#03dc0043]"}`}
                 ></div>
 
-                <div className="relative px-2 w-full h-full">
+                <div className="relative w-full h-full">
                   <SwipePhotos
                     photo_url={
                       Array.isArray(item.photo_url) ? item.photo_url : []
                     }
                   />
-                  <div onMouseDown={(e) => e.stopPropagation()} className="absolute flex flex-col justify-center items-center w-full bottom-23 z-50">
+                  <div
+                    onMouseDown={(e) => e.stopPropagation()}
+                    className="absolute flex flex-col justify-center items-center w-full bottom-23 z-50"
+                  >
                     <p className="text-white text-[25px] mini-mobile:text-[30px] font-ManropeM">
                       {item.first_name}, {item.age}
                     </p>
@@ -96,7 +99,15 @@ export const SliderCard = ({ data }: SliderCardProps) => {
         </div>
       </div>
       <MoreInformation setIsMore={setIsMore} isMore={isMore} data={data} />
-      <Button onClick={() => setIsMore(true)} className="w-full h-[35px]" variant={"green"}>Подробнее <SvgArrow /></Button>
+      <div className="px-2">
+        <Button
+          onClick={() => setIsMore(true)}
+          className="w-full h-[35px]"
+          variant={"green"}
+        >
+          Подробнее <SvgArrow />
+        </Button>
+      </div>
     </div>
   )
 }

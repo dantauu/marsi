@@ -1,6 +1,7 @@
 import { MainInfoUser } from "@/shared/ui/user/main-info"
 import type { User } from "@/app/types/user"
 import { SwiperCard } from "@/entities/slides/lib/swiper-card"
+import { AnimatePresence, motion } from "framer-motion"
 
 type SliderCardProps = {
   data: User[]
@@ -8,14 +9,32 @@ type SliderCardProps = {
   setIsMore: (value: boolean) => void
 }
 
-export const MoreInformation = ({ data, isMore, setIsMore }: SliderCardProps) => {
+export const MoreInformation = ({
+  data,
+  isMore,
+  setIsMore,
+}: SliderCardProps) => {
   const { currentIndex } = SwiperCard({ data })
-  if(!isMore) return
   return (
-    <div className="fixed inset-0 flex justify-center z-50 top-2 left-0">
-      <div className="w-full max-w-[550px]">
-        <MainInfoUser setIsMore={setIsMore} user={data[currentIndex]} />
-      </div>
-    </div>
+    <AnimatePresence>
+      {isMore && (
+        <motion.div
+          className="fixed inset-0 z-50 flex justify-center bg-black/50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <motion.div
+            transition={{ type: "tween", duration: 0.3, ease: "easeOut" }}
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            className="w-full max-w-[550px]"
+          >
+            <MainInfoUser setIsMore={setIsMore} user={data[currentIndex]} />
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }
