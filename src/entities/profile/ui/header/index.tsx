@@ -26,8 +26,7 @@ export const ProfileHeader = ({ currentUser }: ProfileHeaderProps) => {
       <div className="flex items-center gap-2">
         <div className="">
           <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px]">
-            {currentUser?.first_name || "Не указано"},{" "}
-            {currentUser?.age || "?"}
+            {currentUser?.first_name || "Не указано"}, {currentUser?.age || "?"}
           </p>
         </div>
         <div onClick={() => navigate({ to: "/profile-edit" })} className="">

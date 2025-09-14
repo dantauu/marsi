@@ -16,10 +16,7 @@ const Slides = () => {
   if (isLoading) return <LoadingBalls />
   console.log("DATAUSERS", users)
   return (
-    <div
-      data-testid="slides"
-      className="flex flex-col gap-5 pt-3 px-2 pb-[90px]"
-    >
+    <div data-testid="slides" className="flex flex-col gap-2 pt-3">
       <NotifyLastCard currentIndex={currentIndex} usersCount={users.length} />
       <FilterButton />
       <SliderCard data={users} />
