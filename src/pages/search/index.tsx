@@ -44,7 +44,7 @@ const Search = () => {
         </div>
       </div>
       <div
-        className={`${mobile.includes(platform) ? "pt-[158px]" : "pt-[80px]"}`}
+        className={`${mobile.includes(platform) ? "pt-[110px]" : "pt-[80px]"}`}
       >
         {users && <LayoutCard data={users} />}
       </div>

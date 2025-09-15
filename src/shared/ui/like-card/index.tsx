@@ -29,7 +29,7 @@ export const LikeCard = ({
     <div>
       <div>
         <div
-          className={`fixed flex items-center top-0 w-full z-2 bg-white shadow-shadow-block px-2 ${mobile.includes(platform) ? "pt-[80px] h-[125px]" : "pt-0 h-[80px] "}`}
+          className={`fixed flex items-center top-0 w-full z-2 bg-white shadow-shadow-block px-2 ${mobile.includes(platform) ? "pt-[92px] h-[130px]" : "pt-0 h-[80px]"}`}
         >
           <Button
             onClick={() => navigate({ to: "/likes" })}
@@ -42,7 +42,7 @@ export const LikeCard = ({
       </div>
       {users && users.length > 0 ? (
         <div
-          className={`grid grid-cols-2 justify-items-center gap-7 pb-[220px] ${mobile.includes(platform) ? "pt-[120px]" : "pt-[80px]"}`}
+          className={`grid grid-cols-2 justify-items-center gap-7 pb-[220px] ${mobile.includes(platform) ? "pt-[70px]" : "pt-[80px]"}`}
         >
           {users.map((item) => (
             <div
