@@ -1,6 +1,6 @@
 import { io, Socket } from "socket.io-client"
 import { useEffect } from "react"
-import { toast } from "react-hot-toast"
+import { toast } from "sonner"
 import { userApi } from "@/shared/api/user.ts"
 import { useAppDispatch } from "@/redux/hooks.ts"
 import likeSound from "@/assets/sound/like.mp3"
@@ -22,10 +22,10 @@ export const useLikesSocket = (userId?: string) => {
         console.error(e)
       })
       toast.success(`${from} поставил(а) вам лайк!`, {
-        icon: "💜",
-        duration: 3000,
+        icon: "❤️",
+        duration: 15000,
         style: {
-          marginTop: "80px",
+          marginTop: "30px",
         },
       })
       dispatch(userApi.util.invalidateTags([{ type: "LikesToMe", id: userId }]))
@@ -34,9 +34,9 @@ export const useLikesSocket = (userId?: string) => {
     socket.on("like_remove", ({ from }) => {
       toast.success(`${from} отменил(а) лайк`, {
         icon: "💔",
-        duration: 3000,
+        duration: 15000,
         style: {
-          marginTop: "80px",
+          marginTop: "30px",
         },
       })
       dispatch(userApi.util.invalidateTags([{ type: "LikesToMe", id: userId }]))
@@ -45,9 +45,9 @@ export const useLikesSocket = (userId?: string) => {
     socket.on("incomingUnlike", ({ from }) => {
       toast.success(`${from} не принял(а) лайк`, {
         icon: "💔",
-        duration: 3000,
+        duration: 15000,
         style: {
-          marginTop: "80px",
+          marginTop: "30px",
         },
       })
       dispatch(userApi.util.invalidateTags([{ type: "LikesToMe", id: userId }]))

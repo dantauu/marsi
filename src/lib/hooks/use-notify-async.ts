@@ -1,4 +1,4 @@
-import { toast } from "react-hot-toast"
+import { toast } from "sonner"
 
 type NotifyProps = {
   success?: string
@@ -6,21 +6,19 @@ type NotifyProps = {
   loading?: string
 }
 
-export const useNotify = () => {
-  const notify = <T>(promise: Promise<T>, options?: NotifyProps) => {
-    return toast.promise(
+export const useNotifyAsync = () => {
+  const notify = async <T>(promise: Promise<T>, options?: NotifyProps) => {
+    toast.promise(
       promise,
       {
         loading: options?.loading || "Загрузка",
         success: options?.success || "Успешно",
         error: options?.error || "Ошибка",
+        style: { marginTop: "30px" },
+        duration: 15000,
       },
-      {
-        style: {
-          marginTop: "80px",
-        },
-      }
     )
+    return promise
   }
   return { notify }
 }

@@ -94,7 +94,7 @@ export const LikeCard = ({
           ))}
         </div>
       ) : (
-        <p className="flex justify-center">Пока никого нет</p>
+        <p className="pt-[100px] flex justify-center">Пока никого нет</p>
       )}
     </div>
   )
