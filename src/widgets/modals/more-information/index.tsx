@@ -5,12 +5,14 @@ import { AnimatePresence, motion } from "framer-motion"
 
 type SliderCardProps = {
   data: User[]
+  currentUser: User
   isMore: boolean
   setIsMore: (value: boolean) => void
 }
 
 export const MoreInformation = ({
   data,
+  currentUser,
   isMore,
   setIsMore,
 }: SliderCardProps) => {
@@ -19,7 +21,7 @@ export const MoreInformation = ({
     <AnimatePresence>
       {isMore && (
         <motion.div
-          className="fixed inset-0 z-50 flex justify-center bg-black/50"
+          className="fixed inset-0 z-50 flex justify-center bg-white"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -31,7 +33,10 @@ export const MoreInformation = ({
             exit={{ y: "100%" }}
             className="w-full max-w-[550px]"
           >
-            <MainInfoUser setIsMore={setIsMore} user={data[currentIndex]} />
+            <MainInfoUser
+              setIsMore={setIsMore}
+              user={currentUser ? currentUser : data[currentIndex]}
+            />
           </motion.div>
         </motion.div>
       )}
