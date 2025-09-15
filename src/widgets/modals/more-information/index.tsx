@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion"
 
 type SliderCardProps = {
   data: User[]
-  currentUser: User
+  currentUser?: User
   isMore: boolean
   setIsMore: (value: boolean) => void
 }
