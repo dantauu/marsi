@@ -1,5 +1,5 @@
-import { IncomingLikesCard } from "@/entities/likes/like-to-me-card"
+import { IncomingLikesList } from "@/entities/likes/incoming-likes-card"
 
 export const IncomingLikes = () => {
-  return <IncomingLikesCard />
+  return <IncomingLikesList />
 }

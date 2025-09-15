@@ -6,6 +6,7 @@ import { Route as SlidesIdRoute } from "@/app/routes/_app/_layout/search-id/$id.
 import SvgCrossOrigin from "@/assets/icons/CrossOrigin.tsx"
 import SvgArrowPath from "@/assets/icons/ArrowPath.tsx"
 import SvgChat from "@/assets/icons/Chat.tsx"
+import { useTelegram } from "@/app/providers/telegram"
 
 export const LikeCard = ({
   isLocked,
@@ -21,10 +22,15 @@ export const LikeCard = ({
   isMessage?: boolean
 }) => {
   const navigate = useNavigate()
+  const { webApp } = useTelegram()
+  const platform = webApp?.platform ?? ""
+  const mobile = ["android", "ios"]
   return (
     <div>
       <div>
-        <div className="fixed flex items-center w-full top-0 z-2 h-[80px] bg-white shadow-shadow-block px-2">
+        <div
+          className={`fixed flex items-center top-0 w-full z-2 bg-white shadow-shadow-block px-2 ${mobile.includes(platform) ? "pt-[80px] h-[125px]" : "pt-0 h-[80px] "}`}
+        >
           <Button
             onClick={() => navigate({ to: "/likes" })}
             variant={"default"}
@@ -35,7 +41,9 @@ export const LikeCard = ({
         </div>
       </div>
       {users && users.length > 0 ? (
-        <div className="grid grid-cols-2 justify-items-center gap-7 pb-[220px] pt-[80px]">
+        <div
+          className={`grid grid-cols-2 justify-items-center gap-7 pb-[220px] ${mobile.includes(platform) ? "pt-[120px]" : "pt-[80px]"}`}
+        >
           {users.map((item) => (
             <div
               key={item.id}
