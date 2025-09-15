@@ -29,7 +29,7 @@ export const LikeCard = ({
     <div>
       <div>
         <div
-          className={`fixed flex items-center top-0 w-full z-2 bg-white shadow-shadow-block px-2 ${mobile.includes(platform) ? "pt-[92px] h-[130px]" : "pt-0 h-[80px]"}`}
+          className={`fixed flex items-center top-0 w-full z-2 bg-white shadow-shadow-block px-4 ${mobile.includes(platform) ? "pt-[92px] h-[130px]" : "pt-0 h-[80px]"}`}
         >
           <Button
             onClick={() => navigate({ to: "/likes" })}
@@ -47,7 +47,7 @@ export const LikeCard = ({
           {users.map((item) => (
             <div
               key={item.id}
-              className="relative w-full max-w-[180px] h-[282px] flex flex-col items-center rounded-[15px] shadow-shadow-block"
+              className="relative w-full max-w-[180px] h-[275px] flex flex-col pb-1 items-center rounded-[15px] shadow-shadow-block"
             >
               {isLocked && (
                 <div className="absolute z-1 inset-0 rounded-[10px] flex items-center justify-center">
@@ -63,7 +63,7 @@ export const LikeCard = ({
                 }}
               >
                 <img
-                  className="w-full h-full max-h-[205px] object-cover rounded-[15px]"
+                  className="w-full h-full max-h-[200px] min-h-[195px] object-cover rounded-[15px]"
                   src={
                     Array.isArray(item.photo_url)
                       ? item.photo_url[0]
