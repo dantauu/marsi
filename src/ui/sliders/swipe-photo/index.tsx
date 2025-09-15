@@ -3,7 +3,6 @@ import { useRef } from "react"
 type Props = { photo_url: string[] }
 
 export const SwipePhotos: React.FC<Props> = ({ photo_url }) => {
-
   const isDragging = useRef(false)
   const startX = useRef(0)
 

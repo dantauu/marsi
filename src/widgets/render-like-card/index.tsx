@@ -1,8 +1,7 @@
-import { LikesToMeCard } from "@/entities/likes/like-to-me-card"
-import { useState } from "react"
-import { cn } from "@/lib/utils/cn.tsx"
+import { IncomingLikesCard } from "@/entities/likes/like-to-me-card"
 import { MyLikesCard } from "@/entities/likes/my-likes-card"
 import { LikesTab } from "@/app/types/enums.ts"
+import { LikeBlock } from "@/widgets/render-like-card/like-block.tsx"
 
 const tabs = {
   [LikesTab.MUTUAL]: {
@@ -11,31 +10,40 @@ const tabs = {
   },
   [LikesTab.INCOMING]: {
     label: "Входящие лайки",
-    Component: LikesToMeCard,
+    Component: IncomingLikesCard,
   },
 } as const
 
+const dataBlocks = [
+  {
+    id: 1,
+    title: "Лайки от меня",
+    path: "/likes/my-likes",
+    rotate: false,
+  },
+  {
+    id: 2,
+    title: "Входящие лайки",
+    path: "/likes/incoming-likes",
+    rotate: true,
+  },
+]
+
 export const RenderTabs = () => {
-  const [activeTab, setActiveTab] = useState(LikesTab.MUTUAL)
-  const { Component } = tabs[activeTab]
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex justify-between h-[60px] gap-2 rounded-[10px] shadow-shadow-block">
-        {Object.entries(tabs).map(([key, { label }]) => (
-          <button
-            key={key}
-            onClick={() => setActiveTab(key as LikesTab)}
-            className={cn(
-              "px-4 h-full rounded-[10px] font-ManropeM transition-all",
-              activeTab === key ? "bg-main-pink text-white" : "text-black"
-            )}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
       <div className="mt-4">
-        <Component />
+        <div className="flex flex-col gap-4">
+          {dataBlocks.map((item) => (
+            <LikeBlock
+              key={item.id}
+              title={item.title}
+              rotate={item.rotate}
+              path={item.path}
+            />
+          ))}
+        </div>
+        {/*<Component />*/}
       </div>
     </div>
   )

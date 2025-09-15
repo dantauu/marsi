@@ -25,7 +25,10 @@ export const MainInfoUser = ({ user, setIsMore }: MainInfoUserProps) => {
         <p className="absolute top-4 left-1/2 -translate-x-1/2 z-2 px-3 py-1 rounded-md bg-black/50 text-white text-[16.5px]">
           {currentIndex + 1}/{photos.length}
         </p>
-        <Swiper spaceBetween={20} onSlideChange={(slide) => setCurrentIndex(slide.activeIndex)}>
+        <Swiper
+          spaceBetween={20}
+          onSlideChange={(slide) => setCurrentIndex(slide.activeIndex)}
+        >
           {photos.map((item, i) => (
             <SwiperSlide key={i}>
               <img

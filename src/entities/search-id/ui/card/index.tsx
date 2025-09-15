@@ -52,7 +52,6 @@ export const SearchIdCard = ({ data }: SliderCardProps) => {
           })}
         </div>
       </div>
-      {/*<MainInfoUser user={currentUser} />*/}
       <MoreInformation
         currentUser={currentUser}
         setIsMore={setIsMore}
