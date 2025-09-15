@@ -14,7 +14,7 @@ export const useNotifyAsync = () => {
         loading: options?.loading || "Загрузка",
         success: options?.success || "Успешно",
         error: options?.error || "Ошибка",
-        style: { marginTop: "30px" },
+        style: { marginTop: "80px" },
         duration: 15000,
       },
     )

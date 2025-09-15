@@ -25,7 +25,7 @@ export const useLikesSocket = (userId?: string) => {
         icon: "❤️",
         duration: 15000,
         style: {
-          marginTop: "30px",
+          marginTop: "80px",
         },
       })
       dispatch(userApi.util.invalidateTags([{ type: "LikesToMe", id: userId }]))
@@ -36,7 +36,7 @@ export const useLikesSocket = (userId?: string) => {
         icon: "💔",
         duration: 15000,
         style: {
-          marginTop: "30px",
+          marginTop: "80px",
         },
       })
       dispatch(userApi.util.invalidateTags([{ type: "LikesToMe", id: userId }]))
@@ -47,7 +47,7 @@ export const useLikesSocket = (userId?: string) => {
         icon: "💔",
         duration: 15000,
         style: {
-          marginTop: "30px",
+          marginTop: "80px",
         },
       })
       dispatch(userApi.util.invalidateTags([{ type: "LikesToMe", id: userId }]))
