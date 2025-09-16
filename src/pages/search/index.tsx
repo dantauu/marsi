@@ -22,7 +22,7 @@ const Search = () => {
     )
   )
   const { ref, users, isLoading, isFetching } = useFetchToScroll(cleanedFilters)
-  useScrollRestore("search", [users?.users.length])
+  useScrollRestore("search", [users?.length])
   const { user: currentUser } = useUserMe()
   const { data: countLikes } = useGetLikesToMeQuery(currentUser?.id ?? "", {
     skip: !currentUser?.id,
@@ -46,7 +46,7 @@ const Search = () => {
       <div
         className={`${mobile.includes(platform) ? "pt-[110px]" : "pt-[80px]"}`}
       >
-        {users && <LayoutCard data={users.users} />}
+        {users && <LayoutCard data={users} />}
       </div>
       {isFetching && <LoadingBalls />}
       <div className="w-full h-2" ref={ref}></div>

@@ -8,7 +8,7 @@ import { appendUsers, resetUsers } from "@/redux/slices/users.ts"
 const LIMIT = 10
 //for search
 export const useFetchToScroll = (params = {}) => {
-  const users = useAppSelector((state) => state.users)
+  const users = useAppSelector((state) => state.users.users)
   const dispatch = useAppDispatch()
   const [offset, setOffset] = useState(0)
   const { user } = useUserMe()
@@ -46,7 +46,7 @@ export const useFetchToScroll = (params = {}) => {
 //for swipe-photo
 export const useFetchToSlide = (params = {}) => {
   const [offset, setOffset] = useState(0)
-  const users = useAppSelector((state) => state.users)
+  const users = useAppSelector((state) => state.users.users)
   const dispatch = useAppDispatch()
   const currentIndex = useAppSelector((state) => state.slider.currentIndex)
   const { user } = useUserMe()
@@ -71,10 +71,10 @@ export const useFetchToSlide = (params = {}) => {
   }, [newUsers])
 
   useEffect(() => {
-    if (currentIndex >= users.users.length - 2 && !isFetching && countNewUsers > 0) {
+    if (currentIndex >= users.length - 2 && !isFetching && countNewUsers > 0) {
       setOffset((prev) => prev + LIMIT)
     }
-  }, [users.users.length, currentIndex])
+  }, [users.length, currentIndex])
 
   return { users, isLoading, currentIndex }
 }

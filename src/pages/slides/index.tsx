@@ -17,9 +17,9 @@ const Slides = () => {
   console.log("DATAUSERS", users)
   return (
     <div data-testid="slides" className="flex flex-col gap-2 pt-3">
-      <NotifyLastCard currentIndex={currentIndex} usersCount={users.users.length} />
+      <NotifyLastCard currentIndex={currentIndex} usersCount={users.length} />
       <FilterButton />
-      <SliderCard data={users.users} />
+      <SliderCard data={users} />
     </div>
   )
 }

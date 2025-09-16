@@ -32,6 +32,7 @@ export const SliderButtons = ({
     if (currentUserId && user?.id) {
       dislikeUser({ dislikerId: user?.id, dislikedId: currentUserId })
       dispatch(handleDislike())
+      dispatch(removedUser(currentUserId))
     }
   }
   return (
