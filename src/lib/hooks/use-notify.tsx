@@ -31,7 +31,8 @@ export const useNotify = () => {
         error: arg2?.error || "Ошибка",
         duration: arg2?.duration ?? 15000,
         style: {
-          marginTop: "30px"
+          marginTop: "80px",
+          fontSize: "17.2px"
         }
       })
       return arg1
@@ -47,7 +48,7 @@ export const useNotify = () => {
               toast.dismiss(t)
             }
           }}
-          className="bg-white shadow-shadow-block rounded-xl p-4 flex text-[18px] items-center gap-2 mt-[38px] cursor-grab"
+          className="bg-white shadow-shadow-block rounded-xl p-4 flex text-[18px] items-center gap-2 mt-[80px] cursor-grab"
         >
           <span>{arg1.message}</span>
           {arg1.icon && <span>{arg1.icon}</span>}
