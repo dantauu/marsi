@@ -6,7 +6,7 @@ import { useInitUser } from "@/lib/hooks/use-init-user.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import { useLikesSocket } from "@/lib/hooks/use-likes-socket.ts"
 import { useTelegram } from "@/app/providers/telegram"
-import { Toaster as SonnerToast, } from "sonner"
+import { Toaster } from "sonner"
 
 const Layout = ({ children }: PropsWithChildren) => {
   useInitUser()
@@ -20,7 +20,7 @@ const Layout = ({ children }: PropsWithChildren) => {
     <div className={`${mobile.includes(platform) ? "pt-[80px]" : "pt-[20px]"}`}>
       {children}
       <NavBar activePath={router.location.pathname} />
-      <SonnerToast position="top-center" />
+      <Toaster position="top-center" />
       <FilterForm />
     </div>
   )

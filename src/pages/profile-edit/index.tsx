@@ -9,15 +9,15 @@ import {
 } from "@/shared/api/user.ts"
 import { useTelegram } from "@/app/providers/telegram"
 import LoadingBalls from "@/shared/ui/loading"
-import { useNotifyAsync } from "@/lib/hooks/use-notify-async.ts"
 import { getNormalizeGender } from "@/lib/utils/format-gender.ts"
 import { EditProfileContent } from "@/pages/profile-edit/content.tsx"
+import { useNotify } from "@/lib/hooks/use-notify.tsx"
 
 const EditProfile = () => {
   const { user: telegramUser } = useTelegram()
   const [updateUser] = useUpdateUserMutation()
   const [deletePhoto] = useDeletePhotoMutation()
-  const { notify } = useNotifyAsync()
+  const { notify } = useNotify()
 
   const {
     values,
@@ -68,9 +68,9 @@ const EditProfile = () => {
     await notify(
       updateUser({ id: String(telegramUser?.id), ...normalizeData }).unwrap(),
       {
-        success: "Изменения сохранены ✅",
-        error: "Ошибка ❌",
-        loading: "Сохранение... ",
+        success: "Изменения сохранены",
+        error: "Ошибка",
+        loading: "Сохранение...",
       }
     )
 

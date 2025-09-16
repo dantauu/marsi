@@ -4,10 +4,10 @@ import Button from "@/shared/ui/buttons/button.tsx"
 import { useGetMyLikesQuery, useLikeUserMutation } from "@/shared/api/likes.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import SvgHeart from "@/assets/icons/Heart.tsx"
-import { useNotifyAsync } from "@/lib/hooks/use-notify-async.ts"
 import { useMemo } from "react"
 import SvgBack from "@/assets/icons/Back.tsx"
 import { useNavigate } from "@tanstack/react-router"
+import { useNotify } from "@/lib/hooks/use-notify.tsx"
 
 export const Buttons = ({
   currentUserId,
@@ -16,7 +16,7 @@ export const Buttons = ({
 }) => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const { notify } = useNotifyAsync()
+  const { notify } = useNotify()
   const { user } = useUserMe()
   const [likeUser] = useLikeUserMutation()
   const { data: likedUser, refetch } = useGetMyLikesQuery(user?.id ?? "", {
