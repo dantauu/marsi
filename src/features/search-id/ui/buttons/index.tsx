@@ -8,6 +8,7 @@ import { useMemo } from "react"
 import SvgBack from "@/assets/icons/Back.tsx"
 import { useNavigate } from "@tanstack/react-router"
 import { useNotify } from "@/lib/hooks/use-notify.tsx"
+import { removedUser } from "@/redux/slices/users.ts"
 
 export const Buttons = ({
   currentUserId,
@@ -31,6 +32,7 @@ export const Buttons = ({
     if (currentUserId && user?.id && !liked) {
       const scrollY = window.scrollY
       dispatch(handleLike())
+      dispatch(removedUser(currentUserId))
       await notify(
         likeUser({ likerId: user?.id, likedId: currentUserId }).unwrap(),
         {
