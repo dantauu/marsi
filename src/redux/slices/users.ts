@@ -3,12 +3,10 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
 
 type UsersState = {
   users: User[]
-  interactedIds: string[]
 }
 
 const initialState: UsersState = {
-  users: [],
-  interactedIds: []
+  users: []
 }
 
 const userSlice = createSlice({
@@ -16,18 +14,13 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     appendUsers: (state, action: PayloadAction<User[]>) => {
-      const filtered = action.payload.filter((u) => !state.interactedIds.includes(u.id))
-      state.users.push(...filtered)
+      state.users.push(...action.payload)
     },
     removedUser: (state, action: PayloadAction<string>) => {
-      if (!state.interactedIds.includes(action.payload)) {
-        state.interactedIds.push(action.payload)
-      }
       state.users = state.users.filter((u) => u.id !== action.payload)
     },
     resetUsers: (state) => {
       state.users = []
-      state.interactedIds = []
     }
   }
 })
