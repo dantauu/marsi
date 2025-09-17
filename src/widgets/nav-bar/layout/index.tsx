@@ -20,34 +20,36 @@ export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
   const path = location.pathname
   if (path.startsWith("/profile-edit")) return
   return (
-        <div className="fixed z-5 bottom-0 w-full rounded-tr-[28px] h-[93px] rounded-tl-[28px] bg-blur-bg">
-          <nav className="flex justify-between items-center px-4 pt-[12px] mini-mobile:px-7">
-            {navItems.map(({ id, Icon, text, link }) => {
-              const isActive = activePath === link
-              return (
-                <Link
-                  key={id}
-                  to={link}
-                  className="flex flex-col items-center justify-between h-[58px] cursor-pointer"
+    <div className="flex justify-center">
+      <div className="fixed flex items-center justify-between z-5 bottom-0 w-[95%] rounded-[28px] h-[93px] bg-[#252323f7] mb-5">
+        <nav className="flex justify-between w-full px-4 mini-mobile:px-7">
+          {navItems.map(({ id, Icon, text, link }) => {
+            const isActive = activePath === link
+            return (
+              <Link
+                key={id}
+                to={link}
+                className="flex flex-col items-center justify-between h-[58px] cursor-pointer"
+              >
+                <Icon
+                  className={cn(
+                    isActive ? "text-main-pink" : "text-white",
+                    "transition-all stroke-current w-[30px] h-[34px] mini-mobile:w-[35px] mini-mobile:h-[38px]"
+                  )}
+                />
+                <p
+                  className={cn(
+                    isActive ? "text-main-pink" : "text-white",
+                    "font-ManropeM text-[12px] mini-mobile:text-[12.5px]"
+                  )}
                 >
-                  <Icon
-                    className={cn(
-                      isActive ? "text-main-pink" : "text-white",
-                      "transition-all stroke-current w-[30px] h-[34px] mini-mobile:w-[35px] mini-mobile:h-[38px]"
-                    )}
-                  />
-                  <p
-                    className={cn(
-                      isActive ? "text-main-pink" : "text-white",
-                      "font-ManropeM text-[12px] mini-mobile:text-[12.5px]"
-                    )}
-                  >
-                    {text}
-                  </p>
-                </Link>
-              )
-            })}
-          </nav>
-        </div>
+                  {text}
+                </p>
+              </Link>
+            )
+          })}
+        </nav>
+      </div>
+    </div>
   )
 }

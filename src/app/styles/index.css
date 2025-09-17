@@ -1,24 +1,7 @@
 @import "tailwindcss";
-
-/* FONTS */
-@font-face {
-  font-family: "ManropeM";
-  src: url("../fonts/Manrope-Medium.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-}
-@font-face {
-  font-family: "HelveticaB";
-  src: url("../fonts/Helvetica-Bold.woff") format("woff");
-  font-weight: 900;
-  font-style: normal;
-}
-@font-face {
-  font-family: "ManropeEB";
-  src: url("../fonts/Manrope-ExtraBold.woff") format("woff");
-  font-weight: 900;
-  font-style: normal;
-}
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
 
 @theme {
   /* --container-mobile: 370px; */
@@ -65,6 +48,9 @@
       rgba(255, 144, 104, 0.5) 50%,
       rgba(255, 85, 159, 0.5) 100%
     );
+  }
+  .bg-test {
+    background: linear-gradient(90deg, #ffe8f2 0%, #f9eace 100%);
   }
 }
 

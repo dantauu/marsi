@@ -6,7 +6,7 @@ import {
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import LoadingBalls from "@/shared/ui/loading"
 
-export const LikesToMeCard = () => {
+export const IncomingLikesList = () => {
   const { user: userMe, isLoading: userLoading } = useUserMe()
   const {
     data: users,
@@ -30,11 +30,16 @@ export const LikesToMeCard = () => {
   }
 
   if (userLoading || unlikeLoading || isFetching || !userMe)
-    return <LoadingBalls />
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <LoadingBalls />
+      </div>
+    )
   return (
     <LikeCard
       isMessage={true}
       users={users}
+      likesTitle={"Входящие лайки"}
       onUnlike={handleUnlike}
       isLocked={false}
     />

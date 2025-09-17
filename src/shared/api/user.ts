@@ -1,13 +1,16 @@
-import type {
-  FilteredUsers,
-  UpdateUserData,
-  User,
-  UserInit,
-} from "@/app/types/global.d.ts"
+import type { FilteredUsers } from "@/app/types/global.d.ts"
+import type { User, UserInit, UpdateUserData } from "@/app/types/user"
 import { baseApi } from "@/redux/api/base-api.ts"
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    authUser: builder.mutation<{ access_token: string; user: User }, UserInit>({
+      query: (initData) => ({
+        method: "POST",
+        url: "auth/user",
+        body: initData,
+      }),
+    }),
     getUsers: builder.query<User[], Partial<FilteredUsers> & { id?: string }>({
       query: ({ id, ...params }) => ({
         url: "users",
@@ -56,6 +59,7 @@ export const userApi = baseApi.injectEndpoints({
 })
 
 export const {
+  useAuthUserMutation,
   useGetUsersQuery,
   useGetUserByIdQuery,
   useInitUserMutation,

@@ -19,6 +19,8 @@ import { Route as AppLayoutProfileEditIndexRouteImport } from './app/routes/_app
 import { Route as AppLayoutMoreIndexRouteImport } from './app/routes/_app/_layout/more/index'
 import { Route as AppLayoutLikesIndexRouteImport } from './app/routes/_app/_layout/likes/index'
 import { Route as AppLayoutSearchIdIdRouteImport } from './app/routes/_app/_layout/search-id/$id'
+import { Route as AppLayoutLikesMyLikesIndexRouteImport } from './app/routes/_app/_layout/likes/my-likes/index'
+import { Route as AppLayoutLikesIncomingLikesIndexRouteImport } from './app/routes/_app/_layout/likes/incoming-likes/index'
 
 const AppLayoutRoute = AppLayoutRouteImport.update({
   id: '/_app/_layout',
@@ -70,6 +72,18 @@ const AppLayoutSearchIdIdRoute = AppLayoutSearchIdIdRouteImport.update({
   path: '/search-id/$id',
   getParentRoute: () => AppLayoutRoute,
 } as any)
+const AppLayoutLikesMyLikesIndexRoute =
+  AppLayoutLikesMyLikesIndexRouteImport.update({
+    id: '/likes/my-likes/',
+    path: '/likes/my-likes/',
+    getParentRoute: () => AppLayoutRoute,
+  } as any)
+const AppLayoutLikesIncomingLikesIndexRoute =
+  AppLayoutLikesIncomingLikesIndexRouteImport.update({
+    id: '/likes/incoming-likes/',
+    path: '/likes/incoming-likes/',
+    getParentRoute: () => AppLayoutRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AppLayoutIndexRoute
@@ -81,6 +95,8 @@ export interface FileRoutesByFullPath {
   '/search': typeof AppLayoutSearchIndexRoute
   '/slides': typeof AppLayoutSlidesIndexRoute
   '/subscribe': typeof AppLayoutSubscribeIndexRoute
+  '/likes/incoming-likes': typeof AppLayoutLikesIncomingLikesIndexRoute
+  '/likes/my-likes': typeof AppLayoutLikesMyLikesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof AppLayoutIndexRoute
@@ -92,6 +108,8 @@ export interface FileRoutesByTo {
   '/search': typeof AppLayoutSearchIndexRoute
   '/slides': typeof AppLayoutSlidesIndexRoute
   '/subscribe': typeof AppLayoutSubscribeIndexRoute
+  '/likes/incoming-likes': typeof AppLayoutLikesIncomingLikesIndexRoute
+  '/likes/my-likes': typeof AppLayoutLikesMyLikesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -105,6 +123,8 @@ export interface FileRoutesById {
   '/_app/_layout/search/': typeof AppLayoutSearchIndexRoute
   '/_app/_layout/slides/': typeof AppLayoutSlidesIndexRoute
   '/_app/_layout/subscribe/': typeof AppLayoutSubscribeIndexRoute
+  '/_app/_layout/likes/incoming-likes/': typeof AppLayoutLikesIncomingLikesIndexRoute
+  '/_app/_layout/likes/my-likes/': typeof AppLayoutLikesMyLikesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -118,6 +138,8 @@ export interface FileRouteTypes {
     | '/search'
     | '/slides'
     | '/subscribe'
+    | '/likes/incoming-likes'
+    | '/likes/my-likes'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -129,6 +151,8 @@ export interface FileRouteTypes {
     | '/search'
     | '/slides'
     | '/subscribe'
+    | '/likes/incoming-likes'
+    | '/likes/my-likes'
   id:
     | '__root__'
     | '/_app/_layout'
@@ -141,6 +165,8 @@ export interface FileRouteTypes {
     | '/_app/_layout/search/'
     | '/_app/_layout/slides/'
     | '/_app/_layout/subscribe/'
+    | '/_app/_layout/likes/incoming-likes/'
+    | '/_app/_layout/likes/my-likes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -219,6 +245,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppLayoutSearchIdIdRouteImport
       parentRoute: typeof AppLayoutRoute
     }
+    '/_app/_layout/likes/my-likes/': {
+      id: '/_app/_layout/likes/my-likes/'
+      path: '/likes/my-likes'
+      fullPath: '/likes/my-likes'
+      preLoaderRoute: typeof AppLayoutLikesMyLikesIndexRouteImport
+      parentRoute: typeof AppLayoutRoute
+    }
+    '/_app/_layout/likes/incoming-likes/': {
+      id: '/_app/_layout/likes/incoming-likes/'
+      path: '/likes/incoming-likes'
+      fullPath: '/likes/incoming-likes'
+      preLoaderRoute: typeof AppLayoutLikesIncomingLikesIndexRouteImport
+      parentRoute: typeof AppLayoutRoute
+    }
   }
 }
 
@@ -232,6 +272,8 @@ interface AppLayoutRouteChildren {
   AppLayoutSearchIndexRoute: typeof AppLayoutSearchIndexRoute
   AppLayoutSlidesIndexRoute: typeof AppLayoutSlidesIndexRoute
   AppLayoutSubscribeIndexRoute: typeof AppLayoutSubscribeIndexRoute
+  AppLayoutLikesIncomingLikesIndexRoute: typeof AppLayoutLikesIncomingLikesIndexRoute
+  AppLayoutLikesMyLikesIndexRoute: typeof AppLayoutLikesMyLikesIndexRoute
 }
 
 const AppLayoutRouteChildren: AppLayoutRouteChildren = {
@@ -244,6 +286,8 @@ const AppLayoutRouteChildren: AppLayoutRouteChildren = {
   AppLayoutSearchIndexRoute: AppLayoutSearchIndexRoute,
   AppLayoutSlidesIndexRoute: AppLayoutSlidesIndexRoute,
   AppLayoutSubscribeIndexRoute: AppLayoutSubscribeIndexRoute,
+  AppLayoutLikesIncomingLikesIndexRoute: AppLayoutLikesIncomingLikesIndexRoute,
+  AppLayoutLikesMyLikesIndexRoute: AppLayoutLikesMyLikesIndexRoute,
 }
 
 const AppLayoutRouteWithChildren = AppLayoutRoute._addFileChildren(

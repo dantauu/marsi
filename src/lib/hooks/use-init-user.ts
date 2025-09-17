@@ -1,28 +1,48 @@
 import { useEffect } from "react"
 import { useTelegram } from "@/app/providers/telegram"
-import { useInitUserMutation } from "@/shared/api/user.ts"
+import { useAuthUserMutation, useInitUserMutation } from "@/shared/api/user.ts"
+import { useGetUserByIdQuery } from "@/shared/api/user.ts"
+import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
+import { setToken } from "@/redux/slices/auth.ts"
 
 export const useInitUser = () => {
-  const [initUser, { isLoading, isError, isSuccess, error }] =
-    useInitUserMutation()
   const { user } = useTelegram()
+  const [initUser] = useInitUserMutation()
+  const [authUser] = useAuthUserMutation()
+  const token = useAppSelector((state) => state.auth.token)
+  const dispatch = useAppDispatch()
+
+  const { isError } = useGetUserByIdQuery(String(user?.id), {
+    skip: !user?.id || !token,
+  })
 
   useEffect(() => {
-    console.log("INIT USER TRIGGERED", user)
     if (!user) return
-    const key = `user-initialized-${user?.id}`
-    if (localStorage.getItem(key)) return
 
-    initUser({
-      id: String(user.id),
-      first_name: user.first_name,
-      photo_url: user.photo_url ? [user.photo_url] : [],
-      username: user.username,
-    })
-    localStorage.setItem(key, "true")
-  }, [user])
+    const initialize = async () => {
+      try {
+        if (token && isError) {
+          dispatch(setToken(null))
+        }
 
-  useEffect(() => {
-    console.log("data", { isLoading, isError, isSuccess, error })
-  }, [isLoading, isError, isSuccess, error])
+        if (!token) {
+          const initUserPayload = {
+            id: String(user.id),
+            first_name: user.first_name,
+            photo_url: user.photo_url ? [user.photo_url] : [],
+            username: user.username,
+          }
+
+          const initData = await initUser(initUserPayload).unwrap()
+          const { access_token } = await authUser(initData).unwrap()
+
+          dispatch(setToken(access_token))
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    initialize()
+  }, [user, token, isError, initUser, authUser])
 }

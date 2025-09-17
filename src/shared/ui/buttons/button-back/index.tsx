@@ -27,7 +27,7 @@ export const ButtonBack = ({ path, className, onClick }: ButtonBackProps) => {
       variant="default"
       type="button"
     >
-      <SvgBack className="w-[30px] h-[30px] text-[#0007]" />
+      <SvgBack className="w-[30px] h-[30px] text-[#545454]" />
     </Button>
   )
 }

@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "ManropeM";
+  src: url("../fonts/Manrope-Medium.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "HelveticaB";
+  src: url("../fonts/Helvetica-Bold.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ManropeEB";
+  src: url("../fonts/Manrope-ExtraBold.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}

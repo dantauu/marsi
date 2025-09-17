@@ -14,7 +14,7 @@ export const AddHobbies = ({
   text: string[]
   onRemove: (v: string) => void
 }) => {
-  const isValue = text.length === 3
+  const isValue = text?.length === 3
   return (
     <div
       onClick={onClick}
@@ -29,7 +29,7 @@ export const AddHobbies = ({
           Увлечения
         </p>
         <div className="flex flex-wrap gap-3">
-          {text.map((item, index) => (
+          {text?.map((item, index) => (
             <div
               key={index}
               className="flex items-center justify-center px-1 rounded-[10px] shadow-shadow-block w-fit"

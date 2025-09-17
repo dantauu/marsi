@@ -1,14 +1,15 @@
 import { io, Socket } from "socket.io-client"
 import { useEffect } from "react"
-import { toast } from "react-hot-toast"
 import { userApi } from "@/shared/api/user.ts"
 import { useAppDispatch } from "@/redux/hooks.ts"
 import likeSound from "@/assets/sound/like.mp3"
+import { useNotify } from "@/lib/hooks/use-notify.tsx"
 
 let socket: Socket
 
 export const useLikesSocket = (userId?: string) => {
   const dispatch = useAppDispatch()
+  const { notify } = useNotify()
   useEffect(() => {
     if (!userId) return
     const audio = new Audio(likeSound)
@@ -21,34 +22,25 @@ export const useLikesSocket = (userId?: string) => {
       audio.play().catch((e) => {
         console.error(e)
       })
-      toast.success(`${from} поставил(а) вам лайк!`, {
-        icon: "💜",
-        duration: 3000,
-        style: {
-          marginTop: "80px",
-        },
-      })
+        notify({
+          message: `${from} поставил(а) вам лайк!`,
+          icon: "❤️",
+        })
       dispatch(userApi.util.invalidateTags([{ type: "LikesToMe", id: userId }]))
     })
 
     socket.on("like_remove", ({ from }) => {
-      toast.success(`${from} отменил(а) лайк`, {
+      notify({
+        message: `${from} отменил(а) лайк`,
         icon: "💔",
-        duration: 3000,
-        style: {
-          marginTop: "80px",
-        },
       })
       dispatch(userApi.util.invalidateTags([{ type: "LikesToMe", id: userId }]))
     })
 
     socket.on("incomingUnlike", ({ from }) => {
-      toast.success(`${from} не принял(а) лайк`, {
+      notify({
+        message: `${from} не принял(а) лайк`,
         icon: "💔",
-        duration: 3000,
-        style: {
-          marginTop: "80px",
-        },
       })
       dispatch(userApi.util.invalidateTags([{ type: "LikesToMe", id: userId }]))
       dispatch(userApi.util.invalidateTags([{ type: "MyLikes", id: userId }]))
