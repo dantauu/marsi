@@ -10,6 +10,6 @@ export const baseApi = createApi({
       return headers
     },
   }),
-  tagTypes: ["LikesToMe", "MyLikes", "Users"],
+  tagTypes: ["LikesToMe", "MyLikes"],
   endpoints: () => ({}),
 })

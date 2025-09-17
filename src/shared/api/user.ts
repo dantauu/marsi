@@ -18,7 +18,6 @@ export const userApi = baseApi.injectEndpoints({
         params,
         headers: id ? { "x-user-id": id } : {},
       }),
-      providesTags: ["Users"]
     }),
     getUserById: builder.query<User, string>({
       query: (id) => `users/user-id/${id}`,

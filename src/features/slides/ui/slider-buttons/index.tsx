@@ -8,7 +8,6 @@ import {
 } from "@/shared/api/likes.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import SvgHeart from "@/assets/icons/Heart.tsx"
-import { removedUser } from "@/redux/slices/users.ts"
 
 export const SliderButtons = ({
   currentUserId,
@@ -24,7 +23,6 @@ export const SliderButtons = ({
     if (currentUserId && user?.id) {
       likeUser({ likerId: user?.id, likedId: currentUserId })
       dispatch(handleLike())
-      dispatch(removedUser(currentUserId))
     }
   }
 
@@ -32,7 +30,6 @@ export const SliderButtons = ({
     if (currentUserId && user?.id) {
       dislikeUser({ dislikerId: user?.id, dislikedId: currentUserId })
       dispatch(handleDislike())
-      dispatch(removedUser(currentUserId))
     }
   }
   return (
