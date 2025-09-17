@@ -17,7 +17,9 @@ const Layout = ({ children }: PropsWithChildren) => {
   const platform = webApp?.platform ?? ""
   const mobile = ["android", "ios"]
   return (
-    <div className={`${mobile.includes(platform) ? "pt-[80px]" : "pt-[20px]"}`}>
+    <div
+      className={`max-w-[610px] mx-auto ${mobile.includes(platform) ? "pt-[80px]" : "pt-[20px]"}`}
+    >
       {children}
       <NavBar activePath={router.location.pathname} />
       <Toaster position="top-center" />

@@ -6,7 +6,7 @@ type UsersState = {
 }
 
 const initialState: UsersState = {
-  users: []
+  users: [],
 }
 
 const userSlice = createSlice({
@@ -21,8 +21,8 @@ const userSlice = createSlice({
     },
     resetUsers: (state) => {
       state.users = []
-    }
-  }
+    },
+  },
 })
 
 export default userSlice.reducer

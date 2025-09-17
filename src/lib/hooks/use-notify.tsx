@@ -32,8 +32,8 @@ export const useNotify = () => {
         duration: arg2?.duration ?? 15000,
         style: {
           marginTop: "80px",
-          fontSize: "17.2px"
-        }
+          fontSize: "17.2px",
+        },
       })
       return arg1
     }

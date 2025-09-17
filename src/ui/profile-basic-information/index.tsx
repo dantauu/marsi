@@ -9,7 +9,7 @@ export const BasicInformation = () => {
   const { colors, percent } = usePercentCount()
   const navigate = useNavigate()
   return (
-    <div className="mt-[20px] px-[8px] py-[8px] rounded-[10px] bg-test">
+    <div className="mt-[10px] px-[8px] py-[8px] rounded-[10px] bg-test">
       <Block
         className="flex items-center justify-center max-w-[300px] mx-auto"
         text={

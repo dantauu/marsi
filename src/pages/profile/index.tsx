@@ -3,6 +3,7 @@ import { ProfileHeader } from "@/entities/profile"
 import { BasicInformation } from "@/ui/index.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import { useGetLikesToMeQuery, useGetMyLikesQuery } from "@/shared/api/likes.ts"
+import { AddHomeScreen } from "@/features/profile/ui/add-home-screen"
 
 const Profile = () => {
   const {
@@ -27,9 +28,12 @@ const Profile = () => {
     !currentUser ||
     likesToMeFetching
   return (
-    <div data-testid="profile" className="px-[4px] pt-[20px] pb-[300px]">
+    <div
+      data-testid="profile"
+      className="flex flex-col gap-4 px-[4px] pt-[20px] pb-[300px]"
+    >
       <ProfileHeader currentUser={currentUser} />
-      <div className="flex flex-col mini-mobile:flex-row mini-mobile:gap-[5px] gap-3 justify-between pt-[20px]">
+      <div className="flex flex-col mini-mobile:flex-row mini-mobile:gap-[5px] gap-3.5 justify-between pt-[7px]">
         <LikeCount
           myLikes={myLikes}
           likesToMe={likesToMe}
@@ -37,6 +41,7 @@ const Profile = () => {
         />
         <Progress />
       </div>
+      <AddHomeScreen />
       {/*<SubscriptionStatus />*/}
       <BasicInformation />
     </div>
