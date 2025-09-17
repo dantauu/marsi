@@ -11,6 +11,7 @@ export const likesApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: (_result, _error, { likedId }) => [
         { type: "LikesToMe", id: likedId },
+        { type: "Users" },
       ],
     }),
     dislikeUser: builder.mutation<
@@ -22,6 +23,9 @@ export const likesApi = baseApi.injectEndpoints({
         method: "POST",
         body: { dislikedId, dislikerId },
       }),
+      invalidatesTags: () => [
+        { type: "Users" },
+      ]
     }),
     unlikeUser: builder.mutation<void, { likerId: string; likedId: string }>({
       query: ({ likedId, likerId }) => ({
