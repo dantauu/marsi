@@ -30,7 +30,7 @@ const Location = () => {
           )}
           <div className="flex items-center gap-2">
             <p className="text-white font-ManropeM text-[15.5px] mini-mobile:text-[17.5px]">
-              {city ? `${city}, ${region}` : "Выберите мастоположение"}
+              {city ? `${city}, ${region}` : "Выберите местоположение"}
             </p>
             {!city && <SvgArrow className="text-white w-[20px] h-[20px]" />}
           </div>

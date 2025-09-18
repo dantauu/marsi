@@ -1,4 +1,4 @@
-import { LikeCountNotify } from "@/features/search"
+import { BackToTop, LikeCountNotify } from "@/features/search"
 import { LayoutSwitchButtons } from "@/ui/index.ts"
 import { FilterButton } from "@/ui/index.ts"
 import { Route } from "@/app/routes/_app/_layout/search"
@@ -48,6 +48,7 @@ const Search = () => {
       >
         {users && <LayoutCard data={users} />}
       </div>
+      <BackToTop />
       {isFetching && <LoadingBalls />}
       <div className="w-full h-2" ref={ref}></div>
     </div>
