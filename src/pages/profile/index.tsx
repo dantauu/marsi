@@ -3,7 +3,6 @@ import { ProfileHeader } from "@/entities/profile"
 import { BasicInformation } from "@/ui/index.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import { useGetLikesToMeQuery, useGetMyLikesQuery } from "@/shared/api/likes.ts"
-import { AddHomeScreen } from "@/features/profile/ui/add-home-screen"
 
 const Profile = () => {
   const {
@@ -41,7 +40,6 @@ const Profile = () => {
         />
         <Progress />
       </div>
-      <AddHomeScreen />
       {/*<SubscriptionStatus />*/}
       <BasicInformation />
     </div>
