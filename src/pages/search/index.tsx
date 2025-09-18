@@ -38,7 +38,7 @@ const Search = () => {
         className={`fixed z-10 top-0 w-full max-w-[610px] bg-white ${mobile.includes(platform) ? "pt-[80px]" : "pt-0"}`}
       >
         <LikeCountNotify countLikes={countLikes} />
-        <div className="flex px-[12px] items-center justify-between pb-[5px]">
+        <div className="flex w-full mx-auto px-[12px] items-center justify-between pb-[5px]">
           <FilterButton />
           <LayoutSwitchButtons />
         </div>

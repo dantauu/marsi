@@ -18,7 +18,6 @@ const dataBlocks = [
 export const ContentLikes = () => {
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-col gap-4">
         {dataBlocks.map((item) => (
           <LikeBlock
             key={item.id}
@@ -27,7 +26,6 @@ export const ContentLikes = () => {
             path={item.path}
           />
         ))}
-      </div>
     </div>
   )
 }
