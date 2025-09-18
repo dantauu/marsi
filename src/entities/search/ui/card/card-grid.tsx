@@ -34,7 +34,7 @@ export const CardGridLayout = ({
       </div>
       <div className="">
         <p className="font-HelveticaB text-[16px]">
-          {first_name}, {age}
+          {first_name}, {age ? age : "?"}
         </p>
       </div>
     </div>

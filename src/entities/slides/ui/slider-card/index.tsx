@@ -1,6 +1,6 @@
 import type { User } from "@/app/types/user"
 import { SwiperCard } from "@/entities/slides/lib/swiper-card"
-import { SliderButtons } from "@/features/slides"
+import { NotifyLastCard, SliderButtons } from "@/features/slides"
 import { SwipePhotos } from "@/ui/sliders/swipe-photo"
 import SvgPoint from "@/assets/icons/Point.tsx"
 import Button from "@/shared/ui/buttons/button.tsx"
@@ -25,6 +25,7 @@ export const SliderCard = ({ data }: SliderCardProps) => {
     SWIPE_THRESHOLD,
   } = SwiperCard({ data })
   const [isMore, setIsMore] = useState(false)
+  if (currentIndex >= data.length) return <NotifyLastCard />
 
   return (
     <div className=" flex flex-col gap-2 w-full max-w-[430px] h-full mx-auto mb-20">

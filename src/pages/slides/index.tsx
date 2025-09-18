@@ -1,4 +1,3 @@
-import { NotifyLastCard } from "@/features/slides"
 import { SliderCard } from "@/entities/slides"
 import { FilterButton } from "@/ui"
 import LoadingBalls from "@/shared/ui/loading"
@@ -12,12 +11,11 @@ const Slides = () => {
       ([_, value]) => value !== "" && value != null
     )
   )
-  const { users, isLoading, currentIndex } = useFetchToSlide(cleanedFilters)
+  const { users, isLoading } = useFetchToSlide(cleanedFilters)
   if (isLoading) return <LoadingBalls />
   console.log("DATAUSERS", users)
   return (
     <div data-testid="slides" className="flex flex-col gap-2 pt-3">
-      <NotifyLastCard currentIndex={currentIndex} usersCount={users.length} />
       <FilterButton />
       <SliderCard data={users} />
     </div>

@@ -22,10 +22,10 @@ export const useLikesSocket = (userId?: string) => {
       audio.play().catch((e) => {
         console.error(e)
       })
-        notify({
-          message: `${from} поставил(а) вам лайк!`,
-          icon: "❤️",
-        })
+      notify({
+        message: `${from} поставил(а) вам лайк!`,
+        icon: "❤️",
+      })
       dispatch(userApi.util.invalidateTags([{ type: "LikesToMe", id: userId }]))
     })
 

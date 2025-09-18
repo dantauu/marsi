@@ -21,7 +21,11 @@ export const LikeCount = ({
     <div className="flex flex-col items-center justify-between py-1 px-2 w-full h-[115px] mini-mobile:h-[115px] shadow-shadow-block rounded-[10px]">
       <div className="flex flex-col">
         <div className="flex items-center gap-1 h-[34px]">
-          <p className={`font-ManropeM ${isPending ? "text-[15px]" : "text-[16px]"}`}>Получено лайков:</p>
+          <p
+            className={`font-ManropeM ${isPending ? "text-[15px]" : "text-[16px]"}`}
+          >
+            Получено лайков:
+          </p>
           <div className="">
             {isPending ? (
               <LoadingBalls className="w-10" />
@@ -33,7 +37,11 @@ export const LikeCount = ({
           </div>
         </div>
         <div className="flex items-center gap-1 -mt-2.5 h-[34px]">
-          <p className={`font-ManropeM ${isPending ? "text-[15px]" : "text-[16px]"}`}>Лайки от меня:</p>
+          <p
+            className={`font-ManropeM ${isPending ? "text-[15px]" : "text-[16px]"}`}
+          >
+            Лайки от меня:
+          </p>
           <div className="">
             {isPending ? (
               <LoadingBalls className="w-10" />
