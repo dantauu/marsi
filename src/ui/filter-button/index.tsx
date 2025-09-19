@@ -12,7 +12,10 @@ export const FilterButton = ({ className }: { className?: string }) => {
   return (
     <Button
       onClick={handleClick}
-      className={cn("font-ManropeM shadow-shadow-block p-0.5 rounded-[7px] text-[15px] mini-mobile:text-[16px]", className)}
+      className={cn(
+        "font-ManropeM shadow-shadow-block p-0.5 rounded-[7px] text-[15px] mini-mobile:text-[16px]",
+        className
+      )}
       variant="default"
     >
       Фильтры

@@ -18,14 +18,14 @@ const dataBlocks = [
 export const ContentLikes = () => {
   return (
     <div className="flex flex-col gap-4">
-        {dataBlocks.map((item) => (
-          <LikeBlock
-            key={item.id}
-            title={item.title}
-            rotate={item.rotate}
-            path={item.path}
-          />
-        ))}
+      {dataBlocks.map((item) => (
+        <LikeBlock
+          key={item.id}
+          title={item.title}
+          rotate={item.rotate}
+          path={item.path}
+        />
+      ))}
     </div>
   )
 }
