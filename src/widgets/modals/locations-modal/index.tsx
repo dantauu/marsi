@@ -51,7 +51,7 @@ export const LocationsModal = () => {
             placeholder="Выберите местоположение"
             value={inputValue}
             onChange={(e) => {
-              const value = e.target.value
+              const value = e.target.value.trim()
               const capitalized = value.charAt(0).toUpperCase() + value.slice(1)
               setInputValue(capitalized)
             }}
@@ -73,7 +73,7 @@ export const LocationsModal = () => {
               ))}
             </>
           ) : (
-            <p className="text-2xl">Ничего не найдено</p>
+            <p className="text-center text-2xl">Ничего не найдено</p>
           )}
         </div>
       </div>
