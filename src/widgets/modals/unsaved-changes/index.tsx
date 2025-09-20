@@ -13,7 +13,7 @@ export const UnsavedChangesModal = ({
 }: UnsavedChangesModalProps) => {
   if (!showModal) return null
   return (
-    <div className="fixed z-10 bg-white top-0 flex flex-col justify-center items-center gap-5 w-full h-full">
+    <div className="fixed max-w-[610px] z-10 bg-white top-0 flex flex-col justify-center items-center gap-5 w-full h-full">
       <div className="flex flex-col items-center">
         <p className="font-ManropeM text-[17px]">Внимание!</p>
         <p className="font-ManropeM text-[17px]">Вы не сохранили изменения.</p>

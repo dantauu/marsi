@@ -6,22 +6,20 @@ import { useUnsavedChanges } from "@/lib/hooks/use-unsaved-changes.ts"
 import { useEditProfileForm } from "@/app/context/profile-edit-context.tsx"
 import { UnsavedChangesModal } from "@/widgets/modals/unsaved-changes"
 import { ButtonBack } from "@/shared/ui/buttons/button-back"
-import { useTelegram } from "@/app/providers/telegram"
+import { usePlatform } from "@/shared/lib/hooks/use-platform.ts"
 
 export const EditProfileContent = () => {
   const { isDirty } = useEditProfileForm()
+  const { isMobile } = usePlatform()
   const { showModal, setShowModal, confirmLeave, navigate } =
     useUnsavedChanges(isDirty)
   const { isEditOpen } = useAppSelector((state) => state.modal)
-  const { webApp } = useTelegram()
-  const platform = webApp?.platform ?? ""
-  const mobile = ["android", "ios"]
   return (
     <>
       {isEditOpen && <Overlay className="max-w-[610px]" />}
       <div
         data-testid="profile-edit"
-        className={`pb-[120px] ${mobile.includes(platform) ? "pt-[120px]" : "pt-[160px]"}`}
+        className={`pb-[120px] ${isMobile ? "pt-[120px]" : "pt-[160px]"}`}
       >
         <SaveNavBar className="pt-[80px]" />
         <ButtonBack onClick={() => navigate("/profile")} />

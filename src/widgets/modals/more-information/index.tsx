@@ -2,7 +2,7 @@ import { MainInfoUser } from "@/shared/ui/user/main-info"
 import type { User } from "@/app/types/user"
 import { SwiperCard } from "@/entities/slides/lib/swiper-card"
 import { AnimatePresence, motion } from "framer-motion"
-import { useTelegram } from "@/app/providers/telegram"
+import { usePlatform } from "@/shared/lib/hooks/use-platform.ts"
 
 type SliderCardProps = {
   data: User[]
@@ -18,14 +18,12 @@ export const MoreInformation = ({
   setIsMore,
 }: SliderCardProps) => {
   const { currentIndex } = SwiperCard({ data })
-  const { webApp } = useTelegram()
-  const platform = webApp?.platform ?? ""
-  const mobile = ["android", "ios"]
+  const { isMobile } = usePlatform()
   return (
     <AnimatePresence>
       {isMore && (
         <motion.div
-          className={`fixed inset-0 z-50 flex justify-center bg-white ${mobile.includes(platform) ? "pt-[80px]" : "pt-0"}`}
+          className={`fixed inset-0 z-50 flex justify-center bg-white ${isMobile ? "pt-[80px]" : "pt-0"}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
