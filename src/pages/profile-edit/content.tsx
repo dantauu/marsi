@@ -18,7 +18,7 @@ export const EditProfileContent = () => {
   const mobile = ["android", "ios"]
   return (
     <>
-      {isEditOpen && <Overlay />}
+      {isEditOpen && <Overlay className="max-w-[610px]" />}
       <div
         data-testid="profile-edit"
         className={`pb-[120px] ${mobile.includes(platform) ? "pt-[120px]" : "pt-[160px]"}`}

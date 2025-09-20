@@ -14,7 +14,7 @@ export const LocationsModal = () => {
   const [inputValue, setInputValue] = useState("")
   const debouncedSearch = useDebounce(inputValue, 700)
   const { data: locations, isLoading } = useGetLocationsQuery({
-    search: debouncedSearch,
+    search: debouncedSearch.trim(),
     limit: 10,
   })
   const dispatch = useAppDispatch()
@@ -36,7 +36,7 @@ export const LocationsModal = () => {
       className="absolute px-2 left-0 bottom-0 z-60 w-full h-full bg-[#fff]"
     >
       <div className="relative py-5 flex justify-center items-center">
-        <h1 className="font-HelveticaB text-[21px]">Местположение</h1>
+        <h1 className="font-HelveticaB text-[21px]">Местоположение</h1>
         <SvgCross
           className="absolute right-5 h-10 w-10 text-main-red"
           onClick={() => handleClose()}
@@ -73,7 +73,7 @@ export const LocationsModal = () => {
               ))}
             </>
           ) : (
-            <p className="text-2xl">Ничего не найдено</p>
+            <p className="text-center text-2xl">Ничего не найдено</p>
           )}
         </div>
       </div>

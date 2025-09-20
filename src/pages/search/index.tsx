@@ -1,4 +1,4 @@
-import { LikeCountNotify } from "@/features/search"
+import { BackToTop, LikeCountNotify } from "@/features/search"
 import { LayoutSwitchButtons } from "@/ui/index.ts"
 import { FilterButton } from "@/ui/index.ts"
 import { Route } from "@/app/routes/_app/_layout/search"
@@ -38,7 +38,7 @@ const Search = () => {
         className={`fixed z-10 top-0 w-full max-w-[610px] bg-white ${mobile.includes(platform) ? "pt-[80px]" : "pt-0"}`}
       >
         <LikeCountNotify countLikes={countLikes} />
-        <div className="flex px-[12px] items-center justify-between pb-[5px]">
+        <div className="flex w-full mx-auto px-[12px] items-center justify-between pb-[5px]">
           <FilterButton />
           <LayoutSwitchButtons />
         </div>
@@ -48,6 +48,7 @@ const Search = () => {
       >
         {users && <LayoutCard data={users} />}
       </div>
+      <BackToTop />
       {isFetching && <LoadingBalls />}
       <div className="w-full h-2" ref={ref}></div>
     </div>

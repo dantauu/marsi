@@ -2,8 +2,9 @@ import SvgFilterIcon from "@/assets/icons/FilterIcon"
 import Button from "@/shared/ui/buttons/button.tsx"
 import { openFilterModal } from "@/redux/slices/modal-slice"
 import { useAppDispatch } from "@/redux/hooks.ts"
+import { cn } from "@/lib/utils/cn.tsx"
 
-export const FilterButton = () => {
+export const FilterButton = ({ className }: { className?: string }) => {
   const dispatch = useAppDispatch()
   const handleClick = () => {
     dispatch(openFilterModal())
@@ -11,7 +12,10 @@ export const FilterButton = () => {
   return (
     <Button
       onClick={handleClick}
-      className="font-ManropeM ml-2 shadow-shadow-block p-0.5 rounded-[7px] text-[15px] mini-mobile:text-[16px]"
+      className={cn(
+        "font-ManropeM shadow-shadow-block p-0.5 rounded-[7px] text-[15px] mini-mobile:text-[16px]",
+        className
+      )}
       variant="default"
     >
       Фильтры

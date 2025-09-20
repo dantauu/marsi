@@ -7,7 +7,7 @@ export const LikeCountNotify = ({
 }) => {
   const count = countLikes?.length ?? 0
   return (
-    <div className="flex items-center justify-center mx-auto w-[200px] h-[25px] bg-main-pink rounded-[7px] mt-2 mb-4.5">
+    <div className="flex items-center justify-center mx-auto w-[200px] h-[25px] bg-main-pink rounded-[7px] mt-2 mb-2">
       <p className="font-ManropeM text-[14.5px] text-white">
         Получено лайков: {count}
       </p>
