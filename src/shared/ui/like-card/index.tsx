@@ -29,7 +29,7 @@ export const LikeCard = ({
     <div>
       <div>
         <div
-          className={`fixed flex items-center top-0 w-full z-2 bg-white shadow-shadow-block px-4 ${mobile.includes(platform) ? "pt-[92px] h-[130px]" : "pt-0 h-[80px]"}`}
+          className={`fixed flex max-w-[610px] items-center top-0 w-full z-2 bg-white shadow-shadow-block px-4 ${mobile.includes(platform) ? "pt-[92px] h-[130px]" : "pt-0 h-[80px]"}`}
         >
           <Button
             onClick={() => navigate({ to: "/likes" })}
