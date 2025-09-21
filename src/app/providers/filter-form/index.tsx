@@ -1,19 +1,7 @@
-import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { type PropsWithChildren, useCallback } from "react"
 import { FilterFormContext } from "@/app/context/filter-form-context.tsx"
-
-export const filterSchema = z.object({
-  minAge: z.number().optional().nullable(),
-  maxAge: z.number().optional().nullable(),
-  minHeight: z.number().optional().nullable(),
-  maxHeight: z.number().optional().nullable(),
-  city: z.string().optional(),
-  region: z.string().optional(),
-  gender: z.string().optional(),
-})
-
-export type FilterFormSchema = z.infer<typeof filterSchema>
+import { type FilterFormSchema, filterSchema } from "@/lib/schema/filter"
 
 export const formEmptyValues: FilterFormSchema = {
   minAge: null,

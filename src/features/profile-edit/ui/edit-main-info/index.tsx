@@ -11,7 +11,7 @@ import { useWatch } from "react-hook-form"
 import { FieldMeta } from "./edit-metadata.tsx"
 import { AddHobbies } from "@/features/profile-edit"
 import { getGenderFormat } from "@/lib/utils/format-gender.ts"
-import type { EditFormSchema } from "@/app/providers/profile-edit-form"
+import type { EditFormSchema } from "@/lib/schema/profile-edit"
 
 export const EditMainInfo = ({ className }: { className?: string }) => {
   const form = useEditProfileForm()

@@ -1,14 +1,21 @@
 import { QuestionBlock } from "@/shared/ui/blocks/question"
 import questionData from "@/lib/data/question.tsx"
 import { useState } from "react"
+import { usePlatform } from "@/shared/lib/hooks/use-platform.ts"
 
 const More = () => {
   const [response, setResponse] = useState<number | null>()
   const handleClick = (id: number) => {
     setResponse((prev) => (prev === id ? null : id))
   }
+  const { isMobile } = usePlatform()
   return (
-    <div className="px-2 mt-4" data-testid="more">
+    <div className="pb-[150px]" data-testid="more">
+      <div
+        className={`fixed flex justify-center top-0 items-center w-full max-w-[610px] shadow-shadow-block bg-white ${isMobile ? "pt-[92px] h-[130px]" : "pt-0 h-[80px]"}`}
+      >
+        <p className="text-[18px]">Частые вопросы</p>
+      </div>
       <QuestionBlock
         isResponse={response}
         onClick={handleClick}
