@@ -1,6 +1,5 @@
 import { z } from "zod"
 
-
 export const filterSchema = z.object({
   minAge: z.number().optional().nullable(),
   maxAge: z.number().optional().nullable(),

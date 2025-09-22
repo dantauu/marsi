@@ -1,9 +1,9 @@
 import { type Control, Controller } from "react-hook-form"
-import type { EditFormSchema } from "@/app/providers/profile-edit-form"
 import type { EditFormFields } from "@/app/types/global.d.ts"
 import type { JSX } from "react"
 import { CityEdit, EditGoal, EditHobbies, GenderEdit, NameEdit } from "@/ui"
 import { InputEdit } from "@/shared/ui/inputs/profile-edit"
+import type { EditFormSchema } from "@/lib/schema/profile-edit"
 
 type RenderProps = {
   control: Control<EditFormSchema>

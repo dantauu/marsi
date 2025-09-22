@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react"
 import type { UseFormReturn } from "react-hook-form"
-import type { EditFormSchema } from "@/app/providers/profile-edit-form"
+import type { EditFormSchema } from "@/lib/schema/profile-edit"
 
 export const EditFormContext = createContext<
   (UseFormReturn<EditFormSchema> & { isDirty?: boolean }) | null
