@@ -1,8 +1,8 @@
 import {
-  type EditFormSchema,
   EditProfileProvider,
   useFormEmptyValues,
 } from "@/app/providers/profile-edit-form"
+import { type EditFormSchema } from "@/lib/schema/profile-edit"
 import {
   useDeletePhotoMutation,
   useUpdateUserMutation,
