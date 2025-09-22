@@ -1,6 +1,7 @@
 import SvgPlus from "@/assets/icons/Plus.tsx"
 import type { questionDataTypes } from "@/lib/data/question.tsx"
 import { AnimatePresence, motion } from "framer-motion"
+import { usePlatform } from "@/shared/lib/hooks/use-platform.ts"
 
 type QuestionBlockProps = {
   data: questionDataTypes[]
@@ -13,8 +14,11 @@ export const QuestionBlock = ({
   onClick,
   isResponse,
 }: QuestionBlockProps) => {
+  const { isMobile } = usePlatform()
   return (
-    <div className="flex flex-col gap-7">
+    <div
+      className={`flex flex-col gap-7 px-2 ${isMobile ? "pt-[145px]" : "pt-[100px]"}`}
+    >
       {data.map((item) => (
         <div
           key={item.id}
@@ -22,7 +26,7 @@ export const QuestionBlock = ({
         >
           <div
             onClick={() => onClick(item.id)}
-            className="flex items-center w-full justify-between h-15"
+            className="flex items-center w-full justify-between h-15 cursor-pointer"
           >
             <p className="font-ManropeM text-[16.5px]">{item.question}</p>
             <SvgPlus className="min-w-7 h-7 stroke-[3.5]" />
