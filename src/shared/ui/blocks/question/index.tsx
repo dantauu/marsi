@@ -17,7 +17,7 @@ export const QuestionBlock = ({
   const { isMobile } = usePlatform()
   return (
     <div
-      className={`flex flex-col gap-7 px-2 ${isMobile ? "pt-[145px]" : "pt-[100px]"}`}
+      className={`flex flex-col gap-7 px-2 ${isMobile ? "pt-[100px]" : "pt-[90px]"}`}
     >
       {data.map((item) => (
         <div
