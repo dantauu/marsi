@@ -75,4 +75,7 @@
   input {
     outline: none;
   }
+  textarea {
+    outline: none;
+  }
 }

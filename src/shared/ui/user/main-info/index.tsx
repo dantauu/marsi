@@ -1,11 +1,11 @@
 import type { User } from "@/app/types/user"
 import Button from "@/shared/ui/buttons/button.tsx"
-import SvgCross from "@/assets/icons/Cross.tsx"
 import SvgPoint from "@/assets/icons/Point.tsx"
 import SvgRuler from "@/assets/icons/Ruler.tsx"
 import SvgTarget from "@/assets/icons/Target.tsx"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { useState } from "react"
+import SvgCrossOrigin from "@/assets/icons/CrossOrigin.tsx"
 
 type MainInfoUserProps = {
   user: User
@@ -43,28 +43,35 @@ export const MainInfoUser = ({ user, setIsMore }: MainInfoUserProps) => {
           className="absolute rounded-full z-10 top-4 right-4 p-1 bg-white text-[#0008]"
           variant={"default"}
         >
-          <SvgCross className="w-[40px] h-[40px]" />
+          <SvgCrossOrigin className="w-[35px] h-[35px]" />
         </Button>
       </div>
-      <div className="absolute z-1 w-full max-w-[550px] max-h-[56.5vh] -mt-4 flex h-full flex-col gap-5 p-4 bg-white rounded-[29px] shadow-shadow-block">
+      <div className="absolute z-1 w-full max-w-[550px] max-h-[56.5vh] -mt-4 flex h-full flex-col gap-5 p-4 px-2 bg-white rounded-[29px] shadow-shadow-block">
         <div className="flex items-center gap-2">
           <p className="text-[24px]">{user?.first_name || "Не указано"},</p>
-          <p className="text-[20px]">{user?.age || "Не указано"},</p>
+          <p className="text-[20px]">{user?.age || "?"}</p>
           <div className="flex items-end -ml-2 -mt-1">
-            <SvgPoint className="w-[35px] h-[35px] text-[#0005]" />
-            <p className="text-[20px]">{user?.city || "Не указано"}</p>
+            <SvgPoint className="w-[30px] h-[30px] text-[#0005]" />
+            <p className="text-[18px]">{user?.city || "Неизвестно"}</p>
           </div>
         </div>
+        {user?.about_me && (
+          <div>
+            <p className="font-ManropeM text-[14.5px]">
+              - {user?.about_me}
+            </p>
+          </div>
+        )}
         <div className="flex items-center gap-4">
           <div className="flex items-center -ml-2">
-            <SvgRuler className="w-[40px] h-[40px] fill-[#0005] text-[#0005]" />
-            <p className="text-[20px]">
-              {user?.height || "Не указано"} {user?.height && "см"}
+            <SvgRuler className="w-[38px] h-[38px] fill-[#0005] text-[#0005]" />
+            <p className="text-[17px]">
+              {user?.height || "Неизвестно"} {user?.height && "см"}
             </p>
           </div>
           <div className="flex items-center gap-2 -ml-1">
-            <SvgTarget className="w-[40px] h-[40px] fill-[#0005]" />
-            <p className="text-[18px] pt-1">{user?.goal || "Не указано"}</p>
+            <SvgTarget className="w-[34px] h-[34px] fill-[#0005]" />
+            <p className="text-[16.5px] pt-1">{user?.goal || "Неизвестно"}</p>
           </div>
         </div>
         <div className="flex flex-col">
@@ -74,14 +81,14 @@ export const MainInfoUser = ({ user, setIsMore }: MainInfoUserProps) => {
                 {user.hobbies?.map((item, index) => (
                   <p
                     key={index}
-                    className="shadow-shadow-block p-1 rounded-[5px]"
+                    className="shadow-shadow-block text-[15px] p-1 rounded-[5px] font-ManropeM"
                   >
                     {item}
                   </p>
                 ))}
               </div>
             ) : (
-              <p className="text-[18px]">Не указано</p>
+              <p className="text-[18px]">Неизвестно</p>
             )}
           </div>
         </div>

@@ -48,13 +48,15 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
     })
   }
   const handleCancel = () => {
+    console.log("CLOSED", currentField)
     if (!currentField) return
     setShowErrors(false)
     if (originalValue[currentField] !== undefined) {
       form.setValue(currentField, originalValue[currentField])
-      dispatch(closeEditModal())
       setCurrentField(null)
     }
+    dispatch(closeEditModal())
+    console.log("CLOSED", currentField)
   }
 
   const first_name = useWatch({ control, name: "first_name" })
@@ -64,6 +66,7 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
   const goal = useWatch({ control, name: "goal" })
   const height = useWatch({ control, name: "height" })
   const hobbies = useWatch({ control, name: "hobbies" })
+  const about_me = useWatch({ control, name: "about_me" })
 
   console.log("ERRORS", errors)
   return (
@@ -89,6 +92,11 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
           title="Город"
           text={city}
           onClick={() => handleOpen("city")}
+        />
+        <ItemEdit
+          title="О себе"
+          text={about_me}
+          onClick={() => handleOpen("about_me")}
         />
         <ItemEdit title="Цель" text={goal} onClick={() => handleOpen("goal")} />
         <ItemEdit
