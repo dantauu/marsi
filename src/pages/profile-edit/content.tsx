@@ -5,8 +5,8 @@ import { Overlay } from "@/widgets/overlay"
 import { useUnsavedChanges } from "@/lib/hooks/use-unsaved-changes.ts"
 import { useEditProfileForm } from "@/app/context/profile-edit-context.tsx"
 import { UnsavedChangesModal } from "@/widgets/modals/unsaved-changes"
-import { ButtonBack } from "@/shared/ui/buttons/button-back"
 import { usePlatform } from "@/shared/lib/hooks/use-platform.ts"
+import SvgArrowPath from "@/assets/icons/ArrowPath.tsx"
 
 export const EditProfileContent = () => {
   const { isDirty } = useEditProfileForm()
@@ -19,10 +19,13 @@ export const EditProfileContent = () => {
       {isEditOpen && <Overlay className="max-w-[610px]" />}
       <div
         data-testid="profile-edit"
-        className={`pb-[120px] ${isMobile ? "pt-[120px]" : "pt-[160px]"}`}
+        className={`pb-[120px] ${isMobile ? "pt-[120px]" : "pt-[100px]"}`}
       >
-        <SaveNavBar className="pt-[80px]" />
-        <ButtonBack onClick={() => navigate("/profile")} />
+        <div className="fixed pt-[80px] pb-[5px] z-10 bg-[#fff7] w-full max-w-[610px] top-0 flex items-center  justify-between px-2">
+          <SvgArrowPath className="w-[14px] h-[24px]" onClick={() => navigate("/profile")} />
+          <p className="text-center mx-auto">Редактирование</p>
+        </div>
+        <SaveNavBar className="mb-5" />
         <PhotoEdit />
         <EditMainInfo className="mt-10" />
       </div>
