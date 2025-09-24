@@ -14,7 +14,7 @@ export const editSchema = z.object({
     .nullable(),
   gender: z.string().optional(),
   city: z.string().optional(),
-  about_me: z.string().optional(),
+  about_me: z.string().optional().nullable(),
   height: z
     .string()
     .refine(
