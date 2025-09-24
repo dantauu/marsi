@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useDebounce } from "@/lib/hooks/use-debounce.ts"
 import { useGetLocationsQuery } from "@/redux/api/locations.ts"
 import type { Locations } from "@/app/types/global.d.ts"
+import LoadingBalls from "@/shared/ui/loading"
 
 export const CityEdit = ({
   value,
@@ -14,7 +15,7 @@ export const CityEdit = ({
     typeof value === "string" ? value : ""
   )
   const debouncedSearch = useDebounce(inputValue, 700)
-  const { data: locations, isLoading } = useGetLocationsQuery({
+  const { data: locations, isLoading, isFetching } = useGetLocationsQuery({
     search: debouncedSearch,
     limit: 10,
   })
@@ -37,10 +38,11 @@ export const CityEdit = ({
         className="border p-2 rounded-xl w-full"
       />
 
-      {isLoading && <p>Загрузка...</p>}
 
       <div className="pt-7 flex flex-col gap-4">
-        {locations?.length ? (
+        {isLoading || isFetching ? (
+          <LoadingBalls className="mb-5" />
+        ) : locations && locations.length > 0 ? (
           <>
             {locations?.map((item) => (
               <p
@@ -52,8 +54,9 @@ export const CityEdit = ({
               </p>
             ))}
           </>
-        ) : (
-          <p className="text-2xl">Ничего не найдено</p>
+          )
+         : (
+          <p className="text-[20px] text-center">Ничего не найдено</p>
         )}
       </div>
     </div>
