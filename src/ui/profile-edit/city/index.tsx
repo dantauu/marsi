@@ -15,7 +15,11 @@ export const CityEdit = ({
     typeof value === "string" ? value : ""
   )
   const debouncedSearch = useDebounce(inputValue, 700)
-  const { data: locations, isLoading, isFetching } = useGetLocationsQuery({
+  const {
+    data: locations,
+    isLoading,
+    isFetching,
+  } = useGetLocationsQuery({
     search: debouncedSearch,
     limit: 10,
   })
@@ -38,7 +42,6 @@ export const CityEdit = ({
         className="border p-2 rounded-xl w-full"
       />
 
-
       <div className="pt-7 flex flex-col gap-4">
         {isLoading || isFetching ? (
           <LoadingBalls className="mb-5" />
@@ -54,8 +57,7 @@ export const CityEdit = ({
               </p>
             ))}
           </>
-          )
-         : (
+        ) : (
           <p className="text-[20px] text-center">Ничего не найдено</p>
         )}
       </div>

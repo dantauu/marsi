@@ -1,4 +1,4 @@
-import { Progress, LikeCount } from "@/features/profile"
+import { Progress, LikeCount, LikeIncoming } from "@/features/profile"
 import { ProfileHeader } from "@/entities/profile"
 import { BasicInformation } from "@/ui/index.ts"
 import { useUserMe } from "@/lib/hooks/use-current-user.ts"
@@ -32,12 +32,9 @@ const Profile = () => {
       className="flex flex-col gap-4 px-[4px] pt-[20px] pb-[300px]"
     >
       <ProfileHeader currentUser={currentUser} />
-      <div className="flex flex-col mini-mobile:flex-row mini-mobile:gap-[5px] gap-3.5 justify-between pt-[7px]">
-        <LikeCount
-          myLikes={myLikes}
-          likesToMe={likesToMe}
-          isPending={isPending}
-        />
+      <LikeIncoming likesToMe={likesToMe} isPending={isPending} />
+      <div className="flex mini-mobile:gap-[5px] gap-3.5 justify-between pt-[7px]">
+        <LikeCount myLikes={myLikes} isPending={isPending} />
         <Progress />
       </div>
       {/*<SubscriptionStatus />*/}

@@ -13,7 +13,11 @@ export const LocationsModal = () => {
   const { setValue } = useFilterForm()
   const [inputValue, setInputValue] = useState("")
   const debouncedSearch = useDebounce(inputValue, 700)
-  const { data: locations, isLoading, isFetching } = useGetLocationsQuery({
+  const {
+    data: locations,
+    isLoading,
+    isFetching,
+  } = useGetLocationsQuery({
     search: debouncedSearch.trim(),
     limit: 10,
   })
@@ -43,32 +47,32 @@ export const LocationsModal = () => {
         />
       </div>
       <div>
-          <input
-            type="text"
-            placeholder="Выберите местоположение"
-            value={inputValue}
-            onChange={(e) => {
-              const value = e.target.value
-              const capitalized = value.charAt(0).toUpperCase() + value.slice(1)
-              setInputValue(capitalized)
-            }}
-            className="border p-2 rounded-xl w-full"
-          />
+        <input
+          type="text"
+          placeholder="Выберите местоположение"
+          value={inputValue}
+          onChange={(e) => {
+            const value = e.target.value
+            const capitalized = value.charAt(0).toUpperCase() + value.slice(1)
+            setInputValue(capitalized)
+          }}
+          className="border p-2 rounded-xl w-full"
+        />
         {isLoading || isFetching ? (
           <LoadingBalls className="mt-2.5" />
         ) : locations && locations.length > 0 ? (
           <div className="pt-7 flex flex-col gap-4">
-              <>
-                {locations?.map((item) => (
-                  <p
-                    className="font-ManropeM"
-                    onClick={() => handleSelect(item)}
-                    key={item.id}
-                  >
-                    {item.name}, {item.region}
-                  </p>
-                ))}
-              </>
+            <>
+              {locations?.map((item) => (
+                <p
+                  className="font-ManropeM"
+                  onClick={() => handleSelect(item)}
+                  key={item.id}
+                >
+                  {item.name}, {item.region}
+                </p>
+              ))}
+            </>
           </div>
         ) : (
           <p className="text-center text-[20px]">Ничего не найдено</p>
