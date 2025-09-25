@@ -11,7 +11,7 @@ export const SaveNavBar = ({ className }: { className?: string }) => {
   return (
     <div
       className={cn(
-        "fixed w-full max-w-[610px] top-0 z-5 bg-[#fff7] shadow-shadow-block rounded-bl-[28px] rounded-br-[28px]",
+        "w-full z-5 bg-[#fff7] shadow-shadow-block rounded-[28px]",
         className
       )}
     >

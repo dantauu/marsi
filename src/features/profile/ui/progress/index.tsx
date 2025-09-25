@@ -6,8 +6,8 @@ export const Progress = () => {
   const { colors, percent } = useAllPercentCount()
   const navigate = useNavigate()
   return (
-    <div className="flex flex-col items-center justify-between py-1.5 px-2 mini-mobile:h-[115px] h-[85px] bg-main-green w-full mini-mobile:w-full rounded-[10px] cursor-pointer leading-5">
-      <div className="flex flex-row justify-center items-center w-full mini-mobile:flex-col">
+    <div className="flex flex-col items-center justify-between py-2 px-2 h-[105px] bg-main-green w-full mini-mobile:w-full rounded-[10px] cursor-pointer leading-5">
+      <div className="flex flex-col justify-center items-center w-full">
         <p className="text-center text-white font-HelveticaB text-[16px]">
           Общий прогресс
         </p>

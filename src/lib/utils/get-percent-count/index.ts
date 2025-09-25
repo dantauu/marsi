@@ -1,4 +1,4 @@
-import { useUserMe } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
 
 export const usePercentCount = () => {
   const { user } = useUserMe()

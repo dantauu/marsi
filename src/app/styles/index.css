@@ -41,12 +41,12 @@
     background-clip: text;
     color: transparent;
   }
-  .bg-gradient-bg {
+  .bg-gradient-purple {
     background: linear-gradient(
       to right,
-      rgba(255, 85, 159, 0.5) 0%,
-      rgba(255, 144, 104, 0.5) 50%,
-      rgba(255, 85, 159, 0.5) 100%
+      rgba(255, 85, 159, 0.8) 0%,
+      rgba(255, 144, 104, 0.8) 50%,
+      rgba(255, 85, 159, 0.8) 100%
     );
   }
   .bg-test {

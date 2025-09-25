@@ -1,7 +1,7 @@
 import Block from "@/shared/ui/blocks/block.tsx"
 import { getGenderFormat } from "@/lib/utils/format-gender.ts"
 import { usePercentCount } from "@/lib/utils/get-percent-count"
-import { useUserMe } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
 import { useNavigate } from "@tanstack/react-router"
 
 export const BasicInformation = () => {

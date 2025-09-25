@@ -3,7 +3,7 @@ import {
   useGetMyLikesQuery,
   useUnlikeUserMutation,
 } from "@/shared/api/likes.ts"
-import { useUserMe } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
 import LoadingBalls from "@/shared/ui/loading"
 
 export const MyLikesList = () => {

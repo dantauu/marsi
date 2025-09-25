@@ -21,7 +21,7 @@ export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
   if (path.startsWith("/profile-edit")) return
   return (
     <div className="flex justify-center">
-      <div className="fixed flex items-center justify-between z-5 bottom-0 w-[95%] max-w-[610px] rounded-[28px] h-[93px] bg-[#252323f7] mb-5">
+      <div className="fixed flex items-center justify-between z-5 bottom-0 w-[95%] max-w-[610px] rounded-[28px] h-[85px] bg-[#252323f7] mb-5">
         <nav className="flex justify-between w-full px-4 mini-mobile:px-7">
           {navItems.map(({ id, Icon, text, link }) => {
             const isActive = activePath === link

@@ -7,7 +7,7 @@ import {
 } from "@/redux/slices/slider-slice.ts"
 import { useLikeUserMutation } from "@/shared/api/likes.ts"
 import { useDislikeUserMutation } from "@/shared/api/likes.ts"
-import { useUserMe } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
 import type { User } from "@/app/types/user"
 
 export const SwiperCard = ({ data }: { data: User[] }) => {

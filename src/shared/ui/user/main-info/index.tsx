@@ -57,9 +57,7 @@ export const MainInfoUser = ({ user, setIsMore }: MainInfoUserProps) => {
         </div>
         {user?.about_me && (
           <div>
-            <p className="font-ManropeM text-[14.5px]">
-              - {user?.about_me}
-            </p>
+            <p className="font-ManropeM text-[14.5px]">- {user?.about_me}</p>
           </div>
         )}
         <div className="flex items-center gap-4">

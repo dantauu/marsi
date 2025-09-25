@@ -24,9 +24,12 @@ export const ProfileHeader = ({ currentUser }: ProfileHeaderProps) => {
         <SvgEdit />
       </Button>
       <div className="flex items-center gap-2">
-        <div className="">
+        <div className="flex items-cente gap-1">
+          <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px] text-ellipsis overflow-hidden max-w-[115px] whitespace-nowrap">
+            {currentUser?.first_name || "Не указано"},
+          </p>
           <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px]">
-            {currentUser?.first_name || "Не указано"}, {currentUser?.age || "?"}
+            {currentUser?.age || "?"}
           </p>
         </div>
         <div onClick={() => navigate({ to: "/profile-edit" })} className="">
