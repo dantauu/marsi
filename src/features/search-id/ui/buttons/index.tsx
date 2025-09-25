@@ -2,12 +2,12 @@ import { useAppDispatch } from "@/redux/hooks"
 import { handleLike } from "@/redux/slices/slider-slice.ts"
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useGetMyLikesQuery, useLikeUserMutation } from "@/shared/api/likes.ts"
-import { useUserMe } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
 import SvgHeart from "@/assets/icons/Heart.tsx"
 import { useMemo } from "react"
 import SvgBack from "@/assets/icons/Back.tsx"
 import { useNavigate } from "@tanstack/react-router"
-import { useNotify } from "@/lib/hooks/use-notify.tsx"
+import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
 
 export const Buttons = ({
   currentUserId,

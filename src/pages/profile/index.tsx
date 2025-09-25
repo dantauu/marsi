@@ -1,7 +1,7 @@
 import { Progress, LikeCount, LikeIncoming } from "@/features/profile"
 import { ProfileHeader } from "@/entities/profile"
 import { BasicInformation } from "@/ui/index.ts"
-import { useUserMe } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
 import { useGetLikesToMeQuery, useGetMyLikesQuery } from "@/shared/api/likes.ts"
 
 const Profile = () => {

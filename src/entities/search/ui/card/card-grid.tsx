@@ -32,10 +32,11 @@ export const CardGridLayout = ({
           />
         )}
       </div>
-      <div className="">
-        <p className="font-HelveticaB text-[16px]">
-          {first_name}, {age ? age : "?"}
+      <div className="flex items-center gap-1">
+        <p className="font-HelveticaB text-[16px] text-ellipsis max-w-[125px] whitespace-nowrap overflow-hidden">
+          {first_name},
         </p>
+        <p className="font-HelveticaB text-[16px]">{age ? age : "?"}</p>
       </div>
     </div>
   )

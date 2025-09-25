@@ -29,7 +29,7 @@ export const useNotify = () => {
         loading: arg2?.loading || "Загрузка...",
         success: arg2?.success || "Успешно",
         error: arg2?.error || "Ошибка",
-        duration: arg2?.duration ?? 15000,
+        duration: arg2?.duration ?? 7000,
         style: {
           marginTop: "80px",
           fontSize: "17.2px",
@@ -54,7 +54,7 @@ export const useNotify = () => {
           {arg1.icon && <span>{arg1.icon}</span>}
         </motion.div>
       ),
-      { duration: arg1.duration ?? 15000 }
+      { duration: arg1.duration ?? 7000 }
     )
   }
 

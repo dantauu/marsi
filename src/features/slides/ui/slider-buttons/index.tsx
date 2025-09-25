@@ -5,7 +5,7 @@ import {
   useDislikeUserMutation,
   useLikeUserMutation,
 } from "@/shared/api/likes.ts"
-import { useUserMe } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
 import SvgHeart from "@/assets/icons/Heart.tsx"
 import SvgCrossOrigin from "@/assets/icons/CrossOrigin.tsx"
 

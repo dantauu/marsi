@@ -11,7 +11,7 @@ import { useTelegram } from "@/app/providers/telegram"
 import LoadingBalls from "@/shared/ui/loading"
 import { getNormalizeGender } from "@/lib/utils/format-gender.ts"
 import { EditProfileContent } from "@/pages/profile-edit/content.tsx"
-import { useNotify } from "@/lib/hooks/use-notify.tsx"
+import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
 
 const EditProfile = () => {
   const { user: telegramUser } = useTelegram()
