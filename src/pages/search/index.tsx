@@ -11,6 +11,7 @@ import { useUserMe } from "@/lib/hooks/use-current-user.ts"
 import { useScrollRestore } from "@/lib/hooks/use-scroll-restore.ts"
 import { useAppSelector } from "@/redux/hooks.ts"
 import { usePlatform } from "@/shared/lib/hooks/use-platform.ts"
+import { NotifyLastCard } from "@/shared/ui/notify-last-card"
 
 const Search = () => {
   const { isMobile } = usePlatform()
@@ -44,6 +45,7 @@ const Search = () => {
       <div className={`${isMobile ? "pt-[110px]" : "pt-[80px]"}`}>
         {users && <LayoutCard data={users} />}
       </div>
+      {users.length === 0 && !isFetching && !isLoading && <NotifyLastCard />}
       <BackToTop />
       {isFetching && <LoadingBalls />}
       <div className="w-full h-2" ref={ref}></div>

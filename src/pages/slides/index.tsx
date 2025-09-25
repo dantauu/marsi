@@ -13,7 +13,6 @@ const Slides = () => {
   )
   const { users, isLoading } = useFetchToSlide(cleanedFilters)
   if (isLoading) return <LoadingBalls />
-  console.log("DATAUSERS", users)
   return (
     <div data-testid="slides" className="flex flex-col gap-2 pt-3 pb-10">
       <FilterButton className="ml-2" />
