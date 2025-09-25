@@ -56,6 +56,7 @@ export const useFetchToSlide = (params = {}) => {
     data: newUsers = [],
     isFetching,
     isLoading,
+    isSuccess,
   } = useGetUsersQuery({ limit: LIMIT, offset, id, ...params })
   const countNewUsers = newUsers.length
 
@@ -76,5 +77,5 @@ export const useFetchToSlide = (params = {}) => {
     }
   }, [users.length, currentIndex])
 
-  return { users, isLoading, currentIndex }
+  return { users, isLoading, isFetching, isSuccess, currentIndex }
 }
