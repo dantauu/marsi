@@ -19,16 +19,18 @@ export const EditProfileContent = () => {
       {isEditOpen && <Overlay className="max-w-[610px]" />}
       <div
         data-testid="profile-edit"
-        className={`pb-[120px] ${isMobile ? "pt-[120px]" : "pt-[100px]"}`}
+        className={`pb-[130px] ${isMobile ? "pt-[120px]" : "pt-[60px]"}`}
       >
-        <div className="fixed pt-[80px] pb-[5px] z-5 bg-white w-full max-w-[610px] top-0 flex items-center  justify-between px-2">
+        <div
+          className={`fixed pb-[4.5px] z-5 bg-white w-full max-w-[610px] top-0 flex items-center  justify-between px-2 ${isMobile ? "pt-[85px]" : "pt-[20px]"}`}
+        >
           <SvgArrowPath
             className="w-[14px] h-[24px]"
             onClick={() => navigate("/profile")}
           />
           <p className="text-center mx-auto">Редактирование</p>
         </div>
-        <SaveNavBar className="mb-5" />
+        <SaveNavBar className="fixed bottom-4" />
         <PhotoEdit />
         <EditMainInfo className="mt-10" />
       </div>
