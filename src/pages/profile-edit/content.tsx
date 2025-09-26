@@ -22,7 +22,7 @@ export const EditProfileContent = () => {
         className={`pb-[130px] ${isMobile ? "pt-[50px]" : "pt-[50px]"}`}
       >
         <div
-          className={`fixed pb-[4.5px] z-5 bg-white w-full max-w-[610px] top-0 flex items-center  justify-between px-2 ${isMobile ? "pt-[90px]" : "pt-[30px]"}`}
+          className={`fixed pb-[4.5px] z-5 bg-white w-full max-w-[610px] top-0 flex items-center  justify-between px-2 ${isMobile ? "pt-[97px]" : "pt-[30px]"}`}
         >
           <SvgArrowPath
             className="w-[14px] h-[24px]"
