@@ -3,8 +3,10 @@ import { FilterButton } from "@/ui"
 import LoadingBalls from "@/shared/ui/loading"
 import { useFetchToSlide } from "@/lib/hooks/use-fetch-scroll.ts"
 import { useAppSelector } from "@/redux/hooks.ts"
+import { useBlockScroll } from "@/shared/lib/hooks/use-block-scroll.ts"
 
 const Slides = () => {
+  useBlockScroll()
   const filters = useAppSelector((state) => state.filters)
   const cleanedFilters = Object.fromEntries(
     Object.entries(filters).filter(
@@ -19,7 +21,7 @@ const Slides = () => {
       </div>
     )
   return (
-    <div data-testid="slides" className="flex flex-col gap-2 pt-3 pb-10">
+    <div data-testid="slides" className="flex flex-col gap-2 pt-5 pb-10">
       <FilterButton className="ml-2" />
       <SliderCard isFetching={isFetching} users={users} />
     </div>
