@@ -4,7 +4,7 @@ import Button from "@/shared/ui/buttons/button.tsx"
 import { motion } from "framer-motion"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
 import { toggleLayout } from "@/redux/slices/layout-switch.ts"
-import { useIsMiniMobile } from "@/lib/hooks/use-media-query.ts"
+import { useIsMiniMobile } from "@/shared/lib/hooks/use-media-query.ts"
 
 export const LayoutSwitchButtons = () => {
   const dispatch = useAppDispatch()
