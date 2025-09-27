@@ -13,13 +13,13 @@ export const FilterButton = ({ className }: { className?: string }) => {
     <Button
       onClick={handleClick}
       className={cn(
-        "font-ManropeM shadow-shadow-block p-0.5 rounded-[7px] text-[15px] mini-mobile:text-[16px]",
+        "font-ManropeM shadow-shadow-block px-1 rounded-[7px] text-[14px] mini-mobile:text-[16px]",
         className
       )}
       variant="default"
     >
       Фильтры
-      <SvgFilterIcon className="mini-mobile:w-[32px] w-[28px]" />
+      <SvgFilterIcon className="mini-mobile:w-[30px] w-[27px]" />
     </Button>
   )
 }

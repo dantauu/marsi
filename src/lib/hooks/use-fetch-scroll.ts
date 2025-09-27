@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useInView } from "react-intersection-observer"
 import { useGetUsersQuery } from "@/shared/api/user"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
-import { useUserMe } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
 import { appendUsers, resetUsers } from "@/redux/slices/users.ts"
 
 const LIMIT = 10
@@ -56,6 +56,7 @@ export const useFetchToSlide = (params = {}) => {
     data: newUsers = [],
     isFetching,
     isLoading,
+    isSuccess,
   } = useGetUsersQuery({ limit: LIMIT, offset, id, ...params })
   const countNewUsers = newUsers.length
 
@@ -76,5 +77,5 @@ export const useFetchToSlide = (params = {}) => {
     }
   }, [users.length, currentIndex])
 
-  return { users, isLoading, currentIndex }
+  return { users, isLoading, isFetching, isSuccess, currentIndex }
 }

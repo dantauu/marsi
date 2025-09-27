@@ -9,10 +9,11 @@ import { useState } from "react"
 import { MoreInformation } from "@/widgets/modals/more-information"
 
 type SliderCardProps = {
-  data: User[]
+  users: User[]
+  isFetching: boolean
 }
 
-export const SliderCard = ({ data }: SliderCardProps) => {
+export const SliderCard = ({ users, isFetching }: SliderCardProps) => {
   const {
     onSwipeStart,
     onSwipeMove,
@@ -23,9 +24,10 @@ export const SliderCard = ({ data }: SliderCardProps) => {
     currentIndex,
     position,
     SWIPE_THRESHOLD,
-  } = SwiperCard({ data })
+  } = SwiperCard({ data: users })
   const [isMore, setIsMore] = useState(false)
-  if (currentIndex >= data.length) return <NotifyLastCard />
+  if (!isFetching && (users.length === 0 || currentIndex >= users.length))
+    return <NotifyLastCard />
 
   return (
     <div className=" flex flex-col gap-2 w-full max-w-[430px] h-full mx-auto mb-20">
@@ -41,7 +43,7 @@ export const SliderCard = ({ data }: SliderCardProps) => {
         style={{ touchAction: "pan-y" }}
       >
         <div className="relative w-full h-min">
-          {data.map((item, index) => {
+          {users.map((item, index) => {
             return (
               <div
                 key={item.id}
@@ -99,7 +101,7 @@ export const SliderCard = ({ data }: SliderCardProps) => {
           })}
         </div>
       </div>
-      <MoreInformation setIsMore={setIsMore} isMore={isMore} data={data} />
+      <MoreInformation setIsMore={setIsMore} isMore={isMore} data={users} />
       <div className="px-2">
         <Button
           onClick={() => setIsMore(true)}

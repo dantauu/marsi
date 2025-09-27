@@ -6,52 +6,29 @@ import type { User } from "@/app/types/user"
 
 type LikeCountProps = {
   isPending: boolean
-  likesToMe: User[] | undefined
   myLikes: User[] | undefined
 }
 
-export const LikeCount = ({
-  isPending,
-  likesToMe,
-  myLikes,
-}: LikeCountProps) => {
+export const LikeCount = ({ isPending, myLikes }: LikeCountProps) => {
   const navigate = useNavigate()
 
   return (
-    <div className="flex flex-col items-center justify-between py-1 px-2 w-full h-[115px] mini-mobile:h-[115px] shadow-shadow-block rounded-[10px]">
-      <div className="flex flex-col">
-        <div className="flex items-center gap-1 h-[34px]">
-          <p
-            className={`font-ManropeM ${isPending ? "text-[14.2px]" : "text-[16px]"}`}
-          >
-            Получено лайков:
-          </p>
-          <div className="">
-            {isPending ? (
-              <LoadingBalls className="w-10" />
-            ) : (
-              <p className="font-HelveticaB text-[16px]">
-                {likesToMe?.length || 0}
-              </p>
-            )}
-          </div>
-        </div>
-        <div className="flex items-center gap-1 -mt-2.5 h-[34px]">
-          <p
-            className={`font-ManropeM ${isPending ? "text-[15px]" : "text-[16px]"}`}
-          >
-            Лайки от меня:
-          </p>
-          <div className="">
-            {isPending ? (
-              <LoadingBalls className="w-10" />
-            ) : (
-              <p className="font-HelveticaB text-[16px]">
-                {myLikes?.length || 0}
-              </p>
-            )}
-          </div>
-        </div>
+    <div className="flex flex-col items-center justify-between py-2 px-2 w-full h-[105px] shadow-shadow-block rounded-[10px]">
+      <div className="flex items-center gap-1 -mt-2.5 h-[34px]">
+        <p
+          className={`font-ManropeM leading-4 ${isPending ? "text-[15px]" : "text-[16px]"}`}
+        >
+          Лайки от меня:
+        </p>
+        <>
+          {isPending ? (
+            <LoadingBalls className="w-10" />
+          ) : (
+            <p className="font-HelveticaB text-[16px]">
+              {myLikes?.length || 0}
+            </p>
+          )}
+        </>
       </div>
       <div className="w-full">
         <Button

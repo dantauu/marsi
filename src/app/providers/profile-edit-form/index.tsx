@@ -3,7 +3,7 @@ import { type PropsWithChildren, useCallback, useEffect, useState } from "react"
 import { EditFormContext } from "@/app/context/profile-edit-context.tsx"
 import { zodResolver } from "@hookform/resolvers/zod"
 import type { User } from "@/app/types/user"
-import { useUserMe } from "@/lib/hooks/use-current-user.ts"
+import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
 import { type EditFormSchema, editSchema } from "@/lib/schema/profile-edit"
 
 function fetchUser(user?: User | null): Partial<EditFormSchema> {
@@ -15,6 +15,7 @@ function fetchUser(user?: User | null): Partial<EditFormSchema> {
     age: user.age ?? null,
     height: user.height?.toString() ?? "",
     city: user.city ?? "",
+    about_me: user.about_me ?? null,
     gender: user.gender ?? "",
     goal: user.goal ?? "",
     hobbies: Array.isArray(user.hobbies) ? user.hobbies : [],
@@ -35,6 +36,7 @@ export function useFormEmptyValues(): {
     age: null,
     height: "",
     city: "",
+    about_me: null,
     gender: "",
     goal: "",
     hobbies: [],

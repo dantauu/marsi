@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { userApi } from "@/shared/api/user.ts"
 import { useAppDispatch } from "@/redux/hooks.ts"
 import likeSound from "@/assets/sound/like.mp3"
-import { useNotify } from "@/lib/hooks/use-notify.tsx"
+import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
 
 let socket: Socket
 

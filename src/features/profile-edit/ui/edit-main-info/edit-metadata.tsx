@@ -1,7 +1,14 @@
 import { type Control, Controller } from "react-hook-form"
 import type { EditFormFields } from "@/app/types/global.d.ts"
 import type { JSX } from "react"
-import { CityEdit, EditGoal, EditHobbies, GenderEdit, NameEdit } from "@/ui"
+import {
+  AboutMe,
+  CityEdit,
+  EditGoal,
+  EditHobbies,
+  GenderEdit,
+  NameEdit,
+} from "@/ui"
 import { InputEdit } from "@/shared/ui/inputs/profile-edit"
 import type { EditFormSchema } from "@/lib/schema/profile-edit"
 
@@ -61,6 +68,16 @@ export const FieldMeta: Record<
         name={name}
         control={control}
         render={({ field }) => <CityEdit {...field} />}
+      />
+    ),
+  },
+  about_me: {
+    title: "О себе",
+    render: ({ control, name }) => (
+      <Controller
+        control={control}
+        name={name}
+        render={({ field }) => <AboutMe {...field} />}
       />
     ),
   },
