@@ -28,7 +28,7 @@ export const EditProfileContent = () => {
             className="w-[14px] h-[24px]"
             onClick={() => navigate("/profile")}
           />
-          <p className="text-center text-[19px] mx-auto">Редактирование</p>
+          <p className="text-center text-[17.5px] mx-auto">Редактирование</p>
         </div>
         <SaveNavBar className="fixed bottom-4" />
         <PhotoEdit />
