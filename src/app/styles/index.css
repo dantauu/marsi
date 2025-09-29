@@ -50,7 +50,7 @@
     );
   }
   .bg-test {
-    background: linear-gradient(90deg, #ffe8f2 0%, #f9eace 100%);
+    background: linear-gradient(90deg, #ffe8f2 0%, #f9eace9c 100%);
   }
 }
 
