@@ -31,7 +31,7 @@ export const Possibilities = ({ className }: { className?: string }) => {
       {listPossibilities.map((item) => (
         <div key={item.id} className="flex items-center gap-2">
           <SvgCheckSvg />
-          <div className="px-1.5 shadow-shadow-block rounded-[5px]">
+          <div className="px-1.5 shadow-hard rounded-[5px]">
             <p className="text-[19px]">{item.text}</p>
           </div>
         </div>

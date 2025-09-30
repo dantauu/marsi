@@ -13,7 +13,7 @@ export const LikeCount = ({ isPending, myLikes }: LikeCountProps) => {
   const navigate = useNavigate()
 
   return (
-    <div className="flex flex-col items-center justify-between py-2 px-2 w-full h-[105px] shadow-shadow-block rounded-[10px]">
+    <div className="flex flex-col items-center justify-between py-2 px-2 w-full h-[105px] shadow-easy rounded-[10px]">
       <div className="flex items-center gap-1 -mt-2.5 h-[34px]">
         <p
           className={`font-ManropeM leading-4 ${isPending ? "text-[15px]" : "text-[16px]"}`}

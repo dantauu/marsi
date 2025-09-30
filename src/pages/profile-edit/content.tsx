@@ -30,7 +30,7 @@ export const EditProfileContent = () => {
           />
           <p className="text-center text-[17.5px] mx-auto">Редактирование</p>
         </div>
-        <SaveNavBar className="fixed bottom-4" />
+        <SaveNavBar className="fixed max-w-[610px] bottom-4" />
         <PhotoEdit />
         <EditMainInfo className="mt-10" />
       </div>

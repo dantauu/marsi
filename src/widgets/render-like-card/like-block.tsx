@@ -29,7 +29,7 @@ export const LikeBlock = ({ title, path, rotate }: LikeBlockProps) => {
           )}
         </div>
         <Button
-          className="p-1 w-[120px] mx-auto rounded-[10px] bg-white shadow-shadow-block"
+          className="p-1 w-[120px] mx-auto rounded-[10px] bg-white shadow-hard"
           onClick={() => navigate({ to: path })}
           variant={"default"}
         >

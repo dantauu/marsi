@@ -22,14 +22,16 @@ export const QuestionBlock = ({
       {data.map((item) => (
         <div
           key={item.id}
-          className="flex flex-col items-center px-2 shadow-shadow-block rounded-xl"
+          className="flex flex-col items-center px-2 shadow-easy rounded-xl"
         >
           <div
             onClick={() => onClick(item.id)}
             className="flex items-center w-full justify-between h-15 cursor-pointer"
           >
             <p className="font-ManropeM text-[16.5px]">{item.question}</p>
-            <SvgPlus className="min-w-7 h-7 stroke-[3.5]" />
+            <SvgPlus
+              className={`min-w-7 h-7 stroke-[3.5] duration-150 ${isResponse === item.id && "rotate-45"}`}
+            />
           </div>
           <AnimatePresence>
             {isResponse === item.id && (

@@ -11,7 +11,7 @@ const SvgArrow = (props: SVGProps<SVGSVGElement>) => (
     <path
       stroke="currentColor"
       strokeLinecap="round"
-      strokeWidth={2}
+      strokeWidth="currentStroke"
       d="M1 6.04h10.328M7.885 1l3.779 4.149c.448.492.448 1.29 0 1.782L7.885 11.08"
     />
   </svg>

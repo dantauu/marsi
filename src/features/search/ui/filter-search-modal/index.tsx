@@ -32,7 +32,7 @@ const Location = () => {
             <p className="text-white font-ManropeM text-[15.5px] mini-mobile:text-[17.5px]">
               {city ? `${city}, ${region}` : "Выберите местоположение"}
             </p>
-            {!city && <SvgArrow className="text-white w-[20px] h-[20px]" />}
+            {!city && <SvgArrow className="text-white w-[20px] h-[20px] stroke-[1.5]" />}
           </div>
         </div>
       </div>

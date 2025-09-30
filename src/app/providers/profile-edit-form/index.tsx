@@ -4,7 +4,7 @@ import { EditFormContext } from "@/app/context/profile-edit-context.tsx"
 import { zodResolver } from "@hookform/resolvers/zod"
 import type { User } from "@/app/types/user"
 import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
-import { type EditFormSchema, editSchema } from "@/lib/schema/profile-edit"
+import { type EditFormSchema, editSchema } from "@/lib/schemes/profile-edit"
 
 function fetchUser(user?: User | null): Partial<EditFormSchema> {
   if (!user) return {}

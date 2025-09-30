@@ -20,7 +20,7 @@ export const ButtonBack = ({ path, className, onClick }: ButtonBackProps) => {
   return (
     <Button
       className={cn(
-        "w-[50px] h-[38px] rounded-[7px] mx-2 mb-7 shadow-shadow-block text-[17px] text-[#000] font-ManropeM",
+        "w-[50px] h-[38px] rounded-[7px] mx-2 mb-7 shadow-hard text-[17px] text-[#000] font-ManropeM",
         className
       )}
       onClick={handleClick}

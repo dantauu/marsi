@@ -19,7 +19,7 @@ export const AddHobbies = ({
     <div
       onClick={onClick}
       className={cn(
-        "flex flex-col justify-center gap-4 py-[6px] px-[4px] w-full shadow-shadow-block" +
+        "flex flex-col justify-center gap-4 py-[6px] px-[4px] w-full shadow-hard" +
           " rounded-[18px]",
         className
       )}
@@ -32,7 +32,7 @@ export const AddHobbies = ({
           {text?.map((item, index) => (
             <div
               key={index}
-              className="flex items-center justify-center px-1 rounded-[10px] shadow-shadow-block w-fit"
+              className="flex items-center justify-center px-1 rounded-[10px] shadow-hard w-fit"
             >
               <p className="text-[17px]">{item}</p>
               <Button
