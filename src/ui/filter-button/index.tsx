@@ -13,7 +13,7 @@ export const FilterButton = ({ className }: { className?: string }) => {
     <Button
       onClick={handleClick}
       className={cn(
-        "font-ManropeM shadow-hard px-1 rounded-[7px] text-[14px] mini-mobile:text-[16px]",
+        "font-ManropeM max-w-[120px] shadow-hard px-1 rounded-[7px] text-[14px] mini-mobile:text-[16px]",
         className
       )}
       variant="default"

@@ -32,17 +32,15 @@ const Button = ({
 }: ButtonProps) => {
   const variantName = variants[variant]
   return (
-    <div className="">
-      <button
-        disabled={disabled}
-        type={type}
-        onClick={onClick}
-        onMouseDown={onMouseDown}
-        className={cn(variantName, className)}
-      >
-        {children}
-      </button>
-    </div>
+    <button
+      disabled={disabled}
+      type={type}
+      onClick={onClick}
+      onMouseDown={onMouseDown}
+      className={cn(variantName, className)}
+    >
+      {children}
+    </button>
   )
 }
 export default Button

@@ -25,7 +25,7 @@ export const EditProfileContent = () => {
           className={`fixed pb-[4.5px] px-4 z-5 bg-white w-full max-w-[610px] top-0 flex items-center  justify-between ${isMobile ? "pt-[97px]" : "pt-[30px]"}`}
         >
           <SvgArrowPath
-            className="w-[17px] h-[29px]"
+            className="w-[15px] h-[27px]"
             onClick={() => navigate("/profile")}
           />
           <p className="text-center text-[17.5px] mx-auto">Редактирование</p>

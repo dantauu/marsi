@@ -32,11 +32,11 @@ export const LikeCount = ({ isPending, myLikes }: LikeCountProps) => {
       </div>
       <div className="w-full">
         <Button
-          onClick={() => navigate({ to: "/likes" })}
+          onClick={() => navigate({ to: "/likes/my-likes" })}
           className="w-full h-[35px] font-HelveticaB"
           variant="green"
         >
-          Смотреть <SvgArrow className="mt-0.5" />
+          Смотреть <SvgArrow className="mt-0.5 stroke-[1.8]" />
         </Button>
       </div>
     </div>
