@@ -32,7 +32,7 @@ export const LikeIncoming = ({ isPending, likesToMe }: LikeIncomingProps) => {
         </div>
       </div>
       <div className="flex items-center justify-center w-[50px] h-[50px] bg-white rounded-full">
-        <SvgArrow className="w-[27px] h-[27px] -rotate-40 ml-1 text-[#FF9068]" />
+        <SvgArrow className="w-[27px] h-[27px] stroke-[1.5] -rotate-40 ml-1 text-[#FF9068]" />
       </div>
     </div>
   )

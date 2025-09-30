@@ -22,15 +22,15 @@ export const EditProfileContent = () => {
         className={`pb-[130px] ${isMobile ? "pt-[65px]" : "pt-[50px]"}`}
       >
         <div
-          className={`fixed pb-[4.5px] z-5 bg-white w-full max-w-[610px] top-0 flex items-center  justify-between px-2 ${isMobile ? "pt-[97px]" : "pt-[30px]"}`}
+          className={`fixed pb-[4.5px] px-4 z-5 bg-white w-full max-w-[610px] top-0 flex items-center  justify-between ${isMobile ? "pt-[97px]" : "pt-[30px]"}`}
         >
           <SvgArrowPath
-            className="w-[14px] h-[24px]"
+            className="w-[15px] h-[27px]"
             onClick={() => navigate("/profile")}
           />
           <p className="text-center text-[17.5px] mx-auto">Редактирование</p>
         </div>
-        <SaveNavBar className="fixed bottom-4" />
+        <SaveNavBar className="fixed max-w-[610px] bottom-4" />
         <PhotoEdit />
         <EditMainInfo className="mt-10" />
       </div>

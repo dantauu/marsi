@@ -29,7 +29,7 @@ const Profile = () => {
   return (
     <div
       data-testid="profile"
-      className="flex flex-col gap-4 px-[4px] pt-[20px] pb-[300px]"
+      className="flex flex-col gap-4 px-[4px] pt-[20px] pb-[170px]"
     >
       <ProfileHeader currentUser={currentUser} />
       <LikeIncoming likesToMe={likesToMe} isPending={isPending} />

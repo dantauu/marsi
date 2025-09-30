@@ -12,7 +12,7 @@ const More = () => {
   return (
     <div className="pb-[150px]" data-testid="more">
       <div
-        className={`fixed flex justify-center top-0 items-center w-full max-w-[610px] shadow-shadow-block bg-white ${isMobile ? "pt-[92px] h-[130px]" : "pt-0 h-[80px]"}`}
+        className={`fixed flex justify-center top-0 items-center w-full max-w-[610px] shadow-easy bg-white ${isMobile ? "pt-[92px] h-[130px]" : "pt-0 h-[80px]"}`}
       >
         <p className="text-[18px]">Частые вопросы</p>
       </div>

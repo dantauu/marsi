@@ -1,6 +1,6 @@
 import { formEmptyValues } from "@/app/providers/filter-form"
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
-import type { FilterFormSchema } from "@/lib/schema/filter"
+import type { FilterFormSchema } from "@/lib/schemes/filter"
 
 const initialState: FilterFormSchema = { ...formEmptyValues }
 

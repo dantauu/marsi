@@ -6,7 +6,7 @@ import { useNavigate } from "@tanstack/react-router"
 export const SubscriptionStatus = () => {
   const navigate = useNavigate()
   return (
-    <div className="flex flex-col justify-between items-center mt-[20px] h-[68px] p-1 shadow-shadow-block rounded-[10px] mini-mobile:flex-row">
+    <div className="flex flex-col justify-between items-center mt-[20px] h-[68px] p-1 shadow-hard rounded-[10px] mini-mobile:flex-row">
       <div className="flex items-center gap-2">
         <div className="">
           <p className="font-ManropeM text-[15px] mini-mobile:text-16px">

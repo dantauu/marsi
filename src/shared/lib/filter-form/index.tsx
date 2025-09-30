@@ -7,7 +7,7 @@ import { closeFilterModal } from "@/redux/slices/modal-slice.ts"
 import { FilterModal } from "@/widgets/modals/filter-modal"
 import { setFilters } from "@/redux/slices/filer-store.ts"
 import { useEffect } from "react"
-import type { FilterFormSchema } from "@/lib/schema/filter"
+import type { FilterFormSchema } from "@/lib/schemes/filter"
 
 export const FilterForm = () => {
   const dispatch = useAppDispatch()

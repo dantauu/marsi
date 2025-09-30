@@ -27,13 +27,13 @@ export const LikeCard = ({
     <div>
       <div>
         <div
-          className={`fixed flex max-w-[610px] items-center top-0 w-full z-2 bg-white shadow-shadow-block px-4 ${isMobile ? "pt-[92px] h-[130px]" : "pt-0 h-[80px]"}`}
+          className={`fixed flex max-w-[610px] items-center top-0 w-full z-2 bg-white shadow-hard px-4 ${isMobile ? "pt-[95px] h-[133px]" : "pt-0 h-[80px]"}`}
         >
           <Button
             onClick={() => navigate({ to: "/likes" })}
             variant={"default"}
           >
-            <SvgArrowPath />
+            <SvgArrowPath className="w-[15px] h-[27px]" />
           </Button>
           <p className="text-[18px] text-center mx-auto">{likesTitle}</p>
         </div>
@@ -45,7 +45,7 @@ export const LikeCard = ({
           {users.map((item) => (
             <div
               key={item.id}
-              className="relative w-full max-w-[180px] h-[275px] flex flex-col pb-1 items-center rounded-[15px] shadow-shadow-block"
+              className="relative w-full max-w-[180px] h-[275px] flex flex-col pb-1 items-center rounded-[15px] shadow-easy"
             >
               {isLocked && (
                 <div className="absolute z-1 inset-0 rounded-[10px] flex items-center justify-center">
@@ -68,9 +68,12 @@ export const LikeCard = ({
                       : item.photo_url
                   }
                 />
-                <p className="text-lg text-ellipsis overflow-hidden whitespace-nowrap max-w-[83px]">
-                  {item.first_name}, {item.age}
-                </p>
+                <div className="flex items-center">
+                  <p className="text-lg text-ellipsis overflow-hidden whitespace-nowrap max-w-[83px]">
+                    {item.first_name}
+                  </p>
+                  <p className="text-lg">, {item.age}</p>
+                </div>
               </div>
               <div
                 className={`flex justify-between mx-auto px-2 gap-3 ${isMessage && "w-full"} ${
@@ -78,12 +81,12 @@ export const LikeCard = ({
                 }`}
               >
                 <Button onClick={() => onUnlike?.(item.id)} variant="default">
-                  <SvgCrossOrigin className="w-10 h-10" />
+                  <SvgCrossOrigin className="w-9 h-9" />
                 </Button>
                 {isMessage && (
                   <a href={`https://t.me/${item.username}`}>
                     <Button variant="default">
-                      <SvgChat className="w-11 h-11 text-main-green" />
+                      <SvgChat className="w-9 h-9 text-main-green" />
                     </Button>
                   </a>
                 )}

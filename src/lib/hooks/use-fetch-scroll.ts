@@ -4,6 +4,7 @@ import { useGetUsersQuery } from "@/shared/api/user"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
 import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
 import { appendUsers, resetUsers } from "@/redux/slices/users.ts"
+import { skipToken } from "@reduxjs/toolkit/query"
 
 const LIMIT = 10
 //for search
@@ -20,7 +21,7 @@ export const useFetchToScroll = (params = {}) => {
     data: newUsers = [],
     isFetching,
     isLoading,
-  } = useGetUsersQuery({ limit: LIMIT, offset, id, ...params })
+  } = useGetUsersQuery(id ? { limit: LIMIT, offset, id, ...params } : skipToken)
 
   useEffect(() => {
     setOffset(0)
@@ -57,7 +58,7 @@ export const useFetchToSlide = (params = {}) => {
     isFetching,
     isLoading,
     isSuccess,
-  } = useGetUsersQuery({ limit: LIMIT, offset, id, ...params })
+  } = useGetUsersQuery(id ? { limit: LIMIT, offset, id, ...params } : skipToken)
   const countNewUsers = newUsers.length
 
   useEffect(() => {

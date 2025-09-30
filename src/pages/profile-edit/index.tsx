@@ -2,7 +2,7 @@ import {
   EditProfileProvider,
   useFormEmptyValues,
 } from "@/app/providers/profile-edit-form"
-import { type EditFormSchema } from "@/lib/schema/profile-edit"
+import { type EditFormSchema } from "@/lib/schemes/profile-edit"
 import {
   useDeletePhotoMutation,
   useUpdateUserMutation,

@@ -46,7 +46,7 @@ export const MainInfoUser = ({ user, setIsMore }: MainInfoUserProps) => {
           <SvgCrossOrigin className="w-[35px] h-[35px]" />
         </Button>
       </div>
-      <div className="absolute z-1 w-full max-w-[550px] max-h-[56.5vh] -mt-4 flex h-full flex-col gap-5 p-4 px-2 bg-white rounded-[29px] shadow-shadow-block">
+      <div className="absolute z-1 w-full max-w-[550px] max-h-[56.5vh] -mt-4 flex h-full flex-col gap-5 p-4 px-2 bg-white rounded-[29px] shadow-hard">
         <div className="flex items-center gap-2">
           <p className="text-[24px]">{user?.first_name || "Не указано"},</p>
           <p className="text-[20px]">{user?.age || "?"}</p>
@@ -79,7 +79,7 @@ export const MainInfoUser = ({ user, setIsMore }: MainInfoUserProps) => {
                 {user.hobbies?.map((item, index) => (
                   <p
                     key={index}
-                    className="shadow-shadow-block text-[15px] p-1 rounded-[5px] font-ManropeM"
+                    className="shadow-hard text-[15px] p-1 rounded-[5px] font-ManropeM"
                   >
                     {item}
                   </p>

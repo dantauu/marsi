@@ -11,7 +11,7 @@ import { useWatch } from "react-hook-form"
 import { FieldMeta } from "./edit-metadata.tsx"
 import { AddHobbies } from "@/features/profile-edit"
 import { getGenderFormat } from "@/lib/utils/format-gender.ts"
-import type { EditFormSchema } from "@/lib/schema/profile-edit"
+import type { EditFormSchema } from "@/lib/schemes/profile-edit"
 
 export const EditMainInfo = ({ className }: { className?: string }) => {
   const form = useEditProfileForm()
@@ -70,7 +70,7 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
 
   console.log("ERRORS", errors)
   return (
-    <div className={cn("rounded-[18px] shadow-shadow-block", className)}>
+    <div className={cn("rounded-[18px] shadow-hard", className)}>
       <div className="flex flex-col gap-4 p-2">
         <p className="font-HelveticaB text-[21px]">Основное</p>
         <ItemEdit

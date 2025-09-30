@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import { type PropsWithChildren, useCallback } from "react"
 import { FilterFormContext } from "@/app/context/filter-form-context.tsx"
-import { type FilterFormSchema, filterSchema } from "@/lib/schema/filter"
+import { type FilterFormSchema, filterSchema } from "@/lib/schemes/filter"
 
 export const formEmptyValues: FilterFormSchema = {
   minAge: null,

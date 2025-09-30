@@ -1,4 +1,4 @@
-import type { EditFormSchema } from "@/lib/schema/profile-edit"
+import type { EditFormSchema } from "@/lib/schemes/profile-edit"
 import { type JSX } from "react"
 import type { User } from "./user"
 

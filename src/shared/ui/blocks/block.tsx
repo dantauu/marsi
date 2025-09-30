@@ -14,7 +14,7 @@ const Block = ({
       onClick={onClick}
       className={cn(
         className,
-        "flex items-center h-[43px] px-1.5 shadow-shadow-block rounded-[10px]"
+        "flex items-center h-[43px] px-1.5 shadow-easy rounded-[10px]"
       )}
     >
       <p className="font-ManropeM">{text}</p>

@@ -10,7 +10,7 @@ import {
   NameEdit,
 } from "@/ui"
 import { InputEdit } from "@/shared/ui/inputs/profile-edit"
-import type { EditFormSchema } from "@/lib/schema/profile-edit"
+import type { EditFormSchema } from "@/lib/schemes/profile-edit"
 
 type RenderProps = {
   control: Control<EditFormSchema>
@@ -55,7 +55,13 @@ export const FieldMeta: Record<
             placeholder="Введите ваш возраст (от 16)"
             showErrors={showErrors}
             {...field}
-            onChange={(val) => field.onChange(Number(val))}
+            onChange={(val) => {
+              if (val === "") {
+                field.onChange(null)
+              } else {
+                field.onChange(Number(val))
+              }
+            }}
           />
         )}
       />
