@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
 import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
 import { appendUsers, resetUsers } from "@/redux/slices/users.ts"
 import { skipToken } from "@reduxjs/toolkit/query"
+import { useTelegram } from "@/app/providers/telegram"
 
 const LIMIT = 10
 //for search
@@ -14,6 +15,14 @@ export const useFetchToScroll = (params = {}) => {
   const [offset, setOffset] = useState(0)
   const { user } = useUserMe()
   const id = user?.id
+  const { webApp } = useTelegram()
+  const isLocal = process.env.NODE_ENV === 'development'
+  const queryArgs =
+    webApp
+      ? (id
+        ? { limit: LIMIT, offset, id, ...params }
+        : (isLocal ? { limit: LIMIT, offset, ...params } : skipToken))
+      : { limit: LIMIT, offset, ...params }
 
   const { ref, inView } = useInView({ threshold: 0.5 })
 
@@ -21,7 +30,7 @@ export const useFetchToScroll = (params = {}) => {
     data: newUsers = [],
     isFetching,
     isLoading,
-  } = useGetUsersQuery(id ? { limit: LIMIT, offset, id, ...params } : skipToken)
+  } = useGetUsersQuery(queryArgs)
 
   useEffect(() => {
     setOffset(0)
@@ -50,15 +59,23 @@ export const useFetchToSlide = (params = {}) => {
   const users = useAppSelector((state) => state.users.users)
   const dispatch = useAppDispatch()
   const currentIndex = useAppSelector((state) => state.slider.currentIndex)
+  const { webApp } = useTelegram()
   const { user } = useUserMe()
   const id = user?.id
+  const isLocal = process.env.NODE_ENV === 'development'
+  const queryArgs =
+    webApp
+      ? (id
+        ? { limit: LIMIT, offset, id, ...params }
+        : (isLocal ? { limit: LIMIT, offset, ...params } : skipToken))
+      : { limit: LIMIT, offset, ...params }
 
   const {
     data: newUsers = [],
     isFetching,
     isLoading,
     isSuccess,
-  } = useGetUsersQuery(id ? { limit: LIMIT, offset, id, ...params } : skipToken)
+  } = useGetUsersQuery(queryArgs)
   const countNewUsers = newUsers.length
 
   useEffect(() => {
