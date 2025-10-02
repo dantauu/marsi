@@ -16,13 +16,14 @@ export const useFetchToScroll = (params = {}) => {
   const { user } = useUserMe()
   const id = user?.id
   const { webApp } = useTelegram()
-  const isLocal = process.env.NODE_ENV === 'development'
-  const queryArgs =
-    webApp
-      ? (id
-        ? { limit: LIMIT, offset, id, ...params }
-        : (isLocal ? { limit: LIMIT, offset, ...params } : skipToken))
-      : { limit: LIMIT, offset, ...params }
+  const isLocal = process.env.NODE_ENV === "development"
+  const queryArgs = webApp
+    ? id
+      ? { limit: LIMIT, offset, id, ...params }
+      : isLocal
+        ? { limit: LIMIT, offset, ...params }
+        : skipToken
+    : { limit: LIMIT, offset, ...params }
 
   const { ref, inView } = useInView({ threshold: 0.5 })
 
@@ -62,13 +63,14 @@ export const useFetchToSlide = (params = {}) => {
   const { webApp } = useTelegram()
   const { user } = useUserMe()
   const id = user?.id
-  const isLocal = process.env.NODE_ENV === 'development'
-  const queryArgs =
-    webApp
-      ? (id
-        ? { limit: LIMIT, offset, id, ...params }
-        : (isLocal ? { limit: LIMIT, offset, ...params } : skipToken))
-      : { limit: LIMIT, offset, ...params }
+  const isLocal = process.env.NODE_ENV === "development"
+  const queryArgs = webApp
+    ? id
+      ? { limit: LIMIT, offset, id, ...params }
+      : isLocal
+        ? { limit: LIMIT, offset, ...params }
+        : skipToken
+    : { limit: LIMIT, offset, ...params }
 
   const {
     data: newUsers = [],
