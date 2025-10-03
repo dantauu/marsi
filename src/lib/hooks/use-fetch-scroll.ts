@@ -6,6 +6,7 @@ import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
 import { appendUsers, resetUsers } from "@/redux/slices/users.ts"
 import { skipToken } from "@reduxjs/toolkit/query"
 import { useTelegram } from "@/app/providers/telegram"
+import { getEnvironment } from "@/lib/utils/get-environment"
 
 const LIMIT = 10
 //for search
@@ -16,11 +17,12 @@ export const useFetchToScroll = (params = {}) => {
   const { user } = useUserMe()
   const id = user?.id
   const { webApp } = useTelegram()
-  const isLocal = process.env.NODE_ENV === "development"
+  const { isDev } = getEnvironment()
+
   const queryArgs = webApp
     ? id
       ? { limit: LIMIT, offset, id, ...params }
-      : isLocal
+      : isDev
         ? { limit: LIMIT, offset, ...params }
         : skipToken
     : { limit: LIMIT, offset, ...params }
@@ -63,11 +65,12 @@ export const useFetchToSlide = (params = {}) => {
   const { webApp } = useTelegram()
   const { user } = useUserMe()
   const id = user?.id
-  const isLocal = process.env.NODE_ENV === "development"
+  const { isDev } = getEnvironment()
+
   const queryArgs = webApp
     ? id
       ? { limit: LIMIT, offset, id, ...params }
-      : isLocal
+      : isDev
         ? { limit: LIMIT, offset, ...params }
         : skipToken
     : { limit: LIMIT, offset, ...params }
