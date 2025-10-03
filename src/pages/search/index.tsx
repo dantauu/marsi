@@ -25,7 +25,12 @@ const Search = () => {
   const { data: countLikes } = useGetLikesToMeQuery(currentUser?.id ?? "", {
     skip: !currentUser?.id,
   })
-  if (isLoading) return <LoadingBalls />
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <LoadingBalls />
+      </div>
+    )
   if (!users) throw new Error("Error Data")
   return (
     <div data-testid="search" className="pb-[200px]">
