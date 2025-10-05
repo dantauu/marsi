@@ -1,6 +1,6 @@
 import { SliderCard } from "@/entities/slides"
 import { FilterButton } from "@/ui"
-import LoadingBalls from "@/shared/ui/loading"
+import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 import { useFetchToSlide } from "@/lib/hooks/use-fetch-scroll.ts"
 import { useAppSelector } from "@/redux/hooks.ts"
 import { useBlockScroll } from "@/shared/lib/hooks/use-block-scroll.ts"

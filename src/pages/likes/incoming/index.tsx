@@ -1,4 +1,4 @@
-import { IncomingLikesList } from "@/entities/likes/incoming-likes-card"
+import { IncomingLikesList } from "@/entities/likes/index.ts"
 
 export const IncomingLikes = () => {
   return <IncomingLikesList />

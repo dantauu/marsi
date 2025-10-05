@@ -13,7 +13,8 @@
     "icons:build": "rimraf ./src/assets/icons && npx @svgr/cli --typescript --jsx-runtime automatic --out-dir src/assets/icons --index-template config/svgr-index-template.js -- src/assets/icons-source && npx prettier ./src/assets/icons --write",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "vitest"
+    "test": "vitest",
+    "install:ci": "yarn install --no-workspace-root-check"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",

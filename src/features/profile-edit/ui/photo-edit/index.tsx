@@ -7,7 +7,7 @@ import { useUploadPhotoMutation } from "@/shared/api/user.ts"
 import SvgCross from "@/assets/icons/Cross.tsx"
 import Button from "@/shared/ui/buttons/button.tsx"
 import heic2any from "heic2any"
-import LoadingBalls from "@/shared/ui/loading"
+import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 
 const pictureItems = [
   { id: 1, plusIcon: plusIcon },
