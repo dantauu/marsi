@@ -3,7 +3,7 @@ import { useGetMyLikesQuery } from "@/shared/api/likes.ts"
 import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
 import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 import { useGetUsersStatus } from "@/entities/likes/lib/utils/status-get-users"
-import { useDeleteLike } from "@/entities/likes/lib/delete-my-like"
+import { useDeleteLike } from "@/entities/likes/lib/delete-like"
 
 export const MyLikesList = () => {
   const { user: currentUser, isLoading: userLoading } = useUserMe()
@@ -16,7 +16,7 @@ export const MyLikesList = () => {
   } = useGetMyLikesQuery(currentUser?.id ?? "", {
     skip: !currentUser?.id,
   })
-  const { handleUnlike } = useDeleteLike({
+  const { handleUnlike, isUnlikeLoading } = useDeleteLike({
     currentUser: currentUser,
     variant: "my_like",
   })
@@ -33,6 +33,7 @@ export const MyLikesList = () => {
       users={users}
       likesTitle={"Лайки от меня"}
       onUnlike={handleUnlike}
+      isUnlikeLoading={isUnlikeLoading}
       isLocked={false}
     />
   )

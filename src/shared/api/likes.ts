@@ -29,9 +29,22 @@ export const likesApi = baseApi.injectEndpoints({
         method: "POST",
         body: { likedId, likerId },
       }),
-      invalidatesTags: (_result, _error, { likedId }) => [
-        { type: "LikesToMe", id: likedId },
+      invalidatesTags: (_result, _error, { likerId }) => [
+        { type: "MyLikes", id: likerId },
       ],
+      async onQueryStarted({ likedId, likerId }, { dispatch, queryFulfilled }) {
+        const patchResult = dispatch(
+          likesApi.util.updateQueryData("getMyLikes", likerId, (draft) => {
+            const idx = draft.findIndex((u) => u.id === likedId)
+            if (idx !== -1) draft.splice(idx, 1)
+          })
+        )
+        try {
+          await queryFulfilled
+        } catch {
+          patchResult.undo()
+        }
+      },
     }),
     unlikeIncomingUser: builder.mutation<
       void,
@@ -45,6 +58,19 @@ export const likesApi = baseApi.injectEndpoints({
       invalidatesTags: (_result, _error, { likedId }) => [
         { type: "LikesToMe", id: likedId },
       ],
+      async onQueryStarted({ likedId, likerId }, { dispatch, queryFulfilled }) {
+        const patchResult = dispatch(
+          likesApi.util.updateQueryData("getLikesToMe", likedId, (draft) => {
+            const idx = draft.findIndex((u) => u.id === likerId)
+            if (idx !== -1) draft.splice(idx, 1)
+          })
+        )
+        try {
+          await queryFulfilled
+        } catch {
+          patchResult.undo()
+        }
+      },
     }),
     getMyLikes: builder.query<User[], string>({
       query: (userId) => `likes/mine?userId=${userId}`,

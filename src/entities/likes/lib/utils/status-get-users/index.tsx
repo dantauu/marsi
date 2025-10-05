@@ -18,12 +18,12 @@ export const useGetUsersStatus = ({
     if (!prev.current.isFetching && isFetching) {
       notify({ message: "Загрузка..." })
     }
-    if (!prev.current.isSuccess && isSuccess) {
-      notify({
-        message: "Успешно",
-        duration: 1500,
-      })
-    }
+    // if (!prev.current.isSuccess && isSuccess) {
+    //   notify({
+    //     message: "Успешно",
+    //     duration: 1500,
+    //   })
+    // }
     if (!prev.current.isError && isError) {
       notify({
         message: "Ошибка",
