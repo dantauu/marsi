@@ -4,7 +4,7 @@ import {
   useUnlikeIncomingUserMutation,
 } from "@/shared/api/likes.ts"
 import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
-import LoadingBalls from "@/shared/ui/loading"
+import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 
 export const IncomingLikesList = () => {
   const { user: userMe, isLoading: userLoading } = useUserMe()

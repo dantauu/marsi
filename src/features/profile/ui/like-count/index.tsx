@@ -1,7 +1,7 @@
 import SvgArrow from "@/assets/icons/Arrow"
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useNavigate } from "@tanstack/react-router"
-import LoadingBalls from "@/shared/ui/loading"
+import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 import type { User } from "@/app/types/user"
 
 type LikeCountProps = {

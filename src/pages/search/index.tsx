@@ -1,7 +1,7 @@
 import { BackToTop, LikeCountNotify } from "@/features/search"
 import { LayoutSwitchButtons } from "@/ui/index.ts"
 import { FilterButton } from "@/ui/index.ts"
-import LoadingBalls from "@/shared/ui/loading"
+import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 import { LayoutCard } from "@/widgets/card"
 import { useFetchToScroll } from "@/lib/hooks/use-fetch-scroll.ts"
 import { useGetLikesToMeQuery } from "@/shared/api/likes.ts"

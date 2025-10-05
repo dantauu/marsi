@@ -1,6 +1,8 @@
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useEditProfileForm } from "@/app/context/profile-edit-context.tsx"
 import { cn } from "@/lib/utils/cn.tsx"
+import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
+import LoadingCircle from "@/shared/ui/loading/circle.tsx"
 
 export const SaveNavBar = ({ className }: { className?: string }) => {
   const form = useEditProfileForm()
@@ -8,6 +10,7 @@ export const SaveNavBar = ({ className }: { className?: string }) => {
   const resetFilter = () => {
     reset()
   }
+  const { isFetching } = useUserMe()
   return (
     <div
       className={cn(
@@ -29,7 +32,7 @@ export const SaveNavBar = ({ className }: { className?: string }) => {
           type="submit"
           variant="green"
         >
-          Сохранить
+          {isFetching ? <LoadingCircle /> : "Сохранить"}
         </Button>
       </div>
     </div>
