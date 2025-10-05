@@ -13,8 +13,7 @@
     "icons:build": "rimraf ./src/assets/icons && npx @svgr/cli --typescript --jsx-runtime automatic --out-dir src/assets/icons --index-template config/svgr-index-template.js -- src/assets/icons-source && npx prettier ./src/assets/icons --write",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "vitest",
-    "install:ci": "yarn install --no-workspace-root-check"
+    "test": "vitest"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
@@ -23,7 +22,11 @@
     "@tanstack/react-router": "^1.120.5",
     "@tanstack/react-router-devtools": "^1.120.6",
     "@tanstack/router-plugin": "^1.120.5",
+    "@telegram-apps/bridge": "^2.11.0",
     "@telegram-apps/sdk": "^3.10.0",
+    "@telegram-apps/signals": "^1.1.2",
+    "@telegram-apps/toolkit": "^2.1.3",
+    "@telegram-apps/types": "^2.0.3",
     "@testing-library/react": "^16.3.0",
     "@twa-dev/types": "^8.0.2",
     "class-variance-authority": "^0.7.1",

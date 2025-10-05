@@ -1836,6 +1836,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@telegram-apps/bridge@npm:^2.11.0":
+  version: 2.11.0
+  resolution: "@telegram-apps/bridge@npm:2.11.0"
+  dependencies:
+    "@telegram-apps/signals": ^1.1.2
+    "@telegram-apps/toolkit": ^2.1.3
+    "@telegram-apps/transformers": ^2.2.6
+    "@telegram-apps/types": ^2.0.3
+    better-promises: ^0.4.1
+    error-kid: ^0.0.7
+    mitt: ^3.0.1
+    valibot: 1.0.0
+  checksum: 6fbd0104dc04e1e18fd0fd9cc04a81668e78ee79ac21b38029fcc61effeadb5f70ae4a2980cfe6c4a22067bf2b3e8158074bbaa5cc45cfd017a03546fcb205bc
+  languageName: node
+  linkType: hard
+
 "@telegram-apps/bridge@npm:^2.8.3":
   version: 2.8.3
   resolution: "@telegram-apps/bridge@npm:2.8.3"
@@ -1901,10 +1917,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@telegram-apps/transformers@npm:^2.2.6":
+  version: 2.2.6
+  resolution: "@telegram-apps/transformers@npm:2.2.6"
+  dependencies:
+    "@telegram-apps/toolkit": ^2.1.3
+    "@telegram-apps/types": ^2.0.3
+    valibot: 1.0.0-beta.14
+  checksum: 344e3cbfd1d3512ba8288e019ab1daedde4f615d80197b71ab54e4ac272871e92ec15b92fc53bb3e22fcd54445e5266dd81841cf83cb0b0ade98db8e2ec1140a
+  languageName: node
+  linkType: hard
+
 "@telegram-apps/types@npm:^2.0.1":
   version: 2.0.1
   resolution: "@telegram-apps/types@npm:2.0.1"
   checksum: cc41b3a8e375f9367fe1cb7ebbe95c35df448308bf5922ffd74465717a5fa4b9d3dbae67630995650c892421a4647179940daf32eba2001281a4638da83a64b9
+  languageName: node
+  linkType: hard
+
+"@telegram-apps/types@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "@telegram-apps/types@npm:2.0.3"
+  checksum: dc96fa41d853c64f693929e000b01631e4b956bd7876ae956ffcc807f7644f149d1d47924039b1b986ef93f2dafb0c8817fc6fbdb877f9958aac582a9dadfccb
   languageName: node
   linkType: hard
 
@@ -4662,7 +4696,11 @@ __metadata:
     "@tanstack/react-router": ^1.120.5
     "@tanstack/react-router-devtools": ^1.120.6
     "@tanstack/router-plugin": ^1.120.5
+    "@telegram-apps/bridge": ^2.11.0
     "@telegram-apps/sdk": ^3.10.0
+    "@telegram-apps/signals": ^1.1.2
+    "@telegram-apps/toolkit": ^2.1.3
+    "@telegram-apps/types": ^2.0.3
     "@testing-library/jest-dom": ^6.6.3
     "@testing-library/react": ^16.3.0
     "@twa-dev/types": ^8.0.2
