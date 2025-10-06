@@ -7,6 +7,7 @@ import SvgCrossOrigin from "@/assets/icons/CrossOrigin.tsx"
 import SvgArrowPath from "@/assets/icons/ArrowPath.tsx"
 import SvgChat from "@/assets/icons/Chat.tsx"
 import { usePlatform } from "@/shared/lib/hooks/use-platform.ts"
+import LoadingCircle from "@/shared/ui/loading/circle.tsx"
 
 export const LikeCard = ({
   isLocked,
@@ -14,15 +15,20 @@ export const LikeCard = ({
   likesTitle,
   onUnlike,
   isMessage,
+  isUnlikeIncomingLoading,
+  isUnlikeLoading,
 }: {
   isLocked?: boolean
   users: User[] | undefined
   onUnlike?: (userId: string) => void
   likesTitle: string
   isMessage?: boolean
+  isUnlikeIncomingLoading?: boolean
+  isUnlikeLoading?: boolean
 }) => {
   const navigate = useNavigate()
   const { isMobile } = usePlatform()
+  const isPending = isUnlikeIncomingLoading || isUnlikeLoading
   return (
     <div>
       <div>
@@ -45,7 +51,7 @@ export const LikeCard = ({
           {users.map((item) => (
             <div
               key={item.id}
-              className="relative w-full max-w-[180px] h-[275px] flex flex-col pb-1 items-center rounded-[15px] shadow-easy"
+              className="relative w-full max-w-[180px] h-[270px] flex flex-col pb-1 items-center rounded-[15px] shadow-easy"
             >
               {isLocked && (
                 <div className="absolute z-1 inset-0 rounded-[10px] flex items-center justify-center">
@@ -81,7 +87,11 @@ export const LikeCard = ({
                 }`}
               >
                 <Button onClick={() => onUnlike?.(item.id)} variant="default">
-                  <SvgCrossOrigin className="w-9 h-9" />
+                  {isPending ? (
+                    <LoadingCircle />
+                  ) : (
+                    <SvgCrossOrigin className="w-9 h-9" />
+                  )}
                 </Button>
                 {isMessage && (
                   <a href={`https://t.me/${item.username}`}>

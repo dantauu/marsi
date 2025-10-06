@@ -16,7 +16,7 @@ export const IncomingLikesList = () => {
   } = useGetLikesToMeQuery(currentUser?.id ?? "", {
     skip: !currentUser?.id,
   })
-  const { handleUnlike } = useDeleteLike({
+  const { handleUnlike, isUnlikeIncomingLoading } = useDeleteLike({
     currentUser,
     variant: "incoming_like",
   })
@@ -32,6 +32,7 @@ export const IncomingLikesList = () => {
       isMessage={true}
       users={users}
       likesTitle={"Входящие лайки"}
+      isUnlikeIncomingLoading={isUnlikeIncomingLoading}
       onUnlike={handleUnlike}
       isLocked={false}
     />
