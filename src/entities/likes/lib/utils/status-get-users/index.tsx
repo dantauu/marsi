@@ -6,7 +6,7 @@ type StatusGetNotifyProps = {
   isSuccess: boolean
   isError: boolean
 }
-
+//this hook can process any status, but isFetching and isSuccess - overkill
 export const useGetUsersStatus = ({
   isFetching,
   isSuccess,
@@ -15,9 +15,9 @@ export const useGetUsersStatus = ({
   const { notify } = useNotify()
   const prev = useRef({ isFetching: false, isSuccess: false, isError: false })
   useEffect(() => {
-    if (!prev.current.isFetching && isFetching) {
-      notify({ message: "Загрузка..." })
-    }
+    // if (!prev.current.isFetching && isFetching) {
+    //   notify({ message: "Загрузка..." })
+    // }
     // if (!prev.current.isSuccess && isSuccess) {
     //   notify({
     //     message: "Успешно",

@@ -23,8 +23,8 @@ export const LikeCard = ({
   onUnlike?: (userId: string) => void
   likesTitle: string
   isMessage?: boolean
-  isUnlikeIncomingLoading?: boolean
-  isUnlikeLoading?: boolean
+  isUnlikeIncomingLoading?: (userId: string) => boolean
+  isUnlikeLoading?: (userId: string) => boolean
 }) => {
   const navigate = useNavigate()
   const { isMobile } = usePlatform()
@@ -78,7 +78,7 @@ export const LikeCard = ({
                   <p className="text-lg text-ellipsis overflow-hidden whitespace-nowrap max-w-[83px]">
                     {item.first_name}
                   </p>
-                  <p className="text-lg">, {item.age}</p>
+                  <p className="text-lg">, {item.age ? item.age : "?"}</p>
                 </div>
               </div>
               <div
@@ -87,8 +87,8 @@ export const LikeCard = ({
                 }`}
               >
                 <Button onClick={() => onUnlike?.(item.id)} variant="default">
-                  {isPending ? (
-                    <LoadingCircle />
+                  {isPending?.(item.id) ? (
+                    <LoadingCircle className="w-7 h-7" />
                   ) : (
                     <SvgCrossOrigin className="w-9 h-9" />
                   )}

@@ -15,8 +15,8 @@ export const useDeleteLike = ({
   variant,
 }: StatusDeleteUserProps) => {
   const { notify } = useNotify()
-  const [unlikeUser, { isLoading: isUnlikeLoading }] = useUnlikeUserMutation()
-  const [unlikeIncomingUser, { isLoading: isUnlikeIncomingLoading }] =
+  const [unlikeUser, unlikeUserMeta] = useUnlikeUserMutation()
+  const [unlikeIncomingUser, unlikeIncomingMeta] =
     useUnlikeIncomingUserMutation()
   const handleUnlike = async (userId: string) => {
     if (!currentUser?.id) return
@@ -37,5 +37,12 @@ export const useDeleteLike = ({
       console.error(error)
     }
   }
-  return { handleUnlike, isUnlikeLoading, isUnlikeIncomingLoading }
+  return {
+    handleUnlike,
+    isPending: (userId: string) =>
+      (unlikeUserMeta.isLoading &&
+        unlikeUserMeta.originalArgs?.likedId === userId) ||
+      (unlikeIncomingMeta.isLoading &&
+        unlikeIncomingMeta.originalArgs?.likerId === userId),
+  }
 }
