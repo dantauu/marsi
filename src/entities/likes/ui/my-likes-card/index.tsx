@@ -16,7 +16,7 @@ export const MyLikesList = () => {
   } = useGetMyLikesQuery(currentUser?.id ?? "", {
     skip: !currentUser?.id,
   })
-  const { handleUnlike } = useDeleteLike({
+  const { handleUnlike, isUnlikeLoading } = useDeleteLike({
     currentUser: currentUser,
     variant: "my_like",
   })
@@ -33,6 +33,7 @@ export const MyLikesList = () => {
       users={users}
       likesTitle={"Лайки от меня"}
       onUnlike={handleUnlike}
+      isUnlikeLoading={isUnlikeLoading}
       isLocked={false}
     />
   )

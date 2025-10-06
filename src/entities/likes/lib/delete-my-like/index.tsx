@@ -15,8 +15,8 @@ export const useDeleteLike = ({
   variant,
 }: StatusDeleteUserProps) => {
   const { notify } = useNotify()
-  const [unlikeUser] = useUnlikeUserMutation()
-  const [unlikeIncomingUser] = useUnlikeIncomingUserMutation()
+  const [unlikeUser, { isLoading: isUnlikeLoading }] = useUnlikeUserMutation()
+  const [unlikeIncomingUser, { isLoading: isUnlikeIncomingLoading }] = useUnlikeIncomingUserMutation()
   const handleUnlike = async (userId: string) => {
     if (!currentUser?.id) return
     const scrollY = window.scrollY
@@ -36,5 +36,5 @@ export const useDeleteLike = ({
       console.error(error)
     }
   }
-  return { handleUnlike }
+  return { handleUnlike, isUnlikeLoading, isUnlikeIncomingLoading }
 }
