@@ -16,7 +16,7 @@ export const LikeCard = ({
   onUnlike,
   isMessage,
   isUnlikeIncomingLoading,
-  isUnlikeLoading
+  isUnlikeLoading,
 }: {
   isLocked?: boolean
   users: User[] | undefined
@@ -87,7 +87,11 @@ export const LikeCard = ({
                 }`}
               >
                 <Button onClick={() => onUnlike?.(item.id)} variant="default">
-                  {isPending ? <LoadingCircle /> : <SvgCrossOrigin className="w-9 h-9" />}
+                  {isPending ? (
+                    <LoadingCircle />
+                  ) : (
+                    <SvgCrossOrigin className="w-9 h-9" />
+                  )}
                 </Button>
                 {isMessage && (
                   <a href={`https://t.me/${item.username}`}>
