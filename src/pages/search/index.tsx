@@ -10,8 +10,10 @@ import { useScrollRestore } from "@/lib/hooks/use-scroll-restore.ts"
 import { useAppSelector } from "@/redux/hooks.ts"
 import { usePlatform } from "@/shared/lib/hooks/use-platform.ts"
 import { NotifyLastCard } from "@/shared/ui/notify-last-card"
+import useRouteEmptyFields from "@/shared/lib/utils/route-empty-fileds"
 
 const Search = () => {
+  useRouteEmptyFields()
   const { isMobile } = usePlatform()
   const filters = useAppSelector((state) => state.filters)
   const cleanedFilters = Object.fromEntries(

@@ -6,7 +6,7 @@ import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
 import { appendUsers, resetUsers } from "@/redux/slices/users.ts"
 import { skipToken } from "@reduxjs/toolkit/query"
 import { useTelegram } from "@/app/providers/telegram"
-import { getEnvironment } from "@/lib/utils/get-environment"
+import { getEnvironment } from "@/shared/lib/utils/get-environment"
 
 const LIMIT = 10
 //for search

@@ -4,8 +4,10 @@ import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 import { useFetchToSlide } from "@/lib/hooks/use-fetch-scroll.ts"
 import { useAppSelector } from "@/redux/hooks.ts"
 import { useBlockScroll } from "@/shared/lib/hooks/use-block-scroll.ts"
+import useRouteEmptyFields from "@/shared/lib/utils/route-empty-fileds"
 
 const Slides = () => {
+  useRouteEmptyFields()
   useBlockScroll()
   const filters = useAppSelector((state) => state.filters)
   const cleanedFilters = Object.fromEntries(
