@@ -22,7 +22,9 @@ export const RequiredBlock = () => {
             </p>
             <div className="flex justify-center flex-wrap gap-1">
               {emptyFields.map((i) => (
-                <p className="text-[18px] leading-4 text-red-600">*{i}</p>
+                <p key={i} className="text-[18px] leading-4 text-red-600">
+                  *{i}
+                </p>
               ))}
             </div>
           </div>
