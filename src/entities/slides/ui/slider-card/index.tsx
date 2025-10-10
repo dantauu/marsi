@@ -5,7 +5,7 @@ import { SwipePhotos } from "@/ui/sliders/swipe-photo"
 import SvgPoint from "@/assets/icons/Point.tsx"
 import Button from "@/shared/ui/buttons/button.tsx"
 import SvgArrow from "@/assets/icons/Arrow.tsx"
-import { useState } from "react"
+import { memo, useState } from "react"
 import { MoreInformation } from "@/widgets/modals/more-information"
 
 type SliderCardProps = {
@@ -13,7 +13,7 @@ type SliderCardProps = {
   isFetching: boolean
 }
 
-export const SliderCard = ({ users, isFetching }: SliderCardProps) => {
+export const SliderCard = memo(({ users, isFetching }: SliderCardProps) => {
   const {
     onSwipeStart,
     onSwipeMove,
@@ -113,4 +113,4 @@ export const SliderCard = ({ users, isFetching }: SliderCardProps) => {
       </div>
     </div>
   )
-}
+})

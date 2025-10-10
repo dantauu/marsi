@@ -1,5 +1,6 @@
 import type React from "react"
 import { cn } from "@/lib/utils/cn.tsx"
+import { memo } from "react"
 
 const variants = {
   green:
@@ -21,26 +22,29 @@ type ButtonProps = {
   disabled?: boolean
 }
 
-const Button = ({
-  variant,
-  children,
-  onClick,
-  onMouseDown,
-  type,
-  disabled,
-  className,
-}: ButtonProps) => {
-  const variantName = variants[variant]
-  return (
-    <button
-      disabled={disabled}
-      type={type}
-      onClick={onClick}
-      onMouseDown={onMouseDown}
-      className={cn(variantName, className)}
-    >
-      {children}
-    </button>
-  )
-}
+const Button = memo(
+  ({
+    variant,
+    children,
+    onClick,
+    onMouseDown,
+    type,
+    disabled,
+    className,
+  }: ButtonProps) => {
+    const variantName = variants[variant]
+    return (
+      <button
+        disabled={disabled}
+        type={type}
+        onClick={onClick}
+        onMouseDown={onMouseDown}
+        className={cn(variantName, className)}
+      >
+        {children}
+      </button>
+    )
+  }
+)
+
 export default Button

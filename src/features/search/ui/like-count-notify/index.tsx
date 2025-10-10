@@ -1,6 +1,7 @@
 import type { User } from "@/app/types/user"
+import { memo } from "react"
 
-export const LikeCountNotify = ({
+const LikesCountComponent = ({
   countLikes,
 }: {
   countLikes: User[] | undefined
@@ -14,3 +15,5 @@ export const LikeCountNotify = ({
     </div>
   )
 }
+
+export const LikesCount = memo(LikesCountComponent)
