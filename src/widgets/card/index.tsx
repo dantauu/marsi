@@ -14,14 +14,12 @@ const tabs = {
   },
 } as const
 
-export const LayoutCardList = memo(
-  ({ data }: { data: UserCardExpanded[] }) => {
-    const layout = useAppSelector((state) => state.layout_switch.layout)
-    const { Component } = tabs[layout]
-    return (
-      <div className="mt-4">
-        <Component data={data} />
-      </div>
-    )
-  }
-)
+export const LayoutCardList = memo(({ data }: { data: UserCardExpanded[] }) => {
+  const layout = useAppSelector((state) => state.layout_switch.layout)
+  const { Component } = tabs[layout]
+  return (
+    <div className="mt-4">
+      <Component data={data} />
+    </div>
+  )
+})

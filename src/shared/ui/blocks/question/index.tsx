@@ -52,25 +52,22 @@ const QuestionItem = memo(
   (prev, next) => prev.isActive === next.isActive && prev.item === next.item
 )
 
-export const QuestionBlock = memo(({
-  data,
-  onClick,
-  isResponse,
-}: QuestionBlockProps) => {
-  const { isMobile } = usePlatform()
-  return (
-    <div
-      className={`flex flex-col gap-7 px-2 ${isMobile ? "pt-[100px]" : "pt-[90px]"}`}
-    >
-      {data.map((item) => (
-        <QuestionItem
-          key={item.id}
-          item={item}
-          onClick={onClick}
-          isActive={isResponse === item.id}
-        />
-      ))}
-    </div>
-  )
-}
+export const QuestionBlock = memo(
+  ({ data, onClick, isResponse }: QuestionBlockProps) => {
+    const { isMobile } = usePlatform()
+    return (
+      <div
+        className={`flex flex-col gap-7 px-2 ${isMobile ? "pt-[100px]" : "pt-[90px]"}`}
+      >
+        {data.map((item) => (
+          <QuestionItem
+            key={item.id}
+            item={item}
+            onClick={onClick}
+            isActive={isResponse === item.id}
+          />
+        ))}
+      </div>
+    )
+  }
 )

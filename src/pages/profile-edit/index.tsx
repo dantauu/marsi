@@ -1,91 +1,45 @@
-import {
-  EditProfileProvider,
-  useFormEmptyValues,
-} from "@/app/providers/profile-edit-form"
-import { type EditFormSchema } from "@/lib/schemes/profile-edit"
-import {
-  useDeletePhotoMutation,
-  useUpdateUserMutation,
-} from "@/shared/api/user.ts"
-import { useTelegram } from "@/app/providers/telegram"
-import { getNormalizeGender } from "@/lib/utils/format-gender.ts"
-import { EditProfileContent } from "@/pages/profile-edit/content.tsx"
-import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
-import LoadingBalls from "@/shared/ui/loading/balls.tsx"
+import { SaveNavBar } from "@/widgets/nav-bar/save-edit-profile"
+import { EditMainInfo, PhotoEdit } from "@/features/profile-edit"
+import { useAppSelector } from "@/redux/hooks.ts"
+import { Overlay } from "@/widgets/overlay"
+import { useUnsavedChanges } from "@/lib/hooks/use-unsaved-changes.ts"
+import { useEditProfileForm } from "@/app/context/profile-edit-context.tsx"
+import { UnsavedChangesModal } from "@/widgets/modals/unsaved-changes"
+import { usePlatform } from "@/shared/lib/hooks/use-platform.ts"
+import SvgArrowPath from "@/assets/icons/ArrowPath.tsx"
 
-const EditProfile = () => {
-  const { user: telegramUser } = useTelegram()
-  const [updateUser] = useUpdateUserMutation()
-  const [deletePhoto] = useDeletePhotoMutation()
-  const { notify } = useNotify()
-
-  const {
-    values,
-    fallbackValues: defaultValues,
-    isLoading,
-  } = useFormEmptyValues()
-
-  const handleSubmit = async (data: EditFormSchema) => {
-    if (!defaultValues) return
-    const validatePhoto = (data.photo_url || []).filter(
-      (url) => url.trim() !== ""
-    )
-    const finalData = {
-      ...data,
-      photo_url: validatePhoto.length > 0 ? validatePhoto : undefined,
-    }
-
-    const changedEntries = Object.entries(finalData).filter(([key, value]) => {
-      const defaultValue = defaultValues[key as keyof EditFormSchema]
-
-      if (Array.isArray(value) && Array.isArray(defaultValue)) {
-        return (
-          value.length !== defaultValue.length ||
-          value.some((v, i) => v !== defaultValue[i])
-        )
-      }
-
-      return value !== defaultValue
-    })
-
-    const { deleted_photos = [] } = data
-
-    const changedData = Object.fromEntries(
-      changedEntries.filter(([key]) => key !== "deleted_photos")
-    )
-    for (const fileName of deleted_photos) {
-      await deletePhoto(fileName).unwrap()
-    }
-
-    const gender = changedData.gender
-
-    const normalizeData = {
-      ...changedData,
-      gender:
-        typeof gender === "string" ? getNormalizeGender(gender) : undefined,
-    }
-
-    await notify(
-      updateUser({ id: String(telegramUser?.id), ...normalizeData }).unwrap(),
-      {
-        success: "Изменения сохранены",
-        error: "Ошибка",
-        loading: "Сохранение...",
-      }
-    )
-
-    console.log("Изменённые поля:", changedEntries)
-  }
-  if (isLoading || !defaultValues) return <LoadingBalls />
+export const EditProfileContent = () => {
+  const { isDirty } = useEditProfileForm()
+  const { isMobile } = usePlatform()
+  const { showModal, setShowModal, confirmLeave, navigate } =
+    useUnsavedChanges(isDirty)
+  const { isEditOpen } = useAppSelector((state) => state.modal)
   return (
-    <EditProfileProvider
-      values={values}
-      defaultValues={defaultValues}
-      onSubmit={handleSubmit}
-    >
-      <EditProfileContent />
-    </EditProfileProvider>
+    <>
+      {isEditOpen && <Overlay className="max-w-[610px]" />}
+      <div
+        data-testid="profile-edit"
+        className={`pb-[130px] ${isMobile ? "pt-[65px]" : "pt-[50px]"}`}
+      >
+        <div
+          className={`fixed pb-[4.5px] px-4 z-5 bg-white w-full max-w-[610px] top-0 flex items-center  justify-between ${isMobile ? "pt-[97px]" : "pt-[30px]"}`}
+        >
+          <SvgArrowPath
+            className="w-[15px] h-[27px]"
+            onClick={() => navigate("/profile")}
+          />
+          <p className="text-center text-[17.5px] mx-auto">Редактирование</p>
+        </div>
+        <SaveNavBar className="fixed max-w-[610px] bottom-4" />
+        <PhotoEdit />
+        <EditMainInfo className="mt-10" />
+      </div>
+
+      <UnsavedChangesModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        confirmLeave={confirmLeave}
+      />
+    </>
   )
 }
-
-export default EditProfile
