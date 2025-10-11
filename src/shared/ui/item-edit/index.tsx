@@ -1,4 +1,5 @@
 import SvgEdit from "@/assets/icons/Edit.tsx"
+import { memo } from "react"
 
 const ItemEdit = ({
   title,
@@ -27,4 +28,4 @@ const ItemEdit = ({
   )
 }
 
-export default ItemEdit
+export default memo(ItemEdit)

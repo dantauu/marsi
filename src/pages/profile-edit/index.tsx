@@ -8,10 +8,10 @@ import {
   useUpdateUserMutation,
 } from "@/shared/api/user.ts"
 import { useTelegram } from "@/app/providers/telegram"
-import LoadingBalls from "@/shared/ui/loading"
 import { getNormalizeGender } from "@/lib/utils/format-gender.ts"
 import { EditProfileContent } from "@/pages/profile-edit/content.tsx"
 import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
+import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 
 const EditProfile = () => {
   const { user: telegramUser } = useTelegram()
@@ -22,7 +22,7 @@ const EditProfile = () => {
   const {
     values,
     fallbackValues: defaultValues,
-    isLoaded,
+    isLoading,
   } = useFormEmptyValues()
 
   const handleSubmit = async (data: EditFormSchema) => {
@@ -76,7 +76,7 @@ const EditProfile = () => {
 
     console.log("Изменённые поля:", changedEntries)
   }
-  if (!isLoaded || !defaultValues) return <LoadingBalls />
+  if (isLoading || !defaultValues) return <LoadingBalls />
   return (
     <EditProfileProvider
       values={values}

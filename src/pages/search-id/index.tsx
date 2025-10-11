@@ -1,7 +1,7 @@
 import { useParams } from "@tanstack/react-router"
 import { useGetUserByIdQuery } from "@/shared/api/user.ts"
 import { SearchIdCard } from "@/entities/search-id/ui/card"
-import LoadingBalls from "@/shared/ui/loading"
+import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 import { useBlockScroll } from "@/shared/lib/hooks/use-block-scroll.ts"
 
 export const SearchId = () => {

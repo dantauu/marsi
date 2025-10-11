@@ -26,9 +26,10 @@ function fetchUser(user?: User | null): Partial<EditFormSchema> {
 export function useFormEmptyValues(): {
   fallbackValues: EditFormSchema
   values: Partial<EditFormSchema> | null
-  isLoaded: boolean
+  isFetching: boolean
+  isLoading: boolean
 } {
-  const { user, isFetching } = useUserMe()
+  const { user, isFetching, isLoading } = useUserMe()
 
   const fallbackUser = {
     photo_url: [],
@@ -45,7 +46,8 @@ export function useFormEmptyValues(): {
   return {
     values: fetchUser(user),
     fallbackValues: fallbackUser,
-    isLoaded: !isFetching,
+    isFetching: isFetching,
+    isLoading: isLoading,
   }
 }
 

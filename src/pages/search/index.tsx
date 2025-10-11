@@ -1,8 +1,7 @@
-import { BackToTop, LikeCountNotify } from "@/features/search"
-import { LayoutSwitchButtons } from "@/ui/index.ts"
-import { FilterButton } from "@/ui/index.ts"
-import LoadingBalls from "@/shared/ui/loading"
-import { LayoutCard } from "@/widgets/card"
+import { BackToTop, LikesCount } from "@/features/search"
+import { SwitchButtons } from "@/ui/index.ts"
+import LoadingBalls from "@/shared/ui/loading/balls.tsx"
+import { LayoutCardList } from "@/widgets/card"
 import { useFetchToScroll } from "@/lib/hooks/use-fetch-scroll.ts"
 import { useGetLikesToMeQuery } from "@/shared/api/likes.ts"
 import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
@@ -10,8 +9,12 @@ import { useScrollRestore } from "@/lib/hooks/use-scroll-restore.ts"
 import { useAppSelector } from "@/redux/hooks.ts"
 import { usePlatform } from "@/shared/lib/hooks/use-platform.ts"
 import { NotifyLastCard } from "@/shared/ui/notify-last-card"
+import useRouteEmptyFields from "@/shared/lib/utils/route-empty-fileds"
+import { FilterButton } from "@/ui"
+import { useMemo } from "react"
 
 const Search = () => {
+  useRouteEmptyFields()
   const { isMobile } = usePlatform()
   const filters = useAppSelector((state) => state.filters)
   const cleanedFilters = Object.fromEntries(
@@ -20,26 +23,32 @@ const Search = () => {
     )
   )
   const { ref, users, isLoading, isFetching } = useFetchToScroll(cleanedFilters)
+  const memoizedUsers = useMemo(() => users ?? [], [users])
   useScrollRestore("search", [users?.length])
   const { user: currentUser } = useUserMe()
   const { data: countLikes } = useGetLikesToMeQuery(currentUser?.id ?? "", {
     skip: !currentUser?.id,
   })
-  if (isLoading) return <LoadingBalls />
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <LoadingBalls />
+      </div>
+    )
   if (!users) throw new Error("Error Data")
   return (
     <div data-testid="search" className="pb-[200px]">
       <div
         className={`fixed z-10 top-0 w-full max-w-[610px] bg-white ${isMobile ? "pt-[80px]" : "pt-0"}`}
       >
-        <LikeCountNotify countLikes={countLikes} />
+        <LikesCount countLikes={countLikes} />
         <div className="flex w-full mx-auto px-[12px] items-center justify-between pb-[5px]">
           <FilterButton />
-          <LayoutSwitchButtons />
+          <SwitchButtons />
         </div>
       </div>
       <div className={`${isMobile ? "pt-[110px]" : "pt-[80px]"}`}>
-        {users && <LayoutCard data={users} />}
+        {users && <LayoutCardList data={memoizedUsers} />}
       </div>
       {users.length === 0 && !isFetching && !isLoading && <NotifyLastCard />}
       <BackToTop />

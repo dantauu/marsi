@@ -12,14 +12,14 @@ type LikeBlockProps = {
 export const LikeBlock = ({ title, path, rotate }: LikeBlockProps) => {
   const navigate = useNavigate()
   return (
-    <div className="bg-[#66CEB5] h-[120px] rounded-[15px] px-2">
+    <div className="bg-[#66CEB5] h-[120px] rounded-[15px] px-2 pr-3.5">
       <p className="text-center text-[19px] text-white">{title}</p>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           {rotate ? (
             <div className="flex items-center ml-[12px]">
               <SvgLongArrow className="w-[80px] h-[50px] rotate-180" />
-              <SvgHeart className="w-[90px] h-[90px] rotate-25 text-main-red" />
+              <SvgHeart className="w-[90px] h-[90px] -rotate-25 text-main-red" />
             </div>
           ) : (
             <div className="flex items-center">
@@ -29,7 +29,7 @@ export const LikeBlock = ({ title, path, rotate }: LikeBlockProps) => {
           )}
         </div>
         <Button
-          className="p-1 w-[120px] mx-auto rounded-[10px] bg-white shadow-hard"
+          className="p-1 w-[120px] rounded-[10px] bg-white shadow-hard"
           onClick={() => navigate({ to: path })}
           variant={"default"}
         >
