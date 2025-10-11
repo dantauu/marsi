@@ -5,8 +5,9 @@ import { motion } from "framer-motion"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
 import { toggleLayout } from "@/redux/slices/layout-switch.ts"
 import { useIsMiniMobile } from "@/shared/lib/hooks/use-media-query.ts"
+import { memo } from "react"
 
-export const LayoutSwitchButtons = () => {
+export const SwitchButtons = memo(() => {
   const dispatch = useAppDispatch()
   const layout = useAppSelector((state) => state.layout_switch.layout)
   const isMiniMobile = useIsMiniMobile()
@@ -38,4 +39,4 @@ export const LayoutSwitchButtons = () => {
       </Button>
     </div>
   )
-}
+})

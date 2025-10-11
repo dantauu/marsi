@@ -3,8 +3,9 @@ import Button from "@/shared/ui/buttons/button.tsx"
 import { openFilterModal } from "@/redux/slices/modal-slice"
 import { useAppDispatch } from "@/redux/hooks.ts"
 import { cn } from "@/lib/utils/cn.tsx"
+import { memo } from "react"
 
-export const FilterButton = ({ className }: { className?: string }) => {
+export const FilterButton = memo(({ className }: { className?: string }) => {
   const dispatch = useAppDispatch()
   const handleClick = () => {
     dispatch(openFilterModal())
@@ -22,4 +23,4 @@ export const FilterButton = ({ className }: { className?: string }) => {
       <SvgFilterIcon className="mini-mobile:w-[30px] w-[27px]" />
     </Button>
   )
-}
+})
