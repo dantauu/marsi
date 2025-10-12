@@ -19,7 +19,7 @@ export const AddHobbies = ({
     <div
       onClick={onClick}
       className={cn(
-        "flex flex-col justify-center gap-4 py-[6px] px-[4px] w-full shadow-hard" +
+        "flex flex-col justify-center gap-4 py-[6px] px-[4px] w-full shadow-easy" +
           " rounded-[18px]",
         className
       )}
