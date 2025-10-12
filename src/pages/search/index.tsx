@@ -12,10 +12,12 @@ import { NotifyLastCard } from "@/shared/ui/notify-last-card"
 import useRouteEmptyFields from "@/shared/lib/utils/route-empty-fileds"
 import { FilterButton } from "@/ui"
 import { useMemo } from "react"
+import { getEnvironment } from "@/shared/lib/utils/get-environment"
 
 const Search = () => {
   useRouteEmptyFields()
   const { isMobile } = usePlatform()
+  const { isDev } = getEnvironment()
   const filters = useAppSelector((state) => state.filters)
   const cleanedFilters = Object.fromEntries(
     Object.entries(filters).filter(
@@ -25,10 +27,15 @@ const Search = () => {
   const { ref, users, isLoading, isFetching } = useFetchToScroll(cleanedFilters)
   const memoizedUsers = useMemo(() => users ?? [], [users])
   useScrollRestore("search", [users?.length])
-  const { user: currentUser } = useUserMe()
-  const { data: countLikes } = useGetLikesToMeQuery(currentUser?.id ?? "", {
-    skip: !currentUser?.id,
+  const { user: userMe } = useUserMe()
+  const { data: countLikes } = useGetLikesToMeQuery(userMe?.id ?? "", {
+    skip: !userMe?.id,
   })
+  const showNotify =
+    users.length === 0 &&
+    (!isDev ? Boolean(userMe?.id) : true) &&
+    !isFetching &&
+    !isLoading
   if (isLoading)
     return (
       <div className="flex justify-center items-center h-screen">
@@ -50,7 +57,7 @@ const Search = () => {
       <div className={`${isMobile ? "pt-[110px]" : "pt-[80px]"}`}>
         {users && <LayoutCardList data={memoizedUsers} />}
       </div>
-      {users.length === 0 && !isFetching && !isLoading && <NotifyLastCard />}
+      {showNotify && <NotifyLastCard />}
       <BackToTop />
       {isFetching && <LoadingBalls />}
       <div className="w-full h-2" ref={ref}></div>

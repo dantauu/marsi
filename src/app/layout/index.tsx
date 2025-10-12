@@ -1,7 +1,7 @@
 import { NavBar } from "@/widgets/nav-bar/layout"
 import { type PropsWithChildren } from "react"
 import { useRouterState } from "@tanstack/react-router"
-import { FilterForm } from "@/shared/lib/filter-form"
+import { FilterForm } from "@/app/containers/filters"
 import { useInitUser } from "@/lib/hooks/use-init-user.ts"
 import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
 import { useLikesSocket } from "@/lib/hooks/use-likes-socket.ts"
