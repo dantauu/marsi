@@ -1,12 +1,12 @@
 import { LikeCard } from "@/shared/ui/like-card"
 import { useGetLikesToMeQuery } from "@/shared/api/likes.ts"
-import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
+import { useUserData } from "@/shared/lib/hooks/use-user-data.ts"
 import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 import { useGetUsersStatus } from "@/entities/likes/lib/utils/status-get-users"
 import { useDeleteLike } from "@/entities/likes/lib/delete-like"
 
 export const IncomingLikesList = () => {
-  const { user: currentUser, isLoading: userLoading } = useUserMe()
+  const { user: currentUser, isLoading: userLoading } = useUserData()
   const {
     data: users,
     isFetching,
