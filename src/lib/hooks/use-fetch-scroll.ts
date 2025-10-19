@@ -2,11 +2,11 @@ import { useState, useEffect } from "react"
 import { useInView } from "react-intersection-observer"
 import { useGetUsersQuery } from "@/shared/api/user"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
-import { useUserData } from "@/shared/lib/hooks/use-user-data.ts"
 import { appendUsers, resetUsers } from "@/redux/slices/users.ts"
 import { skipToken } from "@reduxjs/toolkit/query"
 import { useTelegram } from "@/app/providers/telegram"
 import { getEnvironment } from "@/shared/lib/utils/get-environment"
+import { useUserId } from "@/shared/lib/hooks/use-user-id.ts"
 
 const LIMIT = 10
 //for search
@@ -14,8 +14,8 @@ export const useFetchToScroll = (params = {}) => {
   const users = useAppSelector((state) => state.users.users)
   const dispatch = useAppDispatch()
   const [offset, setOffset] = useState(0)
-  const { user } = useUserData()
-  const id = user?.id
+  const { userDataToken } = useUserId()
+  const id = userDataToken?.userId
   const { webApp } = useTelegram()
   const { isDev } = getEnvironment()
 
@@ -63,8 +63,8 @@ export const useFetchToSlide = (params = {}) => {
   const dispatch = useAppDispatch()
   const currentIndex = useAppSelector((state) => state.slider.currentIndex)
   const { webApp } = useTelegram()
-  const { user } = useUserData()
-  const id = user?.id
+  const { userDataToken } = useUserId()
+  const id = userDataToken?.userId
   const { isDev } = getEnvironment()
 
   const queryArgs = webApp

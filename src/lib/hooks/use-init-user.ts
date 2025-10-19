@@ -2,30 +2,34 @@ import { useEffect } from "react"
 import { useTelegram } from "@/app/providers/telegram"
 import { useAuthUserMutation, useInitUserMutation } from "@/shared/api/user.ts"
 import { useGetUserByIdQuery } from "@/shared/api/user.ts"
-import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
+import { useAppDispatch } from "@/redux/hooks.ts"
 import { setToken } from "@/redux/slices/auth.ts"
+import { useUserId } from "@/shared/lib/hooks/use-user-id.ts"
+import { getEnvironment } from "@/shared/lib/utils/get-environment"
 
 export const useInitUser = () => {
+  const { isDev } = getEnvironment()
   const { user } = useTelegram()
   const [initUser] = useInitUserMutation()
   const [authUser] = useAuthUserMutation()
-  const token = useAppSelector((state) => state.auth.token)
   const dispatch = useAppDispatch()
+  const { userDataToken } = useUserId()
+  const userId = userDataToken?.userId
 
-  const { isError } = useGetUserByIdQuery(String(user?.id), {
-    skip: !user?.id || !token,
+  const { isError } = useGetUserByIdQuery(userId ?? "", {
+    skip: !userId,
   })
 
   useEffect(() => {
-    if (!user) return
+    if (!user || isDev) return
 
     const initialize = async () => {
       try {
-        if (token && isError) {
+        if (userId && isError) {
           dispatch(setToken(null))
         }
 
-        if (!token) {
+        if (!userId) {
           const initUserPayload = {
             id: String(user.id),
             first_name: user.first_name,
@@ -44,5 +48,5 @@ export const useInitUser = () => {
     }
 
     initialize()
-  }, [user, token, isError, initUser, authUser])
+  }, [user, userId, isError, initUser, authUser, isDev])
 }

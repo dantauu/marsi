@@ -3,6 +3,7 @@ import { ProfileHeader } from "@/entities/profile"
 import { BasicInformation } from "@/ui/index.ts"
 import { useUserData } from "@/shared/lib/hooks/use-user-data.ts"
 import { useGetLikesToMeQuery, useGetMyLikesQuery } from "@/shared/api/likes.ts"
+import { useUserId } from "@/shared/lib/hooks/use-user-id.ts"
 
 const Profile = () => {
   const {
@@ -10,14 +11,16 @@ const Profile = () => {
     isFetching: userFetching,
     isLoading: userLoading,
   } = useUserData()
+  const { userDataToken } = useUserId()
+  const userId = userDataToken?.userId
   const { data: likesToMe, isFetching: likesToMeFetching } =
-    useGetLikesToMeQuery(currentUser?.id ?? "", {
-      skip: !currentUser?.id,
+    useGetLikesToMeQuery(userId ?? "", {
+      skip: !userId,
     })
   const { data: myLikes, isFetching: myLikesFetching } = useGetMyLikesQuery(
-    currentUser?.id ?? "",
+    userId ?? "",
     {
-      skip: !currentUser?.id,
+      skip: !userId,
     }
   )
   const isPending =
