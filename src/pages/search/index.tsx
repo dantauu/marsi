@@ -27,14 +27,13 @@ const Search = () => {
   const { ref, users, isLoading, isFetching } = useFetchToScroll(cleanedFilters)
   const memoizedUsers = useMemo(() => users ?? [], [users])
   useScrollRestore("search", [users?.length])
-  const userId = useUserId()
-  console.log("userIdToken:", userId)
-  const { data: countLikes } = useGetLikesToMeQuery(userId ?? "", {
-    skip: !userId,
+  const { userDataToken } = useUserId()
+  const { data: countLikes } = useGetLikesToMeQuery(userDataToken?.userId ?? "", {
+    skip: !userDataToken?.userId,
   })
   const showNotify =
     users.length === 0 &&
-    (!isDev ? Boolean(userId) : true) &&
+    (!isDev ? Boolean(userDataToken?.userId) : true) &&
     !isFetching &&
     !isLoading
   if (isLoading)
