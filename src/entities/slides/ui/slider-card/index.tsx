@@ -7,7 +7,7 @@ import Button from "@/shared/ui/buttons/button.tsx"
 import SvgArrow from "@/assets/icons/Arrow.tsx"
 import { memo, useState } from "react"
 import { MoreInformation } from "@/widgets/modals/more-information"
-import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
+import { useUserData } from "@/shared/lib/hooks/use-user-data.ts"
 import { getEnvironment } from "@/shared/lib/utils/get-environment"
 
 type SliderCardProps = {
@@ -28,7 +28,7 @@ export const SliderCard = memo(({ users, isFetching }: SliderCardProps) => {
     SWIPE_THRESHOLD,
   } = SwiperCard({ data: users })
   const [isMore, setIsMore] = useState(false)
-  const { user } = useUserMe()
+  const { user } = useUserData()
   const { isDev } = getEnvironment()
   if (
     !isFetching &&

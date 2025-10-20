@@ -2,7 +2,7 @@ import { useAppDispatch } from "@/redux/hooks"
 import { handleLike } from "@/redux/slices/slider-slice.ts"
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useGetMyLikesQuery, useLikeUserMutation } from "@/shared/api/likes.ts"
-import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
+import { useUserData } from "@/shared/lib/hooks/use-user-data.ts"
 import SvgHeart from "@/assets/icons/Heart.tsx"
 import { useMemo } from "react"
 import SvgBack from "@/assets/icons/Back.tsx"
@@ -17,7 +17,7 @@ export const Buttons = ({
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const { notify } = useNotify()
-  const { user } = useUserMe()
+  const { user } = useUserData()
   const [likeUser] = useLikeUserMutation()
   const { data: likedUser, refetch } = useGetMyLikesQuery(user?.id ?? "", {
     skip: !user?.id,

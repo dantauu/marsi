@@ -1,7 +1,7 @@
-import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
+import { useUserData } from "@/shared/lib/hooks/use-user-data.ts"
 
 export const usePercentCount = () => {
-  const { user } = useUserMe()
+  const { user } = useUserData()
   const fields = [
     user?.age,
     user?.goal,
@@ -28,7 +28,7 @@ export const usePercentCount = () => {
 }
 
 export const useAllPercentCount = () => {
-  const { user } = useUserMe()
+  const { user } = useUserData()
   const fields = [
     user?.age,
     user?.goal,

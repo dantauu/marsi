@@ -2,7 +2,7 @@ import { useTelegram } from "@/app/providers/telegram"
 import { useGetUserByIdQuery } from "@/shared/api/user.ts"
 import { useAppSelector } from "@/redux/hooks.ts"
 
-export const useUserMe = () => {
+export const useUserData = () => {
   const { user: telegramUser } = useTelegram()
   const telegramUserId = telegramUser?.id
   const token = useAppSelector((state) => state.auth.token)

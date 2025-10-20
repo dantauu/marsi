@@ -7,14 +7,14 @@ import {
 } from "@/redux/slices/slider-slice.ts"
 import { useLikeUserMutation } from "@/shared/api/likes.ts"
 import { useDislikeUserMutation } from "@/shared/api/likes.ts"
-import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
+import { useUserData } from "@/shared/lib/hooks/use-user-data.ts"
 import type { User } from "@/app/types/user"
 
 export const SwiperCard = ({ data }: { data: User[] }) => {
   const SWIPE_THRESHOLD = 50
   const [likeUser] = useLikeUserMutation()
   const [dislikeUser] = useDislikeUserMutation()
-  const { user } = useUserMe()
+  const { user } = useUserData()
   const dispatch = useAppDispatch()
   const { currentIndex, position, isDragging, exitDirection } = useAppSelector(
     (state) => state.slider

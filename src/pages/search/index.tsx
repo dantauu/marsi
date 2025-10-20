@@ -4,7 +4,6 @@ import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 import { LayoutCardList } from "@/widgets/card"
 import { useFetchToScroll } from "@/lib/hooks/use-fetch-scroll.ts"
 import { useGetLikesToMeQuery } from "@/shared/api/likes.ts"
-import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
 import { useScrollRestore } from "@/lib/hooks/use-scroll-restore.ts"
 import { useAppSelector } from "@/redux/hooks.ts"
 import { usePlatform } from "@/shared/lib/hooks/use-platform.ts"
@@ -13,6 +12,7 @@ import useRouteEmptyFields from "@/shared/lib/utils/route-empty-fileds"
 import { FilterButton } from "@/ui"
 import { useMemo } from "react"
 import { getEnvironment } from "@/shared/lib/utils/get-environment"
+import { useUserId } from "@/shared/lib/hooks/use-user-id.ts"
 
 const Search = () => {
   useRouteEmptyFields()
@@ -27,13 +27,14 @@ const Search = () => {
   const { ref, users, isLoading, isFetching } = useFetchToScroll(cleanedFilters)
   const memoizedUsers = useMemo(() => users ?? [], [users])
   useScrollRestore("search", [users?.length])
-  const { user: userMe } = useUserMe()
-  const { data: countLikes } = useGetLikesToMeQuery(userMe?.id ?? "", {
-    skip: !userMe?.id,
+  const userId = useUserId()
+  console.log("userIdToken:", userId)
+  const { data: countLikes } = useGetLikesToMeQuery(userId ?? "", {
+    skip: !userId,
   })
   const showNotify =
     users.length === 0 &&
-    (!isDev ? Boolean(userMe?.id) : true) &&
+    (!isDev ? Boolean(userId) : true) &&
     !isFetching &&
     !isLoading
   if (isLoading)
