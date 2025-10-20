@@ -1,7 +1,7 @@
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useEditProfileForm } from "@/app/context/profile-edit-context.tsx"
 import { cn } from "@/lib/utils/cn.tsx"
-import { useUserData } from "@/shared/lib/hooks/use-user-data.ts"
+import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import LoadingCircle from "@/shared/ui/loading/circle.tsx"
 
 export const SaveNavBar = ({ className }: { className?: string }) => {
@@ -10,7 +10,7 @@ export const SaveNavBar = ({ className }: { className?: string }) => {
   const resetFilter = () => {
     reset()
   }
-  const { isFetching } = useUserData()
+  const { isFetching } = useCurrentUser()
   return (
     <div
       className={cn(

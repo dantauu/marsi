@@ -5,7 +5,7 @@ import {
   useDislikeUserMutation,
   useLikeUserMutation,
 } from "@/shared/api/likes.ts"
-import { useUserData } from "@/shared/lib/hooks/use-user-data.ts"
+import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import SvgHeart from "@/assets/icons/Heart.tsx"
 import SvgCrossOrigin from "@/assets/icons/CrossOrigin.tsx"
 
@@ -17,7 +17,7 @@ export const SliderButtons = ({
   const dispatch = useAppDispatch()
   const [likeUser] = useLikeUserMutation()
   const [dislikeUser] = useDislikeUserMutation()
-  const { user } = useUserData()
+  const { user } = useCurrentUser()
 
   const handleLikeUser = () => {
     if (currentUserId && user?.id) {

@@ -2,13 +2,13 @@ import { useNavigate } from "@tanstack/react-router"
 import { GetFields } from "@/lib/utils/get-fields"
 import { useEffect } from "react"
 import { getEnvironment } from "@/shared/lib/utils/get-environment"
-import { useUserId } from "@/shared/lib/hooks/use-user-id.ts"
+import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 
 const useRouteEmptyFields = () => {
   const { isDev } = getEnvironment()
   const { isEmpty } = GetFields()
-  const { userDataToken } = useUserId()
-  const userId = userDataToken?.userId
+  const { userToken } = useCurrentUser()
+  const userId = userToken?.userId
   const navigate = useNavigate()
   useEffect(() => {
     if (isEmpty && !isDev && userId) navigate({ to: "/fill-fields" })

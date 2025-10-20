@@ -1,12 +1,12 @@
 import { LikeCard } from "@/shared/ui/like-card"
 import { useGetMyLikesQuery } from "@/shared/api/likes.ts"
-import { useUserData } from "@/shared/lib/hooks/use-user-data.ts"
+import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 import { useGetUsersStatus } from "@/entities/likes/lib/utils/status-get-users"
 import { useDeleteLike } from "@/entities/likes/lib/delete-like"
 
 export const MyLikesList = () => {
-  const { user: currentUser, isLoading: userLoading } = useUserData()
+  const { user: currentUser, isLoading: userLoading } = useCurrentUser()
   const {
     data: users,
     isFetching,

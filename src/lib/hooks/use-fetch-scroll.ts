@@ -6,7 +6,7 @@ import { appendUsers, resetUsers } from "@/redux/slices/users.ts"
 import { skipToken } from "@reduxjs/toolkit/query"
 import { useTelegram } from "@/app/providers/telegram"
 import { getEnvironment } from "@/shared/lib/utils/get-environment"
-import { useUserId } from "@/shared/lib/hooks/use-user-id.ts"
+import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 
 const LIMIT = 10
 //for search
@@ -14,8 +14,8 @@ export const useFetchToScroll = (params = {}) => {
   const users = useAppSelector((state) => state.users.users)
   const dispatch = useAppDispatch()
   const [offset, setOffset] = useState(0)
-  const { userDataToken } = useUserId()
-  const id = userDataToken?.userId
+  const { userToken } = useCurrentUser()
+  const id = userToken?.userId
   const { webApp } = useTelegram()
   const { isDev } = getEnvironment()
 
@@ -63,8 +63,8 @@ export const useFetchToSlide = (params = {}) => {
   const dispatch = useAppDispatch()
   const currentIndex = useAppSelector((state) => state.slider.currentIndex)
   const { webApp } = useTelegram()
-  const { userDataToken } = useUserId()
-  const id = userDataToken?.userId
+  const { userToken } = useCurrentUser()
+  const id = userToken?.userId
   const { isDev } = getEnvironment()
 
   const queryArgs = webApp

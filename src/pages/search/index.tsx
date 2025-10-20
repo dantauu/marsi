@@ -12,7 +12,7 @@ import useRouteEmptyFields from "@/shared/lib/utils/route-empty-fileds"
 import { FilterButton } from "@/ui"
 import { useMemo } from "react"
 import { getEnvironment } from "@/shared/lib/utils/get-environment"
-import { useUserId } from "@/shared/lib/hooks/use-user-id.ts"
+import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 
 const Search = () => {
   useRouteEmptyFields()
@@ -27,16 +27,14 @@ const Search = () => {
   const { ref, users, isLoading, isFetching } = useFetchToScroll(cleanedFilters)
   const memoizedUsers = useMemo(() => users ?? [], [users])
   useScrollRestore("search", [users?.length])
-  const { userDataToken } = useUserId()
-  const { data: countLikes } = useGetLikesToMeQuery(
-    userDataToken?.userId ?? "",
-    {
-      skip: !userDataToken?.userId,
-    }
-  )
+  const { userToken } = useCurrentUser()
+  const userid = userToken?.userId
+  const { data: countLikes } = useGetLikesToMeQuery(userid ?? "", {
+    skip: !userid,
+  })
   const showNotify =
     users.length === 0 &&
-    (!isDev ? Boolean(userDataToken?.userId) : true) &&
+    (!isDev ? Boolean(userid) : true) &&
     !isFetching &&
     !isLoading
   if (isLoading)

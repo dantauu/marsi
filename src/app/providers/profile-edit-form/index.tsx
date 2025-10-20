@@ -3,7 +3,7 @@ import { type PropsWithChildren, useCallback, useEffect, useState } from "react"
 import { EditFormContext } from "@/app/context/profile-edit-context.tsx"
 import { zodResolver } from "@hookform/resolvers/zod"
 import type { User } from "@/app/types/user"
-import { useUserData } from "@/shared/lib/hooks/use-user-data.ts"
+import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import { type EditFormSchema, editSchema } from "@/lib/schemes/profile-edit"
 
 function fetchUser(user?: User | null): Partial<EditFormSchema> {
@@ -29,7 +29,7 @@ export function useFormEmptyValues(): {
   isFetching: boolean
   isLoading: boolean
 } {
-  const { user, isFetching, isLoading } = useUserData()
+  const { user, isFetching, isLoading } = useCurrentUser()
 
   const fallbackUser = {
     photo_url: [],
@@ -77,7 +77,7 @@ export function EditProfileProvider({
     }
   }, [values, defaultValues, initialized, form])
 
-  const { refetch } = useUserData()
+  const { refetch } = useCurrentUser()
 
   const handleSubmit = useCallback(
     async (data: EditFormSchema) => {

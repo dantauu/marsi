@@ -4,7 +4,7 @@ import { useAuthUserMutation, useInitUserMutation } from "@/shared/api/user.ts"
 import { useGetUserByIdQuery } from "@/shared/api/user.ts"
 import { useAppDispatch } from "@/redux/hooks.ts"
 import { setToken } from "@/redux/slices/auth.ts"
-import { useUserId } from "@/shared/lib/hooks/use-user-id.ts"
+import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import { getEnvironment } from "@/shared/lib/utils/get-environment"
 
 export const useInitUser = () => {
@@ -13,8 +13,8 @@ export const useInitUser = () => {
   const [initUser] = useInitUserMutation()
   const [authUser] = useAuthUserMutation()
   const dispatch = useAppDispatch()
-  const { userDataToken } = useUserId()
-  const userId = userDataToken?.userId
+  const { userToken } = useCurrentUser()
+  const userId = userToken?.userId
 
   const { isError } = useGetUserByIdQuery(userId ?? "", {
     skip: !userId,
