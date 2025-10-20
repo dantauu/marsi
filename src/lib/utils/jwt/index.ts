@@ -10,7 +10,7 @@ export interface JwtPayload {
 export const parseToken = (token: string | null): JwtPayload | null => {
   if (!token) return null
   try {
-    const base64url = token.split('.')[0]
+    const base64url = token.split('.')[1]
     const base64 = base64url.replace(/-/g, "+").replace(/_/g, "/")
     const jsonPayload = decodeURIComponent(
       atob(base64)
