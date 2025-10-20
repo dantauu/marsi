@@ -4,9 +4,11 @@ import { parseToken } from "@/lib/utils/jwt"
 export const useUserId = () => {
   const token = useAppSelector((state) => state.auth.token)
   const payload = parseToken(token)
-  const userDataToken = payload ? {
-    userId: payload?.sub ?? null,
-  } : null
+  const userDataToken = payload
+    ? {
+        userId: payload?.sub ?? null,
+      }
+    : null
 
   return { userDataToken }
 }

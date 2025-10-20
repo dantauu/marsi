@@ -28,9 +28,12 @@ const Search = () => {
   const memoizedUsers = useMemo(() => users ?? [], [users])
   useScrollRestore("search", [users?.length])
   const { userDataToken } = useUserId()
-  const { data: countLikes } = useGetLikesToMeQuery(userDataToken?.userId ?? "", {
-    skip: !userDataToken?.userId,
-  })
+  const { data: countLikes } = useGetLikesToMeQuery(
+    userDataToken?.userId ?? "",
+    {
+      skip: !userDataToken?.userId,
+    }
+  )
   const showNotify =
     users.length === 0 &&
     (!isDev ? Boolean(userDataToken?.userId) : true) &&

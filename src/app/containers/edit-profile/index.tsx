@@ -12,12 +12,15 @@ import { getNormalizeGender } from "@/lib/utils/format-gender.ts"
 import { EditProfileContent } from "@/pages/profile-edit"
 import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
 import LoadingBalls from "@/shared/ui/loading/balls.tsx"
+import { useUserId } from "@/shared/lib/hooks/use-user-id.ts"
 
 const EditProfile = () => {
   const { user: telegramUser } = useTelegram()
   const [updateUser] = useUpdateUserMutation()
   const [deletePhoto] = useDeletePhotoMutation()
   const { notify } = useNotify()
+  const { userDataToken } = useUserId()
+  const userId = userDataToken?.userId
 
   const {
     values,
@@ -26,7 +29,7 @@ const EditProfile = () => {
   } = useFormEmptyValues()
 
   const handleSubmit = async (data: EditFormSchema) => {
-    if (!defaultValues) return
+    if (!defaultValues && !userId) return
     const validatePhoto = (data.photo_url || []).filter(
       (url) => url.trim() !== ""
     )
