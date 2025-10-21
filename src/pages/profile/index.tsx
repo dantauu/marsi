@@ -1,4 +1,4 @@
-import { Progress, LikeCount, LikeIncoming } from "@/features/profile"
+import { SeeAboutApp, LikeCount, LikeIncoming } from "@/features/profile"
 import { ProfileHeader } from "@/entities/profile"
 import { BasicInformation } from "@/ui/index.ts"
 import { useGetLikesToMeQuery, useGetMyLikesQuery } from "@/shared/api/likes.ts"
@@ -37,7 +37,7 @@ const Profile = () => {
       <LikeIncoming likesToMe={likesToMe} isPending={isPending} />
       <div className="flex mini-mobile:gap-[5px] gap-3.5 justify-between pt-[7px]">
         <LikeCount myLikes={myLikes} isPending={isPending} />
-        <Progress />
+        <SeeAboutApp />
       </div>
       {/*<SubscriptionStatus />*/}
       <BasicInformation />

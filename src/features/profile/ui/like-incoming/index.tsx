@@ -13,7 +13,7 @@ export const LikeIncoming = ({ isPending, likesToMe }: LikeIncomingProps) => {
   return (
     <div
       onClick={() => navigate({ to: "/likes/incoming-likes" })}
-      className="flex justify-between items-center h-[90px] rounded-[10px] px-3 bg-gradient-purple"
+      className="flex justify-between items-center h-[90px] rounded-[10px] px-3 bg-gradient-animated"
     >
       <div className="flex items-center gap-1">
         <p
