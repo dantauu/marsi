@@ -1,12 +1,10 @@
 import Block from "@/shared/ui/blocks/block.tsx"
 import { getGenderFormat } from "@/lib/utils/format-gender.ts"
-import { usePercentCount } from "@/lib/utils/get-percent-count"
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import { useNavigate } from "@tanstack/react-router"
 
 export const BasicInformation = () => {
   const { user } = useCurrentUser()
-  const { colors, percent } = usePercentCount()
   const navigate = useNavigate()
   return (
     <div className="mt-[10px] px-[8px] py-[8px] rounded-[10px] bg-test">
@@ -14,11 +12,7 @@ export const BasicInformation = () => {
         className="flex items-center justify-center max-w-[300px] mx-auto"
         text={
           <>
-            Ключевая информация:
-            <span style={{ color: colors }} className="font-HelveticaB">
-              {" "}
-              {percent}%
-            </span>
+            Моя ключевая информация
           </>
         }
       />

@@ -25,7 +25,7 @@ export const LikeIncoming = ({ isPending, likesToMe }: LikeIncomingProps) => {
           {isPending ? (
             <LoadingBalls className="w-10" />
           ) : (
-            <p className="font-HelveticaB text-[16px] text-white">
+            <p className="font-HelveticaB text-[17px] text-white">
               {likesToMe?.length || 0}
             </p>
           )}
