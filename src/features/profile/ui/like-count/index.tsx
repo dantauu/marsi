@@ -17,12 +17,12 @@ export const LikeCount = ({ isPending, myLikes }: LikeCountProps) => {
         className="flex items-center flex-col gap-1 h-[34px]"
       >
         <p
-          className={`font-ManropeM leading-4 text-white ${!isPending ? "text-[16px]" : "text-[17px]"}`}
+          className={`font-ManropeM leading-4 text-white ${isPending ? "text-[16px]" : "text-[17px]"}`}
         >
           Лайки от меня:
         </p>
         <>
-          {!isPending ? (
+          {isPending ? (
             <LoadingBalls className="w-10" />
           ) : (
             <p className="font-HelveticaB text-[21px] text-white leading-5">

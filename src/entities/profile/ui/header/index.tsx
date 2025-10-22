@@ -40,7 +40,7 @@ export const ProfileHeader = ({ currentUser }: ProfileHeaderProps) => {
             onClick={() => navigate({ to: "/profile-edit" })}
             className="relative"
           >
-            {!currentUser?.photo_url ? (
+            {currentUser?.photo_url ? (
               <HavePhoto
                 currentUser={currentUser}
                 colors={colors}
