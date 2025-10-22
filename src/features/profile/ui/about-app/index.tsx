@@ -1,7 +1,7 @@
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useNavigate } from "@tanstack/react-router"
 
-export const Progress = () => {
+export const SeeAboutApp = () => {
   const navigate = useNavigate()
   return (
     <div className="flex flex-col items-center justify-between py-2 px-2 h-[105px] bg-main-green w-full mini-mobile:w-full rounded-[10px] cursor-pointer leading-5">
