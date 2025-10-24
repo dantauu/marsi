@@ -10,11 +10,7 @@ export const BasicInformation = () => {
     <div className="mt-[10px] px-[8px] py-[8px] rounded-[10px] bg-test">
       <Block
         className="flex items-center justify-center max-w-[300px] mx-auto"
-        text={
-          <>
-            Моя ключевая информация
-          </>
-        }
+        text={<>Моя ключевая информация</>}
       />
       <div className="flex flex-col gap-3 mt-[20px]">
         <Block

@@ -8,274 +8,274 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './app/routes/__root'
-import { Route as AppLayoutRouteImport } from './app/routes/_app/_layout'
-import { Route as AppLayoutIndexRouteImport } from './app/routes/_app/_layout/index'
-import { Route as AppLayoutSubscribeIndexRouteImport } from './app/routes/_app/_layout/subscribe/index'
-import { Route as AppLayoutSlidesIndexRouteImport } from './app/routes/_app/_layout/slides/index'
-import { Route as AppLayoutSearchIndexRouteImport } from './app/routes/_app/_layout/search/index'
-import { Route as AppLayoutProfileIndexRouteImport } from './app/routes/_app/_layout/profile/index'
-import { Route as AppLayoutProfileEditIndexRouteImport } from './app/routes/_app/_layout/profile-edit/index'
-import { Route as AppLayoutMoreIndexRouteImport } from './app/routes/_app/_layout/more/index'
-import { Route as AppLayoutLikesIndexRouteImport } from './app/routes/_app/_layout/likes/index'
-import { Route as AppLayoutFillFieldsIndexRouteImport } from './app/routes/_app/_layout/fill-fields/index'
-import { Route as AppLayoutSearchIdIdRouteImport } from './app/routes/_app/_layout/search-id/$id'
-import { Route as AppLayoutLikesMyLikesIndexRouteImport } from './app/routes/_app/_layout/likes/my-likes/index'
-import { Route as AppLayoutLikesIncomingLikesIndexRouteImport } from './app/routes/_app/_layout/likes/incoming-likes/index'
+import { Route as rootRouteImport } from "./app/routes/__root"
+import { Route as AppLayoutRouteImport } from "./app/routes/_app/_layout"
+import { Route as AppLayoutIndexRouteImport } from "./app/routes/_app/_layout/index"
+import { Route as AppLayoutSubscribeIndexRouteImport } from "./app/routes/_app/_layout/subscribe/index"
+import { Route as AppLayoutSlidesIndexRouteImport } from "./app/routes/_app/_layout/slides/index"
+import { Route as AppLayoutSearchIndexRouteImport } from "./app/routes/_app/_layout/search/index"
+import { Route as AppLayoutProfileIndexRouteImport } from "./app/routes/_app/_layout/profile/index"
+import { Route as AppLayoutProfileEditIndexRouteImport } from "./app/routes/_app/_layout/profile-edit/index"
+import { Route as AppLayoutMoreIndexRouteImport } from "./app/routes/_app/_layout/more/index"
+import { Route as AppLayoutLikesIndexRouteImport } from "./app/routes/_app/_layout/likes/index"
+import { Route as AppLayoutFillFieldsIndexRouteImport } from "./app/routes/_app/_layout/fill-fields/index"
+import { Route as AppLayoutSearchIdIdRouteImport } from "./app/routes/_app/_layout/search-id/$id"
+import { Route as AppLayoutLikesMyLikesIndexRouteImport } from "./app/routes/_app/_layout/likes/my-likes/index"
+import { Route as AppLayoutLikesIncomingLikesIndexRouteImport } from "./app/routes/_app/_layout/likes/incoming-likes/index"
 
 const AppLayoutRoute = AppLayoutRouteImport.update({
-  id: '/_app/_layout',
+  id: "/_app/_layout",
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppLayoutIndexRoute = AppLayoutIndexRouteImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => AppLayoutRoute,
 } as any)
 const AppLayoutSubscribeIndexRoute = AppLayoutSubscribeIndexRouteImport.update({
-  id: '/subscribe/',
-  path: '/subscribe/',
+  id: "/subscribe/",
+  path: "/subscribe/",
   getParentRoute: () => AppLayoutRoute,
 } as any)
 const AppLayoutSlidesIndexRoute = AppLayoutSlidesIndexRouteImport.update({
-  id: '/slides/',
-  path: '/slides/',
+  id: "/slides/",
+  path: "/slides/",
   getParentRoute: () => AppLayoutRoute,
 } as any)
 const AppLayoutSearchIndexRoute = AppLayoutSearchIndexRouteImport.update({
-  id: '/search/',
-  path: '/search/',
+  id: "/search/",
+  path: "/search/",
   getParentRoute: () => AppLayoutRoute,
 } as any)
 const AppLayoutProfileIndexRoute = AppLayoutProfileIndexRouteImport.update({
-  id: '/profile/',
-  path: '/profile/',
+  id: "/profile/",
+  path: "/profile/",
   getParentRoute: () => AppLayoutRoute,
 } as any)
 const AppLayoutProfileEditIndexRoute =
   AppLayoutProfileEditIndexRouteImport.update({
-    id: '/profile-edit/',
-    path: '/profile-edit/',
+    id: "/profile-edit/",
+    path: "/profile-edit/",
     getParentRoute: () => AppLayoutRoute,
   } as any)
 const AppLayoutMoreIndexRoute = AppLayoutMoreIndexRouteImport.update({
-  id: '/more/',
-  path: '/more/',
+  id: "/more/",
+  path: "/more/",
   getParentRoute: () => AppLayoutRoute,
 } as any)
 const AppLayoutLikesIndexRoute = AppLayoutLikesIndexRouteImport.update({
-  id: '/likes/',
-  path: '/likes/',
+  id: "/likes/",
+  path: "/likes/",
   getParentRoute: () => AppLayoutRoute,
 } as any)
 const AppLayoutFillFieldsIndexRoute =
   AppLayoutFillFieldsIndexRouteImport.update({
-    id: '/fill-fields/',
-    path: '/fill-fields/',
+    id: "/fill-fields/",
+    path: "/fill-fields/",
     getParentRoute: () => AppLayoutRoute,
   } as any)
 const AppLayoutSearchIdIdRoute = AppLayoutSearchIdIdRouteImport.update({
-  id: '/search-id/$id',
-  path: '/search-id/$id',
+  id: "/search-id/$id",
+  path: "/search-id/$id",
   getParentRoute: () => AppLayoutRoute,
 } as any)
 const AppLayoutLikesMyLikesIndexRoute =
   AppLayoutLikesMyLikesIndexRouteImport.update({
-    id: '/likes/my-likes/',
-    path: '/likes/my-likes/',
+    id: "/likes/my-likes/",
+    path: "/likes/my-likes/",
     getParentRoute: () => AppLayoutRoute,
   } as any)
 const AppLayoutLikesIncomingLikesIndexRoute =
   AppLayoutLikesIncomingLikesIndexRouteImport.update({
-    id: '/likes/incoming-likes/',
-    path: '/likes/incoming-likes/',
+    id: "/likes/incoming-likes/",
+    path: "/likes/incoming-likes/",
     getParentRoute: () => AppLayoutRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof AppLayoutIndexRoute
-  '/search-id/$id': typeof AppLayoutSearchIdIdRoute
-  '/fill-fields': typeof AppLayoutFillFieldsIndexRoute
-  '/likes': typeof AppLayoutLikesIndexRoute
-  '/more': typeof AppLayoutMoreIndexRoute
-  '/profile-edit': typeof AppLayoutProfileEditIndexRoute
-  '/profile': typeof AppLayoutProfileIndexRoute
-  '/search': typeof AppLayoutSearchIndexRoute
-  '/slides': typeof AppLayoutSlidesIndexRoute
-  '/subscribe': typeof AppLayoutSubscribeIndexRoute
-  '/likes/incoming-likes': typeof AppLayoutLikesIncomingLikesIndexRoute
-  '/likes/my-likes': typeof AppLayoutLikesMyLikesIndexRoute
+  "/": typeof AppLayoutIndexRoute
+  "/search-id/$id": typeof AppLayoutSearchIdIdRoute
+  "/fill-fields": typeof AppLayoutFillFieldsIndexRoute
+  "/likes": typeof AppLayoutLikesIndexRoute
+  "/more": typeof AppLayoutMoreIndexRoute
+  "/profile-edit": typeof AppLayoutProfileEditIndexRoute
+  "/profile": typeof AppLayoutProfileIndexRoute
+  "/search": typeof AppLayoutSearchIndexRoute
+  "/slides": typeof AppLayoutSlidesIndexRoute
+  "/subscribe": typeof AppLayoutSubscribeIndexRoute
+  "/likes/incoming-likes": typeof AppLayoutLikesIncomingLikesIndexRoute
+  "/likes/my-likes": typeof AppLayoutLikesMyLikesIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof AppLayoutIndexRoute
-  '/search-id/$id': typeof AppLayoutSearchIdIdRoute
-  '/fill-fields': typeof AppLayoutFillFieldsIndexRoute
-  '/likes': typeof AppLayoutLikesIndexRoute
-  '/more': typeof AppLayoutMoreIndexRoute
-  '/profile-edit': typeof AppLayoutProfileEditIndexRoute
-  '/profile': typeof AppLayoutProfileIndexRoute
-  '/search': typeof AppLayoutSearchIndexRoute
-  '/slides': typeof AppLayoutSlidesIndexRoute
-  '/subscribe': typeof AppLayoutSubscribeIndexRoute
-  '/likes/incoming-likes': typeof AppLayoutLikesIncomingLikesIndexRoute
-  '/likes/my-likes': typeof AppLayoutLikesMyLikesIndexRoute
+  "/": typeof AppLayoutIndexRoute
+  "/search-id/$id": typeof AppLayoutSearchIdIdRoute
+  "/fill-fields": typeof AppLayoutFillFieldsIndexRoute
+  "/likes": typeof AppLayoutLikesIndexRoute
+  "/more": typeof AppLayoutMoreIndexRoute
+  "/profile-edit": typeof AppLayoutProfileEditIndexRoute
+  "/profile": typeof AppLayoutProfileIndexRoute
+  "/search": typeof AppLayoutSearchIndexRoute
+  "/slides": typeof AppLayoutSlidesIndexRoute
+  "/subscribe": typeof AppLayoutSubscribeIndexRoute
+  "/likes/incoming-likes": typeof AppLayoutLikesIncomingLikesIndexRoute
+  "/likes/my-likes": typeof AppLayoutLikesMyLikesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_app/_layout': typeof AppLayoutRouteWithChildren
-  '/_app/_layout/': typeof AppLayoutIndexRoute
-  '/_app/_layout/search-id/$id': typeof AppLayoutSearchIdIdRoute
-  '/_app/_layout/fill-fields/': typeof AppLayoutFillFieldsIndexRoute
-  '/_app/_layout/likes/': typeof AppLayoutLikesIndexRoute
-  '/_app/_layout/more/': typeof AppLayoutMoreIndexRoute
-  '/_app/_layout/profile-edit/': typeof AppLayoutProfileEditIndexRoute
-  '/_app/_layout/profile/': typeof AppLayoutProfileIndexRoute
-  '/_app/_layout/search/': typeof AppLayoutSearchIndexRoute
-  '/_app/_layout/slides/': typeof AppLayoutSlidesIndexRoute
-  '/_app/_layout/subscribe/': typeof AppLayoutSubscribeIndexRoute
-  '/_app/_layout/likes/incoming-likes/': typeof AppLayoutLikesIncomingLikesIndexRoute
-  '/_app/_layout/likes/my-likes/': typeof AppLayoutLikesMyLikesIndexRoute
+  "/_app/_layout": typeof AppLayoutRouteWithChildren
+  "/_app/_layout/": typeof AppLayoutIndexRoute
+  "/_app/_layout/search-id/$id": typeof AppLayoutSearchIdIdRoute
+  "/_app/_layout/fill-fields/": typeof AppLayoutFillFieldsIndexRoute
+  "/_app/_layout/likes/": typeof AppLayoutLikesIndexRoute
+  "/_app/_layout/more/": typeof AppLayoutMoreIndexRoute
+  "/_app/_layout/profile-edit/": typeof AppLayoutProfileEditIndexRoute
+  "/_app/_layout/profile/": typeof AppLayoutProfileIndexRoute
+  "/_app/_layout/search/": typeof AppLayoutSearchIndexRoute
+  "/_app/_layout/slides/": typeof AppLayoutSlidesIndexRoute
+  "/_app/_layout/subscribe/": typeof AppLayoutSubscribeIndexRoute
+  "/_app/_layout/likes/incoming-likes/": typeof AppLayoutLikesIncomingLikesIndexRoute
+  "/_app/_layout/likes/my-likes/": typeof AppLayoutLikesMyLikesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
-    | '/search-id/$id'
-    | '/fill-fields'
-    | '/likes'
-    | '/more'
-    | '/profile-edit'
-    | '/profile'
-    | '/search'
-    | '/slides'
-    | '/subscribe'
-    | '/likes/incoming-likes'
-    | '/likes/my-likes'
+    | "/"
+    | "/search-id/$id"
+    | "/fill-fields"
+    | "/likes"
+    | "/more"
+    | "/profile-edit"
+    | "/profile"
+    | "/search"
+    | "/slides"
+    | "/subscribe"
+    | "/likes/incoming-likes"
+    | "/likes/my-likes"
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
-    | '/search-id/$id'
-    | '/fill-fields'
-    | '/likes'
-    | '/more'
-    | '/profile-edit'
-    | '/profile'
-    | '/search'
-    | '/slides'
-    | '/subscribe'
-    | '/likes/incoming-likes'
-    | '/likes/my-likes'
+    | "/"
+    | "/search-id/$id"
+    | "/fill-fields"
+    | "/likes"
+    | "/more"
+    | "/profile-edit"
+    | "/profile"
+    | "/search"
+    | "/slides"
+    | "/subscribe"
+    | "/likes/incoming-likes"
+    | "/likes/my-likes"
   id:
-    | '__root__'
-    | '/_app/_layout'
-    | '/_app/_layout/'
-    | '/_app/_layout/search-id/$id'
-    | '/_app/_layout/fill-fields/'
-    | '/_app/_layout/likes/'
-    | '/_app/_layout/more/'
-    | '/_app/_layout/profile-edit/'
-    | '/_app/_layout/profile/'
-    | '/_app/_layout/search/'
-    | '/_app/_layout/slides/'
-    | '/_app/_layout/subscribe/'
-    | '/_app/_layout/likes/incoming-likes/'
-    | '/_app/_layout/likes/my-likes/'
+    | "__root__"
+    | "/_app/_layout"
+    | "/_app/_layout/"
+    | "/_app/_layout/search-id/$id"
+    | "/_app/_layout/fill-fields/"
+    | "/_app/_layout/likes/"
+    | "/_app/_layout/more/"
+    | "/_app/_layout/profile-edit/"
+    | "/_app/_layout/profile/"
+    | "/_app/_layout/search/"
+    | "/_app/_layout/slides/"
+    | "/_app/_layout/subscribe/"
+    | "/_app/_layout/likes/incoming-likes/"
+    | "/_app/_layout/likes/my-likes/"
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   AppLayoutRoute: typeof AppLayoutRouteWithChildren
 }
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/_app/_layout': {
-      id: '/_app/_layout'
-      path: ''
-      fullPath: ''
+    "/_app/_layout": {
+      id: "/_app/_layout"
+      path: ""
+      fullPath: ""
       preLoaderRoute: typeof AppLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_app/_layout/': {
-      id: '/_app/_layout/'
-      path: '/'
-      fullPath: '/'
+    "/_app/_layout/": {
+      id: "/_app/_layout/"
+      path: "/"
+      fullPath: "/"
       preLoaderRoute: typeof AppLayoutIndexRouteImport
       parentRoute: typeof AppLayoutRoute
     }
-    '/_app/_layout/subscribe/': {
-      id: '/_app/_layout/subscribe/'
-      path: '/subscribe'
-      fullPath: '/subscribe'
+    "/_app/_layout/subscribe/": {
+      id: "/_app/_layout/subscribe/"
+      path: "/subscribe"
+      fullPath: "/subscribe"
       preLoaderRoute: typeof AppLayoutSubscribeIndexRouteImport
       parentRoute: typeof AppLayoutRoute
     }
-    '/_app/_layout/slides/': {
-      id: '/_app/_layout/slides/'
-      path: '/slides'
-      fullPath: '/slides'
+    "/_app/_layout/slides/": {
+      id: "/_app/_layout/slides/"
+      path: "/slides"
+      fullPath: "/slides"
       preLoaderRoute: typeof AppLayoutSlidesIndexRouteImport
       parentRoute: typeof AppLayoutRoute
     }
-    '/_app/_layout/search/': {
-      id: '/_app/_layout/search/'
-      path: '/search'
-      fullPath: '/search'
+    "/_app/_layout/search/": {
+      id: "/_app/_layout/search/"
+      path: "/search"
+      fullPath: "/search"
       preLoaderRoute: typeof AppLayoutSearchIndexRouteImport
       parentRoute: typeof AppLayoutRoute
     }
-    '/_app/_layout/profile/': {
-      id: '/_app/_layout/profile/'
-      path: '/profile'
-      fullPath: '/profile'
+    "/_app/_layout/profile/": {
+      id: "/_app/_layout/profile/"
+      path: "/profile"
+      fullPath: "/profile"
       preLoaderRoute: typeof AppLayoutProfileIndexRouteImport
       parentRoute: typeof AppLayoutRoute
     }
-    '/_app/_layout/profile-edit/': {
-      id: '/_app/_layout/profile-edit/'
-      path: '/profile-edit'
-      fullPath: '/profile-edit'
+    "/_app/_layout/profile-edit/": {
+      id: "/_app/_layout/profile-edit/"
+      path: "/profile-edit"
+      fullPath: "/profile-edit"
       preLoaderRoute: typeof AppLayoutProfileEditIndexRouteImport
       parentRoute: typeof AppLayoutRoute
     }
-    '/_app/_layout/more/': {
-      id: '/_app/_layout/more/'
-      path: '/more'
-      fullPath: '/more'
+    "/_app/_layout/more/": {
+      id: "/_app/_layout/more/"
+      path: "/more"
+      fullPath: "/more"
       preLoaderRoute: typeof AppLayoutMoreIndexRouteImport
       parentRoute: typeof AppLayoutRoute
     }
-    '/_app/_layout/likes/': {
-      id: '/_app/_layout/likes/'
-      path: '/likes'
-      fullPath: '/likes'
+    "/_app/_layout/likes/": {
+      id: "/_app/_layout/likes/"
+      path: "/likes"
+      fullPath: "/likes"
       preLoaderRoute: typeof AppLayoutLikesIndexRouteImport
       parentRoute: typeof AppLayoutRoute
     }
-    '/_app/_layout/fill-fields/': {
-      id: '/_app/_layout/fill-fields/'
-      path: '/fill-fields'
-      fullPath: '/fill-fields'
+    "/_app/_layout/fill-fields/": {
+      id: "/_app/_layout/fill-fields/"
+      path: "/fill-fields"
+      fullPath: "/fill-fields"
       preLoaderRoute: typeof AppLayoutFillFieldsIndexRouteImport
       parentRoute: typeof AppLayoutRoute
     }
-    '/_app/_layout/search-id/$id': {
-      id: '/_app/_layout/search-id/$id'
-      path: '/search-id/$id'
-      fullPath: '/search-id/$id'
+    "/_app/_layout/search-id/$id": {
+      id: "/_app/_layout/search-id/$id"
+      path: "/search-id/$id"
+      fullPath: "/search-id/$id"
       preLoaderRoute: typeof AppLayoutSearchIdIdRouteImport
       parentRoute: typeof AppLayoutRoute
     }
-    '/_app/_layout/likes/my-likes/': {
-      id: '/_app/_layout/likes/my-likes/'
-      path: '/likes/my-likes'
-      fullPath: '/likes/my-likes'
+    "/_app/_layout/likes/my-likes/": {
+      id: "/_app/_layout/likes/my-likes/"
+      path: "/likes/my-likes"
+      fullPath: "/likes/my-likes"
       preLoaderRoute: typeof AppLayoutLikesMyLikesIndexRouteImport
       parentRoute: typeof AppLayoutRoute
     }
-    '/_app/_layout/likes/incoming-likes/': {
-      id: '/_app/_layout/likes/incoming-likes/'
-      path: '/likes/incoming-likes'
-      fullPath: '/likes/incoming-likes'
+    "/_app/_layout/likes/incoming-likes/": {
+      id: "/_app/_layout/likes/incoming-likes/"
+      path: "/likes/incoming-likes"
+      fullPath: "/likes/incoming-likes"
       preLoaderRoute: typeof AppLayoutLikesIncomingLikesIndexRouteImport
       parentRoute: typeof AppLayoutRoute
     }
@@ -313,7 +313,7 @@ const AppLayoutRouteChildren: AppLayoutRouteChildren = {
 }
 
 const AppLayoutRouteWithChildren = AppLayoutRoute._addFileChildren(
-  AppLayoutRouteChildren,
+  AppLayoutRouteChildren
 )
 
 const rootRouteChildren: RootRouteChildren = {
