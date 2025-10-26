@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dantauu/marsi:latest
+    container_name: marsi
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: yarn dev
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+    restart: always
