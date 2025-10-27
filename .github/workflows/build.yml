@@ -27,5 +27,11 @@ jobs:
       - name: Enable corepack
         run: corepack enable
 
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Prepare yarn
+        run: corepack prepare yarn@3.2.3 --activate
+
       - name: Test
         run: yarn test
