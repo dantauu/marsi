@@ -7,12 +7,13 @@ import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 const useRouteEmptyFields = () => {
   const { isDev } = getEnvironment()
   const { isEmpty } = GetFields()
-  const { userToken } = useCurrentUser()
+  const { userToken, user } = useCurrentUser()
   const userId = userToken?.userId
   const navigate = useNavigate()
   useEffect(() => {
+    if (!user) return
     if (isEmpty && !isDev && userId) navigate({ to: "/fill-fields" })
-  }, [isEmpty, navigate, isDev, userId])
+  }, [isEmpty, navigate, isDev, userId, user])
 }
 
 export default useRouteEmptyFields
