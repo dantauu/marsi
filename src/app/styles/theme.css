@@ -1,0 +1,19 @@
+:root {
+  --color-main-back: #ffffff;
+  --color-bg-surface: #ffffff;
+  --color-bg-muted: rgba(64, 64, 64, 0.97);
+  --color-bg-setting: rgba(255, 255, 255, 0);
+  --color-bg-muted-edit: rgba(0, 0, 0, 0.13);
+  --color-text-base: #000000;
+  --color-text-grey: #00000094;
+}
+
+[data-theme="dark"] {
+  --color-main-back: #1a1a1a;
+  --color-bg-surface: #282828;
+  --color-bg-muted: #404040;
+  --color-bg-setting: rgba(64, 64, 64, 0.97);
+  --color-bg-muted-edit: rgba(64, 64, 64, 0.97);
+  --color-text-base: #00000094;
+  --color-text-grey: rgba(255, 255, 255, 0.75);
+}

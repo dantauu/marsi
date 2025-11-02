@@ -17,22 +17,25 @@ export const ProfileHeader = ({ currentUser }: ProfileHeaderProps) => {
   const linkEditProfile = () => {
     navigate({ to: "/profile-edit" })
   }
+  const linkSettings = () => {
+    navigate({ to: "/settings" })
+  }
   return (
-    <div className="flex flex-col gap-2 shadow-easy rounded-[10px] p-1 pb-3 px-2">
+    <div className="flex flex-col gap-2 shadow-easy rounded-[10px] p-1 pb-3 px-2 bg-[var(--color-bg-surface)]">
       <div className="flex items-center justify-between w-full mx-auto">
         <Button
-          onClick={linkEditProfile}
-          className="w-[45px] h-[45px] text-[14px] text-[#00000094] font-ManropeM shadow-easy rounded-full"
+          onClick={linkSettings}
+          className="w-[45px] h-[45px] text-[14px] font-ManropeM shadow-easy rounded-full bg-[var(--color-bg-setting)]"
           variant="default"
         >
-          <SvgSettings className="w-[35px] h-[35px]" />
+          <SvgSettings className="w-[35px] h-[35px] text-[var(--color-text-grey)]" />
         </Button>
         <div className="flex items-center gap-2">
           <div className="flex items-cente">
-            <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px] text-ellipsis overflow-hidden max-w-[115px] whitespace-nowrap">
+            <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px] text-ellipsis overflow-hidden max-w-[115px] whitespace-nowrap text-[var(--color-text-base)]">
               {currentUser?.first_name || "Не указано"}
             </p>
-            <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px]">
+            <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px] text-[var(--color-text-base)]">
               ,{currentUser?.age || "?"}
             </p>
           </div>
@@ -62,7 +65,7 @@ export const ProfileHeader = ({ currentUser }: ProfileHeaderProps) => {
       </div>
       <Button
         onClick={linkEditProfile}
-        className="w-full h-[40px] text-[15px] rounded-full font-ManropeM bg-[#00000012] text-[#00000094]"
+        className="w-full h-[40px] text-[15px] rounded-full font-ManropeM bg-[var(--color-bg-muted-edit)] text-[var(--color-text-grey)]"
         variant="default"
       >
         Редактирование профиля
