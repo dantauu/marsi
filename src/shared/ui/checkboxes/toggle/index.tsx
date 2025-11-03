@@ -10,19 +10,19 @@ export const ToggleSwitch = memo(() => {
   const theme = useAppSelector((state) => state.theme_switch.theme)
   const isMiniMobile = useIsMiniMobile()
   const activeVariants = {
-    light: { x: 4 },
-    dark: { x: isMiniMobile ? 52.8 : 56.5 },
+    light: { x: 2 },
+    dark: { x: isMiniMobile ? 35 : 40 },
   }
   return (
     <div
       onClick={() => dispatch(toggleTheme())}
-      className="relative flex items-center justify-between w-[95px] h-[45px] mini-mobile:w-[104px] mini-mobile:h-[50px] cursor-pointer bg-[#BEBEBE] rounded-full"
+      className="relative flex items-center justify-between w-[71px] h-[38px] mini-mobile:w-[78px] mini-mobile:h-[40px] cursor-pointer bg-[var(--color-bg-toggle)] rounded-full"
     >
       <motion.div
         animate={theme}
         variants={activeVariants}
-        transition={{ duration: 0.15, ease: "linear" }}
-        className="absolute top-1 left-0 w-[43px] h-[45.2px] mini-mobile:w-[42px] mini-mobile:h-[42px] bg-black rounded-full z-0"
+        transition={{ duration: 0.23, ease: "linear" }}
+        className="absolute left-0 w-[34px] h-[34px] mini-mobile:w-[36px] mini-mobile:h-[36px] bg-white rounded-full z-0"
       />
       <Button
         className="relative z-1 w-[41px] h-[37px] mini-mobile:w-[46px] mini-mobile:h-[42px] transition-all duration-100 rounded-full"

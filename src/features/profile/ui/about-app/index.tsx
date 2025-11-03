@@ -6,7 +6,7 @@ export const SeeAboutApp = () => {
   return (
     <div className="flex flex-col items-center justify-between py-2 px-2 h-[105px] bg-main-green w-full mini-mobile:w-full rounded-[10px] cursor-pointer leading-5">
       <div className="flex flex-col justify-center items-center w-full">
-        <p className="text-center text-[var(--color-text-base)] font-HelveticaB text-[16px] leading-4">
+        <p className="text-center text-[var(--color-text-white)] font-HelveticaB text-[16px] leading-4">
           Смотреть о приложении
         </p>
       </div>

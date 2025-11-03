@@ -2,18 +2,30 @@
   --color-main-back: #ffffff;
   --color-bg-surface: #ffffff;
   --color-bg-muted: rgba(64, 64, 64, 0.97);
+  --color-bg-toggle: #bebebe;
+  --color-bg-muted-field: #ffffff;
   --color-bg-setting: rgba(255, 255, 255, 0);
   --color-bg-muted-edit: rgba(0, 0, 0, 0.13);
+  --color-bg-muted-nav: #252323f7;
   --color-text-base: #000000;
   --color-text-grey: #00000094;
+  --color-text-white: #ffffff;
+  --color-text-black: #000000;
+  --color-basic-info: linear-gradient(90deg, #ffe8f2 0%, #f9eace9c 100%);
 }
 
 [data-theme="dark"] {
   --color-main-back: #1a1a1a;
   --color-bg-surface: #282828;
   --color-bg-muted: #404040;
+  --color-bg-toggle: #38d4af;
+  --color-bg-muted-field: rgba(63, 63, 63, 0.95);
   --color-bg-setting: rgba(64, 64, 64, 0.97);
   --color-bg-muted-edit: rgba(64, 64, 64, 0.97);
+  --color-bg-muted-nav: rgba(40, 40, 40, 0.95);
   --color-text-base: #00000094;
   --color-text-grey: rgba(255, 255, 255, 0.75);
+  --color-text-white: rgba(255, 255, 255, 0.75);
+  --color-text-black: rgba(255, 255, 255, 0.75);
+  --color-basic-info: #282828;
 }

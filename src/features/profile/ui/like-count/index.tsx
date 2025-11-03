@@ -17,7 +17,7 @@ export const LikeCount = ({ isPending, myLikes }: LikeCountProps) => {
         className="flex items-center flex-col gap-1 h-[34px]"
       >
         <p
-          className={`font-HelveticaB leading-4 text-[var(--color-text-base)] ${isPending ? "text-[16px]" : "text-[17px]"}`}
+          className={`font-HelveticaB leading-4 text-[var(--color-text-black)] ${isPending ? "text-[16px]" : "text-[17px]"}`}
         >
           Лайки от меня:
         </p>
@@ -25,7 +25,7 @@ export const LikeCount = ({ isPending, myLikes }: LikeCountProps) => {
           {isPending ? (
             <LoadingBalls className="w-10" />
           ) : (
-            <p className="font-HelveticaB text-[17.5px] text-[var(--color-text-base)] leading-5">
+            <p className="font-HelveticaB text-[17.5px] text-[var(--color-text-black)] leading-5">
               {myLikes?.length || 0}
             </p>
           )}
