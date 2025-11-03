@@ -18,7 +18,7 @@ const Layout = ({ children }: PropsWithChildren) => {
   const { isMobile } = usePlatform()
   return (
     <div
-      className={`max-w-[610px] mx-auto bg-[var(--color-main-back)] ${isMobile ? "pt-[80px]" : "pt-[20px]"}`}
+      className={`max-w-[610px] mx-auto ${isMobile ? "pt-[80px]" : "pt-[20px]"}`}
     >
       {children}
       <NavBar activePath={router.location.pathname} />

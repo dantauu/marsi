@@ -32,10 +32,10 @@ export const ProfileHeader = ({ currentUser }: ProfileHeaderProps) => {
         </Button>
         <div className="flex items-center gap-2">
           <div className="flex items-cente">
-            <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px] text-ellipsis overflow-hidden max-w-[115px] whitespace-nowrap text-[var(--color-text-base)]">
+            <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px] text-ellipsis overflow-hidden max-w-[115px] whitespace-nowrap text-[var(--color-text-white)]">
               {currentUser?.first_name || "Не указано"}
             </p>
-            <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px] text-[var(--color-text-base)]">
+            <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px] text-[var(--color-text-white)]">
               ,{currentUser?.age || "?"}
             </p>
           </div>

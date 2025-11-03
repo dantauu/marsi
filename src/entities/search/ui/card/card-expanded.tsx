@@ -34,14 +34,14 @@ export const CardExpandedLayout = ({
           />
         )}
       </div>
-      <div className="flex flex-col absolute z-5 bottom-2 left-3">
-        <p className="font-HelveticaB text-[#ffffffc2] text-[21px]">
+      <div className="flex flex-col absolute z-5 bottom-2 left-3 text-[var(--color-text-white)]">
+        <p className="font-HelveticaB text-[21px]">
           {first_name}, {age}
         </p>
-        <p className="font-HelveticaB text-[#ffffffc2] text-[18px]">
+        <p className="font-HelveticaB text-[18px]">
           Цель: {goal || "Не указано"}{" "}
         </p>
-        <p className="font-HelveticaB text-[#ffffffc2] text-[18px]">
+        <p className="font-HelveticaB text-[18px]">
           Рост: {height || "Не указано"}{" "}
         </p>
       </div>

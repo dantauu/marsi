@@ -16,7 +16,7 @@ export const BasicInformation = () => {
   return (
     <div
       onClick={() => navigate({ to: "/profile-edit" })}
-      className="mt-[10px] px-[8px] py-[8px] rounded-[10px] bg-[var(--color-basic-info)]"
+      className="bg-[var(--color-basic-info)] [background-image:var(--color-basic-info)] mt-[10px] px-[8px] py-[8px] rounded-[10px]"
     >
       <Block
         className="flex items-center justify-center max-w-[300px] mx-auto"
