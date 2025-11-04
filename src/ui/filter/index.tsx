@@ -18,13 +18,18 @@ export const FilterSlide = ({
   return (
     <div className="flex flex-col items-center gap-7">
       <div className="w-full flex items-center justify-between">
-        <p className="font-HelveticaB text-[20px]">{title}</p>
-        <div className="flex justify-center gap-2 w-[110px] h-[30px] bg-black rounded-[7px]">
-          <span className="font-HelveticaB text-white text-[20px]">
+        <p className="font-HelveticaB text-[20px] text-[var(--color-text-black)]">
+          {title}
+        </p>
+        <div className="flex justify-center gap-2 w-[110px] h-[30px] bg-[var(--color-bg-drag-field)] rounded-[7px]">
+          <span className="font-HelveticaB text-[var(--color-text-white)] text-[20px]">
             {values[0]}
           </span>
-          <span className="font-HelveticaB text-white text-[20px]"> - </span>
-          <span className="font-HelveticaB text-white text-[20px]">
+          <span className="font-HelveticaB text-[var(--color-text-white)] text-[20px]">
+            {" "}
+            -{" "}
+          </span>
+          <span className="font-HelveticaB text-[var(--color-text-white)] text-[20px]">
             {values[1]}
           </span>
         </div>

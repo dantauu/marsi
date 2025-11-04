@@ -22,15 +22,17 @@ const QuestionItem = memo(
     onClick: (id: number) => void
   }) => {
     return (
-      <div className="flex flex-col items-center px-2 shadow-easy rounded-xl">
+      <div className="flex flex-col items-center px-2 shadow-easy bg-[var(--color-bg-surface)] rounded-xl">
         <Button
           onClick={() => onClick(item.id)}
-          className="flex items-center w-full justify-between h-15 cursor-pointer"
+          className="flex items-center w-full justify-between h-15 cursor-pointer text-left"
           variant="default"
         >
-          <div className="font-ManropeM text-[16.5px]">{item.question}</div>
+          <div className="font-ManropeM text-[16.5px] text-[var(--color-text-black)]">
+            {item.question}
+          </div>
           <SvgPlus
-            className={`min-w-7 h-7 stroke-[3.5] duration-150 ${isActive && "rotate-45"}`}
+            className={`min-w-7 h-7 stroke-[3.5] duration-150 text-[var(--color-text-black)] ${isActive && "rotate-45"}`}
           />
         </Button>
         <AnimatePresence>
@@ -42,7 +44,9 @@ const QuestionItem = memo(
               transition={{ duration: 0.2, ease: "easeInOut" }}
               className="overflow-hidden w-full"
             >
-              <div className="w-full text-[#0000009e]">{item.response}</div>
+              <div className="w-full text-[var(--color-text-black)]">
+                {item.response}
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

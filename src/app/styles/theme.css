@@ -2,6 +2,9 @@
   --color-main-back: #ffffff;
   --color-bg-surface: #ffffff;
   --color-bg-muted: rgba(64, 64, 64, 0.97);
+  --color-bg-drag: #0000002c;
+  --color-bg-drag-field: #000000;
+  --color-bg-nav-filters: #cecece87;
   --color-bg-muted-black: #000000;
   --color-bg-toggle: #bebebe;
   --color-bg-muted-field: #ffffff;
@@ -19,6 +22,9 @@
   --color-main-back: #1a1a1a;
   --color-bg-surface: #282828;
   --color-bg-muted: #404040;
+  --color-bg-drag: rgba(64, 64, 64, 0.97);
+  --color-bg-drag-field: #262626;
+  --color-bg-nav-filters: #39393987;
   --color-bg-muted-black: #201e1e;
   --color-bg-toggle: #38d4af;
   --color-bg-muted-field: rgba(63, 63, 63, 0.95);
