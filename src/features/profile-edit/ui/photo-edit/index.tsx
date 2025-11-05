@@ -76,7 +76,7 @@ export const PhotoEdit = () => {
         return (
           <div
             key={item.id}
-            className="relative w-[95px] h-[185px] mini-mobile:w-[123px] mini-mobile:h-[218px] overflow-hidden rounded-[10px] bg-[#D9D9D9]"
+            className="relative w-[95px] h-[185px] mini-mobile:w-[123px] mini-mobile:h-[218px] overflow-hidden rounded-[10px] bg-[var(--color-bg-photo-edit)]"
           >
             {imageSrc ? (
               <>

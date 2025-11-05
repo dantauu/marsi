@@ -70,9 +70,16 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
 
   console.log("ERRORS", errors)
   return (
-    <div className={cn("rounded-[18px] shadow-easy", className)}>
+    <div
+      className={cn(
+        "rounded-[18px] shadow-easy bg-[var(--color-bg-surface)]",
+        className
+      )}
+    >
       <div className="flex flex-col gap-4 p-2">
-        <p className="font-HelveticaB text-[21px]">Основное</p>
+        <p className="font-HelveticaB text-[21px] text-[var(--color-text-black)]">
+          Основное
+        </p>
         <ItemEdit
           title="Имя"
           text={first_name}

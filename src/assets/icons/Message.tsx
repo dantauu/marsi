@@ -9,7 +9,7 @@ const SvgMessage = (props: SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <path
-      stroke="#0007"
+      stroke="currentColor"
       strokeLinecap="round"
       strokeWidth={1.2}
       d="M6 8h8m-8 4h4m9-2a9 9 0 0 1-9 9H1.724a.5.5 0 0 1-.467-.677l.893-2.359c.23-.605.138-1.277-.158-1.852A9 9 0 1 1 19 10Z"
