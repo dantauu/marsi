@@ -18,6 +18,7 @@
   --color-text-white: #ffffff;
   --color-text-black: #000000;
   --color-icons-black: #0007;
+  --color-icons-card: #0005;
   --color-basic-info: linear-gradient(90deg, #ffe8f2 0%, #f9eace9c 100%);
 }
 
@@ -29,7 +30,7 @@
   --color-bg-drag: rgba(64, 64, 64, 0.97);
   --color-bg-drag-field: #262626;
   --color-bg-nav-filters: #39393987;
-  --color-bg-muted-black: #201e1e;
+  --color-bg-muted-black: rgba(63, 63, 63, 0.95);
   --color-bg-toggle: #38d4af;
   --color-bg-muted-field: rgba(63, 63, 63, 0.95);
   --color-bg-setting: rgba(64, 64, 64, 0.97);
@@ -41,5 +42,6 @@
   --color-text-white: rgba(255, 255, 255, 0.75);
   --color-text-black: rgba(255, 255, 255, 0.75);
   --color-icons-black: #131313;
+  --color-icons-card: rgba(207, 204, 204, 0.76);
   --color-basic-info: #282828;
 }

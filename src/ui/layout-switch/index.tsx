@@ -16,7 +16,7 @@ export const SwitchButtons = memo(() => {
     expanded: { x: isMiniMobile ? 52.8 : 56.5 },
   }
   return (
-    <div className="relative flex items-center justify-between w-[95px] h-[45px] mini-mobile:w-[104px] mini-mobile:h-[50px] bg-[var(--color-bg-muted-field)] rounded-[10px]">
+    <div className="relative flex items-center justify-between w-[95px] h-[45px] mini-mobile:w-[104px] mini-mobile:h-[50px] bg-[var(--color-bg-muted-black)] rounded-[10px]">
       <motion.div
         animate={layout}
         variants={activeVariants}

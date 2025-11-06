@@ -35,7 +35,7 @@ export const SliderButtons = ({
   return (
     <div className="absolute bottom-0 z-50 w-full flex items-center justify-center gap-5 px-3 pb-4">
       <Button
-        className="w-[58px] h-[58px] bg-[var(--color-bg-muted)] rounded-full"
+        className="w-[58px] h-[58px] bg-[var(--color-bg-surface)] rounded-full"
         variant="default"
         onClick={() => handleDislikeUser()}
         onMouseDown={(e) => e.stopPropagation()}
@@ -43,7 +43,7 @@ export const SliderButtons = ({
         <SvgCrossOrigin className="w-[37px] h-[37px] text-[var(--color-text-black)]" />
       </Button>
       <Button
-        className="w-[58px] h-[58px] bg-[var(--color-bg-muted)] rounded-full pt-1"
+        className="w-[58px] h-[58px] bg-[var(--color-bg-surface)] rounded-full pt-1"
         variant="default"
         onClick={() => handleLikeUser()}
         onMouseDown={(e) => e.stopPropagation()}
