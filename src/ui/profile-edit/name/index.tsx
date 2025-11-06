@@ -4,7 +4,7 @@ export const NameEdit = ({ ...field }) => {
       <input
         type="text"
         placeholder="Введите имя"
-        className="w-full h-[50px] border rounded-[5px] px-4 text-[20px] font-ManropeM "
+        className="w-full h-[50px] border rounded-[5px] px-4 text-[20px] font-ManropeM text-[var(--color-text-black)] placeholder:text-[var(--color-text-black)]"
         {...field}
       />
     </div>

@@ -47,7 +47,7 @@ const Search = () => {
   return (
     <div data-testid="search" className="pb-[200px]">
       <div
-        className={`fixed z-10 top-0 w-full max-w-[610px] bg-white ${isMobile ? "pt-[80px]" : "pt-0"}`}
+        className={`fixed z-10 top-0 w-full max-w-[610px] bg-[var(--color-bg-surface)] ${isMobile ? "pt-[80px]" : "pt-0"}`}
       >
         <LikesCount countLikes={countLikes} />
         <div className="flex w-full mx-auto px-[12px] items-center justify-between pb-[5px]">

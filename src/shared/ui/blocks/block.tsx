@@ -14,10 +14,10 @@ const Block = ({
       onClick={onClick}
       className={cn(
         className,
-        "flex items-center h-[43px] px-1.5 shadow-easy rounded-[10px]"
+        "flex items-center h-[43px] px-1.5 shadow-easy rounded-[10px] bg-[var(--color-bg-muted-field)]"
       )}
     >
-      <p className="font-ManropeM">{text}</p>
+      <p className="font-ManropeM text-[var(--color-text-black)]">{text}</p>
     </div>
   )
 }

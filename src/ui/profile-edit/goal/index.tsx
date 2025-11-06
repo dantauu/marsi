@@ -22,13 +22,13 @@ export const EditGoal = ({
         <div
           key={item.id}
           onClick={() => handleClick(item)}
-          className={`flex h-[80px] rounded-[10px] bg-white ${isActive === item.title && "border-2"}`}
+          className={`flex h-[80px] rounded-[10px] bg-[var(--color-bg-muted-white)] ${isActive === item.title && "border-2"}`}
         >
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center text-[var(--color-icons-black)] pl-2">
             {item.icon}
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 text-[var(--color-text-black)]">
               <p className="font-HelveticaB">{item.title}</p>
-              <p className="text-[#0007] text-[15px]">{item.description}</p>
+              <p className="text-[15px]">{item.description}</p>
             </div>
           </div>
         </div>

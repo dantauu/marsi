@@ -5,7 +5,7 @@ const SvgFriends = (props: SVGProps<SVGSVGElement>) => (
     width={50}
     height={50}
     fill="none"
-    stroke="#0007"
+    stroke="currentColor"
     strokeWidth={3}
     viewBox="0 0 64 64"
     {...props}

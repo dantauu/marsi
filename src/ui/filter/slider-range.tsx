@@ -50,7 +50,7 @@ const SliderRange = ({ values, min, max, setValues }: SlideRangeProps) => {
           <div
             key={key}
             {...restProps}
-            className="absolute w-[35px] h-[35px] top-0 bg-[#31C29F] rounded-full border-2 border-white"
+            className="absolute w-[35px] h-[35px] top-0 bg-[#31C29F] rounded-full border-2 border-[var(--color-text-white)]"
           />
         )
       }}

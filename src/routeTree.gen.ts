@@ -13,6 +13,7 @@ import { Route as AppLayoutRouteImport } from './app/routes/_app/_layout'
 import { Route as AppLayoutIndexRouteImport } from './app/routes/_app/_layout/index'
 import { Route as AppLayoutSubscribeIndexRouteImport } from './app/routes/_app/_layout/subscribe/index'
 import { Route as AppLayoutSlidesIndexRouteImport } from './app/routes/_app/_layout/slides/index'
+import { Route as AppLayoutSettingsIndexRouteImport } from './app/routes/_app/_layout/settings/index'
 import { Route as AppLayoutSearchIndexRouteImport } from './app/routes/_app/_layout/search/index'
 import { Route as AppLayoutProfileIndexRouteImport } from './app/routes/_app/_layout/profile/index'
 import { Route as AppLayoutProfileEditIndexRouteImport } from './app/routes/_app/_layout/profile-edit/index'
@@ -40,6 +41,11 @@ const AppLayoutSubscribeIndexRoute = AppLayoutSubscribeIndexRouteImport.update({
 const AppLayoutSlidesIndexRoute = AppLayoutSlidesIndexRouteImport.update({
   id: '/slides/',
   path: '/slides/',
+  getParentRoute: () => AppLayoutRoute,
+} as any)
+const AppLayoutSettingsIndexRoute = AppLayoutSettingsIndexRouteImport.update({
+  id: '/settings/',
+  path: '/settings/',
   getParentRoute: () => AppLayoutRoute,
 } as any)
 const AppLayoutSearchIndexRoute = AppLayoutSearchIndexRouteImport.update({
@@ -101,6 +107,7 @@ export interface FileRoutesByFullPath {
   '/profile-edit': typeof AppLayoutProfileEditIndexRoute
   '/profile': typeof AppLayoutProfileIndexRoute
   '/search': typeof AppLayoutSearchIndexRoute
+  '/settings': typeof AppLayoutSettingsIndexRoute
   '/slides': typeof AppLayoutSlidesIndexRoute
   '/subscribe': typeof AppLayoutSubscribeIndexRoute
   '/likes/incoming-likes': typeof AppLayoutLikesIncomingLikesIndexRoute
@@ -115,6 +122,7 @@ export interface FileRoutesByTo {
   '/profile-edit': typeof AppLayoutProfileEditIndexRoute
   '/profile': typeof AppLayoutProfileIndexRoute
   '/search': typeof AppLayoutSearchIndexRoute
+  '/settings': typeof AppLayoutSettingsIndexRoute
   '/slides': typeof AppLayoutSlidesIndexRoute
   '/subscribe': typeof AppLayoutSubscribeIndexRoute
   '/likes/incoming-likes': typeof AppLayoutLikesIncomingLikesIndexRoute
@@ -131,6 +139,7 @@ export interface FileRoutesById {
   '/_app/_layout/profile-edit/': typeof AppLayoutProfileEditIndexRoute
   '/_app/_layout/profile/': typeof AppLayoutProfileIndexRoute
   '/_app/_layout/search/': typeof AppLayoutSearchIndexRoute
+  '/_app/_layout/settings/': typeof AppLayoutSettingsIndexRoute
   '/_app/_layout/slides/': typeof AppLayoutSlidesIndexRoute
   '/_app/_layout/subscribe/': typeof AppLayoutSubscribeIndexRoute
   '/_app/_layout/likes/incoming-likes/': typeof AppLayoutLikesIncomingLikesIndexRoute
@@ -147,6 +156,7 @@ export interface FileRouteTypes {
     | '/profile-edit'
     | '/profile'
     | '/search'
+    | '/settings'
     | '/slides'
     | '/subscribe'
     | '/likes/incoming-likes'
@@ -161,6 +171,7 @@ export interface FileRouteTypes {
     | '/profile-edit'
     | '/profile'
     | '/search'
+    | '/settings'
     | '/slides'
     | '/subscribe'
     | '/likes/incoming-likes'
@@ -176,6 +187,7 @@ export interface FileRouteTypes {
     | '/_app/_layout/profile-edit/'
     | '/_app/_layout/profile/'
     | '/_app/_layout/search/'
+    | '/_app/_layout/settings/'
     | '/_app/_layout/slides/'
     | '/_app/_layout/subscribe/'
     | '/_app/_layout/likes/incoming-likes/'
@@ -214,6 +226,13 @@ declare module '@tanstack/react-router' {
       path: '/slides'
       fullPath: '/slides'
       preLoaderRoute: typeof AppLayoutSlidesIndexRouteImport
+      parentRoute: typeof AppLayoutRoute
+    }
+    '/_app/_layout/settings/': {
+      id: '/_app/_layout/settings/'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppLayoutSettingsIndexRouteImport
       parentRoute: typeof AppLayoutRoute
     }
     '/_app/_layout/search/': {
@@ -291,6 +310,7 @@ interface AppLayoutRouteChildren {
   AppLayoutProfileEditIndexRoute: typeof AppLayoutProfileEditIndexRoute
   AppLayoutProfileIndexRoute: typeof AppLayoutProfileIndexRoute
   AppLayoutSearchIndexRoute: typeof AppLayoutSearchIndexRoute
+  AppLayoutSettingsIndexRoute: typeof AppLayoutSettingsIndexRoute
   AppLayoutSlidesIndexRoute: typeof AppLayoutSlidesIndexRoute
   AppLayoutSubscribeIndexRoute: typeof AppLayoutSubscribeIndexRoute
   AppLayoutLikesIncomingLikesIndexRoute: typeof AppLayoutLikesIncomingLikesIndexRoute
@@ -306,6 +326,7 @@ const AppLayoutRouteChildren: AppLayoutRouteChildren = {
   AppLayoutProfileEditIndexRoute: AppLayoutProfileEditIndexRoute,
   AppLayoutProfileIndexRoute: AppLayoutProfileIndexRoute,
   AppLayoutSearchIndexRoute: AppLayoutSearchIndexRoute,
+  AppLayoutSettingsIndexRoute: AppLayoutSettingsIndexRoute,
   AppLayoutSlidesIndexRoute: AppLayoutSlidesIndexRoute,
   AppLayoutSubscribeIndexRoute: AppLayoutSubscribeIndexRoute,
   AppLayoutLikesIncomingLikesIndexRoute: AppLayoutLikesIncomingLikesIndexRoute,

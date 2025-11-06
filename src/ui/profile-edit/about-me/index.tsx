@@ -17,7 +17,7 @@ export const AboutMe = ({ value, onChange }: AboutMeProps) => {
   }
   return (
     <div className="flex flex-col gap-2 font-ManropeM">
-      <p className="text-center">
+      <p className="text-center font-HelveticaB text-[18px] text-[var(--color-text-black)]">
         {controlValue.length}/{maxValue}
       </p>
       <textarea
@@ -25,7 +25,7 @@ export const AboutMe = ({ value, onChange }: AboutMeProps) => {
         value={value ?? undefined}
         maxLength={maxValue}
         rows={3}
-        className="border p-2 rounded-xl w-full font-ManropeM focus:border-black active:border-black"
+        className="border p-2 rounded-xl w-full min-h-[80px] font-ManropeM text-[var(--color-text-black)] focus:border-[var(--color-text-black)] active:border-[var(--color-text-black)]"
         placeholder="Расскожите о себе"
       />
     </div>

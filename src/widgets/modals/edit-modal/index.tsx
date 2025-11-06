@@ -35,9 +35,9 @@ export const EditModal = ({
       initial={{ y: "100%" }}
       animate={{ y: 0 }}
       exit={{ y: "100%" }}
-      className="fixed flex flex-col px-2 w-full max-w-[610px] h-[70%] bg-white bottom-0 z-10 rounded-tl-[60px] rounded-tr-[60px]"
+      className="fixed flex flex-col px-2 w-full max-w-[610px] h-[70%] bg-[var(--color-bg-surface)] bottom-0 z-10 rounded-tl-[60px] rounded-tr-[60px]"
     >
-      <h3 className="text-center text-[23px] font-HelveticaB pb-5 pt-2">
+      <h3 className="text-center text-[23px] font-HelveticaB pb-5 pt-2 text-[var(--color-text-black)]">
         {title}
       </h3>
       <div className="overflow-y-auto">{children}</div>

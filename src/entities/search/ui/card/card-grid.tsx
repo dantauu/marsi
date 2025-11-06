@@ -32,7 +32,7 @@ export const CardGridLayout = ({
           />
         )}
       </div>
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-1 text-[var(--color-text-black)]">
         <p className="font-HelveticaB text-[16px] text-ellipsis max-w-[125px] whitespace-nowrap overflow-hidden">
           {first_name},
         </p>
