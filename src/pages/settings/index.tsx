@@ -12,7 +12,7 @@ export const Settings = () => {
       className={`flex flex-col min-h-screen px-[4px] ${isMobile ? "pt-[75px]" : "pt-[65px]"}`}
     >
       <div
-        className={`fixed pb-[4.5px] px-4 z-5 bg-[var(--color-bg-surface)] w-full max-w-[610px] top-0 left-0 flex items-center  justify-between ${isMobile ? "pt-[97px]" : "pt-[30px]"}`}
+        className={`fixed pb-[4.5px] px-4 z-5 bg-[var(--color-bg-surface)] w-full max-w-[610px] top-0 left-0 flex items-center  justify-between shadow-easy ${isMobile ? "pt-[97px]" : "pt-[30px]"}`}
       >
         <SvgArrowPath
           className="w-[15px] h-[27px] text-[var(--color-text-black)]"
@@ -29,7 +29,7 @@ export const Settings = () => {
         <ToggleSwitch />
       </div>
       <div className="flex-1" />
-      <DeleteAccount className="mb-40" />
+      <DeleteAccount className="mb-55" />
     </div>
   )
 }
