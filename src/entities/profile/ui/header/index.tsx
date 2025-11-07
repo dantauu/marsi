@@ -35,7 +35,7 @@ export const ProfileHeader = ({ currentUser }: ProfileHeaderProps) => {
             <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px] text-ellipsis overflow-hidden max-w-[115px] whitespace-nowrap text-[var(--color-text-black)]">
               {currentUser?.first_name || "Не указано"}
             </p>
-            <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px] text-[var(--color-text-white)]">
+            <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px] text-[var(--color-text-black)]">
               ,{currentUser?.age || "?"}
             </p>
           </div>
