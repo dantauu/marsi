@@ -50,6 +50,9 @@ export const PhotoEdit = () => {
       const updated = [...photo_url]
       updated[index] = uploadedUrls
       setValue("photo_url", updated, { shouldDirty: true })
+
+      console.log("uploadedUrls:", uploadedUrls)
+      console.log("updated:", updated)
     } catch (error) {
       console.log("error photo upload", error)
     }
@@ -72,6 +75,7 @@ export const PhotoEdit = () => {
     <div className="flex justify-between mb-[20px] px-2">
       {pictureItems.map((item, index) => {
         const imageSrc = photo_url[index]
+        console.log("imageSrc", imageSrc)
 
         return (
           <div
