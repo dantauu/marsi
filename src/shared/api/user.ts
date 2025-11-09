@@ -2,6 +2,12 @@ import type { FilteredUsers } from "@/app/types/global.d.ts"
 import type { User, UserInit, UpdateUserData } from "@/app/types/user"
 import { baseApi } from "@/redux/api/base-api.ts"
 
+type UploadPhotoResponse = {
+  profile: string
+  card: string
+  "card-full": string
+}
+
 export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     authUser: builder.mutation<{ access_token: string; user: User }, UserInit>({
@@ -44,9 +50,9 @@ export const userApi = baseApi.injectEndpoints({
           url: "upload-photo",
           method: "POST",
           body: formData,
-          responseHandler: (response) => response.text(),
         }
       },
+      transformResponse: (response: UploadPhotoResponse) => response.profile,
     }),
     deletePhoto: builder.mutation<string, string>({
       query: (file) => ({
