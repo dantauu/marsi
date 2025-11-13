@@ -2,7 +2,7 @@ import type { FilteredUsers } from "@/app/types/global.d.ts"
 import type { User, UserInit, UpdateUserData } from "@/app/types/user"
 import { baseApi } from "@/redux/api/base-api.ts"
 
-type UploadPhotoResponse = {
+export type UploadPhotoResponse = {
   profile: string
   card: string
   "card-full": string
@@ -42,7 +42,7 @@ export const userApi = baseApi.injectEndpoints({
         body: userData,
       }),
     }),
-    uploadPhoto: builder.mutation<string, File | Blob>({
+    uploadPhoto: builder.mutation<UploadPhotoResponse, File | Blob>({
       query: (file) => {
         const formData = new FormData()
         formData.append("file", file)
@@ -52,7 +52,7 @@ export const userApi = baseApi.injectEndpoints({
           body: formData,
         }
       },
-      transformResponse: (response: UploadPhotoResponse) => response.profile,
+      // transformResponse: (response: UploadPhotoResponse) => response.profile,
     }),
     deletePhoto: builder.mutation<string, string>({
       query: (file) => ({
