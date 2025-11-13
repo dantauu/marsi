@@ -8,6 +8,7 @@ import SvgCross from "@/assets/icons/Cross.tsx"
 import Button from "@/shared/ui/buttons/button.tsx"
 import heic2any from "heic2any"
 import LoadingBalls from "@/shared/ui/loading/balls.tsx"
+import { getPhotoVariant } from "@/lib/utils/photo-variant"
 
 const pictureItems = [
   { id: 1, plusIcon: plusIcon },
@@ -47,12 +48,9 @@ export const PhotoEdit = () => {
       }
 
       const uploadedUrls = await uploadPhoto(processedFile).unwrap()
-      const updated = [...photo_url]
+      const updated = [...(photo_url ?? [])]
       updated[index] = uploadedUrls
       setValue("photo_url", updated, { shouldDirty: true })
-
-      console.log("uploadedUrls:", uploadedUrls)
-      console.log("updated:", updated)
     } catch (error) {
       console.log("error photo upload", error)
     }
@@ -61,7 +59,10 @@ export const PhotoEdit = () => {
   const handleRemove = async (index: number) => {
     const currentPhoto = getValues("photo_url") ?? []
     const photoToDelete = currentPhoto[index]
-    if (photoToDelete && !photoToDelete.startsWith("http")) {
+    if (
+      typeof photoToDelete === "string" &&
+      !photoToDelete.startsWith("http")
+    ) {
       const fileName = photoToDelete.split("/").pop() ?? ""
       setValue("deleted_photos", [...(deletedPhotos ?? []), fileName], {
         shouldDirty: true,
@@ -74,9 +75,7 @@ export const PhotoEdit = () => {
   return (
     <div className="flex justify-between mb-[20px] px-2">
       {pictureItems.map((item, index) => {
-        const imageSrc = photo_url[index]
-        console.log("imageSrc", imageSrc)
-
+        const imageSrc = getPhotoVariant(photo_url?.[index], "profile")
         return (
           <div
             key={item.id}

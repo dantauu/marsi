@@ -1,7 +1,16 @@
 import { z } from "zod"
 
+const PhotoVariantSchema = z.object({
+  profile: z.string(),
+  card: z.string(),
+  "card-full": z.string(),
+})
+
 export const editSchema = z.object({
-  photo_url: z.array(z.string()),
+  photo_url: z
+    .array(z.union([z.string(), PhotoVariantSchema]))
+    .optional()
+    .nullable(),
   first_name: z.string(),
   age: z
     .number({
