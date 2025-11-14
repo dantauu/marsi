@@ -30,10 +30,10 @@ const EditProfileContainer = () => {
   } = useFormEmptyValues()
 
   const extractKeyFromUrl = (url: string) => {
-    const bucket = import.meta.env.VITE_MINIO_BUCKET_NAME;
-    const idx = url.indexOf(`${bucket}/`);
-    return idx !== -1 ? url.slice(idx + bucket.length + 1) : url;
-  };
+    const bucket = import.meta.env.VITE_MINIO_BUCKET_NAME
+    const idx = url.indexOf(`${bucket}/`)
+    return idx !== -1 ? url.slice(idx + bucket.length + 1) : url
+  }
 
   const handleSubmit = async (data: EditFormSchema) => {
     if (!defaultValues && !userId) return
