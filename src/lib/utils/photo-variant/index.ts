@@ -1,9 +1,7 @@
 export const getPhotoVariant = (
-  photo:
-    | string
-    | { profile: string; card: string; "card-full": string }
+  photo: { large: string; small: string; medium: string }
     | undefined,
-  variant: "profile" | "card" | "card-full" = "profile"
+  variant: "large" | "small" | "medium" = "medium"
 ): string | undefined => {
   if (!photo) return undefined
   return typeof photo === "string" ? photo : photo[variant]

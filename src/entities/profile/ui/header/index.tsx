@@ -4,7 +4,7 @@ import type { User } from "@/app/types/user"
 import SvgSettings from "@/assets/icons/Settings.tsx"
 import SvgEdit from "@/assets/icons/Edit.tsx"
 import { useAllPercentCount } from "@/lib/utils/get-percent-count"
-import { DoesntHavePhoto, HavePhoto } from "@/ui/header"
+import { DoesntHavePhoto, HavePhoto } from "@/ui/photos"
 
 type ProfileHeaderProps = {
   currentUser: User | null

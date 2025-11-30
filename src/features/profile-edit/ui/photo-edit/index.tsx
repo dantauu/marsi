@@ -1,4 +1,3 @@
-import plusIcon from "@/assets/icons-source/plus.svg"
 import React from "react"
 import SvgPlus from "@/assets/icons/Plus.tsx"
 import { useEditProfileForm } from "@/app/context/profile-edit-context.tsx"
@@ -9,81 +8,81 @@ import Button from "@/shared/ui/buttons/button.tsx"
 import heic2any from "heic2any"
 import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 import { getPhotoVariant } from "@/lib/utils/photo-variant"
-
-const pictureItems = [
-  { id: 1, plusIcon: plusIcon },
-  { id: 2, plusIcon: plusIcon },
-  { id: 3, plusIcon: plusIcon },
-]
+import type { UserPhotos, UserPhotoVariants } from "@/app/types/user"
 
 export const PhotoEdit = () => {
   const { setValue, getValues, control } = useEditProfileForm()
-  const photo_url = useWatch({ control, name: "photo_url" })
+  const photos = useWatch({ control, name: "photo_url" })
   const deletedPhotos = useWatch({ control, name: "deleted_photos" })
   const [uploadPhoto, { isLoading }] = useUploadPhotoMutation()
 
-  const handlePictureChange = async (
+  const slots = toSlots(photos)
+
+  const handleUpload = async (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
     const file = e.target.files?.[0]
     if (!file) return
 
-    try {
-      let processedFile: File | Blob = file
-      const fileExt = file.name.split(".").pop()?.toLowerCase()
-      if (fileExt === "heic" || fileExt === "heif") {
-        const convertedBlob = await heic2any({
-          blob: file,
-          toType: "image/jpeg",
-          quality: 0.9,
-        })
-        processedFile = new File(
-          [convertedBlob as BlobPart],
-          file.name.replace(/\.[^/.]+$/, ".jpg"),
-          {
-            type: "image/jpeg",
-          }
-        )
-      }
+    let processedFile: File | Blob = file
+    const ext = file.name.split(".").pop()?.toLowerCase()
 
-      const uploadedUrls = await uploadPhoto(processedFile).unwrap()
-      const updated = [...(photo_url ?? [])]
-      updated[index] = uploadedUrls
-      setValue("photo_url", updated, { shouldDirty: true })
-    } catch (error) {
-      console.log("error photo upload", error)
-    }
-  }
-
-  const handleRemove = async (index: number) => {
-    const currentPhoto = getValues("photo_url") ?? []
-    const photoToDelete = currentPhoto[index]
-    if (
-      typeof photoToDelete === "string" &&
-      !photoToDelete.startsWith("http")
-    ) {
-      const fileName = photoToDelete.split("/").pop() ?? ""
-      setValue("deleted_photos", [...(deletedPhotos ?? []), fileName], {
-        shouldDirty: true,
+    if (ext == "heic" || ext == "heif") {
+      const converted = await heic2any({
+        blob: file,
+        toType: "image/jpeg",
+        quality: 0.9,
       })
+
+      processedFile = new File(
+        [converted as BlobPart],
+        file.name.replace(/\.[^/.]+$/, ".jpg"),
+        {
+          type: "image/jpeg",
+        }
+      )
     }
-    const updatePhoto = currentPhoto.filter((_, i) => i !== index)
-    setValue("photo_url", updatePhoto, { shouldDirty: true })
+    const uploaded = await uploadPhoto(processedFile).unwrap()
+    const newSlots = [...slots]
+    newSlots[index] = uploaded
+    setValue("photo_url", fromSlots(newSlots), { shouldDirty: true })
   }
+
+  const handleRemove = (index: number) => {
+    const newSlots = [...slots]
+    const target = newSlots[index]
+
+    if (index === 0) {
+      // удаляем default навсегда → ""
+      newSlots[0] = ""
+    } else {
+      // удаляем item в items[]
+      if (typeof target === "string" && target.startsWith("http")) {
+        setValue("deleted_photos", [...(deletedPhotos ?? []), target], {
+          shouldDirty: true,
+        })
+      }
+      newSlots[index] = null
+    }
+
+    setValue("photo_url", fromSlots(newSlots), { shouldDirty: true })
+  }
+  const pictureSlots = [0, 1, 2]
 
   return (
     <div className="flex justify-between mb-[20px] px-2">
-      {pictureItems.map((item, index) => {
-        const imageSrc = getPhotoVariant(photo_url?.[index], "profile")
+      {pictureSlots.map((index) => {
+        const slot = slots[index]
+        const src = getPhotoVariant(slot, "medium")
         return (
           <div
-            key={item.id}
+            key={index}
             className="relative w-[95px] h-[185px] mini-mobile:w-[123px] mini-mobile:h-[218px] overflow-hidden rounded-[10px] bg-[var(--color-bg-photo-edit)]"
           >
-            {imageSrc ? (
+            {src ? (
               <>
-                <img className="w-full h-full object-cover" src={imageSrc} />
+                <img className="w-full h-full object-cover" src={src} />
                 <Button
                   onClick={() => handleRemove(index)}
                   type="button"
@@ -103,7 +102,7 @@ export const PhotoEdit = () => {
                 <input
                   type="file"
                   accept="image/*"
-                  onChange={(e) => handlePictureChange(e, index)}
+                  onChange={(e) => handleUpload(e, index)}
                   className="hidden"
                 />
               </label>
@@ -113,4 +112,25 @@ export const PhotoEdit = () => {
       })}
     </div>
   )
+}
+
+const toSlots = (photo: UserPhotos | undefined) => {
+  if (!photo) {
+    return ["", null, null] as const
+  }
+
+  return [
+    photo.default ?? "",
+    photo.items?.[0] ?? null,
+    photo.items?.[1] ?? null,
+  ] as const
+}
+
+const fromSlots = (slots: (string | UserPhotoVariants | null)[]): UserPhotoVariants => {
+  const [defaultSlot, item1, item2] = slots
+
+  return {
+    default: defaultSlot ?? "",
+    items: [item1, item2].filter(Boolean) as UserPhotoVariants[],
+  }
 }
