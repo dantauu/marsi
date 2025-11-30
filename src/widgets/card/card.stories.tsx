@@ -22,7 +22,7 @@ export const Card_Human: StoryObj = {
         id={"1"}
         first_name={"Катя"}
         age={18}
-        photo_url={[avatar]}
+        photo_url={avatar}
       />
     )
   },

@@ -1,10 +1,9 @@
+import type { UserPhotoVariants } from "@/app/types/user"
+
 export const getPhotoVariant = (
-  photo:
-    | string
-    | { profile: string; card: string; "card-full": string }
-    | undefined,
-  variant: "profile" | "card" | "card-full" = "profile"
+  item: UserPhotoVariants | undefined,
+  variant: keyof UserPhotoVariants = "medium"
 ): string | undefined => {
-  if (!photo) return undefined
-  return typeof photo === "string" ? photo : photo[variant]
+  if (!item) return undefined
+  return item[variant]
 }

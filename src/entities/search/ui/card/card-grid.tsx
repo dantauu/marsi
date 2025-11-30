@@ -1,4 +1,4 @@
-import type { UserCardGrid } from "@/app/types/global.d.ts"
+import type { UserCardGridProps } from "@/app/types/global.d.ts"
 import { useNavigate } from "@tanstack/react-router"
 import { Route as SlidesIdRoute } from "@/app/routes/_app/_layout/search-id/$id.tsx"
 
@@ -7,7 +7,7 @@ export const CardGridLayout = ({
   first_name,
   age,
   id,
-}: UserCardGrid) => {
+}: UserCardGridProps) => {
   const navigate = useNavigate()
   return (
     <div
@@ -23,11 +23,7 @@ export const CardGridLayout = ({
         {photo_url && (
           <img
             className="w-full rounded-[28px] object-cover h-[218px] mini-mobile:h-full"
-            src={
-              Array.isArray(photo_url)
-                ? (photo_url[0] ?? "")
-                : (photo_url ?? "")
-            }
+            src={photo_url}
             alt=""
           />
         )}

@@ -1,4 +1,4 @@
-import type { UserCardExpanded } from "@/app/types/global.d.ts"
+import type { UserCardExpandedProps } from "@/app/types/global.d.ts"
 import { useNavigate } from "@tanstack/react-router"
 import { Route as SlidesRoute } from "@/app/routes/_app/_layout/search-id/$id.tsx"
 
@@ -9,7 +9,7 @@ export const CardExpandedLayout = ({
   age,
   goal,
   height,
-}: UserCardExpanded) => {
+}: UserCardExpandedProps) => {
   const navigate = useNavigate()
   return (
     <div
@@ -25,11 +25,7 @@ export const CardExpandedLayout = ({
         {photo_url && (
           <img
             className="w-full h-full rounded-[28px] object-cover"
-            src={
-              Array.isArray(photo_url)
-                ? (photo_url[0] ?? "")
-                : (photo_url ?? "")
-            }
+            src={photo_url}
             alt=""
           />
         )}

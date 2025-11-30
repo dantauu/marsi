@@ -11,11 +11,7 @@ export const HavePhoto = ({ colors, percent, currentUser }: HavePhotoProps) => {
     <div className="relative w-[87px] h-[87px] mini-mobile:w-[93px] mini-mobile:h-[93px]">
       <img
         className="w-[70px] h-[70px] absolute inset-[10%] mini-mobile:inset-[9%] rounded-full object-cover mini-mobile:w-[76px] mini-mobile:h-[76px]"
-        src={
-          Array.isArray(currentUser?.photo_url)
-            ? (currentUser.photo_url[0] ?? "")
-            : (currentUser?.photo_url ?? "")
-        }
+        src={currentUser?.photo_url?.items[0].small}
         alt=""
       />
       <svg

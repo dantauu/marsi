@@ -28,11 +28,7 @@ export const SearchIdCard = ({ data }: SliderCardProps) => {
                 className="flex flex-col justify-between gap-5 absolute w-full transition-all duration-500 ease-out"
               >
                 <div className="relative w-full h-full">
-                  <SwipePhotos
-                    photo_url={
-                      Array.isArray(item.photo_url) ? item.photo_url : []
-                    }
-                  />
+                  <SwipePhotos photo_url={item.photo_url} />
                   <div className="absolute flex flex-col items-center justify-center w-full bottom-20 z-20 px-3">
                     <p className="text-white text-[25px] mini-mobile:text-[30px] font-ManropeM">
                       {item.first_name}, {item.age ? item.age : "?"}
@@ -41,7 +37,7 @@ export const SearchIdCard = ({ data }: SliderCardProps) => {
                       <SvgPoint className="w-[27px] h-[27px] text-white" />
                       <p className="text-white text-[15px] mini-mobile:text-[18px] font-ManropeM">
                         {item?.city ? item?.city : "Не указано"},{" "}
-                        {item.photo_url?.length} фото
+                        {item.photo_url?.items.length} фото
                       </p>
                     </div>
                   </div>
