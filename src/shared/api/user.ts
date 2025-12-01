@@ -3,14 +3,14 @@ import type { User, UserInit, UpdateUserData } from "@/app/types/user"
 import { baseApi } from "@/redux/api/base-api.ts"
 
 export type UploadPhotoResponse = {
-  profile: string
-  card: string
-  "card-full": string
+  small: string
+  medium: string
+  large: string
 }
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    authUser: builder.mutation<{ access_token: string; user: User }, UserInit>({
+    authUser: builder.mutation<{ access_token: string; user: User }, User>({
       query: (initData) => ({
         method: "POST",
         url: "auth/user",

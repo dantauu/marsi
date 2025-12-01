@@ -68,11 +68,7 @@ export const LikeCard = ({
               >
                 <img
                   className="w-full h-full max-h-[200px] min-h-[195px] object-cover rounded-[15px]"
-                  src={
-                    Array.isArray(item.photo_url)
-                      ? item.photo_url[0]
-                      : item.photo_url
-                  }
+                  src={item.photo_url?.items[0].medium}
                 />
                 <div className="flex items-center">
                   <p className="text-lg text-ellipsis overflow-hidden whitespace-nowrap max-w-[83px] text-[var(--color-text-black)]">

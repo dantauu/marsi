@@ -1,14 +1,14 @@
 import { z } from "zod"
 
 const PhotoVariantSchema = z.object({
-  "small": z.string(),
-  "medium": z.string(),
-  "large": z.string(),
+  small: z.string(),
+  medium: z.string(),
+  large: z.string(),
 })
 
 const PhotoSchema = z.object({
-  "default": z.string(),
-  "items": z.array(PhotoVariantSchema)
+  default: z.string(),
+  items: z.array(PhotoVariantSchema).nullable(),
 })
 
 export const editSchema = z.object({

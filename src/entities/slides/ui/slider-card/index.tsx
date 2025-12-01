@@ -83,11 +83,7 @@ export const SliderCard = memo(({ users, isFetching }: SliderCardProps) => {
                 ></div>
 
                 <div className="relative w-full h-full">
-                  <SwipePhotos
-                    photo_url={
-                      Array.isArray(item.photo_url) ? item.photo_url : []
-                    }
-                  />
+                  <SwipePhotos photo_url={item.photo_url} />
                   <div
                     onMouseDown={(e) => e.stopPropagation()}
                     className="absolute flex flex-col justify-center items-center w-full bottom-23 z-50"
@@ -98,7 +94,7 @@ export const SliderCard = memo(({ users, isFetching }: SliderCardProps) => {
                     <div className="flex justify-center items-center">
                       <SvgPoint className="w-[27px] h-[27px] text-white" />
                       <p className="text-white text-[15px] mini-mobile:text-[18px] font-ManropeM">
-                        {item?.city}, {item.photo_url?.length} фото
+                        {item?.city}, {item.photo_url?.items.length} фото
                       </p>
                     </div>
                   </div>

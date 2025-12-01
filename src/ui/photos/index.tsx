@@ -9,7 +9,10 @@ type DoesntHavePhotoProps = Omit<HavePhotoProps, "currentUser">
 export const HavePhoto = ({ colors, percent, currentUser }: HavePhotoProps) => {
   const getAvatar = () => {
     if (!currentUser?.photo_url) return ""
-    if (!currentUser?.photo_url?.default && currentUser?.photo_url?.items[0].small) {
+    if (
+      !currentUser?.photo_url?.default &&
+      currentUser?.photo_url?.items[0].small
+    ) {
       return currentUser?.photo_url?.items[0].small
     } else {
       return currentUser?.photo_url?.default

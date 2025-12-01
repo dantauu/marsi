@@ -41,6 +41,22 @@ type UserCardGrid = Omit<
 >
 type UserCardExpanded = Omit<User, "gender" | "city" | "hobbies">
 
+type UserCardGridProps = {
+  photo_url: string
+  first_name: string
+  age: number | null
+  id: string
+}
+
+type UserCardExpandedProps = {
+  id: string
+  first_name: string
+  photo_url: string
+  age: number | null
+  goal: string
+  height: string
+}
+
 export type {
   Locations,
   Goals,
@@ -49,4 +65,6 @@ export type {
   UserCardExpanded,
   EditFormFields,
   FilteredUsers,
+  UserCardGridProps,
+  UserCardExpandedProps,
 }

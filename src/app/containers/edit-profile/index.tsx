@@ -69,14 +69,11 @@ const EditProfileContainer = () => {
         typeof gender === "string" ? getNormalizeGender(gender) : undefined,
     }
 
-    await notify(
-      updateUser({ id: userId, ...normalizeData }).unwrap(),
-      {
-        success: "Изменения сохранены",
-        error: "Ошибка",
-        loading: "Сохранение...",
-      }
-    )
+    await notify(updateUser({ id: userId, ...normalizeData }).unwrap(), {
+      success: "Изменения сохранены",
+      error: "Ошибка",
+      loading: "Сохранение...",
+    })
 
     console.log("Изменённые поля:", changedEntries)
   }

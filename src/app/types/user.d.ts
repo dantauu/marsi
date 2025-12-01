@@ -28,18 +28,17 @@ type UpdateUserData = {
 type UserInit = {
   id: string
   first_name: string
-  photo_url: UserPhotoDefault | undefined
+  photo_url: string | undefined
   username?: string | undefined
 }
 
 type UserPhotos = {
-  default: string
   items: UserPhotoVariants[]
 }
 
 type UserPhotoVariants = {
-  small: string,
-  medium: string,
+  small: string
+  medium: string
   large: string
 }
 

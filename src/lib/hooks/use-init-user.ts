@@ -6,6 +6,7 @@ import { useAppDispatch } from "@/redux/hooks.ts"
 import { setToken } from "@/redux/slices/auth.ts"
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import { getEnvironment } from "@/shared/lib/utils/get-environment"
+import type { UserInit } from "@/app/types/user"
 
 export const useInitUser = () => {
   const { isDev } = getEnvironment()
@@ -30,12 +31,12 @@ export const useInitUser = () => {
         }
 
         if (!userId) {
-          const initUserPayload = {
+          const initUserPayload: UserInit = {
             id: String(user.id),
             first_name: user.first_name,
-            photo_url: user.photo_url ? [user.photo_url] : [],
+            photo_url: user.photo_url,
             username: user.username,
-          }
+          } as UserInit
 
           const initData = await initUser(initUserPayload).unwrap()
           const { access_token } = await authUser(initData).unwrap()
