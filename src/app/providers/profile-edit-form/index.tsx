@@ -10,7 +10,7 @@ function fetchUser(user?: User | null): Partial<EditFormSchema> {
   if (!user) return {}
 
   return {
-    photo_url: user.photo_url ?? undefined,
+    photo_url: user.photo_url ?? { items: [] },
     first_name: user.first_name ?? "",
     age: user.age ?? null,
     height: user.height?.toString() ?? "",
