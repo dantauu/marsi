@@ -10,7 +10,7 @@ function fetchUser(user?: User | null): Partial<EditFormSchema> {
   if (!user) return {}
 
   return {
-    photo_url: Array.isArray(user.photo_url) ? user.photo_url : [],
+    photo_url: user.photo_url ?? undefined,
     first_name: user.first_name ?? "",
     age: user.age ?? null,
     height: user.height?.toString() ?? "",
@@ -32,7 +32,7 @@ export function useFormEmptyValues(): {
   const { user, isFetching, isLoading } = useCurrentUser()
 
   const fallbackUser = {
-    photo_url: [],
+    photo_url: { items: [] },
     first_name: "",
     age: null,
     height: "",

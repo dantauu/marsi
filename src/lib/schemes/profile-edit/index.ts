@@ -7,7 +7,6 @@ const PhotoVariantSchema = z.object({
 })
 
 const PhotoSchema = z.object({
-  default: z.string(),
   items: z.array(PhotoVariantSchema).nullable(),
 })
 
