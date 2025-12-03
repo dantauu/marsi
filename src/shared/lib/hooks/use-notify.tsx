@@ -12,6 +12,7 @@ type NotifyCustomProps = {
   message: string
   icon?: React.ReactNode | string
   duration?: number
+  className?: string
 }
 
 export const useNotify = () => {
@@ -50,11 +51,13 @@ export const useNotify = () => {
           }}
           className="bg-white shadow-shadow-block rounded-xl p-4 flex text-[18px] items-center gap-2 mt-[80px] cursor-grab"
         >
-          <span>{arg1.message}</span>
+          <span className={arg1.className}>{arg1.message}</span>
           {arg1.icon && <span>{arg1.icon}</span>}
         </motion.div>
       ),
-      { duration: arg1.duration ?? 7000 }
+      {
+        duration: arg1.duration ?? 7000,
+      }
     )
   }
 

@@ -5,6 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import type { User } from "@/app/types/user"
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import { type EditFormSchema, editSchema } from "@/lib/schemes/profile-edit"
+import { showFormErrors } from "@/lib/utils/get-errors-form"
+import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
 
 function fetchUser(user?: User | null): Partial<EditFormSchema> {
   if (!user) return {}
@@ -63,6 +65,7 @@ export function EditProfileProvider({
   values,
   children,
 }: EditFormProps) {
+  const { notify } = useNotify()
   const form = useForm<EditFormSchema>({
     resolver: zodResolver(editSchema),
     mode: "onChange",
@@ -94,12 +97,17 @@ export function EditProfileProvider({
     },
     [onSubmit, refetch, form]
   )
-
   return (
     <EditFormContext.Provider
       value={{ ...form, isDirty: form.formState.isDirty }}
     >
-      <form onSubmit={form.handleSubmit(handleSubmit)}>{children}</form>
+      <form
+        onSubmit={form.handleSubmit(handleSubmit, (errors) =>
+          showFormErrors(errors, notify)
+        )}
+      >
+        {children}
+      </form>
     </EditFormContext.Provider>
   )
 }

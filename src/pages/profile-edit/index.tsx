@@ -14,6 +14,7 @@ export const EditProfileContent = () => {
   const { showModal, setShowModal, confirmLeave, navigate } =
     useUnsavedChanges(isDirty)
   const { isEditOpen } = useAppSelector((state) => state.modal)
+
   return (
     <>
       {isEditOpen && <Overlay className="max-w-[610px]" />}

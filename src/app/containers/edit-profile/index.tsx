@@ -17,7 +17,7 @@ const EditProfileContainer = () => {
   const [updateUser] = useUpdateUserMutation()
   const [deletePhoto] = useDeletePhotoMutation()
   const { notify } = useNotify()
-  const { userToken } = useCurrentUser()
+  const { userToken, user } = useCurrentUser()
   const userId = userToken?.userId
 
   const {
@@ -33,7 +33,7 @@ const EditProfileContainer = () => {
   }
 
   const handleSubmit = async (data: EditFormSchema) => {
-    if (!defaultValues && !userId) return
+    if (!defaultValues && !userId && !user?.username) return null
     const finalData = {
       ...data,
       photo_url: data.photo_url ?? undefined,

@@ -105,3 +105,34 @@
     outline: none;
   }
 }
+
+[data-swapy-slot] {
+  position: relative;
+}
+
+[data-swapy-item] {
+  cursor: grab;
+}
+
+[data-swapy-item].swapy-dragging {
+  opacity: 0.8;
+  transform: scale(1.05);
+  z-index: 10;
+  cursor: grabbing;
+}
+
+[data-sonner-toast][data-index="0"] {
+  --offset: 50px !important;
+}
+
+[data-sonner-toast][data-index="1"] {
+  --offset: 120px !important;
+}
+
+[data-sonner-toast][data-index="2"] {
+  --offset: 190px !important;
+}
+
+[data-sonner-toast][data-index="3"] {
+  --offset: 260px !important;
+}
