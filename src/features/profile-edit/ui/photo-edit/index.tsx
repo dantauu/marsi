@@ -6,12 +6,35 @@ import SvgCross from "@/assets/icons/Cross.tsx"
 import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 import SvgPlus from "@/assets/icons/Plus.tsx"
 import heic2any from "heic2any"
+import { useEffect, useRef } from "react"
+import { createSwapy } from "swapy"
 
 export const PhotoEdit = () => {
   const { setValue, control } = useEditProfileForm()
   const photos = useWatch({ control, name: "photo_url.items" }) ?? []
   const deletedPhotos = useWatch({ control, name: "deleted_photos" })
   const [uploadPhoto, { isLoading }] = useUploadPhotoMutation()
+
+  const swapy = useRef(null)
+  const container = useRef(null)
+
+  // On mounted
+  useEffect(() => {
+    // If container element is loaded
+    if (container.current) {
+      swapy.current = createSwapy(container.current)
+
+      // Your event listeners
+      swapy.current.onSwap((event) => {
+        console.log("swap", event)
+      })
+    }
+
+    return () => {
+      // Destroy the swapy instance on component destroy
+      swapy.current?.destroy()
+    }
+  }, [])
 
   const handleUpload = async (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -44,42 +67,49 @@ export const PhotoEdit = () => {
   }
 
   return (
-    <div className="flex justify-between mb-[20px] px-2">
+    <div ref={container} className="flex justify-between mb-[20px] px-2">
       {[0, 1, 2].map((index) => {
+        console.log("index:", index)
         const item = photos[index] ?? null
         const src = getPhotoVariant(item, "small")
 
         return (
           <div
+            data-swapy-slot={index}
             key={index}
-            className="relative w-[95px] h-[185px] overflow-hidden rounded-[10px] bg-[var(--color-bg-photo-edit)]"
+            className="relative w-[95px] h-[185px] rounded-[10px] bg-[var(--color-bg-photo-edit)]"
           >
-            {src ? (
-              <>
-                <img className="w-full h-full object-cover" src={src} />
-                <button
-                  onClick={() => handleRemove(index)}
-                  type="button"
-                  className="absolute top-1 right-1 rounded-full p-1"
-                >
-                  <SvgCross className="text-white w-[40px] h-[40px]" />
-                </button>
-              </>
-            ) : (
-              <label className="absolute inset-0 flex items-center justify-center cursor-pointer">
-                {isLoading ? (
-                  <LoadingBalls />
-                ) : (
-                  <SvgPlus className="text-main-pink stroke-3 w-[50px] h-[50px]" />
-                )}
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => handleUpload(e, index)}
-                  className="hidden"
-                />
-              </label>
-            )}
+            <div data-swapy-item={index} className="w-full h-full">
+              {src ? (
+                <>
+                  <img
+                    className="w-full h-full object-cover rounded-[10px]"
+                    src={src}
+                  />
+                  <button
+                    onClick={() => handleRemove(index)}
+                    type="button"
+                    className="absolute top-1 right-1 rounded-full p-1"
+                  >
+                    <SvgCross className="text-white w-[40px] h-[40px]" />
+                  </button>
+                </>
+              ) : (
+                <label className="flex items-center justify-center w-full h-full cursor-pointer">
+                  {isLoading ? (
+                    <LoadingBalls />
+                  ) : (
+                    <SvgPlus className="text-main-pink stroke-3 w-[50px] h-[50px]" />
+                  )}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => handleUpload(e, index)}
+                    className="hidden"
+                  />
+                </label>
+              )}
+            </div>
           </div>
         )
       })}

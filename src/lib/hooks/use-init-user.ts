@@ -29,7 +29,7 @@ export const useInitUser = () => {
         if (userId && isError) {
           dispatch(setToken(null))
         }
-
+        //TODO transfer after auth string - photo_url
         if (!userId) {
           const initUserPayload: UserInit = {
             id: String(user.id),

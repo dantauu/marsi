@@ -1,19 +1,12 @@
-import { useEditProfileForm } from "@/app/context/profile-edit-context.tsx"
-
 export const InputEdit = ({
   value,
   onChange,
   placeholder,
-  showErrors,
 }: {
   value: string | string[] | number | undefined | null
   onChange: (v: string) => void
   placeholder: string
-  showErrors: boolean
 }) => {
-  const {
-    formState: { errors },
-  } = useEditProfileForm()
   return (
     <div>
       <input
@@ -25,12 +18,6 @@ export const InputEdit = ({
         value={value ?? undefined}
         onChange={(e) => onChange(e.target.value)}
       />
-      {showErrors && errors.age && (
-        <p className="text-[20px] text-red-600">{errors.age?.message}</p>
-      )}
-      {showErrors && errors.height && (
-        <p className="text-[20px] text-red-600">{errors.height?.message}</p>
-      )}
     </div>
   )
 }

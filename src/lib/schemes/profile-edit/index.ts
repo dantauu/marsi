@@ -7,7 +7,22 @@ const PhotoVariantSchema = z.object({
 })
 
 const PhotoSchema = z.object({
-  items: z.array(PhotoVariantSchema).nullable(),
+  items: z
+    .preprocess(
+      (val) => {
+        if (!Array.isArray(val)) return []
+        return val.filter(Boolean)
+      },
+      z.array(PhotoVariantSchema).superRefine((photos, ctx) => {
+        if (!photos.length || !photos[0].large) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: "Первое фото обязательно",
+          })
+        }
+      })
+    )
+    .nullable(),
 })
 
 export const editSchema = z.object({
