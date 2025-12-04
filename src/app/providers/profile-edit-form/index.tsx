@@ -97,7 +97,6 @@ export function EditProfileProvider({
     },
     [onSubmit, refetch, form]
   )
-
   return (
     <EditFormContext.Provider
       value={{ ...form, isDirty: form.formState.isDirty }}
