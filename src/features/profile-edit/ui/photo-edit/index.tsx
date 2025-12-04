@@ -13,6 +13,7 @@ import {
   useSensor,
   useSensors,
   TouchSensor,
+  type DragEndEvent,
 } from "@dnd-kit/core"
 import {
   arrayMove,
@@ -21,6 +22,7 @@ import {
   horizontalListSortingStrategy,
 } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
+import type { SortablePhotoProps } from "@/app/types/global"
 
 export const PhotoEdit = () => {
   const { setValue, control } = useEditProfileForm()
@@ -33,7 +35,12 @@ export const PhotoEdit = () => {
     useSensor(TouchSensor, { activationConstraint: { delay: 150, tolerance: 5 } })
   )
 
-  const handleDragEnd = (event: any) => {
+  const handleDragStart = () => {
+    document.body.style.overflow = "hidden"
+  }
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    document.body.style.overflow = ""
     const { active, over } = event
     if (!over || active.id === over.id) return
 
@@ -67,7 +74,7 @@ export const PhotoEdit = () => {
   }
 
   return (
-    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
       <SortableContext items={photos.map(p => p.large)} strategy={horizontalListSortingStrategy}>
         <div className="flex justify-between mb-[20px] px-2">
           {photos.map((item, index) => (
@@ -98,7 +105,7 @@ export const PhotoEdit = () => {
   )
 }
 
-const SortablePhoto = ({ photo, index, onUpload, onRemove, isLoading }: any) => {
+const SortablePhoto = ({ photo, index, onUpload, onRemove, isLoading }: SortablePhotoProps) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: photo.large })
   const style = {
     transform: CSS.Transform.toString(transform),
