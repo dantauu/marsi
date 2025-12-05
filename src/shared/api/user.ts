@@ -10,7 +10,10 @@ export type UploadPhotoResponse = {
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    authUser: builder.mutation<{ access_token: string; user: User }, User>({
+    authUser: builder.mutation<
+      { access_token: string; user: User },
+      { id: string }
+    >({
       query: (initData) => ({
         method: "POST",
         url: "auth/user",

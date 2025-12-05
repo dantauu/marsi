@@ -58,7 +58,7 @@ type UserCardExpandedProps = {
 }
 
 type SortablePhotoProps = {
-  photo: UserPhotoVariants,
+  photo: UserPhotoVariants
   index: number
   onUpload: (e: React.ChangeEvent<HTMLInputElement>, index: number) => void
   onRemove: (index: number) => void
@@ -75,5 +75,5 @@ export type {
   FilteredUsers,
   UserCardGridProps,
   UserCardExpandedProps,
-  SortablePhotoProps
+  SortablePhotoProps,
 }
