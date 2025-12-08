@@ -35,7 +35,7 @@ export const useInitUser = () => {
             first_name: user.first_name,
             photo_url: user.photo_url,
             username: user.username,
-          } as UserInit
+          }
 
           const initData = await initUser(initUserPayload).unwrap()
           const { access_token } = await authUser({ id: initData.id }).unwrap()
