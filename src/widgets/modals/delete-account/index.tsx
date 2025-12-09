@@ -1,7 +1,7 @@
-import Button from "@/shared/ui/buttons/button.tsx"
 import { useAppSelector } from "@/redux/hooks.ts"
 import { useEffect } from "react"
 import { motion } from "framer-motion"
+import SaveSettingsFilter from "@/widgets/nav-bar/save-settings-filter"
 
 type EditModalProps = {
   onSave: () => void
@@ -37,25 +37,7 @@ export const DeleteAccountModal = ({
         Вы хотите удалить аккаунт?
       </p>
       <p className="text-center text-[17px] text-[#656565]">Если вы удалите аккаунт вашу анкету не будут видеть пользователи и вся введённая вами информация сотрётся.</p>
-      {/*<div className="overflow-y-auto">{children}</div>*/}
-      <div className=" flex flex-col gap-5 mt-3 mb-10">
-        <Button
-          className="w-full h-[40px]"
-          variant="green"
-          type="button"
-          onClick={onSave}
-        >
-          Сохранить
-        </Button>
-        <Button
-          className="w-full h-[40px]"
-          type="button"
-          variant="red"
-          onClick={onClose}
-        >
-          Отмена
-        </Button>
-      </div>
+      <SaveSettingsFilter type={"button"} onClick={onClose} onHandleSubmit={onSave} cancelText={"Удалить"} approveText={"Отмена"} />
     </motion.div>
   )
 }

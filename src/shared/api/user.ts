@@ -20,6 +20,13 @@ export const userApi = baseApi.injectEndpoints({
         body: initData,
       }),
     }),
+    deleteUser: builder.mutation<unknown, string>({
+      query: (id) => ({
+        method: "DELETE",
+        url: "delete/user",
+        body: id,
+      })
+    }),
     getUsers: builder.query<User[], Partial<FilteredUsers> & { id?: string }>({
       query: ({ id, ...params }) => ({
         url: "users",
@@ -70,6 +77,7 @@ export const userApi = baseApi.injectEndpoints({
 export const {
   useAuthUserMutation,
   useGetUsersQuery,
+  useDeleteUserMutation,
   useGetUserByIdQuery,
   useInitUserMutation,
   useUpdateUserMutation,

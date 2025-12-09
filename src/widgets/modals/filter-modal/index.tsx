@@ -106,7 +106,7 @@ export const FilterModal = () => {
               />
               <Location />
               <Gender />
-              <SaveSettingsFilter reset={resetFilter} />
+              <SaveSettingsFilter approveText={"Сохранить"} cancelText={"Сбросить"} type={"submit"} onClick={resetFilter} />
             </div>
           </motion.div>
         </motion.div>

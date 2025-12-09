@@ -11,6 +11,8 @@ import {
 } from "@/redux/slices/modal-slice.ts"
 import { Overlay } from "@/widgets/overlay"
 import { AnimatePresence } from "framer-motion"
+import { useDeleteUserMutation } from "@/shared/api/user.ts"
+import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 
 export const Settings = () => {
   const { isMobile } = usePlatform()
@@ -22,6 +24,12 @@ export const Settings = () => {
   }
   const handleCloseModal = () => {
     dispatch(closeDeleteModal())
+  }
+  const [deleteUser, { isSuccess, isLoading }] = useDeleteUserMutation()
+  const { userToken } = useCurrentUser()
+  const handleDeleteUser = async () => {
+    if (!userToken) return
+    await deleteUser(userToken.userId).unwrap()
   }
   return (
     <div
@@ -49,7 +57,7 @@ export const Settings = () => {
       <DeleteAccount onClick={handleModalOpen} className="mb-55" />
       <AnimatePresence>
         {isDeleteOpen && (
-          <DeleteAccountModal onSave={() => {}} onClose={handleCloseModal} />
+          <DeleteAccountModal onSave={handleDeleteUser} onClose={handleCloseModal} />
         )}
       </AnimatePresence>
     </div>
