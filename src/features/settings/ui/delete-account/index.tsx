@@ -10,7 +10,11 @@ export const DeleteAccount = ({
 }) => {
   return (
     <div className={cn(className, "px-12")}>
-      <Button onClick={onClick} className="w-full h-[35px]" variant="red">
+      <Button
+        onClick={onClick}
+        className="w-full h-[35px] text-[15px]"
+        variant="red"
+      >
         Удалить аккаунт
       </Button>
     </div>

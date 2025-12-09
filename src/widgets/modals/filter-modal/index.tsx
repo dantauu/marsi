@@ -60,7 +60,7 @@ export const FilterModal = () => {
           className="fixed inset-0 z-10 bg-[#00000087]"
         >
           <motion.div
-            className="absolute bottom-0 bg-[var(--color-main-back)] rounded-t-[60px] w-full h-[80%] overflow-hidden"
+            className="absolute bottom-0 max-w-[610px] left-1/2 -translate-x-1/2 bg-[var(--color-main-back)] rounded-t-[60px] w-full h-[80%] overflow-hidden"
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
@@ -106,7 +106,7 @@ export const FilterModal = () => {
               />
               <Location />
               <Gender />
-              <SaveSettingsFilter approveText={"Сохранить"} cancelText={"Сбросить"} type={"submit"} onClick={resetFilter} />
+              <SaveSettingsFilter onClick={resetFilter} />
             </div>
           </motion.div>
         </motion.div>

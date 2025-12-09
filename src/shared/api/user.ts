@@ -25,7 +25,7 @@ export const userApi = baseApi.injectEndpoints({
         method: "DELETE",
         url: "delete/user",
         body: id,
-      })
+      }),
     }),
     getUsers: builder.query<User[], Partial<FilteredUsers> & { id?: string }>({
       query: ({ id, ...params }) => ({

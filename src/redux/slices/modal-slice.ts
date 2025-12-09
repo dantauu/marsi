@@ -46,6 +46,6 @@ export const {
   openEditModal,
   closeEditModal,
   openDeleteModal,
-  closeDeleteModal
+  closeDeleteModal,
 } = modalSlice.actions
 export default modalSlice.reducer
