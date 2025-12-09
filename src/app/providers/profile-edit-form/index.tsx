@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import type { User } from "@/app/types/user"
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import { type EditFormSchema, editSchema } from "@/lib/schemes/profile-edit"
-import { showFormErrors } from "@/lib/utils/get-errors-form"
+import { showFormErrors } from "@/lib/utils/get-errors"
 import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
 
 function fetchUser(user?: User | null): Partial<EditFormSchema> {
