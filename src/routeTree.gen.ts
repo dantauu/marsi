@@ -20,6 +20,7 @@ import { Route as AppLayoutProfileEditIndexRouteImport } from './app/routes/_app
 import { Route as AppLayoutMoreIndexRouteImport } from './app/routes/_app/_layout/more/index'
 import { Route as AppLayoutLikesIndexRouteImport } from './app/routes/_app/_layout/likes/index'
 import { Route as AppLayoutFillFieldsIndexRouteImport } from './app/routes/_app/_layout/fill-fields/index'
+import { Route as AppLayoutDeletedIndexRouteImport } from './app/routes/_app/_layout/deleted/index'
 import { Route as AppLayoutSearchIdIdRouteImport } from './app/routes/_app/_layout/search-id/$id'
 import { Route as AppLayoutLikesMyLikesIndexRouteImport } from './app/routes/_app/_layout/likes/my-likes/index'
 import { Route as AppLayoutLikesIncomingLikesIndexRouteImport } from './app/routes/_app/_layout/likes/incoming-likes/index'
@@ -80,6 +81,11 @@ const AppLayoutFillFieldsIndexRoute =
     path: '/fill-fields/',
     getParentRoute: () => AppLayoutRoute,
   } as any)
+const AppLayoutDeletedIndexRoute = AppLayoutDeletedIndexRouteImport.update({
+  id: '/deleted/',
+  path: '/deleted/',
+  getParentRoute: () => AppLayoutRoute,
+} as any)
 const AppLayoutSearchIdIdRoute = AppLayoutSearchIdIdRouteImport.update({
   id: '/search-id/$id',
   path: '/search-id/$id',
@@ -101,6 +107,7 @@ const AppLayoutLikesIncomingLikesIndexRoute =
 export interface FileRoutesByFullPath {
   '/': typeof AppLayoutIndexRoute
   '/search-id/$id': typeof AppLayoutSearchIdIdRoute
+  '/deleted': typeof AppLayoutDeletedIndexRoute
   '/fill-fields': typeof AppLayoutFillFieldsIndexRoute
   '/likes': typeof AppLayoutLikesIndexRoute
   '/more': typeof AppLayoutMoreIndexRoute
@@ -116,6 +123,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof AppLayoutIndexRoute
   '/search-id/$id': typeof AppLayoutSearchIdIdRoute
+  '/deleted': typeof AppLayoutDeletedIndexRoute
   '/fill-fields': typeof AppLayoutFillFieldsIndexRoute
   '/likes': typeof AppLayoutLikesIndexRoute
   '/more': typeof AppLayoutMoreIndexRoute
@@ -133,6 +141,7 @@ export interface FileRoutesById {
   '/_app/_layout': typeof AppLayoutRouteWithChildren
   '/_app/_layout/': typeof AppLayoutIndexRoute
   '/_app/_layout/search-id/$id': typeof AppLayoutSearchIdIdRoute
+  '/_app/_layout/deleted/': typeof AppLayoutDeletedIndexRoute
   '/_app/_layout/fill-fields/': typeof AppLayoutFillFieldsIndexRoute
   '/_app/_layout/likes/': typeof AppLayoutLikesIndexRoute
   '/_app/_layout/more/': typeof AppLayoutMoreIndexRoute
@@ -150,6 +159,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/search-id/$id'
+    | '/deleted'
     | '/fill-fields'
     | '/likes'
     | '/more'
@@ -165,6 +175,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/search-id/$id'
+    | '/deleted'
     | '/fill-fields'
     | '/likes'
     | '/more'
@@ -181,6 +192,7 @@ export interface FileRouteTypes {
     | '/_app/_layout'
     | '/_app/_layout/'
     | '/_app/_layout/search-id/$id'
+    | '/_app/_layout/deleted/'
     | '/_app/_layout/fill-fields/'
     | '/_app/_layout/likes/'
     | '/_app/_layout/more/'
@@ -277,6 +289,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppLayoutFillFieldsIndexRouteImport
       parentRoute: typeof AppLayoutRoute
     }
+    '/_app/_layout/deleted/': {
+      id: '/_app/_layout/deleted/'
+      path: '/deleted'
+      fullPath: '/deleted'
+      preLoaderRoute: typeof AppLayoutDeletedIndexRouteImport
+      parentRoute: typeof AppLayoutRoute
+    }
     '/_app/_layout/search-id/$id': {
       id: '/_app/_layout/search-id/$id'
       path: '/search-id/$id'
@@ -304,6 +323,7 @@ declare module '@tanstack/react-router' {
 interface AppLayoutRouteChildren {
   AppLayoutIndexRoute: typeof AppLayoutIndexRoute
   AppLayoutSearchIdIdRoute: typeof AppLayoutSearchIdIdRoute
+  AppLayoutDeletedIndexRoute: typeof AppLayoutDeletedIndexRoute
   AppLayoutFillFieldsIndexRoute: typeof AppLayoutFillFieldsIndexRoute
   AppLayoutLikesIndexRoute: typeof AppLayoutLikesIndexRoute
   AppLayoutMoreIndexRoute: typeof AppLayoutMoreIndexRoute
@@ -320,6 +340,7 @@ interface AppLayoutRouteChildren {
 const AppLayoutRouteChildren: AppLayoutRouteChildren = {
   AppLayoutIndexRoute: AppLayoutIndexRoute,
   AppLayoutSearchIdIdRoute: AppLayoutSearchIdIdRoute,
+  AppLayoutDeletedIndexRoute: AppLayoutDeletedIndexRoute,
   AppLayoutFillFieldsIndexRoute: AppLayoutFillFieldsIndexRoute,
   AppLayoutLikesIndexRoute: AppLayoutLikesIndexRoute,
   AppLayoutMoreIndexRoute: AppLayoutMoreIndexRoute,

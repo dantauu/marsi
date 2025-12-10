@@ -7,8 +7,10 @@ import { setToken } from "@/redux/slices/auth.ts"
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import { getEnvironment } from "@/shared/lib/utils/get-environment"
 import type { UserInit } from "@/app/types/user"
+import { useLocation } from "@tanstack/react-router"
 
 export const useInitUser = () => {
+  const location = useLocation()
   const { isDev } = getEnvironment()
   const { user } = useTelegram()
   const [initUser] = useInitUserMutation()
@@ -22,7 +24,7 @@ export const useInitUser = () => {
   })
 
   useEffect(() => {
-    if (!user || isDev) return
+    if (!user || isDev || location.pathname.includes("/deleted")) return
 
     const initialize = async () => {
       try {
@@ -48,5 +50,5 @@ export const useInitUser = () => {
     }
 
     initialize()
-  }, [user, userId, isError, initUser, authUser, isDev])
+  }, [user, userId, isError, initUser, authUser, isDev, location.pathname])
 }

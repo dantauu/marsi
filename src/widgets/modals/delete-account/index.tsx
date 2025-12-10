@@ -33,14 +33,14 @@ export const DeleteAccountModal = ({
       initial={{ y: "100%" }}
       animate={{ y: 0 }}
       exit={{ y: "100%" }}
-      className="fixed flex flex-col px-2 w-full max-w-[610px] h-[70%] bg-[var(--color-bg-surface)] left-1/2 -translate-x-1/2 bottom-0 z-10 rounded-tl-[60px] rounded-tr-[60px]"
+      className="fixed flex flex-col px-2 w-full max-w-[610px] h-[60%] bg-[var(--color-bg-surface)] left-1/2 -translate-x-1/2 bottom-0 z-10 rounded-tl-[60px] rounded-tr-[60px]"
     >
-      <p className="text-center text-[19px] font-HelveticaB pb-5 pt-2 text-[var(--color-text-black)]">
+      <p className="text-center text-[19px] font-HelveticaB pb-5 pt-5 text-[var(--color-text-black)]">
         Вы хотите удалить аккаунт?
       </p>
       <p className="text-left text-[17px] text-[#656565] pt-[70px]">
-        Если вы удалите аккаунт вашу анкету не будут видеть пользователи и вся
-        введённая вами информация сотрётся.
+        Вы точно хотите уйти? Если вы удалите аккаунт вашу анкету не будут
+        видеть пользователи и вся информация введённая вами в анкете сотрётся.
       </p>
       <DeleteAccountBar
         disabled={disabled}
