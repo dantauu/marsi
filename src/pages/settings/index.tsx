@@ -70,8 +70,8 @@ export const Settings = () => {
         <ToggleSwitch />
       </div>
       <div className="flex-1" />
-      {isLoading && (
-        <LoadingCirclev2 className="fixed top-1/2 left-1/2 -translate-x-1/2 z-20 bg-[#0004] w-[70px] h-[70px] rounded-xl" />
+      {!isLoading && (
+        <LoadingCirclev2 className="fixed top-1/2 left-1/2 -translate-x-1/2 z-20 bg-[#0004] w-[75px] h-[75px] rounded-xl" />
       )}
       <DeleteAccount onClick={handleModalOpen} className="mb-40" />
       <AnimatePresence>

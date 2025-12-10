@@ -81,7 +81,7 @@ export const LikeCard = ({
               </div>
               <div
                 className={`flex justify-between mx-auto px-2 gap-3 ${isMessage && "w-full"} ${
-                  isLocked && "blur-[4px]" + " filter"
+                  isLocked && "blur-[4px] filter"
                 }`}
               >
                 <Button
