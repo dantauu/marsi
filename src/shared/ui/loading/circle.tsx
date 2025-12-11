@@ -9,4 +9,12 @@ const LoadingCircle = ({ className }: { className?: string }) => {
   )
 }
 
+export const LoadingCircleBase = ({ className }: { className?: string }) => {
+  return (
+    <div className={cn("flex items-center justify-center h-10", className)}>
+      <SvgSpinnerCircle className="w-10 h-10 text-[var(--color-text-grey)]" />
+    </div>
+  )
+}
+
 export default LoadingCircle

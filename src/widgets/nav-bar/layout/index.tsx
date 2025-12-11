@@ -19,6 +19,7 @@ export const NavBar = ({ activePath = "/profile" }: { activePath: string }) => {
   const { location } = useRouterState()
   const path = location.pathname
   if (path.startsWith("/profile-edit")) return
+  if (path.startsWith("/deleted")) return
   return (
     <div className="flex justify-center">
       <div className="fixed flex items-center justify-between z-5 bottom-0 w-[95%] max-w-[610px] rounded-[28px] h-[85px] bg-[var(--color-bg-muted-nav)] mb-5">

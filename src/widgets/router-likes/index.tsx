@@ -1,4 +1,4 @@
-import { LikeBlock } from "@/widgets/render-like-card/like-block.tsx"
+import { LikeBlock } from "@/widgets/router-likes/like-block.tsx"
 
 const dataBlocks = [
   {
@@ -15,7 +15,7 @@ const dataBlocks = [
   },
 ]
 
-export const ContentLikes = () => {
+export const RouterLikes = () => {
   return (
     <div className="flex flex-col gap-4">
       {dataBlocks.map((item) => (

@@ -41,7 +41,7 @@ export const EditModal = ({
         {title}
       </h3>
       <div className="overflow-y-auto">{children}</div>
-      <div className=" flex flex-col gap-5 mt-3 mb-10">
+      <div className="flex flex-col gap-5 mt-3 mb-10">
         <Button
           className="w-full h-[40px]"
           variant="green"

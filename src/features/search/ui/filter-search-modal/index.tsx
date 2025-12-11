@@ -77,7 +77,7 @@ const Gender = () => {
             key={item.id}
             onClick={() => handleButtonClick(item.id)}
             className={cn(
-              `w-[130px] h-[45px] mini-mobile:w-[140px] mini-mobile:h-[50px] mini-mobile:text-[20px] text-[18px] font-ManropeM text-[var(--color-text-white)] duration-300 ${isButtonActive(item.id) && "bg-main-red"}`
+              `w-[128px] h-[43px] mini-mobile:w-[130px] mini-mobile:h-[45px] mini-mobile:text-[16px] font-ManropeM text-[15px] text-[var(--color-text-white)] duration-300 ${isButtonActive(item.id) && "bg-main-red"}`
             )}
             variant="green"
           >
