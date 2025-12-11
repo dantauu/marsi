@@ -23,13 +23,17 @@ export const EditHobbies = ({
         <div
           key={item.id}
           onClick={() => handleClick(item)}
-          className={`flex items-center h-[40px] gap-0.5 px-2 rounded-[10px] bg-white ${value.includes(item.title) && "border-2"}`}
+          className={`flex items-center h-[40px] gap-0.5 px-2 rounded-[10px] bg-[var(--color-bg-muted-white)] ${value.includes(item.title) && "border-2 border-[var(--color-text-black)]"}`}
         >
           <div>{item.icon}</div>
-          <div className="text-[14px]">{item.title}</div>
+          <div className="text-[14px] text-[var(--color-text-black)]">
+            {item.title}
+          </div>
         </div>
       ))}
-      <p>Выбрано: {value.length} из 3</p>
+      <p className="text-[var(--color-text-black)]">
+        Выбрано: {value.length} из 3
+      </p>
     </div>
   )
 }

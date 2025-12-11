@@ -60,7 +60,7 @@ export const FilterModal = () => {
           className="fixed inset-0 z-10 bg-[#00000087]"
         >
           <motion.div
-            className="absolute bottom-0 bg-[#fff] rounded-t-[60px] w-full h-[80%] overflow-hidden"
+            className="absolute bottom-0 max-w-[610px] left-1/2 -translate-x-1/2 bg-[var(--color-main-back)] rounded-t-[60px] w-full h-[80%] overflow-hidden"
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
@@ -79,13 +79,13 @@ export const FilterModal = () => {
             style={{ y }}
           >
             <motion.div
-              className="flex items-center justify-center w-full h-[45px] border-b-2 border-[#e9e7e7]"
+              className="flex items-center justify-center w-full h-[45px] border-b-2 border-[var(--color-bg-drag)]"
               onPointerDown={dragStart}
               onTouchStart={dragStart}
               style={{ touchAction: "none" }}
             >
               <div
-                className={`w-[60px] h-[7px] bg-[#0000002c] rounded-full mx-auto `}
+                className={`w-[60px] h-[7px] bg-[var(--color-bg-drag)] rounded-full mx-auto `}
               ></div>
             </motion.div>
 
@@ -106,7 +106,7 @@ export const FilterModal = () => {
               />
               <Location />
               <Gender />
-              <SaveSettingsFilter reset={resetFilter} />
+              <SaveSettingsFilter onClick={resetFilter} />
             </div>
           </motion.div>
         </motion.div>

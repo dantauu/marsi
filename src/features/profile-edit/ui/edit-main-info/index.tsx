@@ -12,6 +12,7 @@ import { FieldMeta } from "./edit-metadata.tsx"
 import { AddHobbies } from "@/features/profile-edit"
 import { getGenderFormat } from "@/lib/utils/format-gender.ts"
 import type { EditFormSchema } from "@/lib/schemes/profile-edit"
+import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
 
 export const EditMainInfo = ({ className }: { className?: string }) => {
   const form = useEditProfileForm()
@@ -21,6 +22,7 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
     setValue,
   } = form
   const dispatch = useAppDispatch()
+  const { notify } = useNotify()
   const { isEditOpen } = useAppSelector((state) => state.modal)
 
   const [currentField, setCurrentField] = useState<
@@ -44,6 +46,13 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
         dispatch(closeEditModal())
         setCurrentField(null)
         setShowErrors(false)
+      } else {
+        if (currentField) {
+          const fieldError = form.formState.errors[currentField]
+          if (fieldError?.message) {
+            notify({ message: fieldError.message, className: "text-red-500" })
+          }
+        }
       }
     })
   }
@@ -70,9 +79,16 @@ export const EditMainInfo = ({ className }: { className?: string }) => {
 
   console.log("ERRORS", errors)
   return (
-    <div className={cn("rounded-[18px] shadow-easy", className)}>
+    <div
+      className={cn(
+        "rounded-[18px] shadow-easy bg-[var(--color-bg-surface)]",
+        className
+      )}
+    >
       <div className="flex flex-col gap-4 p-2">
-        <p className="font-HelveticaB text-[21px]">Основное</p>
+        <p className="font-HelveticaB text-[21px] text-[var(--color-text-black)]">
+          Основное
+        </p>
         <ItemEdit
           title="Имя"
           text={first_name}

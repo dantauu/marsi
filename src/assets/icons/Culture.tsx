@@ -5,7 +5,7 @@ const SvgCulture = (props: SVGProps<SVGSVGElement>) => (
     xmlSpace="preserve"
     width={50}
     height={50}
-    fill="#0007"
+    fill="currentColor"
     viewBox="0 0 473.194 473.194"
     {...props}
   >

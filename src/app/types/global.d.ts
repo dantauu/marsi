@@ -1,6 +1,6 @@
 import type { EditFormSchema } from "@/lib/schemes/profile-edit"
-import { type JSX } from "react"
-import type { User } from "./user"
+import React, { type JSX } from "react"
+import type { User, UserPhotoVariants } from "./user"
 
 type FilteredUsers = {
   minAge: number
@@ -41,6 +41,30 @@ type UserCardGrid = Omit<
 >
 type UserCardExpanded = Omit<User, "gender" | "city" | "hobbies">
 
+type UserCardGridProps = {
+  photo_url: string
+  first_name: string
+  age: number | null
+  id: string
+}
+
+type UserCardExpandedProps = {
+  id: string
+  first_name: string
+  photo_url: string
+  age: number | null
+  goal: string
+  height: string
+}
+
+type SortablePhotoProps = {
+  photo: UserPhotoVariants
+  index: number
+  onUpload: (e: React.ChangeEvent<HTMLInputElement>, index: number) => void
+  onRemove: (index: number) => void
+  isLoading: boolean
+}
+
 export type {
   Locations,
   Goals,
@@ -49,4 +73,7 @@ export type {
   UserCardExpanded,
   EditFormFields,
   FilteredUsers,
+  UserCardGridProps,
+  UserCardExpandedProps,
+  SortablePhotoProps,
 }

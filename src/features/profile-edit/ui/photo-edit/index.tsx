@@ -1,97 +1,115 @@
-import plusIcon from "@/assets/icons-source/plus.svg"
-import React from "react"
-import SvgPlus from "@/assets/icons/Plus.tsx"
 import { useEditProfileForm } from "@/app/context/profile-edit-context.tsx"
 import { useWatch } from "react-hook-form"
 import { useUploadPhotoMutation } from "@/shared/api/user.ts"
+import { getPhotoVariant } from "@/lib/utils/photo-variant"
 import SvgCross from "@/assets/icons/Cross.tsx"
-import Button from "@/shared/ui/buttons/button.tsx"
-import heic2any from "heic2any"
 import LoadingBalls from "@/shared/ui/loading/balls.tsx"
-
-const pictureItems = [
-  { id: 1, plusIcon: plusIcon },
-  { id: 2, plusIcon: plusIcon },
-  { id: 3, plusIcon: plusIcon },
-]
+import SvgPlus from "@/assets/icons/Plus.tsx"
+import heic2any from "heic2any"
+import {
+  DndContext,
+  closestCenter,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  TouchSensor,
+  type DragEndEvent,
+} from "@dnd-kit/core"
+import {
+  arrayMove,
+  SortableContext,
+  useSortable,
+  horizontalListSortingStrategy,
+} from "@dnd-kit/sortable"
+import { CSS } from "@dnd-kit/utilities"
+import type { SortablePhotoProps } from "@/app/types/global"
 
 export const PhotoEdit = () => {
-  const { setValue, getValues, control } = useEditProfileForm()
-  const photo_url = useWatch({ control, name: "photo_url" })
+  const { setValue, control } = useEditProfileForm()
+  const photos = useWatch({ control, name: "photo_url.items" }) ?? []
   const deletedPhotos = useWatch({ control, name: "deleted_photos" })
   const [uploadPhoto, { isLoading }] = useUploadPhotoMutation()
 
-  const handlePictureChange = async (
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: { distance: 10, delay: 150 },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: { delay: 150, tolerance: 5 },
+    })
+  )
+
+  const handleDragStart = () => {
+    document.body.style.overflow = "hidden"
+  }
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    document.body.style.overflow = ""
+    const { active, over } = event
+    if (!over || active.id === over.id) return
+
+    const oldIndex = photos.findIndex((p) => p.large === active.id)
+    const newIndex = photos.findIndex((p) => p.large === over.id)
+
+    const newPhotos = arrayMove(photos, oldIndex, newIndex)
+    setValue("photo_url.items", newPhotos, { shouldDirty: true })
+  }
+
+  const handleUpload = async (
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
     const file = e.target.files?.[0]
     if (!file) return
 
-    try {
-      let processedFile: File | Blob = file
-      const fileExt = file.name.split(".").pop()?.toLowerCase()
-      if (fileExt === "heic" || fileExt === "heif") {
-        const convertedBlob = await heic2any({
-          blob: file,
-          toType: "image/jpeg",
-          quality: 0.9,
-        })
-        processedFile = new File(
-          [convertedBlob as BlobPart],
-          file.name.replace(/\.[^/.]+$/, ".jpg"),
-          {
-            type: "image/jpeg",
-          }
-        )
-      }
+    const processed = await processFileMaybeHeic(file)
+    const uploaded = await uploadPhoto(processed).unwrap()
 
-      const uploadedUrls = await uploadPhoto(processedFile).unwrap()
-      const updated = [...photo_url]
-      updated[index] = uploadedUrls
-      setValue("photo_url", updated, { shouldDirty: true })
-    } catch (error) {
-      console.log("error photo upload", error)
-    }
+    const newItems = [...photos]
+    newItems[index] = uploaded
+    setValue("photo_url.items", newItems, { shouldDirty: true })
   }
 
-  const handleRemove = async (index: number) => {
-    const currentPhoto = getValues("photo_url") ?? []
-    const photoToDelete = currentPhoto[index]
-    if (photoToDelete && !photoToDelete.startsWith("http")) {
-      const fileName = photoToDelete.split("/").pop() ?? ""
-      setValue("deleted_photos", [...(deletedPhotos ?? []), fileName], {
+  const handleRemove = (index: number) => {
+    const newItems = [...photos]
+    const target = newItems[index]
+    if (target) {
+      setValue("deleted_photos", [...(deletedPhotos ?? []), target.large], {
         shouldDirty: true,
       })
     }
-    const updatePhoto = currentPhoto.filter((_, i) => i !== index)
-    setValue("photo_url", updatePhoto, { shouldDirty: true })
+    newItems.splice(index, 1)
+    setValue("photo_url.items", newItems, { shouldDirty: true })
   }
 
   return (
-    <div className="flex justify-between mb-[20px] px-2">
-      {pictureItems.map((item, index) => {
-        const imageSrc = photo_url[index]
-
-        return (
-          <div
-            key={item.id}
-            className="relative w-[95px] h-[185px] mini-mobile:w-[123px] mini-mobile:h-[218px] overflow-hidden rounded-[10px] bg-[#D9D9D9]"
-          >
-            {imageSrc ? (
-              <>
-                <img className="w-full h-full object-cover" src={imageSrc} />
-                <Button
-                  onClick={() => handleRemove(index)}
-                  type="button"
-                  variant="default"
-                  className="absolute top-1 right-1 rounded-full p-1"
-                >
-                  <SvgCross className="text-white w-[40px] h-[40px]" />
-                </Button>
-              </>
-            ) : (
-              <label className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer">
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCenter}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+    >
+      <SortableContext
+        items={photos.map((p) => p.large)}
+        strategy={horizontalListSortingStrategy}
+      >
+        <div className="flex justify-between mb-[20px] px-2">
+          {photos.map((item, index) => (
+            <SortablePhoto
+              key={item.large}
+              photo={item}
+              index={index}
+              onUpload={handleUpload}
+              onRemove={handleRemove}
+              isLoading={isLoading}
+            />
+          ))}
+          {Array.from({ length: 3 - photos.length }).map((_, idx) => (
+            <div
+              key={`empty-${idx}`}
+              className="relative w-[95px] h-[185px] rounded-[10px] bg-[var(--color-bg-photo-edit)] flex items-center justify-center"
+            >
+              <label className="flex items-center justify-center w-full h-full cursor-pointer">
                 {isLoading ? (
                   <LoadingBalls />
                 ) : (
@@ -100,14 +118,87 @@ export const PhotoEdit = () => {
                 <input
                   type="file"
                   accept="image/*"
-                  onChange={(e) => handlePictureChange(e, index)}
+                  onChange={(e) => handleUpload(e, photos.length + idx)}
                   className="hidden"
                 />
               </label>
-            )}
-          </div>
-        )
-      })}
+            </div>
+          ))}
+        </div>
+      </SortableContext>
+    </DndContext>
+  )
+}
+
+const SortablePhoto = ({
+  photo,
+  index,
+  onUpload,
+  onRemove,
+  isLoading,
+}: SortablePhotoProps) => {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: photo.large })
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  }
+  const src = getPhotoVariant(photo, "small")
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className="relative w-[95px] h-[185px] rounded-[10px] bg-[var(--color-bg-photo-edit)]"
+    >
+      {src ? (
+        <>
+          <img
+            className="w-full h-full object-cover rounded-[10px]"
+            src={src}
+          />
+          <button
+            onClick={() => onRemove(index)}
+            type="button"
+            className="absolute top-1 right-1 rounded-full p-1"
+          >
+            <SvgCross className="text-white w-[40px] h-[40px]" />
+          </button>
+        </>
+      ) : (
+        <label className="flex items-center justify-center w-full h-full cursor-pointer">
+          {isLoading ? (
+            <LoadingBalls />
+          ) : (
+            <SvgPlus className="text-main-pink stroke-3 w-[50px] h-[50px]" />
+          )}
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => onUpload(e, index)}
+            className="hidden"
+          />
+        </label>
+      )}
     </div>
   )
+}
+
+async function processFileMaybeHeic(file: File): Promise<File | Blob> {
+  const ext = file.name.split(".").pop()?.toLowerCase()
+  if (ext === "heic" || ext === "heif") {
+    const converted = await heic2any({
+      blob: file,
+      toType: "image/jpeg",
+      quality: 0.9,
+    })
+    return new File(
+      [converted as BlobPart],
+      file.name.replace(/\.[^/.]+$/, ".jpg"),
+      { type: "image/jpeg" }
+    )
+  }
+  return file
 }

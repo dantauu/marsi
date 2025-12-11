@@ -14,6 +14,7 @@ export const EditProfileContent = () => {
   const { showModal, setShowModal, confirmLeave, navigate } =
     useUnsavedChanges(isDirty)
   const { isEditOpen } = useAppSelector((state) => state.modal)
+
   return (
     <>
       {isEditOpen && <Overlay className="max-w-[610px]" />}
@@ -22,13 +23,15 @@ export const EditProfileContent = () => {
         className={`pb-[130px] ${isMobile ? "pt-[65px]" : "pt-[50px]"}`}
       >
         <div
-          className={`fixed pb-[4.5px] px-4 z-5 bg-white w-full max-w-[610px] top-0 flex items-center  justify-between ${isMobile ? "pt-[97px]" : "pt-[30px]"}`}
+          className={`fixed pb-[4.5px] px-4 z-5 bg-[var(--color-bg-surface)] w-full max-w-[610px] top-0 flex items-center  justify-between ${isMobile ? "pt-[97px]" : "pt-[30px]"}`}
         >
           <SvgArrowPath
-            className="w-[15px] h-[27px]"
+            className="w-[15px] h-[27px] text-[var(--color-text-black)]"
             onClick={() => navigate("/profile")}
           />
-          <p className="text-center text-[17.5px] mx-auto">Редактирование</p>
+          <p className="text-center text-[17.5px] mx-auto text-[var(--color-text-black)]">
+            Редактирование
+          </p>
         </div>
         <SaveNavBar className="fixed max-w-[610px] bottom-4" />
         <PhotoEdit />

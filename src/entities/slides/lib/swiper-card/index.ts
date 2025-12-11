@@ -7,14 +7,14 @@ import {
 } from "@/redux/slices/slider-slice.ts"
 import { useLikeUserMutation } from "@/shared/api/likes.ts"
 import { useDislikeUserMutation } from "@/shared/api/likes.ts"
-import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
+import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import type { User } from "@/app/types/user"
 
 export const SwiperCard = ({ data }: { data: User[] }) => {
   const SWIPE_THRESHOLD = 50
   const [likeUser] = useLikeUserMutation()
   const [dislikeUser] = useDislikeUserMutation()
-  const { user } = useUserMe()
+  const { userToken } = useCurrentUser()
   const dispatch = useAppDispatch()
   const { currentIndex, position, isDragging, exitDirection } = useAppSelector(
     (state) => state.slider
@@ -85,13 +85,12 @@ export const SwiperCard = ({ data }: { data: User[] }) => {
     const deltaX = clientX - startX.current
     const swipedRight = deltaX > SWIPE_THRESHOLD
     const swipedLeft = deltaX < -SWIPE_THRESHOLD
-
-    if (!user?.id) return
+    if (!userToken?.userId) return
     if (swipedRight) {
       try {
         const likedUserId = data[currentIndex].id
         await likeUser({
-          likerId: user?.id,
+          likerId: userToken?.userId,
           likedId: likedUserId,
         }).unwrap()
       } catch (err) {
@@ -101,7 +100,7 @@ export const SwiperCard = ({ data }: { data: User[] }) => {
       try {
         const dislikedUserId = data[currentIndex].id
         await dislikeUser({
-          dislikerId: user?.id,
+          dislikerId: userToken?.userId,
           dislikedId: dislikedUserId,
         }).unwrap()
       } catch (err) {

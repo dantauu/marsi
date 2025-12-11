@@ -22,7 +22,9 @@ const Location = () => {
     <>
       <div onClick={() => handleOpenModal()} className="flex flex-col gap-2">
         <div className="">
-          <p className="font-HelveticaB text-[20px]">Местоположение</p>
+          <p className="font-HelveticaB text-[20px] text-[var(--color-text-black)]">
+            Местоположение
+          </p>
         </div>
         <div className="h-[60px] w-full flex justify-center items-center px-1 rounded-[10px] gap-2 bg-black">
           {!city && (
@@ -65,7 +67,9 @@ const Gender = () => {
 
   return (
     <div className="flex flex-col gap-2">
-      <p className="font-HelveticaB text-[20px]">Пол</p>
+      <p className="font-HelveticaB text-[20px] text-[var(--color-text-black)]">
+        Пол
+      </p>
       <div className="flex justify-between">
         {genders.map((item) => (
           <Button
@@ -73,7 +77,7 @@ const Gender = () => {
             key={item.id}
             onClick={() => handleButtonClick(item.id)}
             className={cn(
-              `w-[130px] h-[45px] mini-mobile:w-[140px] mini-mobile:h-[50px] mini-mobile:text-[20px] text-[18px] font-ManropeM duration-300 ${isButtonActive(item.id) && "bg-main-red"}`
+              `w-[128px] h-[43px] mini-mobile:w-[130px] mini-mobile:h-[45px] mini-mobile:text-[16px] font-ManropeM text-[15px] text-[var(--color-text-white)] duration-300 ${isButtonActive(item.id) && "bg-main-red"}`
             )}
             variant="green"
           >

@@ -1,7 +1,10 @@
-import SvgEdit from "@/assets/icons/Edit.tsx"
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useNavigate } from "@tanstack/react-router"
 import type { User } from "@/app/types/user"
+import SvgSettings from "@/assets/icons/Settings.tsx"
+import SvgEdit from "@/assets/icons/Edit.tsx"
+import { useAllPercentCount } from "@/lib/utils/get-percent-count"
+import { DoesntHavePhoto, HavePhoto } from "@/ui/photos"
 
 type ProfileHeaderProps = {
   currentUser: User | null
@@ -9,45 +12,65 @@ type ProfileHeaderProps = {
 
 export const ProfileHeader = ({ currentUser }: ProfileHeaderProps) => {
   const navigate = useNavigate()
+  const { colors, percent } = useAllPercentCount()
 
   const linkEditProfile = () => {
     navigate({ to: "/profile-edit" })
   }
+  const linkSettings = () => {
+    navigate({ to: "/settings" })
+  }
   return (
-    <div className="flex items-center justify-between w-full mx-auto shadow-easy rounded-[10px] p-1">
-      <Button
-        onClick={linkEditProfile}
-        className="w-[116px] h-[39px] text-[14px] mini-mobile:text-[16px] mini-mobile:w-[130px] mini-mobile:h-[42px] font-ManropeM"
-        variant="green"
-      >
-        Изменить
-        <SvgEdit />
-      </Button>
-      <div className="flex items-center gap-2">
-        <div className="flex items-cente">
-          <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px] text-ellipsis overflow-hidden max-w-[115px] whitespace-nowrap">
-            {currentUser?.first_name || "Не указано"}
-          </p>
-          <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px]">
-            ,{currentUser?.age || "?"}
-          </p>
-        </div>
-        <div onClick={() => navigate({ to: "/profile-edit" })} className="">
-          {currentUser?.photo_url ? (
-            <img
-              className="w-[72px] h-[72px] rounded-full object-cover mini-mobile:w-[78px] mini-mobile:h-[78px]"
-              src={
-                Array.isArray(currentUser.photo_url)
-                  ? (currentUser.photo_url[0] ?? "")
-                  : (currentUser.photo_url ?? "")
-              }
-              alt=""
-            />
-          ) : (
-            <div className="w-[72px] h-[72px] bg-[#e0e0e0] rounded-full mini-mobile:w-[78px] mini-mobile:h-[78px]"></div>
-          )}
+    <div className="flex flex-col gap-2 shadow-easy rounded-[10px] p-1 pb-3 px-2 bg-[var(--color-bg-surface)]">
+      <div className="flex items-center justify-between w-full mx-auto">
+        <Button
+          onClick={linkSettings}
+          className="w-[45px] h-[45px] text-[14px] font-ManropeM shadow-easy rounded-full bg-[var(--color-bg-setting)]"
+          variant="default"
+        >
+          <SvgSettings className="w-[35px] h-[35px] text-[var(--color-text-grey)]" />
+        </Button>
+        <div className="flex items-center gap-2">
+          <div className="flex items-cente">
+            <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px] text-ellipsis overflow-hidden max-w-[115px] whitespace-nowrap text-[var(--color-text-black)]">
+              {currentUser?.first_name || "Не указано"}
+            </p>
+            <p className="font-ManropeEB text-[16px] mini-mobile:text-[19px] text-[var(--color-text-black)]">
+              ,{currentUser?.age || "?"}
+            </p>
+          </div>
+          <div
+            onClick={() => navigate({ to: "/profile-edit" })}
+            className="relative"
+          >
+            {currentUser?.photo_url ? (
+              <HavePhoto
+                currentUser={currentUser}
+                colors={colors}
+                percent={percent}
+              />
+            ) : (
+              <DoesntHavePhoto colors={colors} percent={percent} />
+            )}
+            <div className="w-[47px] h-[25px] absolute -bottom-1 right-1 bg-white shadow-easy rounded-[8px]">
+              <p
+                style={{ color: colors }}
+                className="text-center font-HelveticaB"
+              >
+                {Math.round(percent)}%
+              </p>
+            </div>
+          </div>
         </div>
       </div>
+      <Button
+        onClick={linkEditProfile}
+        className="w-full h-[40px] text-[15px] rounded-full font-ManropeM bg-[var(--color-bg-muted-edit)] text-[var(--color-text-grey)]"
+        variant="default"
+      >
+        Редактирование профиля
+        <SvgEdit className="w-[27px] h-[27px]" />
+      </Button>
     </div>
   )
 }

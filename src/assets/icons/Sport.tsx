@@ -5,8 +5,8 @@ const SvgSport = (props: SVGProps<SVGSVGElement>) => (
     xmlSpace="preserve"
     width={50}
     height={50}
-    fill="#0007"
-    stroke="#0007"
+    fill="currentColor"
+    stroke="currentColor"
     viewBox="0 0 512 512"
     {...props}
   >

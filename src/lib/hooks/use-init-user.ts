@@ -2,39 +2,45 @@ import { useEffect } from "react"
 import { useTelegram } from "@/app/providers/telegram"
 import { useAuthUserMutation, useInitUserMutation } from "@/shared/api/user.ts"
 import { useGetUserByIdQuery } from "@/shared/api/user.ts"
-import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
+import { useAppDispatch } from "@/redux/hooks.ts"
 import { setToken } from "@/redux/slices/auth.ts"
+import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
+import { getEnvironment } from "@/shared/lib/utils/get-environment"
+import type { UserInit } from "@/app/types/user"
+import { useLocation } from "@tanstack/react-router"
 
 export const useInitUser = () => {
+  const location = useLocation()
+  const { isDev } = getEnvironment()
   const { user } = useTelegram()
   const [initUser] = useInitUserMutation()
   const [authUser] = useAuthUserMutation()
-  const token = useAppSelector((state) => state.auth.token)
   const dispatch = useAppDispatch()
+  const { userToken } = useCurrentUser()
+  const userId = userToken?.userId
 
-  const { isError } = useGetUserByIdQuery(String(user?.id), {
-    skip: !user?.id || !token,
+  const { isError } = useGetUserByIdQuery(userId ?? "", {
+    skip: !userId,
   })
 
   useEffect(() => {
-    if (!user) return
+    if (!user || isDev || location.pathname.includes("/deleted")) return
 
     const initialize = async () => {
       try {
-        if (token && isError) {
+        if (userId && isError) {
           dispatch(setToken(null))
         }
-
-        if (!token) {
-          const initUserPayload = {
+        if (!userId) {
+          const initUserPayload: UserInit = {
             id: String(user.id),
             first_name: user.first_name,
-            photo_url: user.photo_url ? [user.photo_url] : [],
+            photo_url: user.photo_url,
             username: user.username,
           }
 
           const initData = await initUser(initUserPayload).unwrap()
-          const { access_token } = await authUser(initData).unwrap()
+          const { access_token } = await authUser({ id: initData.id }).unwrap()
 
           dispatch(setToken(access_token))
         }
@@ -44,5 +50,5 @@ export const useInitUser = () => {
     }
 
     initialize()
-  }, [user, token, isError, initUser, authUser])
+  }, [user, userId, isError, initUser, authUser, isDev, location.pathname])
 }

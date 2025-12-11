@@ -1,7 +1,7 @@
-import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
+import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 
 export const usePercentCount = () => {
-  const { user } = useUserMe()
+  const { user } = useCurrentUser()
   const fields = [
     user?.age,
     user?.goal,
@@ -28,37 +28,38 @@ export const usePercentCount = () => {
 }
 
 export const useAllPercentCount = () => {
-  const { user } = useUserMe()
+  const { user } = useCurrentUser()
   const fields = [
     user?.age,
     user?.goal,
     user?.city,
     user?.gender,
     user?.first_name,
+    user?.about_me,
     user?.photo_url,
     user?.hobbies,
     user?.height,
   ]
 
   const fieldCount = fields.filter(Boolean).length
-  const percent = fieldCount * 12.5
+  const percent = Math.min(fieldCount * (100 / fields.length), 100)
 
   const colors =
-    percent <= 12.5
+    percent <= 12
       ? "#f84963"
-      : percent <= 25
+      : percent <= 24
         ? "#f84963"
-        : percent <= 37.5
+        : percent <= 36
           ? "#f84963"
-          : percent <= 50
+          : percent <= 48
             ? "#ff6708"
-            : percent <= 62.5
+            : percent <= 60
               ? "#ff6708"
-              : percent <= 75
+              : percent <= 72
                 ? "#a7cc00"
-                : percent <= 87.5
-                  ? "#a7cc00"
-                  : "#69ff6d"
+                : percent <= 89
+                  ? "#63cc00"
+                  : "#31C29F"
 
   return { colors, percent }
 }

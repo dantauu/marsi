@@ -2,13 +2,29 @@ import type { FilteredUsers } from "@/app/types/global.d.ts"
 import type { User, UserInit, UpdateUserData } from "@/app/types/user"
 import { baseApi } from "@/redux/api/base-api.ts"
 
+export type UploadPhotoResponse = {
+  small: string
+  medium: string
+  large: string
+}
+
 export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    authUser: builder.mutation<{ access_token: string; user: User }, UserInit>({
+    authUser: builder.mutation<
+      { access_token: string; user: User },
+      { id: string }
+    >({
       query: (initData) => ({
         method: "POST",
         url: "auth/user",
         body: initData,
+      }),
+    }),
+    deleteUser: builder.mutation<unknown, string>({
+      query: (id) => ({
+        method: "DELETE",
+        url: "users/delete-user",
+        body: { id },
       }),
     }),
     getUsers: builder.query<User[], Partial<FilteredUsers> & { id?: string }>({
@@ -36,7 +52,7 @@ export const userApi = baseApi.injectEndpoints({
         body: userData,
       }),
     }),
-    uploadPhoto: builder.mutation<string, File | Blob>({
+    uploadPhoto: builder.mutation<UploadPhotoResponse, File | Blob>({
       query: (file) => {
         const formData = new FormData()
         formData.append("file", file)
@@ -44,9 +60,9 @@ export const userApi = baseApi.injectEndpoints({
           url: "upload-photo",
           method: "POST",
           body: formData,
-          responseHandler: (response) => response.text(),
         }
       },
+      // transformResponse: (response: UploadPhotoResponse) => response.profile,
     }),
     deletePhoto: builder.mutation<string, string>({
       query: (file) => ({
@@ -61,6 +77,7 @@ export const userApi = baseApi.injectEndpoints({
 export const {
   useAuthUserMutation,
   useGetUsersQuery,
+  useDeleteUserMutation,
   useGetUserByIdQuery,
   useInitUserMutation,
   useUpdateUserMutation,

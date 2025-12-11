@@ -7,7 +7,7 @@ import Button from "@/shared/ui/buttons/button.tsx"
 import SvgArrow from "@/assets/icons/Arrow.tsx"
 import { memo, useState } from "react"
 import { MoreInformation } from "@/widgets/modals/more-information"
-import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
+import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import { getEnvironment } from "@/shared/lib/utils/get-environment"
 
 type SliderCardProps = {
@@ -28,7 +28,7 @@ export const SliderCard = memo(({ users, isFetching }: SliderCardProps) => {
     SWIPE_THRESHOLD,
   } = SwiperCard({ data: users })
   const [isMore, setIsMore] = useState(false)
-  const { user } = useUserMe()
+  const { user } = useCurrentUser()
   const { isDev } = getEnvironment()
   if (
     !isFetching &&
@@ -83,11 +83,7 @@ export const SliderCard = memo(({ users, isFetching }: SliderCardProps) => {
                 ></div>
 
                 <div className="relative w-full h-full">
-                  <SwipePhotos
-                    photo_url={
-                      Array.isArray(item.photo_url) ? item.photo_url : []
-                    }
-                  />
+                  <SwipePhotos photo_url={item.photo_url} />
                   <div
                     onMouseDown={(e) => e.stopPropagation()}
                     className="absolute flex flex-col justify-center items-center w-full bottom-23 z-50"
@@ -98,7 +94,7 @@ export const SliderCard = memo(({ users, isFetching }: SliderCardProps) => {
                     <div className="flex justify-center items-center">
                       <SvgPoint className="w-[27px] h-[27px] text-white" />
                       <p className="text-white text-[15px] mini-mobile:text-[18px] font-ManropeM">
-                        {item?.city}, {item.photo_url?.length} фото
+                        {item?.city}, {item.photo_url?.items.length} фото
                       </p>
                     </div>
                   </div>

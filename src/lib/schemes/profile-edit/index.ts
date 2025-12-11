@@ -1,7 +1,27 @@
 import { z } from "zod"
 
+const PhotoVariantSchema = z.object({
+  small: z.string(),
+  medium: z.string(),
+  large: z.string(),
+})
+
+const PhotoSchema = z.object({
+  items: z
+    .array(PhotoVariantSchema)
+    .superRefine((photos, ctx) => {
+      if (!photos.length || !photos[0].large) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Первое фото обязательно",
+        })
+      }
+    })
+    .nullable(),
+})
+
 export const editSchema = z.object({
-  photo_url: z.array(z.string()),
+  photo_url: PhotoSchema.optional(),
   first_name: z.string(),
   age: z
     .number({

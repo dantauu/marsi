@@ -46,14 +46,13 @@ export const FieldMeta: Record<
   },
   age: {
     title: "Возраст",
-    render: ({ control, name, showErrors }) => (
+    render: ({ control, name }) => (
       <Controller
         name={name}
         control={control}
         render={({ field }) => (
           <InputEdit
             placeholder="Введите ваш возраст (от 16)"
-            showErrors={showErrors}
             {...field}
             onChange={(val) => {
               if (val === "") {
@@ -99,14 +98,13 @@ export const FieldMeta: Record<
   },
   height: {
     title: "Ваш рост",
-    render: ({ control, name, showErrors }) => (
+    render: ({ control, name }) => (
       <Controller
         name={name}
         control={control}
         render={({ field }) => (
           <InputEdit
             placeholder="Введите ваш рост (от 120 до 230)"
-            showErrors={showErrors}
             {...field}
           />
         )}

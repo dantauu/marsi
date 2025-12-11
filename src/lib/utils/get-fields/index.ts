@@ -1,8 +1,8 @@
-import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
+import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import type { User } from "@/app/types/user"
 
 export const GetFields = () => {
-  const { user } = useUserMe()
+  const { user } = useCurrentUser()
   const requiredData: { key: keyof User; label: string }[] = [
     { key: "age", label: "Возраст" },
     { key: "photo_url", label: "Фото" },

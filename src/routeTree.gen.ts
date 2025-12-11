@@ -13,12 +13,14 @@ import { Route as AppLayoutRouteImport } from './app/routes/_app/_layout'
 import { Route as AppLayoutIndexRouteImport } from './app/routes/_app/_layout/index'
 import { Route as AppLayoutSubscribeIndexRouteImport } from './app/routes/_app/_layout/subscribe/index'
 import { Route as AppLayoutSlidesIndexRouteImport } from './app/routes/_app/_layout/slides/index'
+import { Route as AppLayoutSettingsIndexRouteImport } from './app/routes/_app/_layout/settings/index'
 import { Route as AppLayoutSearchIndexRouteImport } from './app/routes/_app/_layout/search/index'
 import { Route as AppLayoutProfileIndexRouteImport } from './app/routes/_app/_layout/profile/index'
 import { Route as AppLayoutProfileEditIndexRouteImport } from './app/routes/_app/_layout/profile-edit/index'
 import { Route as AppLayoutMoreIndexRouteImport } from './app/routes/_app/_layout/more/index'
 import { Route as AppLayoutLikesIndexRouteImport } from './app/routes/_app/_layout/likes/index'
 import { Route as AppLayoutFillFieldsIndexRouteImport } from './app/routes/_app/_layout/fill-fields/index'
+import { Route as AppLayoutDeletedIndexRouteImport } from './app/routes/_app/_layout/deleted/index'
 import { Route as AppLayoutSearchIdIdRouteImport } from './app/routes/_app/_layout/search-id/$id'
 import { Route as AppLayoutLikesMyLikesIndexRouteImport } from './app/routes/_app/_layout/likes/my-likes/index'
 import { Route as AppLayoutLikesIncomingLikesIndexRouteImport } from './app/routes/_app/_layout/likes/incoming-likes/index'
@@ -40,6 +42,11 @@ const AppLayoutSubscribeIndexRoute = AppLayoutSubscribeIndexRouteImport.update({
 const AppLayoutSlidesIndexRoute = AppLayoutSlidesIndexRouteImport.update({
   id: '/slides/',
   path: '/slides/',
+  getParentRoute: () => AppLayoutRoute,
+} as any)
+const AppLayoutSettingsIndexRoute = AppLayoutSettingsIndexRouteImport.update({
+  id: '/settings/',
+  path: '/settings/',
   getParentRoute: () => AppLayoutRoute,
 } as any)
 const AppLayoutSearchIndexRoute = AppLayoutSearchIndexRouteImport.update({
@@ -74,6 +81,11 @@ const AppLayoutFillFieldsIndexRoute =
     path: '/fill-fields/',
     getParentRoute: () => AppLayoutRoute,
   } as any)
+const AppLayoutDeletedIndexRoute = AppLayoutDeletedIndexRouteImport.update({
+  id: '/deleted/',
+  path: '/deleted/',
+  getParentRoute: () => AppLayoutRoute,
+} as any)
 const AppLayoutSearchIdIdRoute = AppLayoutSearchIdIdRouteImport.update({
   id: '/search-id/$id',
   path: '/search-id/$id',
@@ -95,12 +107,14 @@ const AppLayoutLikesIncomingLikesIndexRoute =
 export interface FileRoutesByFullPath {
   '/': typeof AppLayoutIndexRoute
   '/search-id/$id': typeof AppLayoutSearchIdIdRoute
+  '/deleted': typeof AppLayoutDeletedIndexRoute
   '/fill-fields': typeof AppLayoutFillFieldsIndexRoute
   '/likes': typeof AppLayoutLikesIndexRoute
   '/more': typeof AppLayoutMoreIndexRoute
   '/profile-edit': typeof AppLayoutProfileEditIndexRoute
   '/profile': typeof AppLayoutProfileIndexRoute
   '/search': typeof AppLayoutSearchIndexRoute
+  '/settings': typeof AppLayoutSettingsIndexRoute
   '/slides': typeof AppLayoutSlidesIndexRoute
   '/subscribe': typeof AppLayoutSubscribeIndexRoute
   '/likes/incoming-likes': typeof AppLayoutLikesIncomingLikesIndexRoute
@@ -109,12 +123,14 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof AppLayoutIndexRoute
   '/search-id/$id': typeof AppLayoutSearchIdIdRoute
+  '/deleted': typeof AppLayoutDeletedIndexRoute
   '/fill-fields': typeof AppLayoutFillFieldsIndexRoute
   '/likes': typeof AppLayoutLikesIndexRoute
   '/more': typeof AppLayoutMoreIndexRoute
   '/profile-edit': typeof AppLayoutProfileEditIndexRoute
   '/profile': typeof AppLayoutProfileIndexRoute
   '/search': typeof AppLayoutSearchIndexRoute
+  '/settings': typeof AppLayoutSettingsIndexRoute
   '/slides': typeof AppLayoutSlidesIndexRoute
   '/subscribe': typeof AppLayoutSubscribeIndexRoute
   '/likes/incoming-likes': typeof AppLayoutLikesIncomingLikesIndexRoute
@@ -125,12 +141,14 @@ export interface FileRoutesById {
   '/_app/_layout': typeof AppLayoutRouteWithChildren
   '/_app/_layout/': typeof AppLayoutIndexRoute
   '/_app/_layout/search-id/$id': typeof AppLayoutSearchIdIdRoute
+  '/_app/_layout/deleted/': typeof AppLayoutDeletedIndexRoute
   '/_app/_layout/fill-fields/': typeof AppLayoutFillFieldsIndexRoute
   '/_app/_layout/likes/': typeof AppLayoutLikesIndexRoute
   '/_app/_layout/more/': typeof AppLayoutMoreIndexRoute
   '/_app/_layout/profile-edit/': typeof AppLayoutProfileEditIndexRoute
   '/_app/_layout/profile/': typeof AppLayoutProfileIndexRoute
   '/_app/_layout/search/': typeof AppLayoutSearchIndexRoute
+  '/_app/_layout/settings/': typeof AppLayoutSettingsIndexRoute
   '/_app/_layout/slides/': typeof AppLayoutSlidesIndexRoute
   '/_app/_layout/subscribe/': typeof AppLayoutSubscribeIndexRoute
   '/_app/_layout/likes/incoming-likes/': typeof AppLayoutLikesIncomingLikesIndexRoute
@@ -141,12 +159,14 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/search-id/$id'
+    | '/deleted'
     | '/fill-fields'
     | '/likes'
     | '/more'
     | '/profile-edit'
     | '/profile'
     | '/search'
+    | '/settings'
     | '/slides'
     | '/subscribe'
     | '/likes/incoming-likes'
@@ -155,12 +175,14 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/search-id/$id'
+    | '/deleted'
     | '/fill-fields'
     | '/likes'
     | '/more'
     | '/profile-edit'
     | '/profile'
     | '/search'
+    | '/settings'
     | '/slides'
     | '/subscribe'
     | '/likes/incoming-likes'
@@ -170,12 +192,14 @@ export interface FileRouteTypes {
     | '/_app/_layout'
     | '/_app/_layout/'
     | '/_app/_layout/search-id/$id'
+    | '/_app/_layout/deleted/'
     | '/_app/_layout/fill-fields/'
     | '/_app/_layout/likes/'
     | '/_app/_layout/more/'
     | '/_app/_layout/profile-edit/'
     | '/_app/_layout/profile/'
     | '/_app/_layout/search/'
+    | '/_app/_layout/settings/'
     | '/_app/_layout/slides/'
     | '/_app/_layout/subscribe/'
     | '/_app/_layout/likes/incoming-likes/'
@@ -214,6 +238,13 @@ declare module '@tanstack/react-router' {
       path: '/slides'
       fullPath: '/slides'
       preLoaderRoute: typeof AppLayoutSlidesIndexRouteImport
+      parentRoute: typeof AppLayoutRoute
+    }
+    '/_app/_layout/settings/': {
+      id: '/_app/_layout/settings/'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppLayoutSettingsIndexRouteImport
       parentRoute: typeof AppLayoutRoute
     }
     '/_app/_layout/search/': {
@@ -258,6 +289,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppLayoutFillFieldsIndexRouteImport
       parentRoute: typeof AppLayoutRoute
     }
+    '/_app/_layout/deleted/': {
+      id: '/_app/_layout/deleted/'
+      path: '/deleted'
+      fullPath: '/deleted'
+      preLoaderRoute: typeof AppLayoutDeletedIndexRouteImport
+      parentRoute: typeof AppLayoutRoute
+    }
     '/_app/_layout/search-id/$id': {
       id: '/_app/_layout/search-id/$id'
       path: '/search-id/$id'
@@ -285,12 +323,14 @@ declare module '@tanstack/react-router' {
 interface AppLayoutRouteChildren {
   AppLayoutIndexRoute: typeof AppLayoutIndexRoute
   AppLayoutSearchIdIdRoute: typeof AppLayoutSearchIdIdRoute
+  AppLayoutDeletedIndexRoute: typeof AppLayoutDeletedIndexRoute
   AppLayoutFillFieldsIndexRoute: typeof AppLayoutFillFieldsIndexRoute
   AppLayoutLikesIndexRoute: typeof AppLayoutLikesIndexRoute
   AppLayoutMoreIndexRoute: typeof AppLayoutMoreIndexRoute
   AppLayoutProfileEditIndexRoute: typeof AppLayoutProfileEditIndexRoute
   AppLayoutProfileIndexRoute: typeof AppLayoutProfileIndexRoute
   AppLayoutSearchIndexRoute: typeof AppLayoutSearchIndexRoute
+  AppLayoutSettingsIndexRoute: typeof AppLayoutSettingsIndexRoute
   AppLayoutSlidesIndexRoute: typeof AppLayoutSlidesIndexRoute
   AppLayoutSubscribeIndexRoute: typeof AppLayoutSubscribeIndexRoute
   AppLayoutLikesIncomingLikesIndexRoute: typeof AppLayoutLikesIncomingLikesIndexRoute
@@ -300,12 +340,14 @@ interface AppLayoutRouteChildren {
 const AppLayoutRouteChildren: AppLayoutRouteChildren = {
   AppLayoutIndexRoute: AppLayoutIndexRoute,
   AppLayoutSearchIdIdRoute: AppLayoutSearchIdIdRoute,
+  AppLayoutDeletedIndexRoute: AppLayoutDeletedIndexRoute,
   AppLayoutFillFieldsIndexRoute: AppLayoutFillFieldsIndexRoute,
   AppLayoutLikesIndexRoute: AppLayoutLikesIndexRoute,
   AppLayoutMoreIndexRoute: AppLayoutMoreIndexRoute,
   AppLayoutProfileEditIndexRoute: AppLayoutProfileEditIndexRoute,
   AppLayoutProfileIndexRoute: AppLayoutProfileIndexRoute,
   AppLayoutSearchIndexRoute: AppLayoutSearchIndexRoute,
+  AppLayoutSettingsIndexRoute: AppLayoutSettingsIndexRoute,
   AppLayoutSlidesIndexRoute: AppLayoutSlidesIndexRoute,
   AppLayoutSubscribeIndexRoute: AppLayoutSubscribeIndexRoute,
   AppLayoutLikesIncomingLikesIndexRoute: AppLayoutLikesIncomingLikesIndexRoute,

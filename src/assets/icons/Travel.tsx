@@ -5,7 +5,7 @@ const SvgTravel = (props: SVGProps<SVGSVGElement>) => (
     xmlSpace="preserve"
     width={55}
     height={55}
-    fill="#0007"
+    fill="currentColor"
     viewBox="0 0 300 300"
     {...props}
   >

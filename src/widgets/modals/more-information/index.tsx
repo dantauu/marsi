@@ -23,7 +23,7 @@ export const MoreInformation = ({
     <AnimatePresence>
       {isMore && (
         <motion.div
-          className={`fixed inset-0 z-50 flex justify-center bg-white ${isMobile ? "pt-[80px]" : "pt-0"}`}
+          className={`fixed inset-0 z-50 flex justify-center bg-[var(--color-main-back)] ${isMobile ? "pt-[80px]" : "pt-0"}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

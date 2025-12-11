@@ -37,10 +37,12 @@ export const LocationsModal = () => {
         type: "tween",
         stiffness: 300,
       }}
-      className="absolute px-2 left-0 bottom-0 z-60 w-full h-full bg-[#fff]"
+      className="absolute px-2 left-0 bottom-0 z-60 w-full h-full bg-[var(--color-bg-surface)]"
     >
       <div className="relative py-5 flex justify-center items-center">
-        <h1 className="font-HelveticaB text-[21px]">Местоположение</h1>
+        <h1 className="font-HelveticaB text-[21px] text-[var(--color-text-black)]">
+          Местоположение
+        </h1>
         <SvgCross
           className="absolute right-5 h-10 w-10 text-main-red"
           onClick={() => handleClose()}
@@ -56,7 +58,7 @@ export const LocationsModal = () => {
             const capitalized = value.charAt(0).toUpperCase() + value.slice(1)
             setInputValue(capitalized)
           }}
-          className="border p-2 rounded-xl w-full"
+          className="border border-[var(--color-text-grey)] text-[var(--color-text-grey)] p-2 rounded-xl w-full"
         />
         {isLoading || isFetching ? (
           <LoadingBalls className="mt-2.5" />
@@ -65,7 +67,7 @@ export const LocationsModal = () => {
             <>
               {locations?.map((item) => (
                 <p
-                  className="font-ManropeM"
+                  className="font-ManropeM text-[var(--color-text-black)]"
                   onClick={() => handleSelect(item)}
                   key={item.id}
                 >
@@ -75,7 +77,9 @@ export const LocationsModal = () => {
             </>
           </div>
         ) : (
-          <p className="text-center text-[20px]">Ничего не найдено</p>
+          <p className="text-center text-[20px] text-[var(--color-text-grey)]">
+            Ничего не найдено
+          </p>
         )}
       </div>
     </motion.div>

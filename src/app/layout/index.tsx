@@ -3,15 +3,17 @@ import { type PropsWithChildren } from "react"
 import { useRouterState } from "@tanstack/react-router"
 import { FilterForm } from "@/app/containers/filters"
 import { useInitUser } from "@/lib/hooks/use-init-user.ts"
-import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
+import { useThemeEffect } from "@/lib/hooks/use-theme-effect.ts"
+import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import { useLikesSocket } from "@/lib/hooks/use-likes-socket.ts"
 import { Toaster } from "sonner"
 import { usePlatform } from "@/shared/lib/hooks/use-platform.ts"
 
 const Layout = ({ children }: PropsWithChildren) => {
   useInitUser()
+  useThemeEffect()
   const router = useRouterState()
-  const { user: userMe } = useUserMe()
+  const { user: userMe } = useCurrentUser()
   useLikesSocket(userMe?.id)
   const { isMobile } = usePlatform()
   return (

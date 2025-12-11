@@ -52,6 +52,29 @@
       rgba(255, 85, 159, 0.8) 100%
     );
   }
+  .bg-gradient-animated {
+    background: linear-gradient(
+      90deg,
+      rgba(190, 45, 105, 0.95),
+      rgba(215, 60, 125, 0.95),
+      rgba(255, 100, 85, 0.95),
+      rgba(255, 140, 90, 0.95),
+      rgba(215, 60, 125, 0.95),
+      rgba(190, 45, 105, 0.95)
+    );
+    background-size: 290% 290%;
+    animation: moveGradient 5s ease-in-out infinite alternate;
+    border-radius: 10px;
+  }
+
+  @keyframes moveGradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
   .bg-test {
     background: linear-gradient(90deg, #ffe8f2 0%, #f9eace9c 100%);
   }
@@ -81,4 +104,20 @@
   textarea {
     outline: none;
   }
+}
+
+[data-sonner-toast][data-index="0"] {
+  --offset: 50px !important;
+}
+
+[data-sonner-toast][data-index="1"] {
+  --offset: 120px !important;
+}
+
+[data-sonner-toast][data-index="2"] {
+  --offset: 190px !important;
+}
+
+[data-sonner-toast][data-index="3"] {
+  --offset: 260px !important;
 }

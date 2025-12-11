@@ -3,14 +3,16 @@ import { type PropsWithChildren, useCallback, useEffect, useState } from "react"
 import { EditFormContext } from "@/app/context/profile-edit-context.tsx"
 import { zodResolver } from "@hookform/resolvers/zod"
 import type { User } from "@/app/types/user"
-import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
+import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import { type EditFormSchema, editSchema } from "@/lib/schemes/profile-edit"
+import { showFormErrors } from "@/lib/utils/get-errors"
+import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
 
 function fetchUser(user?: User | null): Partial<EditFormSchema> {
   if (!user) return {}
 
   return {
-    photo_url: Array.isArray(user.photo_url) ? user.photo_url : [],
+    photo_url: user.photo_url ?? { items: [] },
     first_name: user.first_name ?? "",
     age: user.age ?? null,
     height: user.height?.toString() ?? "",
@@ -29,10 +31,10 @@ export function useFormEmptyValues(): {
   isFetching: boolean
   isLoading: boolean
 } {
-  const { user, isFetching, isLoading } = useUserMe()
+  const { user, isFetching, isLoading } = useCurrentUser()
 
   const fallbackUser = {
-    photo_url: [],
+    photo_url: { items: [] },
     first_name: "",
     age: null,
     height: "",
@@ -63,6 +65,7 @@ export function EditProfileProvider({
   values,
   children,
 }: EditFormProps) {
+  const { notify } = useNotify()
   const form = useForm<EditFormSchema>({
     resolver: zodResolver(editSchema),
     mode: "onChange",
@@ -77,7 +80,7 @@ export function EditProfileProvider({
     }
   }, [values, defaultValues, initialized, form])
 
-  const { refetch } = useUserMe()
+  const { refetch } = useCurrentUser()
 
   const handleSubmit = useCallback(
     async (data: EditFormSchema) => {
@@ -94,12 +97,17 @@ export function EditProfileProvider({
     },
     [onSubmit, refetch, form]
   )
-
   return (
     <EditFormContext.Provider
       value={{ ...form, isDirty: form.formState.isDirty }}
     >
-      <form onSubmit={form.handleSubmit(handleSubmit)}>{children}</form>
+      <form
+        onSubmit={form.handleSubmit(handleSubmit, (errors) =>
+          showFormErrors(errors, notify)
+        )}
+      >
+        {children}
+      </form>
     </EditFormContext.Provider>
   )
 }

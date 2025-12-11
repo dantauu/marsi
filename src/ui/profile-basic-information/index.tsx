@@ -1,48 +1,31 @@
 import Block from "@/shared/ui/blocks/block.tsx"
 import { getGenderFormat } from "@/lib/utils/format-gender.ts"
-import { usePercentCount } from "@/lib/utils/get-percent-count"
-import { useUserMe } from "@/shared/lib/hooks/use-user-me.ts"
+import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import { useNavigate } from "@tanstack/react-router"
 
 export const BasicInformation = () => {
-  const { user } = useUserMe()
-  const { colors, percent } = usePercentCount()
+  const { user } = useCurrentUser()
   const navigate = useNavigate()
+  const fields = [
+    { label: "Имя", value: user?.first_name },
+    { label: "Возраст", value: user?.age },
+    { label: "Пол", value: getGenderFormat(user?.gender) },
+    { label: "Город", value: user?.city },
+    { label: "Цель", value: user?.goal },
+  ]
   return (
-    <div className="mt-[10px] px-[8px] py-[8px] rounded-[10px] bg-test">
+    <div
+      onClick={() => navigate({ to: "/profile-edit" })}
+      className="bg-[var(--color-basic-info)] [background-image:var(--color-basic-info)] mt-[10px] px-[8px] py-[8px] rounded-[10px]"
+    >
       <Block
         className="flex items-center justify-center max-w-[300px] mx-auto"
-        text={
-          <>
-            Ключевая информация:
-            <span style={{ color: colors }} className="font-HelveticaB">
-              {" "}
-              {percent}%
-            </span>
-          </>
-        }
+        text={<>Моя ключевая информация</>}
       />
       <div className="flex flex-col gap-3 mt-[20px]">
-        <Block
-          onClick={() => navigate({ to: "/profile-edit" })}
-          text={`Имя: ${user?.first_name || "Не указано"}`}
-        />
-        <Block
-          onClick={() => navigate({ to: "/profile-edit" })}
-          text={`Возраст: ${user?.age || "Не указано"}`}
-        />
-        <Block
-          onClick={() => navigate({ to: "/profile-edit" })}
-          text={`Пол: ${getGenderFormat(user?.gender) || "Не указано"}`}
-        />
-        <Block
-          onClick={() => navigate({ to: "/profile-edit" })}
-          text={`Город: ${user?.city || "Не указано"}`}
-        />
-        <Block
-          onClick={() => navigate({ to: "/profile-edit" })}
-          text={`Цель: ${user?.goal || "Не указано"}`}
-        />
+        {fields.map(({ label, value }) => (
+          <Block key={label} text={`${label}: ${value || "Не указано"}`} />
+        ))}
       </div>
     </div>
   )

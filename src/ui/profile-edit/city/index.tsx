@@ -39,7 +39,7 @@ export const CityEdit = ({
           const capitalized = raw.charAt(0).toUpperCase() + raw.slice(1)
           setInputValue(capitalized)
         }}
-        className="border p-2 rounded-xl w-full"
+        className="border p-2 rounded-xl w-full text-[var(--color-text-black)] placeholder:text-[var(--color-text-black)]"
       />
 
       <div className="pt-7 flex flex-col gap-4">
@@ -49,7 +49,7 @@ export const CityEdit = ({
           <>
             {locations?.map((item) => (
               <p
-                className="font-ManropeM"
+                className="font-ManropeM text-[var(--color-text-black)] cursor-pointer"
                 onClick={() => handleSelect(item)}
                 key={item.id}
               >
@@ -58,7 +58,9 @@ export const CityEdit = ({
             ))}
           </>
         ) : (
-          <p className="text-[20px] text-center">Ничего не найдено</p>
+          <p className="text-[20px] text-center text-[var(--color-text-black)]">
+            Ничего не найдено
+          </p>
         )}
       </div>
     </div>

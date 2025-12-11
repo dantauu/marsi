@@ -1,9 +1,9 @@
-import { ContentLikes } from "@/widgets/render-like-card"
+import { RouterLikes } from "@/widgets/router-likes"
 
 const Likes = () => {
   return (
     <div data-testid="likes" className="pt-3 px-1">
-      <ContentLikes />
+      <RouterLikes />
     </div>
   )
 }

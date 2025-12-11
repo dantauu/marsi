@@ -33,7 +33,7 @@ export const LikeCard = ({
     <div>
       <div>
         <div
-          className={`fixed flex max-w-[610px] items-center top-0 w-full z-2 bg-white shadow-hard px-4 ${isMobile ? "pt-[95px] h-[133px]" : "pt-0 h-[80px]"}`}
+          className={`fixed flex max-w-[610px] items-center top-0 w-full z-2 bg-[var(--color-bg-surface)] text-[var(--color-text-black)] shadow-hard px-4 ${isMobile ? "pt-[95px] h-[133px]" : "pt-0 h-[80px]"}`}
         >
           <Button
             onClick={() => navigate({ to: "/likes" })}
@@ -51,7 +51,7 @@ export const LikeCard = ({
           {users.map((item) => (
             <div
               key={item.id}
-              className="relative w-full max-w-[180px] h-[270px] flex flex-col pb-1 items-center rounded-[15px] shadow-easy"
+              className="relative w-full max-w-[180px] h-[270px] flex flex-col pb-1 items-center rounded-[15px] shadow-easy bg-[var(--color-bg-surface)]"
             >
               {isLocked && (
                 <div className="absolute z-1 inset-0 rounded-[10px] flex items-center justify-center">
@@ -68,25 +68,27 @@ export const LikeCard = ({
               >
                 <img
                   className="w-full h-full max-h-[200px] min-h-[195px] object-cover rounded-[15px]"
-                  src={
-                    Array.isArray(item.photo_url)
-                      ? item.photo_url[0]
-                      : item.photo_url
-                  }
+                  src={item.photo_url?.items[0].medium}
                 />
                 <div className="flex items-center">
-                  <p className="text-lg text-ellipsis overflow-hidden whitespace-nowrap max-w-[83px]">
+                  <p className="text-lg text-ellipsis overflow-hidden whitespace-nowrap max-w-[83px] text-[var(--color-text-black)]">
                     {item.first_name}
                   </p>
-                  <p className="text-lg">, {item.age ? item.age : "?"}</p>
+                  <p className="text-lg text-[var(--color-text-black)]">
+                    , {item.age ? item.age : "?"}
+                  </p>
                 </div>
               </div>
               <div
                 className={`flex justify-between mx-auto px-2 gap-3 ${isMessage && "w-full"} ${
-                  isLocked && "blur-[4px]" + " filter"
+                  isLocked && "blur-[4px] filter"
                 }`}
               >
-                <Button onClick={() => onUnlike?.(item.id)} variant="default">
+                <Button
+                  onClick={() => onUnlike?.(item.id)}
+                  variant="default"
+                  className="text-[var(--color-text-black)]"
+                >
                   {isPending?.(item.id) ? (
                     <LoadingCircle className="w-7 h-7" />
                   ) : (
