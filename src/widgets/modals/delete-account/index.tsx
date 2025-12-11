@@ -4,14 +4,14 @@ import { motion } from "framer-motion"
 import { DeleteAccountBar } from "@/widgets/nav-bar/delete-account"
 
 type EditModalProps = {
-  onSave: () => void
-  onClose: () => void
+  onAccept: () => void
+  onCancel: () => void
   disabled: boolean
 }
 
 export const DeleteAccountModal = ({
-  onSave,
-  onClose,
+  onAccept,
+  onCancel,
   disabled,
 }: EditModalProps) => {
   const { isDeleteOpen } = useAppSelector((state) => state.modal)
@@ -38,14 +38,14 @@ export const DeleteAccountModal = ({
       <p className="text-center text-[19px] font-HelveticaB pb-5 pt-5 text-[var(--color-text-black)]">
         Вы хотите удалить аккаунт?
       </p>
-      <p className="text-left text-[17px] text-[#656565] pt-[70px]">
+      <p className="text-left text-[15px] leading-5 text-[#656565] pt-[70px]">
         Вы точно хотите уйти? Если вы удалите аккаунт вашу анкету не будут
         видеть пользователи и вся информация введённая вами в анкете сотрётся.
       </p>
       <DeleteAccountBar
         disabled={disabled}
-        onApprove={() => onSave()}
-        onCancel={() => onClose()}
+        onApprove={() => onAccept()}
+        onCancel={() => onCancel()}
       />
     </motion.div>
   )

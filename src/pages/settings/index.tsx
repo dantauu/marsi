@@ -13,7 +13,7 @@ import { Overlay } from "@/widgets/overlay"
 import { AnimatePresence } from "framer-motion"
 import { useDeleteUserMutation } from "@/shared/api/user.ts"
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
-import { LoadingCirclev2 } from "@/shared/ui/loading/circle.tsx"
+import { LoadingCircleBase } from "@/shared/ui/loading/circle.tsx"
 import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
 
 export const Settings = () => {
@@ -63,23 +63,22 @@ export const Settings = () => {
         </p>
       </div>
       <div className="flex items-center justify-between shadow-easy rounded-[10px] px-2 py-2 bg-[var(--color-bg-surface)]">
-        <p className="text-[var(--color-text-black)] text-[17px]">
+        <p className="text-[var(--color-text-black)] text-[15px]">
           Темная тема
         </p>
         <ToggleSwitch />
       </div>
       <div className="flex-1" />
-      {/*TODO refactor component loader*/}
       {isLoading && (
-        <LoadingCirclev2 className="fixed top-1/2 left-1/2 -translate-x-1/2 z-20 bg-[#0004] w-[75px] h-[75px] rounded-xl" />
+        <LoadingCircleBase className="fixed top-1/2 left-1/2 -translate-x-1/2 z-20 bg-[#0004] w-[75px] h-[75px] rounded-xl" />
       )}
       <DeleteAccount onClick={handleModalOpen} className="mb-40" />
       <AnimatePresence>
         {isDeleteOpen && (
           <DeleteAccountModal
             disabled={isLoading}
-            onSave={handleDeleteUser}
-            onClose={handleCloseModal}
+            onAccept={handleDeleteUser}
+            onCancel={handleCloseModal}
           />
         )}
       </AnimatePresence>
