@@ -2,7 +2,6 @@ import {
   useFetchToScroll,
   useUserFilters,
   useScrollRestore,
-  useLikesCount,
   LikesCount,
   BackToTop,
 } from "@/features/search"
@@ -16,6 +15,7 @@ import useRouteEmptyFields from "@/shared/lib/utils/route-empty-fileds"
 import { FilterButton } from "@/ui"
 import { getEnvironment } from "@/shared/lib/utils/get-environment"
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
+import { useGetLikes } from "@/shared/lib/hooks/use-get-likes.ts"
 
 const Search = () => {
   useRouteEmptyFields()
@@ -24,7 +24,7 @@ const Search = () => {
   const filters = useUserFilters()
   const { ref, users, isLoading, isFetching } = useFetchToScroll(filters)
   const memoizedUsers = useMemo(() => users ?? [], [users])
-  const { countLikes } = useLikesCount()
+  const { likesToMe } = useGetLikes()
   const { userToken } = useCurrentUser()
 
   useScrollRestore("search", [users?.length])
@@ -45,7 +45,7 @@ const Search = () => {
       <div
         className={`fixed z-10 top-0 w-full max-w-[610px] bg-[var(--color-bg-surface)] ${isMobile ? "pt-[80px]" : "pt-0"}`}
       >
-        <LikesCount countLikes={countLikes} />
+        <LikesCount countLikes={likesToMe} />
         <div className="flex w-full mx-auto px-[12px] items-center justify-between pb-[5px]">
           <FilterButton />
           <SwitchButtons />
