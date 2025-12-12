@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useInView } from "react-intersection-observer"
-import { useGetUsersQuery } from "@/shared/api/user"
+import { useGetUsersQuery } from "@/shared/api/user.ts"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
 import { appendUsers, resetUsers } from "@/redux/slices/users.ts"
 import { skipToken } from "@reduxjs/toolkit/query"

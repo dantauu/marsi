@@ -1,16 +1,19 @@
-import { BackToTop, LikesCount } from "@/features/search"
+import {
+  useFetchToScroll,
+  useUserFilters,
+  useScrollRestore,
+  useLikesCount,
+  LikesCount,
+  BackToTop,
+} from "@/features/search"
+import { useMemo } from "react"
 import { SwitchButtons } from "@/ui/index.ts"
 import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 import { LayoutCardList } from "@/widgets/card"
-import { useFetchToScroll } from "@/lib/hooks/use-fetch-scroll.ts"
-import { useGetLikesToMeQuery } from "@/shared/api/likes.ts"
-import { useScrollRestore } from "@/lib/hooks/use-scroll-restore.ts"
-import { useAppSelector } from "@/redux/hooks.ts"
 import { usePlatform } from "@/shared/lib/hooks/use-platform.ts"
 import { NotifyLastCard } from "@/shared/ui/notify-last-card"
 import useRouteEmptyFields from "@/shared/lib/utils/route-empty-fileds"
 import { FilterButton } from "@/ui"
-import { useMemo } from "react"
 import { getEnvironment } from "@/shared/lib/utils/get-environment"
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 
@@ -18,23 +21,16 @@ const Search = () => {
   useRouteEmptyFields()
   const { isMobile } = usePlatform()
   const { isDev } = getEnvironment()
-  const filters = useAppSelector((state) => state.filters)
-  const cleanedFilters = Object.fromEntries(
-    Object.entries(filters).filter(
-      ([_, value]) => value !== "" && value != null
-    )
-  )
-  const { ref, users, isLoading, isFetching } = useFetchToScroll(cleanedFilters)
+  const filters = useUserFilters()
+  const { ref, users, isLoading, isFetching } = useFetchToScroll(filters)
   const memoizedUsers = useMemo(() => users ?? [], [users])
-  useScrollRestore("search", [users?.length])
+  const { countLikes } = useLikesCount()
   const { userToken } = useCurrentUser()
-  const userid = userToken?.userId
-  const { data: countLikes } = useGetLikesToMeQuery(userid ?? "", {
-    skip: !userid,
-  })
+
+  useScrollRestore("search", [users?.length])
   const showNotify =
     users.length === 0 &&
-    (!isDev ? Boolean(userid) : true) &&
+    (!isDev ? Boolean(userToken?.userId) : true) &&
     !isFetching &&
     !isLoading
   if (isLoading)

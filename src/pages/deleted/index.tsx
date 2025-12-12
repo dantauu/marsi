@@ -9,7 +9,11 @@ export const DeletedPage = () => {
         <p>Аккаунт удален, жаль что Вы уходите</p>
         <p>Но в любой момент вы можете вернуться :)</p>
       </div>
-      <Button onClick={closeApp} className="text-[var(--color-text-black)]" variant={"default"}>
+      <Button
+        onClick={closeApp}
+        className="text-[var(--color-text-black)]"
+        variant={"default"}
+      >
         Закрыть
       </Button>
     </div>

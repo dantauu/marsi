@@ -1,48 +1,23 @@
-import { DeleteAccount } from "@/features/settings/ui/delete-account"
+import { DeleteAccount, useDeleteAccount } from "@/features/settings"
 import { ToggleSwitch } from "@/shared/ui/checkboxes/toggle"
 import SvgArrowPath from "@/assets/icons/ArrowPath.tsx"
 import { usePlatform } from "@/shared/lib/hooks/use-platform.ts"
 import { useNavigate } from "@tanstack/react-router"
-import { DeleteAccountModal } from "@/widgets/modals/delete-account"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
-import {
-  closeDeleteModal,
-  openDeleteModal,
-} from "@/redux/slices/modal-slice.ts"
+import { openDeleteModal } from "@/redux/slices/modal-slice.ts"
 import { Overlay } from "@/widgets/overlay"
-import { AnimatePresence } from "framer-motion"
-import { useDeleteUserMutation } from "@/shared/api/user.ts"
-import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import { LoadingCircleBase } from "@/shared/ui/loading/circle.tsx"
-import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
+import { DeleteAccountWrapper } from "@/widgets/modals/wrappers/delete-account"
 
 export const Settings = () => {
   const { isMobile } = usePlatform()
   const navigate = useNavigate()
-  const { notify } = useNotify()
   const dispatch = useAppDispatch()
   const { isDeleteOpen } = useAppSelector((state) => state.modal)
   const handleModalOpen = () => {
     dispatch(openDeleteModal())
   }
-  const handleCloseModal = () => {
-    dispatch(closeDeleteModal())
-  }
-  const [deleteUser, { isLoading }] = useDeleteUserMutation()
-  const { userToken } = useCurrentUser()
-  const handleDeleteUser = async () => {
-    if (!userToken) return
-    try {
-      await notify(deleteUser(userToken.userId).unwrap(), {
-        success: "Аккаунт удалён",
-        error: "Что-то пошло не так",
-      })
-
-      navigate({ to: "/deleted" })
-    } catch (e) {
-      console.error(e)
-    }
-  }
+  const { isLoading, handleDeleteUser } = useDeleteAccount()
 
   return (
     <div
@@ -73,15 +48,10 @@ export const Settings = () => {
         <LoadingCircleBase className="fixed top-1/2 left-1/2 -translate-x-1/2 z-20 bg-[#0004] w-[75px] h-[75px] rounded-xl" />
       )}
       <DeleteAccount onClick={handleModalOpen} className="mb-40" />
-      <AnimatePresence>
-        {isDeleteOpen && (
-          <DeleteAccountModal
-            disabled={isLoading}
-            onAccept={handleDeleteUser}
-            onCancel={handleCloseModal}
-          />
-        )}
-      </AnimatePresence>
+      <DeleteAccountWrapper
+        handleDeleteUser={handleDeleteUser}
+        isLoading={isLoading}
+      />
     </div>
   )
 }
