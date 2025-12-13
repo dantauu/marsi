@@ -1,5 +1,5 @@
 import { useAppDispatch } from "@/redux/hooks"
-import { handleDislike, handleLike } from "@/redux/slices/slider-slice.ts"
+import { handleDislike, handleLike } from "@/redux/slices/slider.ts"
 import Button from "@/shared/ui/buttons/button.tsx"
 import {
   useDislikeUserMutation,

@@ -1,5 +1,5 @@
 import { useAppDispatch } from "@/redux/hooks"
-import { handleLike } from "@/redux/slices/slider-slice.ts"
+import { handleLike } from "@/redux/slices/slider.ts"
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useGetMyLikesQuery, useLikeUserMutation } from "@/shared/api/likes.ts"
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"

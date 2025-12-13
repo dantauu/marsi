@@ -1,7 +1,7 @@
 import { AnimatePresence } from "framer-motion"
 import { DeleteAccountModal } from "@/widgets/modals/delete-account"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
-import { closeDeleteModal } from "@/redux/slices/modal-slice.ts"
+import { closeDeleteModal } from "@/redux/slices/modals.ts"
 
 type DeleteAccountWrapperProps = {
   isLoading: boolean

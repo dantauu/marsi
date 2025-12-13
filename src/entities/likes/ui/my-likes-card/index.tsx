@@ -1,27 +1,29 @@
 import { LikeCard } from "@/shared/ui/like-card"
-import { useGetMyLikesQuery } from "@/shared/api/likes.ts"
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import LoadingBalls from "@/shared/ui/loading/balls.tsx"
-import { useGetUsersStatus } from "@/entities/likes/lib/utils/status-get-users"
-import { useDeleteLike } from "@/entities/likes/lib/delete-like"
+import { useDeleteLike, useGetUsersStatus } from "@/features/likes"
+import { useGetLikes } from "@/shared/lib/hooks/use-get-likes.ts"
 
 export const MyLikesList = () => {
   const { user: currentUser, isLoading: userLoading } = useCurrentUser()
   const {
-    data: users,
-    isFetching,
-    isSuccess,
-    isLoading,
-    isError,
-  } = useGetMyLikesQuery(currentUser?.id ?? "", {
-    skip: !currentUser?.id,
-  })
+    myLikes,
+    fetchingMyLikes,
+    loadingMyLikes,
+    errorMyLikes,
+    successMyLikes,
+  } = useGetLikes()
+
   const { handleUnlike, isPending } = useDeleteLike({
     currentUser: currentUser,
     variant: "my_like",
   })
-  useGetUsersStatus({ isSuccess, isFetching, isError })
-  if (userLoading || isLoading || !currentUser)
+  useGetUsersStatus({
+    isSuccess: successMyLikes,
+    isFetching: fetchingMyLikes,
+    isError: errorMyLikes,
+  })
+  if (userLoading || loadingMyLikes || !currentUser)
     return (
       <div className="flex justify-center items-center h-screen">
         <LoadingBalls />
@@ -30,7 +32,7 @@ export const MyLikesList = () => {
   return (
     <LikeCard
       isMessage={false}
-      users={users}
+      users={myLikes}
       likesTitle={"Лайки от меня"}
       onUnlike={handleUnlike}
       isUnlikeLoading={isPending}

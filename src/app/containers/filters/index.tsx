@@ -3,9 +3,9 @@ import {
   formEmptyValues,
 } from "@/app/providers/filter-form"
 import { useAppDispatch } from "@/redux/hooks.ts"
-import { closeFilterModal } from "@/redux/slices/modal-slice.ts"
+import { closeFilterModal } from "@/redux/slices/modals.ts"
 import { FilterModal } from "@/widgets/modals/filter-modal"
-import { setFilters } from "@/redux/slices/filer-store.ts"
+import { setFilters } from "@/redux/slices/filers.ts"
 import { useEffect } from "react"
 import type { FilterFormSchema } from "@/lib/schemes/filter"
 

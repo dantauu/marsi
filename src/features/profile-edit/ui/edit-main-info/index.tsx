@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
-import { openEditModal, closeEditModal } from "@/redux/slices/modal-slice"
+import { openEditModal, closeEditModal } from "@/redux/slices/modals.ts"
 import { EditModal } from "@/widgets/modals/edit-modal"
 import ItemEdit from "@/shared/ui/item-edit"
 import { cn } from "@/lib/utils/cn.tsx"

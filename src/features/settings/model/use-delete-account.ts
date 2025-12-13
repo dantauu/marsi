@@ -2,6 +2,7 @@ import { useDeleteUserMutation } from "@/shared/api/user.ts"
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
 import { useNavigate } from "@tanstack/react-router"
+import { setToken } from "@/redux/slices/auth.ts"
 
 export const useDeleteAccount = () => {
   const [deleteUser, { isLoading }] = useDeleteUserMutation()
@@ -17,6 +18,7 @@ export const useDeleteAccount = () => {
         error: "Что-то пошло не так",
       })
 
+      setToken(null)
       await navigate({ to: "/deleted" })
     } catch (e) {
       console.error(e)

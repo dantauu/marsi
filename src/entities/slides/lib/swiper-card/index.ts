@@ -4,7 +4,7 @@ import {
   endDragging,
   startDragging,
   updatePosition,
-} from "@/redux/slices/slider-slice.ts"
+} from "@/redux/slices/slider.ts"
 import { useLikeUserMutation } from "@/shared/api/likes.ts"
 import { useDislikeUserMutation } from "@/shared/api/likes.ts"
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
