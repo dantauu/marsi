@@ -6,7 +6,7 @@ import type { Locations } from "@/app/types/global.d.ts"
 import { motion } from "framer-motion"
 import SvgCross from "@/assets/icons/Cross.tsx"
 import { useAppDispatch } from "@/redux/hooks.ts"
-import { closeLocationsModal } from "@/redux/slices/modal-slice.ts"
+import { closeLocationsModal } from "@/redux/slices/modals.ts"
 import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 
 export const LocationsModal = () => {

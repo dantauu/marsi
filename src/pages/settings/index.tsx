@@ -1,48 +1,25 @@
-import { DeleteAccount } from "@/features/settings/ui/delete-account"
+import { DeleteAccount, useDeleteAccount } from "@/features/settings"
 import { ToggleSwitch } from "@/shared/ui/checkboxes/toggle"
 import SvgArrowPath from "@/assets/icons/ArrowPath.tsx"
 import { usePlatform } from "@/shared/lib/hooks/use-platform.ts"
 import { useNavigate } from "@tanstack/react-router"
-import { DeleteAccountModal } from "@/widgets/modals/delete-account"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
-import {
-  closeDeleteModal,
-  openDeleteModal,
-} from "@/redux/slices/modal-slice.ts"
+import { openDeleteModal } from "@/redux/slices/modals.ts"
 import { Overlay } from "@/widgets/overlay"
-import { AnimatePresence } from "framer-motion"
-import { useDeleteUserMutation } from "@/shared/api/user.ts"
-import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import { LoadingCircleBase } from "@/shared/ui/loading/circle.tsx"
-import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
+import { DeleteAccountWrapper } from "@/widgets/modals/wrappers/delete-account"
+import { useBlockScroll } from "@/shared/lib/hooks/use-block-scroll.ts"
 
 export const Settings = () => {
   const { isMobile } = usePlatform()
   const navigate = useNavigate()
-  const { notify } = useNotify()
   const dispatch = useAppDispatch()
   const { isDeleteOpen } = useAppSelector((state) => state.modal)
   const handleModalOpen = () => {
     dispatch(openDeleteModal())
   }
-  const handleCloseModal = () => {
-    dispatch(closeDeleteModal())
-  }
-  const [deleteUser, { isLoading }] = useDeleteUserMutation()
-  const { userToken } = useCurrentUser()
-  const handleDeleteUser = async () => {
-    if (!userToken) return
-    try {
-      await notify(deleteUser(userToken.userId).unwrap(), {
-        success: "Аккаунт удалён",
-        error: "Что-то пошло не так",
-      })
-
-      navigate({ to: "/deleted" })
-    } catch (e) {
-      console.error(e)
-    }
-  }
+  const { isLoading, handleDeleteUser } = useDeleteAccount()
+  useBlockScroll()
 
   return (
     <div
@@ -63,25 +40,18 @@ export const Settings = () => {
         </p>
       </div>
       <div className="flex items-center justify-between shadow-easy rounded-[10px] px-2 py-2 bg-[var(--color-bg-surface)]">
-        <p className="text-[var(--color-text-black)] text-[15px]">
+        <p className="text-[var(--color-text-black)] text-[16px]">
           Темная тема
         </p>
         <ToggleSwitch />
       </div>
       <div className="flex-1" />
-      {isLoading && (
-        <LoadingCircleBase className="fixed top-1/2 left-1/2 -translate-x-1/2 z-20 bg-[#0004] w-[75px] h-[75px] rounded-xl" />
-      )}
-      <DeleteAccount onClick={handleModalOpen} className="mb-40" />
-      <AnimatePresence>
-        {isDeleteOpen && (
-          <DeleteAccountModal
-            disabled={isLoading}
-            onAccept={handleDeleteUser}
-            onCancel={handleCloseModal}
-          />
-        )}
-      </AnimatePresence>
+      {isLoading && <LoadingCircleBase />}
+      <DeleteAccount onClick={handleModalOpen} className="mb-50" />
+      <DeleteAccountWrapper
+        handleDeleteUser={handleDeleteUser}
+        isLoading={isLoading}
+      />
     </div>
   )
 }

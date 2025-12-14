@@ -1,6 +1,6 @@
 import SvgFilterIcon from "@/assets/icons/FilterIcon"
 import Button from "@/shared/ui/buttons/button.tsx"
-import { openFilterModal } from "@/redux/slices/modal-slice"
+import { openFilterModal } from "@/redux/slices/modals.ts"
 import { useAppDispatch } from "@/redux/hooks.ts"
 import { cn } from "@/lib/utils/cn.tsx"
 import { memo } from "react"

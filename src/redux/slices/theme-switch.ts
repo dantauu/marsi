@@ -11,7 +11,7 @@ const getInitialTheme = (): ThemeSwitchType => {
     const savedTheme = localStorage.getItem("theme")
     if (savedTheme === "light" || savedTheme === "dark") return savedTheme
   }
-  return "light"
+  return "dark"
 }
 
 const initialState: ThemeState = {

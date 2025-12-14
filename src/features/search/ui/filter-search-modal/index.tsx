@@ -8,7 +8,7 @@ import { useWatch } from "react-hook-form"
 import { AnimatePresence } from "framer-motion"
 import { LocationsModal } from "@/widgets/modals/locations-modal"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
-import { openLocationsModal } from "@/redux/slices/modal-slice.ts"
+import { openLocationsModal } from "@/redux/slices/modals.ts"
 
 const Location = () => {
   const { control } = useFilterForm()

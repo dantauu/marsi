@@ -1,6 +1,6 @@
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useAppDispatch } from "@/redux/hooks.ts"
-import { openFilterModal } from "@/redux/slices/modal-slice.ts"
+import { openFilterModal } from "@/redux/slices/modals.ts"
 
 export const NotifyLastCard = () => {
   const dispatch = useAppDispatch()

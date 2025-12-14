@@ -1,5 +1,3 @@
-import { useAppSelector } from "@/redux/hooks.ts"
-import { useEffect } from "react"
 import { motion } from "framer-motion"
 import { DeleteAccountBar } from "@/widgets/nav-bar/delete-account"
 
@@ -14,16 +12,6 @@ export const DeleteAccountModal = ({
   onCancel,
   disabled,
 }: EditModalProps) => {
-  const { isDeleteOpen } = useAppSelector((state) => state.modal)
-  useEffect(() => {
-    if (isDeleteOpen) {
-      document.body.style.overflow = "hidden"
-
-      return () => {
-        document.body.style.overflow = ""
-      }
-    }
-  }, [isDeleteOpen])
   return (
     <motion.div
       transition={{

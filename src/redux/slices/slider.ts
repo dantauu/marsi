@@ -20,7 +20,7 @@ const initialState: SliderState = {
 
 const SWIPE_THRESHOLD = 190
 
-export const sliderSlice = createSlice({
+export const slider = createSlice({
   name: "slider",
   initialState,
   reducers: {
@@ -71,6 +71,6 @@ export const {
   endDragging,
   handleLike,
   handleDislike,
-} = sliderSlice.actions
+} = slider.actions
 
-export default sliderSlice.reducer
+export default slider.reducer

@@ -1,33 +1,23 @@
 import { SeeAboutApp, LikeCount, LikeIncoming } from "@/features/profile"
 import { ProfileHeader } from "@/entities/profile"
 import { BasicInformation } from "@/ui/index.ts"
-import { useGetLikesToMeQuery, useGetMyLikesQuery } from "@/shared/api/likes.ts"
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
+import { useGetLikes } from "@/shared/lib/hooks/use-get-likes.ts"
 
 const Profile = () => {
   const {
     user: currentUser,
     isFetching: userFetching,
     isLoading: userLoading,
-    userToken,
   } = useCurrentUser()
-  const userId = userToken?.userId
-  const { data: likesToMe, isFetching: likesToMeFetching } =
-    useGetLikesToMeQuery(userId ?? "", {
-      skip: !userId,
-    })
-  const { data: myLikes, isFetching: myLikesFetching } = useGetMyLikesQuery(
-    userId ?? "",
-    {
-      skip: !userId,
-    }
-  )
+  const { myLikes, likesToMe, fetchingLikesToMe, fetchingMyLikes } =
+    useGetLikes()
   const isPending =
     userLoading ||
     userFetching ||
-    myLikesFetching ||
     !currentUser ||
-    likesToMeFetching
+    fetchingMyLikes ||
+    fetchingLikesToMe
   return (
     <div
       data-testid="profile"

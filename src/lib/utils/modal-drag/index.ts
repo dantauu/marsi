@@ -5,7 +5,7 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion"
-import { closeFilterModal } from "@/redux/slices/modal-slice.ts"
+import { closeFilterModal } from "@/redux/slices/modals.ts"
 import React from "react"
 
 export const useModalDrag = () => {
