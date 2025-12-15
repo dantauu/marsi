@@ -1,11 +1,11 @@
 import { SliderCard } from "@/entities/slides"
 import { FilterButton } from "@/ui"
-import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 import { useFetchToSlide } from "@/features/search/model/use-fetch-scroll.ts"
 import { useBlockScroll } from "@/shared/lib/hooks/use-block-scroll.ts"
 import useRouteEmptyFields from "@/shared/lib/utils/route-empty-fileds"
 import { useMemo } from "react"
 import { useUserFilters } from "@/lib/hooks/use-user-filters.ts"
+import { LoadingCircleBase } from "@/shared/ui/loading/circle.tsx"
 
 const Slides = () => {
   useRouteEmptyFields()
@@ -13,12 +13,7 @@ const Slides = () => {
   const filters = useUserFilters()
   const { users, isLoading, isFetching } = useFetchToSlide(filters)
   const memoizedUsers = useMemo(() => users ?? [], [users])
-  if (isLoading)
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <LoadingBalls />
-      </div>
-    )
+  if (isLoading) return <LoadingCircleBase />
   return (
     <div data-testid="slides" className="flex flex-col gap-2 pt-5 pb-10">
       <FilterButton className="ml-2" />

@@ -1,8 +1,8 @@
 import { LikeCard } from "@/shared/ui/like-card"
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
-import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 import { useDeleteLike, useGetUsersStatus } from "@/features/likes"
 import { useGetLikes } from "@/shared/lib/hooks/use-get-likes.ts"
+import { LoadingCircleBase } from "@/shared/ui/loading/circle.tsx"
 
 export const MyLikesList = () => {
   const { user: currentUser, isLoading: userLoading } = useCurrentUser()
@@ -23,12 +23,7 @@ export const MyLikesList = () => {
     isFetching: fetchingMyLikes,
     isError: errorMyLikes,
   })
-  if (userLoading || loadingMyLikes || !currentUser)
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <LoadingBalls />
-      </div>
-    )
+  if (userLoading || loadingMyLikes || !currentUser) return <LoadingCircleBase />
   return (
     <LikeCard
       isMessage={false}

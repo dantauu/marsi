@@ -16,6 +16,7 @@ import { getEnvironment } from "@/shared/lib/utils/get-environment"
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import { useGetLikes } from "@/shared/lib/hooks/use-get-likes.ts"
 import { useUserFilters } from "@/lib/hooks/use-user-filters.ts"
+import { LoadingCircleBase } from "@/shared/ui/loading/circle.tsx"
 
 const Search = () => {
   useRouteEmptyFields()
@@ -33,12 +34,7 @@ const Search = () => {
     (!isDev ? Boolean(userToken?.userId) : true) &&
     !isFetching &&
     !isLoading
-  if (isLoading)
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <LoadingBalls />
-      </div>
-    )
+  if (isLoading) return <LoadingCircleBase />
   if (!users) throw new Error("Error Data")
   return (
     <div data-testid="search" className="pb-[200px]">

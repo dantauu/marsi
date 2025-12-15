@@ -46,9 +46,7 @@ export const Settings = () => {
         <ToggleSwitch />
       </div>
       <div className="flex-1" />
-      {isLoading && (
-        <LoadingCircleBase className="fixed top-1/2 left-1/2 -translate-x-1/2 z-20 bg-[#0004] w-[75px] h-[75px] rounded-xl" />
-      )}
+      {isLoading && <LoadingCircleBase />}
       <DeleteAccount onClick={handleModalOpen} className="mb-50" />
       <DeleteAccountWrapper
         handleDeleteUser={handleDeleteUser}
