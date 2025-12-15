@@ -6,7 +6,7 @@ export const useGetUser = (id: string) => {
     isLoading,
     isFetching,
   } = useGetUserByIdQuery(id, {
-    skip: !id
+    skip: !id,
   })
 
   return { user, isFetching, isLoading }
