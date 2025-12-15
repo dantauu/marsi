@@ -1,5 +1,4 @@
 import { DeleteAccount, useDeleteAccount } from "@/features/settings"
-import { ToggleSwitch } from "@/shared/ui/checkboxes/toggle"
 import SvgArrowPath from "@/assets/icons/ArrowPath.tsx"
 import { usePlatform } from "@/shared/lib/hooks/use-platform.ts"
 import { useNavigate } from "@tanstack/react-router"
@@ -9,6 +8,7 @@ import { Overlay } from "@/widgets/overlay"
 import { LoadingCircleBase } from "@/shared/ui/loading/circle.tsx"
 import { DeleteAccountWrapper } from "@/widgets/modals/wrappers/delete-account"
 import { useBlockScroll } from "@/shared/lib/hooks/use-block-scroll.ts"
+import { SettingsItems } from "@/features/settings/ui/settings-items"
 
 export const Settings = () => {
   const { isMobile } = usePlatform()
@@ -39,12 +39,7 @@ export const Settings = () => {
           Настройки
         </p>
       </div>
-      <div className="flex items-center justify-between shadow-easy rounded-[10px] px-2 py-2 bg-[var(--color-bg-surface)]">
-        <p className="text-[var(--color-text-black)] text-[16px]">
-          Темная тема
-        </p>
-        <ToggleSwitch />
-      </div>
+      <SettingsItems />
       <div className="flex-1" />
       {isLoading && <LoadingCircleBase />}
       <DeleteAccount onClick={handleModalOpen} className="mb-50" />
