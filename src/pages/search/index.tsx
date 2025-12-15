@@ -1,6 +1,5 @@
 import {
   useFetchToScroll,
-  useUserFilters,
   useScrollRestore,
   LikesCount,
   BackToTop,
@@ -16,6 +15,7 @@ import { FilterButton } from "@/ui"
 import { getEnvironment } from "@/shared/lib/utils/get-environment"
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import { useGetLikes } from "@/shared/lib/hooks/use-get-likes.ts"
+import { useUserFilters } from "@/lib/hooks/use-user-filters.ts"
 
 const Search = () => {
   useRouteEmptyFields()

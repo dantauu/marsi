@@ -2,21 +2,16 @@ import { SliderCard } from "@/entities/slides"
 import { FilterButton } from "@/ui"
 import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 import { useFetchToSlide } from "@/features/search/model/use-fetch-scroll.ts"
-import { useAppSelector } from "@/redux/hooks.ts"
 import { useBlockScroll } from "@/shared/lib/hooks/use-block-scroll.ts"
 import useRouteEmptyFields from "@/shared/lib/utils/route-empty-fileds"
 import { useMemo } from "react"
+import { useUserFilters } from "@/lib/hooks/use-user-filters.ts"
 
 const Slides = () => {
   useRouteEmptyFields()
   useBlockScroll()
-  const filters = useAppSelector((state) => state.filters)
-  const cleanedFilters = Object.fromEntries(
-    Object.entries(filters).filter(
-      ([_, value]) => value !== "" && value != null
-    )
-  )
-  const { users, isLoading, isFetching } = useFetchToSlide(cleanedFilters)
+  const filters = useUserFilters()
+  const { users, isLoading, isFetching } = useFetchToSlide(filters)
   const memoizedUsers = useMemo(() => users ?? [], [users])
   if (isLoading)
     return (

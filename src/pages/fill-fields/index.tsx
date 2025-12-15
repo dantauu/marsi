@@ -1,3 +1,3 @@
-import { RequiredBlock } from "@/features/fill-filelds/ui/required-block"
+import { RequiredBlock } from "@/widgets/fill-filelds"
 
 export const FillFields = () => <RequiredBlock />
