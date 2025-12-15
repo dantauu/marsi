@@ -1,13 +1,12 @@
 import { useGetUserByIdQuery } from "@/shared/api/user.ts"
 
-export const useGetUser = ({ id }: { id: string }) => {
-  const shouldFetch = Boolean(id && id != "undefined")
+export const useGetUser = (id: string) => {
   const {
     data: user,
     isLoading,
     isFetching,
   } = useGetUserByIdQuery(id, {
-    skip: !shouldFetch,
+    skip: !id
   })
 
   return { user, isFetching, isLoading }
