@@ -51,5 +51,5 @@ export const useLikesSocket = (userId?: string) => {
     return () => {
       socket.disconnect()
     }
-  }, [userId])
+  }, [userId, muted, volume])
 }

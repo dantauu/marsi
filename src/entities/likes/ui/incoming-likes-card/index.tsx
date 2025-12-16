@@ -22,7 +22,8 @@ export const IncomingLikesList = () => {
     isSuccess: successLikesToMe,
     isError: errorLikesToMe,
   })
-  if (userLoading || loadingLikesToMe || !currentUser) return <LoadingCircleBase />
+  if (userLoading || loadingLikesToMe || !currentUser)
+    return <LoadingCircleBase />
   return (
     <LikeCard
       isMessage={true}

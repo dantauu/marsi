@@ -23,7 +23,8 @@ export const MyLikesList = () => {
     isFetching: fetchingMyLikes,
     isError: errorMyLikes,
   })
-  if (userLoading || loadingMyLikes || !currentUser) return <LoadingCircleBase />
+  if (userLoading || loadingMyLikes || !currentUser)
+    return <LoadingCircleBase />
   return (
     <LikeCard
       isMessage={false}
