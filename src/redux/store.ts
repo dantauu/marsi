@@ -9,6 +9,7 @@ import { locationsApi } from "@/redux/api/locations.ts"
 import { layoutSlice } from "@/redux/slices/layout-switch.ts"
 import { baseApi } from "@/redux/api/base-api.ts"
 import { themeSwitch } from "@/redux/slices/theme-switch.ts"
+import { volumeSlice } from "@/redux/slices/volume.ts"
 
 export const store = configureStore({
   reducer: {
@@ -19,6 +20,7 @@ export const store = configureStore({
     users: usersReducer,
     layout_switch: layoutSlice.reducer,
     theme_switch: themeSwitch.reducer,
+    volume: volumeSlice.reducer,
     [locationsApi.reducerPath]: locationsApi.reducer,
     [baseApi.reducerPath]: baseApi.reducer,
   },

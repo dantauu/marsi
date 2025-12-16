@@ -1,7 +1,7 @@
 import { io, Socket } from "socket.io-client"
 import { useEffect } from "react"
 import { userApi } from "@/shared/api/user.ts"
-import { useAppDispatch } from "@/redux/hooks.ts"
+import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
 import likeSound from "@/assets/sound/like.mp3"
 import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
 
@@ -10,6 +10,7 @@ let socket: Socket
 export const useLikesSocket = (userId?: string) => {
   const dispatch = useAppDispatch()
   const { notify } = useNotify()
+  const { volume, muted } = useAppSelector((state) => state.volume)
   useEffect(() => {
     if (!userId) return
     const audio = new Audio(likeSound)
@@ -19,6 +20,7 @@ export const useLikesSocket = (userId?: string) => {
     })
     socket.on("new_like", ({ from }) => {
       audio.currentTime = 0
+      audio.volume = muted ? 0 : volume / 100
       audio.play().catch((e) => {
         console.error(e)
       })
