@@ -1,29 +1,38 @@
 import { io, Socket } from "socket.io-client"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { userApi } from "@/shared/api/user.ts"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
 import likeSound from "@/assets/sound/like.mp3"
 import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
 
-let socket: Socket
 
 export const useLikesSocket = (userId?: string) => {
   const dispatch = useAppDispatch()
   const { notify } = useNotify()
-  const { volume, muted } = useAppSelector((state) => state.volume)
+  const { muted } = useAppSelector((state) => state.volume)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const socketRef = useRef<Socket | null>(null)
+
+  useEffect(() => {
+    audioRef.current = new Audio(likeSound)
+  }, [])
+
   useEffect(() => {
     if (!userId) return
-    const audio = new Audio(likeSound)
 
-    socket = io(import.meta.env.VITE_BASE_URL, {
+    const socket = io(import.meta.env.VITE_BASE_URL, {
       query: { userId },
     })
+
+    socketRef.current = socket
+
     socket.on("new_like", ({ from }) => {
-      audio.currentTime = 0
-      audio.volume = muted ? 0 : volume / 100
-      audio.play().catch((e) => {
-        console.error(e)
-      })
+      if (!muted && audioRef.current) {
+        audioRef.current.currentTime = 0
+        audioRef.current.play().catch((e) => {
+          console.error(e)
+        })
+      }
       notify({
         message: `${from} поставил(а) вам лайк!`,
         icon: "❤️",
@@ -51,5 +60,5 @@ export const useLikesSocket = (userId?: string) => {
     return () => {
       socket.disconnect()
     }
-  }, [userId, muted, volume])
+  }, [userId, dispatch, notify])
 }
