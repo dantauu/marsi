@@ -5,7 +5,6 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks.ts"
 import likeSound from "@/assets/sound/like.mp3"
 import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
 
-
 export const useLikesSocket = (userId?: string) => {
   const dispatch = useAppDispatch()
   const { notify } = useNotify()

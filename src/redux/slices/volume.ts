@@ -31,24 +31,15 @@ export const volumeSlice = createSlice({
   reducers: {
     mute(state) {
       state.muted = true
-      localStorage.setItem(
-        "volume",
-        JSON.stringify({ muted: true })
-      )
+      localStorage.setItem("volume", JSON.stringify({ muted: true }))
     },
     unmute(state) {
       state.muted = false
-      localStorage.setItem(
-        "volume",
-        JSON.stringify({ muted: false })
-      )
+      localStorage.setItem("volume", JSON.stringify({ muted: false }))
     },
     toggleMute(state) {
       state.muted = !state.muted
-      localStorage.setItem(
-        "volume",
-        JSON.stringify({ muted: state.muted })
-      )
+      localStorage.setItem("volume", JSON.stringify({ muted: state.muted }))
     },
   },
 })
