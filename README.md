@@ -1,54 +1,52 @@
-# React + TypeScript + Vite
+## 📚 About
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a Telegram Web Application for dating
 
-Currently, two official plugins are available:
+## 🛠️ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- `Notifications in app and in telegram bot`
 
-## Expanding the ESLint configuration
+- `Swipe-based user matching`
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- `Real-time updates via WebSockets`
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- `Telegram-native authentication and UI integration`
+
+- `User profiles with photos and preferences`
+
+- `Likes and mutual connections through username`
+
+- `Lazy loading for high performance`
+
+- `Fully responsive mobile-first UI`
+
+## ⚙️ Tech Stack
+
+| Tool | Description | Example Prompt |
+|------|-------------|----------------|
+| **RTK Query** | Data fetching, caching and synchronization with the backend API | Automatically loads user profiles, sends likes, fetches matches and keeps client state in sync with the server |
+| **TypeScript** | Static typing for safer and more predictable code | Defines strict interfaces for users, photos, likes, matches and WebSocket events |
+| **Redux Toolkit** | Global state management | Stores current user, swipe state, UI state and application settings |
+| **WebSockets** | Real-time bidirectional communication | Instantly delivers new likes, matches and profile updates without page reload |
+| **@dnd-kit** | Drag-and-drop system for UI interactions | Allows users to reorder their profile photos by dragging them into a new order |
+
+## 🚀 Getting Started
+
+### For docker
+
+```bash
+  docker:dev 
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### For usual
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash 
+  yarn install
 ```
+
+```bash
+  yarn dev 
+```
+
+Author
+Developed by dantauu
