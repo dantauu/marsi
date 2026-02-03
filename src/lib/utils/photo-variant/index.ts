@@ -1,4 +1,4 @@
-import type { UserPhotoVariants } from "@/app/types/user"
+import type { UserPhotoVariants } from "@/app/types/user.ts"
 
 export const getPhotoVariant = (
   item: UserPhotoVariants | undefined,

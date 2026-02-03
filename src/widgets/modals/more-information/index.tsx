@@ -1,5 +1,5 @@
 import { MainInfoUser } from "@/shared/ui/user/main-info"
-import type { User } from "@/app/types/user"
+import type { User } from "@/app/types/user.ts"
 import { SwiperCard } from "@/entities/slides/lib/swiper-card"
 import { AnimatePresence, motion } from "framer-motion"
 import { usePlatform } from "@/shared/lib/hooks/use-platform.ts"

@@ -1,4 +1,4 @@
-import type { User } from "@/app/types/user"
+import type { User } from "@/app/types/user.ts"
 import Button from "@/shared/ui/buttons/button.tsx"
 import SvgPoint from "@/assets/icons/Point.tsx"
 import SvgRuler from "@/assets/icons/Ruler.tsx"

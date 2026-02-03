@@ -1,6 +1,6 @@
 import type { EditFormSchema } from "@/lib/schemes/profile-edit"
 import React, { type JSX } from "react"
-import type { User, UserPhotoVariants } from "./user"
+import type { User, UserPhotoVariants } from "./user.ts"
 
 type FilteredUsers = {
   minAge: number

@@ -1,5 +1,5 @@
 import { type Control, Controller } from "react-hook-form"
-import type { EditFormFields } from "@/app/types/global.d.ts"
+import type { EditFormFields } from "@/app/types/global.ts"
 import type { JSX } from "react"
 import {
   AboutMe,

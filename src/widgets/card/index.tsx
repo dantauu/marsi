@@ -2,7 +2,7 @@ import { LayoutTab } from "@/app/types/enums.ts"
 import { useAppSelector } from "@/redux/hooks.ts"
 import CardGrid from "@/widgets/card/layout/grid.tsx"
 import CardExpanded from "@/widgets/card/layout/expanded.tsx"
-import type { UserCardExpanded } from "@/app/types/global"
+import type { UserCardExpanded } from "@/app/types/global.ts"
 import { memo } from "react"
 
 const tabs = {

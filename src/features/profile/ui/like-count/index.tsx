@@ -1,6 +1,6 @@
 import { useNavigate } from "@tanstack/react-router"
 import LoadingBalls from "@/shared/ui/loading/balls.tsx"
-import type { User } from "@/app/types/user"
+import type { User } from "@/app/types/user.ts"
 
 type LikeCountProps = {
   isPending: boolean

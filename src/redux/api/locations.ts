@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import type { Locations } from "@/app/types/global.d.ts"
+import type { Locations } from "@/app/types/global.ts"
 
 export const locationsApi = createApi({
   reducerPath: "locationsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_BASE_URL || "http://localhost:9000/",
+    baseUrl: "http://localhost:9000/", //import.meta.env.VITE_BASE_URL
   }),
   endpoints: (builder) => ({
     getLocations: builder.query<

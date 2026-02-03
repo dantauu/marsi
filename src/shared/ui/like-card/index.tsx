@@ -1,6 +1,6 @@
 import Button from "@/shared/ui/buttons/button.tsx"
 import SvgArrow from "@/assets/icons/Arrow.tsx"
-import type { User } from "@/app/types/user"
+import type { User } from "@/app/types/user.ts"
 import { useNavigate } from "@tanstack/react-router"
 import { Route as SlidesIdRoute } from "@/app/routes/_app/_layout/search-id/$id.tsx"
 import SvgCrossOrigin from "@/assets/icons/CrossOrigin.tsx"

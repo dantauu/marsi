@@ -1,4 +1,4 @@
-import type { User } from "@/app/types/user"
+import type { User } from "@/app/types/user.ts"
 import { useNotify } from "@/shared/lib/hooks/use-notify.tsx"
 import {
   useUnlikeIncomingUserMutation,

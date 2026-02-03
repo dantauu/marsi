@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit"
 import modalReducer from "./slices/modals.ts"
 import sliderReducer from "./slices/slider.ts"
-import filtersReducer from "./slices/filers.ts"
+import filtersReducer from "./slices/filters.ts"
 import authReducer from "./slices/auth.ts"
 import usersReducer from "./slices/users.ts"
 import { setupListeners } from "@reduxjs/toolkit/query"

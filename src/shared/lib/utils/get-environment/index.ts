@@ -1,5 +1,5 @@
 export const getEnvironment = () => {
-  const env = process.env.NODE_ENV ?? "development"
+  const env = process.env.NODE_ENV ?? "development" //import.meta.env.MODE review
 
   return {
     env,

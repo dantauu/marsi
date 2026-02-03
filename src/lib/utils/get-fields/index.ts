@@ -1,5 +1,5 @@
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
-import type { User } from "@/app/types/user"
+import type { User } from "@/app/types/user.ts"
 
 export const GetFields = () => {
   const { user } = useCurrentUser()

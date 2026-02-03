@@ -1,5 +1,5 @@
 import { CardGridLayout } from "@/entities/search/index.ts"
-import type { UserCardGrid } from "@/app/types/global.d.ts"
+import type { UserCardGrid } from "@/app/types/global.ts"
 import { getPhotoVariant } from "@/lib/utils/photo-variant"
 
 const CardGrid = ({ data }: { data: UserCardGrid[] }) => {

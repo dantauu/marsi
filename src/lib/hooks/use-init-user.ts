@@ -6,7 +6,7 @@ import { useAppDispatch } from "@/redux/hooks.ts"
 import { setToken } from "@/redux/slices/auth.ts"
 import { useCurrentUser } from "@/shared/lib/hooks/use-current-user.ts"
 import { getEnvironment } from "@/shared/lib/utils/get-environment"
-import type { UserInit } from "@/app/types/user"
+import type { UserInit } from "@/app/types/user.ts"
 import { useLocation } from "@tanstack/react-router"
 
 export const useInitUser = () => {
