@@ -1,7 +1,7 @@
 import LoadingBalls from "@/shared/ui/loading/balls.tsx"
 import SvgArrow from "@/assets/icons/Arrow.tsx"
 import { useNavigate } from "@tanstack/react-router"
-import type { User } from "@/app/types/user"
+import type { User } from "@/app/types/user.ts"
 
 type LikeIncomingProps = {
   isPending: boolean

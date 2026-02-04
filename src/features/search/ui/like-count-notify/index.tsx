@@ -1,4 +1,4 @@
-import type { User } from "@/app/types/user"
+import type { User } from "@/app/types/user.ts"
 import { memo } from "react"
 
 const LikesCountComponent = ({

@@ -38,7 +38,7 @@ export const useFetchToScroll = (params = {}) => {
   useEffect(() => {
     setOffset(0)
     dispatch(resetUsers())
-  }, [JSON.stringify(params)])
+  }, [params, dispatch])
 
   useEffect(() => {
     if (inView && !isFetching && newUsers.length === LIMIT) {
@@ -52,7 +52,6 @@ export const useFetchToScroll = (params = {}) => {
     }
   }, [newUsers])
 
-  console.log("NEW", newUsers)
   return { ref, users, isLoading, isFetching }
 }
 
@@ -86,7 +85,7 @@ export const useFetchToSlide = (params = {}) => {
   useEffect(() => {
     setOffset(0)
     dispatch(resetUsers())
-  }, [JSON.stringify(params)])
+  }, [params, dispatch])
 
   useEffect(() => {
     if (countNewUsers > 0) {

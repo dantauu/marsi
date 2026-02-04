@@ -1,4 +1,4 @@
-import type { User } from "@/app/types/user"
+import type { User } from "@/app/types/user.ts"
 import { SwiperCard } from "@/entities/slides/lib/swiper-card"
 import { NotifyLastCard, SliderButtons } from "@/features/slides"
 import { SwipePhotos } from "@/ui/sliders/swipe-photo"

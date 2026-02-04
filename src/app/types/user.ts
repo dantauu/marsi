@@ -42,4 +42,4 @@ type UserPhotoVariants = {
   large: string
 }
 
-export { User, UpdateUserData, UserInit, UserPhotos, UserPhotoVariants }
+export type { User, UpdateUserData, UserInit, UserPhotos, UserPhotoVariants }

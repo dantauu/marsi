@@ -1,5 +1,5 @@
-import type { FilteredUsers } from "@/app/types/global.d.ts"
-import type { User, UserInit, UpdateUserData } from "@/app/types/user"
+import type { FilteredUsers } from "@/app/types/global.ts"
+import type { User, UserInit, UpdateUserData } from "@/app/types/user.ts"
 import { baseApi } from "@/redux/api/base-api.ts"
 
 export type UploadPhotoResponse = {

@@ -1,6 +1,6 @@
 import Button from "@/shared/ui/buttons/button.tsx"
 import { useNavigate } from "@tanstack/react-router"
-import type { User } from "@/app/types/user"
+import type { User } from "@/app/types/user.ts"
 import SvgSettings from "@/assets/icons/Settings.tsx"
 import SvgEdit from "@/assets/icons/Edit.tsx"
 import { useAllPercentCount } from "@/lib/utils/get-percent-count"

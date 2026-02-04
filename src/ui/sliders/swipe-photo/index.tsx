@@ -1,5 +1,5 @@
 import { useRef } from "react"
-import type { UserPhotos } from "@/app/types/user"
+import type { UserPhotos } from "@/app/types/user.ts"
 
 type Props = { photo_url: UserPhotos | undefined }
 

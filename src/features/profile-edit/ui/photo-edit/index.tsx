@@ -22,7 +22,7 @@ import {
   horizontalListSortingStrategy,
 } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
-import type { SortablePhotoProps } from "@/app/types/global"
+import type { SortablePhotoProps } from "@/app/types/global.ts"
 
 export const PhotoEdit = () => {
   const { setValue, control } = useEditProfileForm()

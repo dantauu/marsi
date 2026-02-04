@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { useDebounce } from "@/lib/hooks/use-debounce.ts"
-import { useGetLocationsQuery } from "@/redux/api/locations.ts"
-import type { Locations } from "@/app/types/global.d.ts"
+import type { Locations } from "@/app/types/global.ts"
 import LoadingBalls from "@/shared/ui/loading/balls.tsx"
+import { useGetLocationsQuery } from "@/shared/api/locations.ts"
 
 export const CityEdit = ({
   value,

@@ -1,4 +1,4 @@
-import type { UserCardExpanded } from "@/app/types/global.d.ts"
+import type { UserCardExpanded } from "@/app/types/global.ts"
 import { CardExpandedLayout } from "@/entities/search/ui/card/card-expanded.tsx"
 import { getPhotoVariant } from "@/lib/utils/photo-variant"
 

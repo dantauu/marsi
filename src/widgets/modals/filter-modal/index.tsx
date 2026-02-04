@@ -9,7 +9,7 @@ import { useWatch } from "react-hook-form"
 import { useFilterForm } from "@/app/context/filter-form-context.tsx"
 import { useModalDrag } from "@/lib/utils/modal-drag"
 import SaveSettingsFilter from "@/widgets/nav-bar/save-settings-filter"
-import { resetFilters } from "@/redux/slices/filers.ts"
+import { resetFilters } from "@/redux/slices/filters.ts"
 
 export const FilterModal = () => {
   const form = useFilterForm()

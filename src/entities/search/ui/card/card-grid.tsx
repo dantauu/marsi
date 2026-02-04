@@ -1,4 +1,4 @@
-import type { UserCardGridProps } from "@/app/types/global.d.ts"
+import type { UserCardGridProps } from "@/app/types/global.ts"
 import { useNavigate } from "@tanstack/react-router"
 import { Route as SlidesIdRoute } from "@/app/routes/_app/_layout/search-id/$id.tsx"
 

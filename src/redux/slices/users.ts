@@ -1,4 +1,4 @@
-import type { User } from "@/app/types/user"
+import type { User } from "@/app/types/user.ts"
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
 
 type UsersState = {
@@ -16,9 +16,6 @@ const userSlice = createSlice({
     appendUsers: (state, action: PayloadAction<User[]>) => {
       state.users.push(...action.payload)
     },
-    removedUser: (state, action: PayloadAction<string>) => {
-      state.users = state.users.filter((u) => u.id !== action.payload)
-    },
     resetUsers: (state) => {
       state.users = []
     },
@@ -26,4 +23,4 @@ const userSlice = createSlice({
 })
 
 export default userSlice.reducer
-export const { appendUsers, removedUser, resetUsers } = userSlice.actions
+export const { appendUsers, resetUsers } = userSlice.actions

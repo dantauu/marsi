@@ -5,7 +5,7 @@ import {
 import { useAppDispatch } from "@/redux/hooks.ts"
 import { closeFilterModal } from "@/redux/slices/modals.ts"
 import { FilterModal } from "@/widgets/modals/filter-modal"
-import { setFilters } from "@/redux/slices/filers.ts"
+import { setFilters } from "@/redux/slices/filters.ts"
 import { useEffect } from "react"
 import type { FilterFormSchema } from "@/lib/schemes/filter"
 

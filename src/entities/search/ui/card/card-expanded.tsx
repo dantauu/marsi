@@ -1,4 +1,4 @@
-import type { UserCardExpandedProps } from "@/app/types/global.d.ts"
+import type { UserCardExpandedProps } from "@/app/types/global.ts"
 import { useNavigate } from "@tanstack/react-router"
 import { Route as SlidesRoute } from "@/app/routes/_app/_layout/search-id/$id.tsx"
 

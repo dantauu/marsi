@@ -1,4 +1,4 @@
-import type { User } from "@/app/types/user"
+import type { User } from "@/app/types/user.ts"
 type HavePhotoProps = {
   colors: string
   percent: number
