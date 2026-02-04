@@ -5,7 +5,6 @@ import filtersReducer from "./slices/filters.ts"
 import authReducer from "./slices/auth.ts"
 import usersReducer from "./slices/users.ts"
 import { setupListeners } from "@reduxjs/toolkit/query"
-import { locationsApi } from "@/redux/api/locations.ts"
 import { layoutSlice } from "@/redux/slices/layout-switch.ts"
 import { baseApi } from "@/redux/api/base-api.ts"
 import { themeSwitch } from "@/redux/slices/theme-switch.ts"
@@ -21,13 +20,10 @@ export const store = configureStore({
     layout_switch: layoutSlice.reducer,
     theme_switch: themeSwitch.reducer,
     volume: volumeSlice.reducer,
-    [locationsApi.reducerPath]: locationsApi.reducer,
     [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(baseApi.middleware)
-      .concat(locationsApi.middleware),
+    getDefaultMiddleware().concat(baseApi.middleware),
 })
 
 setupListeners(store.dispatch)

@@ -1,13 +1,13 @@
 import { useFilterForm } from "@/app/context/filter-form-context.tsx"
 import { useState } from "react"
 import { useDebounce } from "@/lib/hooks/use-debounce.ts"
-import { useGetLocationsQuery } from "@/redux/api/locations.ts"
 import type { Locations } from "@/app/types/global.ts"
 import { motion } from "framer-motion"
 import SvgCross from "@/assets/icons/Cross.tsx"
 import { useAppDispatch } from "@/redux/hooks.ts"
 import { closeLocationsModal } from "@/redux/slices/modals.ts"
 import LoadingBalls from "@/shared/ui/loading/balls.tsx"
+import { useGetLocationsQuery } from "@/shared/api/locations.ts"
 
 export const LocationsModal = () => {
   const { setValue } = useFilterForm()
